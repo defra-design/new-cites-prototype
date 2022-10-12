@@ -5,40 +5,63 @@
   Home – GOV.UK Prototype Kit
 {% endblock %}
 
+{% block pageTitle %}
+{{ thisPageTitle }} - {{ serviceName }} - GOV.UK
+{% endblock %}
+
+
+{% block beforeContent %}
+  {% include ".//includes/stage-banner.html" %}
+{% endblock %}
+
 {% block content %}
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">
-        Cites Prototype
-        <span class="govuk-caption-xl">{{releaseVersion}}</span>
-      </h1>{{releaseVersion | log }}
-      <p>
-        This kit lets you rapidly create HTML prototypes of GOV.UK services.
-      </p>
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
 
-      <p>
-        It contains all you need to prototype anything from simple static pages to complex, data-driven transactions.
-      </p>
+      <h1 class="govuk-heading-l">
+        {{ thisPageTitle }}
+      </h1>
 
-      <h2 class="govuk-heading-m">About this page</h2>
+        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key" style="width: 15%">
+              Version
+            </dt>
+            <dd class="govuk-summary-list__key">
+              Changes
+            </dd>
+            <dd class="govuk-summary-list__actions">
+            </dd>
+          </div>
 
-      <p>We recommend you add links to your prototype to this page, rather than delete it.
-        You'll find this page in the kit at '/app/views/index.html'.</p>
+          <div class="govuk-summary-list__row" style="background: lightgrey">
+            <dt class="govuk-summary-list__key" style="width: 15%; padding-top: 20px; padding-bottom: 20px">
+              v07
+            </dt>
+            <dd class="govuk-summary-list__value" style="padding-top: 20px; padding-bottom: 20px">
+              <h2 class="govuk-heading-s">End-2-End user journey</h2>
+                    <ul class="govuk-list govuk-list--bullet">
+                      <li>
+                        <a href="/v07/public/start?specimenType=animal">
+                        Animal<span class="govuk-visually-hidden"></span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/v07/public/start?specimenType=plant">
+                        Plant<span class="govuk-visually-hidden"></span>
+                        </a>
+                      </li>
+                    </ul>
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-button" href="/v07/public/start?specimenType=animal">
+                View prototype<span class="govuk-visually-hidden"></span>
+              </a>
+            </dd>
+          </div>
 
-      <p>You can change the service name by editing the file '/app/config.js'.</p>
-
-      <h2 class="govuk-heading-m">Examples and documentation</h2>
-
-      <ul class="govuk-list govuk-list--bullet">
-        <li>
-          <a href="/docs/tutorials-and-examples">Tutorials and templates</a>
-        </li>
-        <li>
-          <a href="https://design-system.service.gov.uk">GOV.UK Design System</a>
-        </li>
-      </ul>
     </div>
-  </div>
+</div>
 
 {% endblock %}
