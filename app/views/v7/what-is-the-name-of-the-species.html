@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 
-{% set thisPageTitle = "what-is-the-name-of-the-species" %}
+{% set thisPageTitle = "what-is-the-name-of-your-species" %}
+
 
 
     <style>
@@ -51,70 +52,42 @@
 
   {% block content %}
 
-  <link rel="stylesheet" href="/public/stylesheets/accessible-autocomplete.min.css">
+  <link rel="stylesheet" href="/app/assets/sass/accessible-autocomplete.min.css">
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
+    <div class="govuk-grid-column-two-thirds">
       <form method="post" autocomplete="off">
-          <h1 class="govuk-heading-l">What is the name of the species?</h1>
+          <h1 class="govuk-heading-l">What is the name of your species?</h1>
+
           <label class="govuk-label" for="autocomplete-default">Search using the scientific or common name.</label>
-          <div id="tt-default" class="autocomplete-wrapper govuk-!-width-three-quarters" name="species-name-1" type="text"></div>
+          <div id="tt-default" class="autocomplete-wrapper govuk-!-width-three-quarters" name="specimen" type="text"></div>
 
-          <br></br>
+          <!-- <br></br> -->
+          <button class="govuk-button">Continue</button>
 
-          <div class="govuk-grid-row">
-            <div class="govuk-grid-column-full">
-              <div class="govuk-button-group">
-                  <button class="govuk-button govuk-button--secondary" data-module="govuk-button">Add species</button>
-              </div>
-            </div>
-          </div>
+      </form>
+    </div>
+</div>
 
-          <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-              <table class="govuk-table">
-                <caption class="govuk-table__caption govuk-table__caption--m">Species</caption>
-                <tbody class="govuk-table__body">
-                  <tr class="govuk-table__row">
-                    <th scope="row" class="govuk-table__header">You have not added any species yet</th>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell govuk-!-text-align-left"></td>
-                    <td class="govuk-table__cell govuk-!-text-align-right"></td>
-                  </tr>
-                </tbody>
-              </table>
-
-              <a href="description-dynamic" class="govuk-button" data-module="govuk-button">Continue</a>
-
-              <!-- End two-thirds content -->
-            </form>
-
-    <script type="text/javascript" src="/public/javascripts/accessible-autocomplete.min.js"></script>
+    <script type="text/javascript" src="/app/assets/javascripts/accessible-autocomplete.min.js"></script>
     <script type="text/javascript">
 
-      var species = [
-        'Acipenser gueldenstaedtii, Sturgeon, Caviar',
-        'Acipenser nudiventris, Sturgeon, Caviar',
-        'Acipenser persicus, Sturgeon, Caviar',
-        'Acipenser ruthenus, Sturgeon, Caviar',
-        'Acipenser stellatus, Sturgeon, Caviar',
-        'Alisterus amboinensis, Parrot',
-        'Alisterus chloropterus, Parrot',
-        'Buteo buteo, Buzzard',
-        'Cheloniidae spp',
-        'Coral',
-        'Dalbergia nigra, Brazilian rosewood',
+      var specimen = [
+        'Huso huso, Beluga',
         'Elephantidae spp',
-        'Erythrura coloria, Parrotfinch',
-        'Erythrura viridifacies, Parrotfinch',
+        'Dalbergia nigra, Brazilian rosewood',
+        'Cheloniidae spp',
+        'Tyto alba, Barn Owl',
         'Falco peregrinus, Peregrine Falcon',
         'Falco rusticolus, Gyr Falcon',
-        'Huso huso, Beluga, Sturgeon, Caviar',
+        'Buteo buteo, Buzzard',
         'Odobenus rosmarus, Walrus',
         'Python reticulatus, Reticulated Python',
-        'Testudo Hermanni, Tortoise',
-        'Tyto alba, Barn Owl',
         'Varanus salvator, Rice Lizard',
+        'Coral',
+        'Tortoise'
+        // 'Testudo Hermanni,Tortoise'
       ]
 
     </script>
@@ -125,8 +98,8 @@
       accessibleAutocomplete({
         element: element,
         id: id,
-        name: "species-name-1",
-        source: species
+        name: "specimen",
+        source: specimen
       })
     </script>
 
