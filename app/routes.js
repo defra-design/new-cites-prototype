@@ -99,6 +99,11 @@ router.post('/v7/select-your-address-applicant', function (req, res) {
   res.redirect('confirm-your-address-applicant')
 })
 
+// Specimen details
+router.post('/v7/specimen-details', function (req, res) {
+  res.redirect('#')
+})
+
 // What is the name of the species
 router.post('/v7/what-is-the-name-of-the-species', function (req, res) {
   res.redirect('where-did-you-source-your-specimen-from')
