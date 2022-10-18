@@ -5,21 +5,15 @@
 {% block content %}
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-full">
+        <form method="post" novalidate>
 
         <!-- <span class="govuk-caption-l">Falco rusticolus, Gyr Falcon {{data['speciesName']}}</span> -->
-        <h1 class="govuk-heading-l">Copy CITES {{data['permitType']}} AP123456789 {{data['applicationReferenceNumber']}}</h1>
+        <h1 class="govuk-heading-l">Copy CITES AP123456789 {{data['applicationReferenceNumber']}}</h1>
 
         <!-- Permit details -->
         <h2 class="govuk-heading-m">About the permit</h2>
         <hr>
               <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-                  <!-- <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                      <h2 class="govuk-heading-m">About the permit</h2>
-                    </dt>
-                    <dd class="govuk-summary-list__value"></dd>
-                    <dd class="govuk-summary-list__value"></dd>
-                  </div> -->
                   <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
                       Permit type
@@ -33,19 +27,6 @@
                       </a>
                     </dd>
                   </div>
-                  <!-- <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                      Purpose code
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                      D
-                    </dd>
-                    <dd class="govuk-summary-list__actions">
-                      <a class="govuk-link" href="#">
-                        Change<span class="govuk-visually-hidden">purpose code</span>
-                      </a>
-                    </dd>
-                  </div> -->
                 </dl>
 
 <!-- Your contact details (agent) -->
@@ -53,14 +34,6 @@
         <h2 class="govuk-heading-m">Your contact details</h2>
         <hr>
         <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-          <!-- <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              <h2 class="govuk-heading-m">Your contact details</h2>
-            </dt>
-            <dd class="govuk-summary-list__value"></dd>
-            <dd class="govuk-summary-list__value"></dd>
-          </div> -->
-
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Full name<br>
@@ -137,14 +110,6 @@
         <h2 class="govuk-heading-m">Your contact details</h2>
         <hr>
         <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-          <!-- <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              <h2 class="govuk-heading-m">Applicant's contact details</h2>
-            </dt>
-            <dd class="govuk-summary-list__value"></dd>
-            <dd class="govuk-summary-list__value"></dd>
-          </div> -->
-
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Full name<br>
@@ -187,14 +152,6 @@
         <h2 class="govuk-heading-m">Species details</h2>
         <hr>
         <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-          <!-- <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              <h2 class="govuk-heading-m">Species details</h2>
-            </dt>
-            <dd class="govuk-summary-list__value"></dd>
-            <dd class="govuk-summary-list__value"></dd>
-          </div> -->
-
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Scientific name<br>
@@ -210,19 +167,6 @@
               </a>
             </dd>
           </div>
-          <!-- <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              Quantity
-            </dt>
-            <dd class="govuk-summary-list__value">
-              4 {{data['quantity']}}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="#">
-                Change<span class="govuk-visually-hidden">Quantity</span>
-              </a>
-            </dd>
-          </div> -->
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Source code
@@ -283,25 +227,11 @@
           <h2 class="govuk-heading-m">Country of {{data['permitType']}} details</h2>
           <hr>
           <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-          <!-- <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              <h2 class="govuk-heading-m">Country of {{data['permitType']}} details</h2>
-            </dt>
-            <dd class="govuk-summary-list__value"></dd>
-            <dd class="govuk-summary-list__value"></dd>
-          </div> -->
           {% endif %}
           {% if data['permitType'] == 're-export'%}
           <h2 class="govuk-heading-m">Country of last {{data['permitType']}} details</h2>
           <hr>
           <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-              <!-- <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">
-                  <h2 class="govuk-heading-m">Country of last {{data['permitType']}} details</h2>
-                </dt>
-                <dd class="govuk-summary-list__value"></dd>
-                <dd class="govuk-summary-list__value"></dd>
-              </div> -->
           {% endif %}
 
           {% if data['permitType'] == 'import' or data['permitType'] == 're-export' %}
@@ -328,14 +258,6 @@
         <h2 class="govuk-heading-m">Country of origin details</h2>
         <hr>
         <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-          <!-- <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              <h2 class="govuk-heading-m">Country of origin details</h2>
-            </dt>
-            <dd class="govuk-summary-list__value"></dd>
-            <dd class="govuk-summary-list__value"></dd>
-          </div> -->
-
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               Country<br>
@@ -356,29 +278,6 @@
         </dl>
     {% endif %}
 
-
-        <!-- <h2 class="govuk-heading-m">Do you want to use these details for all 4 specimens?</h2>
-
-        <div class="govuk-form-group">
-          <div class="govuk-radios govuk-radios" data-module="govuk-radios">
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="yes-all" name="useDetails" type="radio" value="yes-all">
-              <label class="govuk-label govuk-radios__label" for="yes-all">
-                Yes - use these details
-              </label>
-            </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="no-none" name="useDetails"  type="radio" value="no-none">
-              <label class="govuk-label govuk-radios__label" for="no-none">
-                No - I want to use different details
-              </label>
-            </div>
-          </div>
-        </div> -->
-
-        <form method="post" novalidate>
-
-          <!-- <input type="hidden" name="answers-checked" value="true"> -->
 
           <button class="govuk-button" data-module="govuk-button">
             Continue
