@@ -1,6 +1,16 @@
 const express = require('express')
 const router = express.Router()
 
+// Add any other information
+router.post('/v7/add-any-other-information', function (req, res) {
+  res.redirect('copy-application')
+})
+
+// Application complete
+router.post('/v7/application-complete', function (req, res) {
+  res.redirect('#')
+})
+
 // Are you applying on behalf of someone else
 router.post('/v7/are-you-applying-on-behalf-of-someone-else', function (req, res) {
 if (req.session.data['isAgent'] == 'yes') {
@@ -8,6 +18,11 @@ if (req.session.data['isAgent'] == 'yes') {
 } else {
   res.redirect('enter-your-contact-details-applicant')
 }
+})
+
+// Check your answers
+router.post('/v7/check-your-answers', function (req, res) {
+  res.redirect('application-complete')
 })
 
 // Confirm applicants international address
@@ -41,6 +56,11 @@ router.post('/v7/confirm-your-address-applicant', function (req, res) {
     else {
     res.redirect('what-is-the-name-of-the-species')
   }
+})
+
+// Copy application
+router.post('/v7/copy-application', function (req, res) {
+  res.redirect('file-upload')
 })
 
 // Enter an international address
@@ -84,6 +104,16 @@ router.post('/v7/enter-your-contact-details-applicant', function (req, res) {
   res.redirect('what-is-your-address-applicant')
 })
 
+// File upload
+router.post('/v7/file-upload', function (req, res) {
+  res.redirect('check-your-answers')
+})
+
+// Permit details
+router.post('/v7/permit-details', function (req, res) {
+  res.redirect('add-any-other-information')
+})
+
 // Select your address agent
 router.post('/v7/select-your-address-agent-led', function (req, res) {
   res.redirect('confirm-your-address-agent-led')
@@ -101,7 +131,7 @@ router.post('/v7/select-your-address-applicant', function (req, res) {
 
 // Specimen details
 router.post('/v7/specimen-details', function (req, res) {
-  res.redirect('#')
+  res.redirect('permit-details')
 })
 
 // What is the name of the species
@@ -151,7 +181,7 @@ router.post('/v7/what-will-you-use-the-certificate-for', function (req, res) {
 
 // What will you use the permit for
 router.post('/v7/what-will-you-use-your-permit-for', function (req, res) {
-  res.redirect('#')
+  res.redirect('specimen-details')
 })
 
 // Where did you source the specimen from
