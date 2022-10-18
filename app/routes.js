@@ -44,27 +44,27 @@ router.post('/v7/confirm-your-address-applicant', function (req, res) {
 })
 
 // Enter an international address
-router.post('/enter-an-international-address', function (req, res) {
+router.post('/v7/enter-an-international-address', function (req, res) {
   res.redirect('confirm-applicants-international-address')
 })
 
 // Enter delivery address
-router.post('/enter-delivery-address', function (req, res) {
+router.post('/v7/enter-delivery-address', function (req, res) {
   res.redirect('confirm-delivery-address')
 })
 
 // Enter your address manually - agent
-router.post('/enter-your-address-manually-agent', function (req, res) {
+router.post('/v7/enter-your-address-manually-agent', function (req, res) {
   res.redirect('confirm-your-address-agent')
 })
 
 // Enter your address manually - agent led
-router.post('/enter-your-address-manually-agent-led', function (req, res) {
+router.post('/v7/enter-your-address-manually-agent-led', function (req, res) {
   res.redirect('confirm-your-address-agent-led')
 })
 
 // Enter your address manually - applicant
-router.post('/enter-your-address-manually-applicant', function (req, res) {
+router.post('/v7/enter-your-address-manually-applicant', function (req, res) {
   res.redirect('confirm-your-address-applicant')
 })
 
