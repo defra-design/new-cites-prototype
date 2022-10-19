@@ -3,7 +3,7 @@ const router = express.Router()
 
 // Add any other information
 router.post('/v7/add-any-other-information', function (req, res) {
-  res.redirect('copy-application')
+  res.redirect('check-your-answers')
 })
 
 // Application complete
@@ -22,7 +22,12 @@ if (req.session.data['isAgent'] == 'yes') {
 
 // Check your answers
 router.post('/v7/check-your-answers', function (req, res) {
-  res.redirect('application-complete')
+  res.redirect('check-your-answers-reuse')
+})
+
+// Check your answers reuse
+router.post('/v7/check-your-answers-reuse', function (req, res) {
+  res.redirect('file-upload')
 })
 
 // Confirm applicants international address
@@ -61,6 +66,11 @@ router.post('/v7/confirm-your-address-applicant', function (req, res) {
 // Copy application
 router.post('/v7/copy-application', function (req, res) {
   res.redirect('file-upload')
+})
+
+// Declaration
+router.post('/v7/declaration', function (req, res) {
+  res.redirect('application-complete')
 })
 
 // Enter an international address
@@ -106,8 +116,9 @@ router.post('/v7/enter-your-contact-details-applicant', function (req, res) {
 
 // File upload
 router.post('/v7/file-upload', function (req, res) {
-  res.redirect('check-your-answers')
+  res.redirect('declaration')
 })
+
 
 // Permit details
 router.post('/v7/permit-details', function (req, res) {

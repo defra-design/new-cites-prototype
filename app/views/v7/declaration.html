@@ -1,18 +1,18 @@
 {% extends "layout.html" %}
 
-{% set thisPageTitle = "permit-details" %}
+{% set thisPageTitle = "declaration" %}
 
 {% block content %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <form method="post" autocomplete="off">
+        <!-- <span class="govuk-caption-l">{{data['speciesName']}} ({{data['specimenCount']}} of {{data['totalSpecimens1']}})</span> -->
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-              <span class="govuk-caption-l">{{data['speciesName']}} (1 of 2 {{data['quantity']}})</span>
             <h1 class="govuk-fieldset__heading">
-              Permit details
+              Declaration
             </h1>
             </legend>
             <h2 class="govuk-heading-m">HOLDING PAGE</h2>

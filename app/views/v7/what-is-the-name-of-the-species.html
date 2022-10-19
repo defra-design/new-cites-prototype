@@ -60,7 +60,7 @@
           <h1 class="govuk-heading-l">What is the name of the species?</h1>
 
           <label class="govuk-label" for="autocomplete-default">Search using the scientific or common name.</label>
-          <div id="tt-default" class="autocomplete-wrapper govuk-!-width-three-quarters" name="specimen" type="text"></div>
+          <div id="tt-default" class="autocomplete-wrapper govuk-!-width-three-quarters" name="speciesName" type="text"></div>
 
           <br></br>
           <button class="govuk-button">Continue</button>
@@ -73,7 +73,7 @@
     <script type="text/javascript" src="/public/javascripts/accessible-autocomplete.min.js"></script>
     <script type="text/javascript">
 
-      var specimen = [
+      var speciesName = [
         'Huso huso, Beluga',
         'Elephantidae spp',
         'Dalbergia nigra, Brazilian rosewood',
@@ -98,8 +98,8 @@
       accessibleAutocomplete({
         element: element,
         id: id,
-        name: "specimen",
-        source: specimen
+        name: "speciesName",
+        source: speciesName
       })
     </script>
 
