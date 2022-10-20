@@ -80,7 +80,7 @@
                         <label class="govuk-label" for="import-permit-number">
                           Permit number
                         </label>
-                        <input class="govuk-input govuk-input--width-20" id="import-permit-number" name="import-permit-number" type="text" spellcheck="false" autocomplete="import-permit-number" value="{{data['import-permit-number']}}">
+                        <input class="govuk-input govuk-input--width-20" id="import-permit-number" name="importPermitNumber" type="text" spellcheck="false" autocomplete="import-permit-number" value="{{data['import-permit-number']}}">
                       </div>
                       <div class="govuk-form-group">
                         <label class="govuk-label" for="import-permit-issue-date">
@@ -97,7 +97,7 @@
                             <label class="govuk-label govuk-date-input__label" for="import-permit-issue-day">
                               Day
                             </label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="import-permit-issue-day" name="import-permit-issue-day" type="text" inputmode="numeric">
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="import-permit-issue-day" name="importPermitIssueDay" type="text" inputmode="numeric">
                           </div>
                         </div>
                         <div class="govuk-date-input__item">
@@ -105,7 +105,7 @@
                             <label class="govuk-label govuk-date-input__label" for="import-permit-issue-month">
                               Month
                             </label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="import-permit-issue-month" name="import-permit-issue-month" type="text" inputmode="numeric">
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="import-permit-issue-month" name="importPermitIssueMonth" type="text" inputmode="numeric">
                           </div>
                         </div>
                         <div class="govuk-date-input__item">
@@ -113,7 +113,7 @@
                             <label class="govuk-label govuk-date-input__label" for="import-permit-issue-year">
                               Year
                             </label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="import-permit-issue-year" name="import-permit-issue-year" type="text" inputmode="numeric">
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="import-permit-issue-year" name="importPermitIssueYear" type="text" inputmode="numeric">
                           </div>
                         </div>
                       </div>
@@ -142,16 +142,16 @@
                           <td class="govuk-table__cell">
                             <div class="govuk-form-group">
                               <label class="govuk-label" for="autocomplete-default">Country</label>
-                              <div id="tt-default-1" class="autocomplete-wrapper govuk-input--width-20" name="exportCountry" type="text"></div>
+                              <div id="tt-default-1" class="autocomplete-wrapper govuk-input--width-20" name="originCountry" type="text"></div>
                             </div>
                             <div class="govuk-form-group">
-                              <label class="govuk-label" for="closed-ring-number">
+                              <label class="govuk-label" for="origin-permit-issue-date">
                                 Permit number
                               </label>
-                              <input class="govuk-input govuk-input--width-20" id="closed-ring-number" name="closed-ring-number" type="text" spellcheck="false" autocomplete="closed-ring-number" value="{{data['closed-ring-number']}}">
+                              <input class="govuk-input govuk-input--width-20" id="origin-permit-number" name="originPermitNumber" type="text" spellcheck="false" autocomplete="origin-permit-number" value="{{data['origin-permit-number']}}">
                             </div>
                             <div class="govuk-form-group">
-                              <label class="govuk-label" for="hatch-birth-date">
+                              <label class="govuk-label" for="origin-permit-issue-number">
                                 Permit issue date
                               </label>
                               <div id="hatch-date-hint" class="govuk-hint">
@@ -159,29 +159,29 @@
                               </div>
                             </div>
                             <div class="govuk-form-group">
-                            <div class="govuk-date-input" id="export-permit-issue-date">
+                            <div class="govuk-date-input" id="origin-permit-issue-date">
                               <div class="govuk-date-input__item">
                                 <div class="govuk-form-group">
-                                  <label class="govuk-label govuk-date-input__label" for="export-permit-issue-day">
+                                  <label class="govuk-label govuk-date-input__label" for="origin-permit-issue-day">
                                     Day
                                   </label>
-                                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="export-permit-issue-day" name="export-permit-issue-day" type="text" inputmode="numeric">
+                                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="origin-permit-issue-day" name="originPermitIssueDay" type="text" inputmode="numeric">
                                 </div>
                               </div>
                               <div class="govuk-date-input__item">
                                 <div class="govuk-form-group">
-                                  <label class="govuk-label govuk-date-input__label" for="export-permit-issue-month">
+                                  <label class="govuk-label govuk-date-input__label" for="origin-permit-issue-month">
                                     Month
                                   </label>
-                                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="export-permit-issue-month" name="export-permit-issue-month" type="text" inputmode="numeric">
+                                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="origin-permit-issue-month" name="originPermitIssueMonth" type="text" inputmode="numeric">
                                 </div>
                               </div>
                               <div class="govuk-date-input__item">
                                 <div class="govuk-form-group">
-                                  <label class="govuk-label govuk-date-input__label" for="export-permit-issue-year">
+                                  <label class="govuk-label govuk-date-input__label" for="origin-permit-issue-year">
                                     Year
                                   </label>
-                                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="export-permit-issue-year" name="export-permit-issue-year" type="text" inputmode="numeric">
+                                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="origin-permit-issue-year" name="originPermitIssueYear" type="text" inputmode="numeric">
                                 </div>
                               </div>
                             </div>
@@ -490,7 +490,7 @@
             accessibleAutocomplete({
               element: element,
               id: id,
-              name: "exportCountry",
+              name: "originCountry",
               source: country
             })
           </script>

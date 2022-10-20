@@ -46,7 +46,7 @@
                     <td class="govuk-table__cell"> <div class="govuk-radios govuk-radios" data-module="govuk-radios">
                       <div class="govuk-radios govuk-radios" data-module="govuk-radios">
                         <div class="govuk-radios__item">
-                          <input class="govuk-radios__input" id="trade-term-yes" name="trade-term" type="radio" value="yes" data-aria-controls="conditional-trade-tern">
+                          <input class="govuk-radios__input" id="trade-term-yes" name="tradeTerm" type="radio" value="yes" data-aria-controls="conditional-trade-tern">
                           <label class="govuk-label govuk-radios__label" for="trade-term-yes">
                             Yes
                           </label>
@@ -56,11 +56,11 @@
                             <label class="govuk-label" for="trade-term">
                               Enter the trade term code?
                             </label>
-                            <input class="govuk-input govuk-!-width-one-third" id="trade-term" name="trade-term" type="text">
+                            <input class="govuk-input govuk-!-width-one-third" id="trade-term" name="tradeTerm" type="text">
                           </div>
                       </div>
                         <div class="govuk-radios__item">
-                          <input class="govuk-radios__input" id="trade-term-no" name="trade-term"  type="radio" value="no">
+                          <input class="govuk-radios__input" id="trade-term-no" name="tradeTerm"  type="radio" value="no">
                           <label class="govuk-label govuk-radios__label" for="trade-term-no">
                             No
                           </label>
@@ -74,19 +74,19 @@
                     <td class="govuk-table__cell">
                     <div class="govuk-radios" data-module="govuk-radios">
                         <div class="govuk-radios__item">
-                          <input class="govuk-radios__input" id="specimen-gender-1" name="specimen-gender" type="radio" value="F">
+                          <input class="govuk-radios__input" id="specimen-gender-1" name="gender" type="radio" value="Female">
                           <label class="govuk-label govuk-radios__label" for="specimen-gender-1">
                             Female
                           </label>
                         </div>
                       <div class="govuk-radios__item">
-                        <input class="govuk-radios__input" id="specimen-gender-2" name="specimen-gender" type="radio" value="M">
+                        <input class="govuk-radios__input" id="specimen-gender-2" name="gender" type="radio" value="Male">
                         <label class="govuk-label govuk-radios__label" for="specimen-gender-2">
                           Male
                         </label>
                       </div>
                       <div class="govuk-radios__item">
-                        <input class="govuk-radios__input" id="specimen-gender-3" name="specimen-gender" type="radio" value="U">
+                        <input class="govuk-radios__input" id="specimen-gender-3" name="gender" type="radio" value="I do not know">
                         <label class="govuk-label govuk-radios__label" for="specimen-gender-3">
                           I do not know
                         </label>
@@ -99,13 +99,13 @@
                     <th scope="row" class="govuk-table__header govuk-!-width-one-half">What is the closed ring or microchip number?</th>
                     <td class="govuk-table__cell">
                       <div class="govuk-form-group">
-                        <label class="govuk-label" for="closed-ring-number">
+                        <label class="govuk-label" for="identifier">
                           Closed ring or microchip number
                         </label>
                         <!-- <div id="hatch-date-hint" class="govuk-hint">
                           (or range of numbers, e.g. 100 - 200)
                         </div> -->
-                        <input class="govuk-input govuk-input--width-20" id="closed-ring-number" name="closed-ring-number" type="text" spellcheck="false" autocomplete="closed-ring-number" value="{{data['closed-ring-number']}}">
+                        <input class="govuk-input govuk-input--width-20" id="identifier" name="identifier" type="text" spellcheck="false" autocomplete="identifier" value="{{data['identifier']}}">
                       </div>
                     </td>
                   </tr>

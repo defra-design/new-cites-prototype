@@ -27,7 +27,7 @@
                       <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Permit type</p>
                     </dt>
                     <dd class="govuk-summary-list__value">
-                      <p class="govuk-!-margin-bottom-1">Import</p>
+                      <p class="govuk-!-margin-bottom-1">{{data['permitType']}}</p>
                     </dd>
 
                     <dd class="govuk-summary-list__actions">
@@ -169,10 +169,12 @@
             <dt class="govuk-summary-list__key">
               <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Scientific name</p>
               <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Quantity</p>
+              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Unit of measure</p>
             </dt>
             <dd class="govuk-summary-list__value">
-              <p class="govuk-!-margin-bottom-1">Falco rusticolus, Gyr Falcon {{data['speciesName']}}</p>
-              <p class="govuk-!-margin-bottom-1">10 {{data['quantity']}} 120g {{data['umitOfMeasure']}}</p>
+              <p class="govuk-!-margin-bottom-1">{{data['speciesName']}}</p>
+              <p class="govuk-!-margin-bottom-1">{{data['quantity']}}</p>
+              <p class="govuk-!-margin-bottom-1">{{data['unitOfMeasure']}}g</p>
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="what-is-the-name-of-the-species">
@@ -185,7 +187,7 @@
               <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Source code</p>
             </dt>
             <dd class="govuk-summary-list__value">
-              <p class="govuk-!-margin-bottom-1">B {{data['sourceCode']}}</p>
+              <p class="govuk-!-margin-bottom-1">{{data['sourceCode']}}</p>
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="where-did-you-source-your-specimen-from">
@@ -198,7 +200,7 @@
               <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Purpose code</p>
             </dt>
             <dd class="govuk-summary-list__value">
-              <p class="govuk-!-margin-bottom-1">Z {{data['purposeCode']}}</p>
+              <p class="govuk-!-margin-bottom-1">{{data['purposeCode']}}</p>
             </dd>
             <dd class="govuk-summary-list__actions">
             {% if data['permitType'] == 'A10' %}
@@ -212,7 +214,7 @@
           </div>
 
           {% if data['isAlive'] == 'yes'%}
-          {% if data['speciesType'] == 'animal'%}
+          {% if data['specimenType'] == 'animal'%}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key govuk-!-width-one-half">
               <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Trade term code</p>
@@ -222,10 +224,10 @@
               <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Other information</p>
             </dt>
             <dd class="govuk-summary-list__value">
-              <p class="govuk-!-margin-bottom-1">C {{data['tradeTermCode']}}</p>
-              <p class="govuk-!-margin-bottom-1">Male {{data['gender']}}</p>
-              <p class="govuk-!-margin-bottom-1">P123456 {{data['identifier']}}</p><br>
-              <p class="govuk-!-margin-bottom-1">18 07 2022 {{data['hatchBirthDate']}}</p>
+              <p class="govuk-!-margin-bottom-1">{{data['tradeTerm']}}</p>
+              <p class="govuk-!-margin-bottom-1">{{data['gender']}}</p>
+              <p class="govuk-!-margin-bottom-1">{{data['identifier']}}</p><br>
+              <p class="govuk-!-margin-bottom-1">{{data['hatch-date-day']}} {{data['hatch-date-month']}} {{data['hatch-date-year']}}</p>
               <!-- <p class="govuk-!-margin-bottom-1">No other information</p>               -->
 <!-- Accordion -->
               <div class="container">
@@ -233,14 +235,15 @@
                       <input id="chk-1" type="checkbox" unchecked/>
                           <div class="title"></div>
                           <div class="content govuk-!-width-full">
+                            <p>{{data['comment']}}</p>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit delectus sapiente dicta eligendi quis minus nulla maxime illo reiciendis corporis repudiandae excepturi? Velit molestiae reprehenderit eligendi neque repellendus! Illum molestiae quam iusto doloribus culpa sint similique quaerat libero! Molestiae facilis quidem explicabo totam nostrum in voluptatum ipsam sequi officia error id rerum unde nisi neque!</p>
                           </div>
                   </label>
               </div>
 
               <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="what-is-your-address-applicant">
-                  <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">applicant address</span></p>
+                <a class="govuk-link" href="specimen-details">
+                  <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Specimen details</span></p>
                 </a>
               </dd>
 
@@ -268,12 +271,12 @@
               <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Permit issue date</p>
             </dt>
             <dd class="govuk-summary-list__value">
-              <p class="govuk-!-margin-bottom-1">France</p>
-              <p class="govuk-!-margin-bottom-1">ABC123456789</p>
-              <p class="govuk-!-margin-bottom-1">18 March 2001</p>
+              <p class="govuk-!-margin-bottom-1">{{data['importCountry']}}</p>
+              <p class="govuk-!-margin-bottom-1">{{data['importPermitNumber']}}</p>
+              <p class="govuk-!-margin-bottom-1">{{data['importPermitIssueDay']}} {{data['importPermitIssueMonth']}} {{data['importPermitIssueYear']}}</p>
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="#">
+              <a class="govuk-link" href="permit-details">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden"> Permit issue date</span></p>
               </a>
             </dd>
@@ -291,12 +294,12 @@
               <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Permit issue date</p>
             </dt>
             <dd class="govuk-summary-list__value">
-              <p class="govuk-!-margin-bottom-1">Spain</p>
-              <p class="govuk-!-margin-bottom-1">DEF123456789</p>
-              <p class="govuk-!-margin-bottom-1">3 January 1995</p>
+              <p class="govuk-!-margin-bottom-1">{{data['originCountry']}}</p>
+              <p class="govuk-!-margin-bottom-1">{{data['originPermitNumber']}}</p>
+              <p class="govuk-!-margin-bottom-1">{{data['originPermitIssueDay']}} {{data['originPermitIssueMonth']}} {{data['originPermitIssueYear']}}</p>
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="#">
+              <a class="govuk-link" href="permit-details">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Permit issue date</span></p>
               </a>
             </dd>

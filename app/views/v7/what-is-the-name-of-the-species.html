@@ -70,13 +70,13 @@
             <div class="govuk-grid-row">
               <div class="govuk-grid-column-one-quarter">
                 <label class="govuk-label" for="width-1">Quantity</label>
-                <input class="govuk-input govuk-input--width-4" id="unit-of-measure" name="unit-of-measure" type="text" value="{{data['unit-of-measure']}}">
+                <input class="govuk-input govuk-input--width-4" id="quantity" name="quantity" type="text" value="{{data['quantity']}}">
               </div>
               <div class="govuk-grid-column-two-quarter">
                 <label class="govuk-label" for="width-1">Unit of measure</label>
-                <div class="govuk-input__wrapper"><input class="govuk-input govuk-input--width-4" id="weight" name="weight" type="text" spellcheck="false">
+                <div class="govuk-input__wrapper"><input class="govuk-input govuk-input--width-4" id="unit-of-measure" name="unitOfMeasure" type="text" spellcheck="false">
                   <!-- <div class="govuk-input__suffix" aria-hidden="true">kg</div> -->
-                  <select class="govuk-select" id="unit-of-measure" name="sort">
+                  <select class="govuk-select" id="unit-of-measure" name="sort" value="{{data['unitOfMeasure']}}">
                     <option value="unit-0">Choose unit of measure</option>
                     <option value="unit-1">Cm3</option>
                     <option value="unit-2">g</option>
