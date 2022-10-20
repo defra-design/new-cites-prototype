@@ -17,9 +17,28 @@
           <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
               <table class="govuk-table">
                 <tbody class="govuk-table__body">
+                  <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header govuk-!-width-one-half">Is the specimen alive?</th>
+                    <td class="govuk-table__cell">
+                      <div class="govuk-radios govuk-radios" data-module="govuk-radios">
+                        <div class="govuk-radios__item">
+                          <input class="govuk-radios__input" id="isAlive-yes" name="isAlive" type="radio" value="yes">
+                          <label class="govuk-label govuk-radios__label" for="isAlive-yes">
+                            Yes
+                          </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                          <input class="govuk-radios__input" id="isAlive-no" name="isAlive"  type="radio" value="no" data-aria-controls="conditional-isAlive">
+                          <label class="govuk-label govuk-radios__label" for="isAlive-no">
+                            No
+                          </label>
+                      </div>
+                    </div>
+                  </td>
+                  </tr>
 
                   <tr class="govuk-table__row">
-                    <th scope="row" class="govuk-table__header">Do you know the trade term code?
+                    <th scope="row" class="govuk-table__header govuk-!-width-one-half">Do you know the trade term code?
                       <div id="hatch-date-hint" class="govuk-hint">
                           For example, 'LIV' for live animals.
                       </div>
@@ -51,7 +70,7 @@
                   </tr>
 
                   <tr class="govuk-table__row">
-                    <th scope="row" class="govuk-table__header">What is the specimen's gender?</th>
+                    <th scope="row" class="govuk-table__header govuk-!-width-one-half">What is the specimen's gender?</th>
                     <td class="govuk-table__cell">
                     <div class="govuk-radios" data-module="govuk-radios">
                         <div class="govuk-radios__item">
@@ -66,18 +85,18 @@
                           Male
                         </label>
                       </div>
-                    <div class="govuk-radios__item">
-                      <input class="govuk-radios__input" id="specimen-gender-3" name="specimen-gender" type="radio" value="U">
-                      <label class="govuk-label govuk-radios__label" for="specimen-gender-3">
-                        I do not know
-                      </label>
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="specimen-gender-3" name="specimen-gender" type="radio" value="U">
+                        <label class="govuk-label govuk-radios__label" for="specimen-gender-3">
+                          I do not know
+                        </label>
+                      </div>
                     </div>
-                  </div>
                   </td>
                   </tr>
 
                   <tr class="govuk-table__row">
-                    <th scope="row" class="govuk-table__header">What is the closed ring or microchip number?</th>
+                    <th scope="row" class="govuk-table__header govuk-!-width-one-half">What is the closed ring or microchip number?</th>
                     <td class="govuk-table__cell">
                       <div class="govuk-form-group">
                         <label class="govuk-label" for="closed-ring-number">
@@ -92,7 +111,7 @@
                   </tr>
 
                   <tr class="govuk-table__row">
-                    <th scope="row" class="govuk-table__header">What is the hatch or birth date?</th>
+                    <th scope="row" class="govuk-table__header govuk-!-width-one-half">What is the hatch or birth date?</th>
                     <td class="govuk-table__cell">
                       <div class="govuk-form-group">
                         <label class="govuk-label" for="hatch-birth-date">
@@ -142,7 +161,7 @@
                   </tr>
 
                   <tr class="govuk-table__row">
-                    <th scope="row" class="govuk-table__header">Other information?</th>
+                    <th scope="row" class="govuk-table__header govuk-!-width-one-half">Other information?</th>
                     <td class="govuk-table__cell">
                       <div class="govuk-character-count" data-module="govuk-character-count" data-maxwords="200">
                           <label class="govuk-label govuk-date-input__label" for="hatch-date-month">

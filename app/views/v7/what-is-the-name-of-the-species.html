@@ -55,24 +55,46 @@
   <link rel="stylesheet" href="/public/stylesheets/accessible-autocomplete.min.css">
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-full">
       <form method="post" autocomplete="off">
           <h1 class="govuk-heading-l">What is the name of the species?</h1>
 
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-half">
           <label class="govuk-label" for="autocomplete-default">Search using the scientific or common name.</label>
-          <div id="tt-default" class="autocomplete-wrapper govuk-!-width-three-quarters" name="speciesName" type="text"></div>
-
-          <br></br>
-          <button class="govuk-button">Continue</button>
-
-      </form>
+          <div id="tt-default" class="autocomplete-wrapper  govuk-input--width-25" name="speciesName" type="text"></div>
+        </div>
+<!-- Nested divs -->
+          <div class="govuk-grid-column-one-half">
+            <div class="govuk-grid-row">
+              <div class="govuk-grid-column-one-quarter">
+                <label class="govuk-label" for="width-1">Quantity</label>
+                <input class="govuk-input govuk-input--width-4" id="unit-of-measure" name="unit-of-measure" type="text" value="{{data['unit-of-measure']}}">
+              </div>
+              <div class="govuk-grid-column-two-quarter">
+                <label class="govuk-label" for="width-1">Unit of measure</label>
+                <div class="govuk-input__wrapper"><input class="govuk-input govuk-input--width-4" id="weight" name="weight" type="text" spellcheck="false">
+                  <!-- <div class="govuk-input__suffix" aria-hidden="true">kg</div> -->
+                  <select class="govuk-select" id="unit-of-measure" name="sort">
+                    <option value="unit-0" selected>Choose unit of measure</option>
+                    <option value="unit-1">Cm3</option>
+                    <option value="unit-2">g</option>
+                    <option value="unit-3">Kg</option>
+                    <option value="unit-4">I</option>
+                  </select>
+                </div>
+              </div>
+          </div>
+        </div>
+<!-- End nested dives -->
+      </div>
+    </form>
     </div>
-</div>
-
+  </div>
 
     <script type="text/javascript" src="/public/javascripts/accessible-autocomplete.min.js"></script>
-    <script type="text/javascript">
 
+    <script type="text/javascript">
       var speciesName = [
         'Huso huso, Beluga',
         'Elephantidae spp',
