@@ -22,7 +22,14 @@ if (req.session.data['isAgent'] == 'yes') {
 
 // Check your answers
 router.post('/v7/check-your-answers', function (req, res) {
-  res.redirect('check-your-answers-reuse')
+  // req.session.data['specimenCount'] = 1
+
+  if (req.session.data['specimenCount'] == req.session.data['quantity']) {
+    res.redirect('file-upload')
+} else {
+    req.session.data['specimenCount'] = req.session.data['specimenCount'] + 1
+    res.redirect('check-your-answers')
+}
 })
 
 // Check your answers reuse
@@ -147,6 +154,7 @@ router.post('/v7/specimen-details', function (req, res) {
 
 // What is the name of the species
 router.post('/v7/what-is-the-name-of-the-species', function (req, res) {
+req.session.data['specimenCount'] = 1
   res.redirect('where-did-you-source-your-specimen-from')
 })
 
