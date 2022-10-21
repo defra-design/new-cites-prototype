@@ -36,7 +36,7 @@
                     </dd>
 
                     <dd class="govuk-summary-list__actions">
-                      <a class="govuk-link" href="what-type-of-permit-or-certificate-are-you-applying-for">
+                      <a class="govuk-link" href="what-type-of-permit-or-certificate-are-you-applying-for?cya=yes">
                       <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">permit type</span></p>
                       </a>
                     </dd>
@@ -55,12 +55,12 @@
               <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Email address</p>
             </dt>
             <dd class="govuk-summary-list__value">
-              <p class="govuk-!-margin-bottom-1">Martin Shaw</p>
-              <p class="govuk-!-margin-bottom-1">International Shipping Ltd</p>
-              <p class="govuk-!-margin-bottom-1">mark.shaw@internationalshipping.co.uk</p>
+              <p class="govuk-!-margin-bottom-1">{{data['your-full-name']}}</p>
+              <p class="govuk-!-margin-bottom-1">{{data['your-business-name']}}</p>
+              <p class="govuk-!-margin-bottom-1">{{data['your-email']}}</p>
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="enter-your-contact-details-agent">
+              <a class="govuk-link" href="enter-your-contact-details-agent?cya=yes">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">agent name</span></p>
               </a>
             </dd>
@@ -71,13 +71,14 @@
               <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Address</p>
             </dt>
             <dd class="govuk-summary-list__value">
-              <p class="govuk-!-margin-bottom-1">International Shipping Ltd</p>
-              <p class="govuk-!-margin-bottom-1">33 Prospect Wharf</p>
+              <p class="govuk-!-margin-bottom-1">{{data['agent-address']}}</p>
+              <!-- <p class="govuk-!-margin-bottom-1">International Shipping Ltd</p>
+              <p class="govuk-!-margin-bottom-1">22 Prospect Wharf</p>
               <p class="govuk-!-margin-bottom-1">Folkstone</p>
-              <p class="govuk-!-margin-bottom-1">FO23 6MY</p>
+              <p class="govuk-!-margin-bottom-1">FO23 6MY</p> -->
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="what-is-your-address-agent">
+              <a class="govuk-link" href="what-is-your-address-agent?cya=yes">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">agent address</span></p>
               </a>
             </dd>
@@ -94,12 +95,12 @@
               <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Email address</p>
             </dt>
             <dd class="govuk-summary-list__value">
-              <p class="govuk-!-margin-bottom-1">Sarah Philips</p>
-              <p class="govuk-!-margin-bottom-1">Kew Gardens</p>
-              <p class="govuk-!-margin-bottom-1">sarah.phillips@kew.org.uk</p>
+              <p class="govuk-!-margin-bottom-1">{{data['applicant-full-name']}}</p>
+              <p class="govuk-!-margin-bottom-1">{{data['applicant-business-name']}}</p>
+              <p class="govuk-!-margin-bottom-1">{{data['applicant-email']}}</p>
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="enter-your-contact-details-applicant">
+              <a class="govuk-link" href="enter-your-contact-details-applicant?cya=yes">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">applicant name</span></p>
               </a>
             </dd>
@@ -110,13 +111,14 @@
               <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Address</p>
             </dt>
             <dd class="govuk-summary-list__value">
-              <p class="govuk-!-margin-bottom-1">Kew Gardens<br>
+              <p class="govuk-!-margin-bottom-1">{{data['your-address']}}</p>
+              <!-- <p class="govuk-!-margin-bottom-1">Kew Gardens<br>
               <p class="govuk-!-margin-bottom-1">4 Chalk Walk<br>
               <p class="govuk-!-margin-bottom-1">London<br>
-              <p class="govuk-!-margin-bottom-1">SW23 2FH</p>
+              <p class="govuk-!-margin-bottom-1">SW23 2FH</p> -->
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="what-is-your-address-applicant">
+              <a class="govuk-link" href="what-is-your-address-applicant?cya=yes">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">applicant address</span></p>
               </a>
             </dd>
@@ -135,12 +137,12 @@
               <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Email address</p>
             </dt>
             <dd class="govuk-summary-list__value">
-              <p class="govuk-!-margin-bottom-1">Sarah Philips</p>
-              <p class="govuk-!-margin-bottom-1">Kew Gardens</p>
-              <p class="govuk-!-margin-bottom-1">sarah.phillips@kew.org.uk</p>
+              <p class="govuk-!-margin-bottom-1">{{data['applicant-full-name']}}</p>
+              <p class="govuk-!-margin-bottom-1">{{data['applicant-business-name']}}</p>
+              <p class="govuk-!-margin-bottom-1">{{data['applicant-email']}}</p>
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="what-is-your-address-applicant">
+              <a class="govuk-link" href="enter-your-contact-details-applicant?cya=yes">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">applicant name</span></p>
               </a>
             </dd>
@@ -151,13 +153,14 @@
               <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Address</p>
             </dt>
             <dd class="govuk-summary-list__value">
-              <p class="govuk-!-margin-bottom-1">Kew Gardens</p>
+              <p class="govuk-!-margin-bottom-1">{{data['your-address']}}</p>
+              <!-- <p class="govuk-!-margin-bottom-1">Kew Gardens</p>
               <p class="govuk-!-margin-bottom-1">4 Chalk Walk</p>
               <p class="govuk-!-margin-bottom-1">London</p>
-              <p class="govuk-!-margin-bottom-1">SW23 2FH</p>
+              <p class="govuk-!-margin-bottom-1">SW23 2FH</p> -->
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="what-is-your-address-applicant">
+              <a class="govuk-link" href="what-is-your-address-applicant?cya=yes">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">applicant address</span></p>
               </a>
             </dd>
@@ -182,7 +185,7 @@
               <p class="govuk-!-margin-bottom-1">{{data['unitOfMeasure']}}g</p>
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="what-is-the-name-of-the-species">
+              <a class="govuk-link" href="what-is-the-name-of-the-species?cya=yes">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Scientific name</span></p>
               </a>
             </dd>
@@ -195,7 +198,7 @@
               <p class="govuk-!-margin-bottom-1">{{data['sourceCode']}}</p>
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="where-did-you-source-your-specimen-from">
+              <a class="govuk-link" href="where-did-you-source-your-specimen-from?cya=yes">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Source code</span></p>
               </a>
             </dd>
@@ -209,9 +212,9 @@
             </dd>
             <dd class="govuk-summary-list__actions">
             {% if data['permitType'] == 'A10' %}
-              <a class="govuk-link" href="what-will-you-use-the-certificate-for">
+              <a class="govuk-link" href="what-will-you-use-the-certificate-for?cya=yes">
                 {% else %}
-              <a class="govuk-link" href="what-will-you-use-your-permit-for">
+              <a class="govuk-link" href="what-will-you-use-your-permit-for?cya=yes">
             {% endif %}
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Purpose code</span></p>
               </a>
@@ -247,7 +250,7 @@
               </div>
 
               <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="specimen-details">
+                <a class="govuk-link" href="specimen-details?cya=yes">
                   <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Specimen details</span></p>
                 </a>
               </dd>
@@ -281,7 +284,7 @@
               <p class="govuk-!-margin-bottom-1">{{data['importPermitIssueDay']}} {{data['importPermitIssueMonth']}} {{data['importPermitIssueYear']}}</p>
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="permit-details">
+              <a class="govuk-link" href="permit-details?cya=yes">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden"> Permit issue date</span></p>
               </a>
             </dd>
@@ -304,7 +307,7 @@
               <p class="govuk-!-margin-bottom-1">{{data['originPermitIssueDay']}} {{data['originPermitIssueMonth']}} {{data['originPermitIssueYear']}}</p>
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="permit-details">
+              <a class="govuk-link" href="permit-details?cya=yes">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Permit issue date</span></p>
               </a>
             </dd>

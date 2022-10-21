@@ -17,7 +17,7 @@
           <label class="govuk-label" for="your-full-name">
             Full name
           </label>
-        <input class="govuk-input" id="your-full-name" name="your-full-name" type="text" spellcheck="false" autocomplete="name" value="{{data['your-full-name']}}">
+        <input class="govuk-input" id="your-full-name" name="applicant-full-name" type="text" spellcheck="false" autocomplete="name" value="{{data['applicant-full-name']}}">
         </div>
         <div class="govuk-form-group">
           <label class="govuk-label" for="your-business-name">
@@ -26,7 +26,7 @@
           <div id="event-name-hint" class="govuk-hint">
           If the importer is a business, give the business name.
         </div>
-        <input class="govuk-input" id="your-business-name" name="your-business-name" type="text" spellcheck="false" autocomplete="name" value="{{data['your-business-name']}}">
+        <input class="govuk-input" id="your-business-name" name="applicant-business-name" type="text" spellcheck="false" autocomplete="name" value="{{data['applicant-business-name']}}">
         </div>
         <div class="govuk-form-group">
           <label class="govuk-label" for="email">
@@ -35,7 +35,7 @@
           <div id="email-hint" class="govuk-hint">
             We’ll only use this to send the importer a copy of the application.
           </div>
-          <input class="govuk-input" id="email" name="your-email" type="email" spellcheck="false" aria-describedby="email-hint"  value="{{data['your-email']}}">
+          <input class="govuk-input" id="email" name="applicant-email" type="email" spellcheck="false" aria-describedby="email-hint"  value="{{data['applicant-email']}}">
         </div>
         {% elseif data['permitType'] == 'export' %}
         <h1 class="govuk-heading-l">
@@ -45,7 +45,7 @@
           <label class="govuk-label" for="your-full-name">
             Full name
           </label>
-        <input class="govuk-input" id="your-full-name" name="your-full-name" type="text" spellcheck="false" autocomplete="name" value="{{data['your-full-name']}}">
+        <input class="govuk-input" id="your-full-name" name="applicant-full-name" type="text" spellcheck="false" autocomplete="name" value="{{data['applicant-full-name']}}">
         </div>
         <div class="govuk-form-group">
           <label class="govuk-label" for="your-business-name">
@@ -54,7 +54,7 @@
           <div id="event-name-hint" class="govuk-hint">
           If the exporter is a business, give the business name.
         </div>
-        <input class="govuk-input" id="your-business-name" name="your-business-name" type="text" spellcheck="false" autocomplete="name" value="{{data['your-business-name']}}">
+        <input class="govuk-input" id="your-business-name" name="applicant-business-name" type="text" spellcheck="false" autocomplete="name" value="{{data['applicant-business-name']}}">
         </div>
         <div class="govuk-form-group">
           <label class="govuk-label" for="email">
@@ -63,7 +63,7 @@
           <div id="email-hint" class="govuk-hint">
             We’ll only use this to send the exporter a copy of the application.
           </div>
-          <input class="govuk-input" id="email" name="your-email" type="email" spellcheck="false" aria-describedby="email-hint"  value="{{data['your-email']}}">
+          <input class="govuk-input" id="email" name="applicant-email" type="email" spellcheck="false" aria-describedby="email-hint"  value="{{data['applicant-email']}}">
         </div>
         {% elseif data['permitType'] == 're-export' %}
         <h1 class="govuk-heading-l">
@@ -73,16 +73,16 @@
           <label class="govuk-label" for="your-full-name">
             Full name
           </label>
-        <input class="govuk-input" id="your-full-name" name="your-full-name" type="text" spellcheck="false" autocomplete="name" value="{{data['your-full-name']}}">
+        <input class="govuk-input" id="your-full-name" name="applicant-full-name" type="text" spellcheck="false" autocomplete="name" value="{{data['applicant-full-name']}}">
         </div>
         <div class="govuk-form-group">
-          <label class="govuk-label" for="your-business-name">
+          <label class="govuk-label" for="applicant-business-name">
             Business name (optional)
           </label>
           <div id="event-name-hint" class="govuk-hint">
           If the re-exporter is a business, give the business name.
         </div>
-        <input class="govuk-input" id="your-business-name" name="your-business-name" type="text" spellcheck="false" autocomplete="name" value="{{data['your-business-name']}}">
+        <input class="govuk-input" id="your-business-name" name="applicant-business-name" type="text" spellcheck="false" autocomplete="name" value="{{data['applicant-business-name']}}">
         </div>
         <div class="govuk-form-group">
           <label class="govuk-label" for="email">
@@ -91,7 +91,7 @@
           <div id="email-hint" class="govuk-hint">
             We’ll only use this to send the re-exporter a copy of the application.
           </div>
-          <input class="govuk-input" id="email" name="your-email" type="email" spellcheck="false" aria-describedby="email-hint"  value="{{data['your-email']}}">
+          <input class="govuk-input" id="email" name="applicant-email" type="email" spellcheck="false" aria-describedby="email-hint"  value="{{data['applicant-email']}}">
         </div>
         {% elseif data['permitType'] == 'A10'%}
         <h1 class="govuk-heading-l">
@@ -101,7 +101,7 @@
           <label class="govuk-label" for="your-full-name">
             Full name
           </label>
-        <input class="govuk-input" id="your-full-name" name="your-full-name" type="text" spellcheck="false" autocomplete="name" value="{{data['your-full-name']}}">
+        <input class="govuk-input" id="your-full-name" name="applicant-full-name" type="text" spellcheck="false" autocomplete="name" value="{{data['applicant-full-name']}}">
         </div>
         <div class="govuk-form-group">
           <label class="govuk-label" for="your-business-name">
@@ -110,7 +110,7 @@
           <div id="event-name-hint" class="govuk-hint">
           If the applicant is a business, give the business name.
         </div>
-        <input class="govuk-input" id="your-business-name" name="your-business-name" type="text" spellcheck="false" autocomplete="name" value="{{data['your-business-name']}}">
+        <input class="govuk-input" id="your-business-name" name="applicant-business-name" type="text" spellcheck="false" autocomplete="name" value="{{data['applicant-business-name']}}">
         </div>
         <div class="govuk-form-group">
           <label class="govuk-label" for="email">
@@ -119,7 +119,7 @@
           <div id="email-hint" class="govuk-hint">
             We’ll only use this to send the applicant a copy of the application.
           </div>
-          <input class="govuk-input" id="email" name="your-email" type="email" spellcheck="false" aria-describedby="email-hint"  value="{{data['your-email']}}">
+          <input class="govuk-input" id="email" name="applicant-email" type="email" spellcheck="false" aria-describedby="email-hint"  value="{{data['applicant-email']}}">
         </div>
         {% else %}
         <h1 class="govuk-heading-l">
@@ -136,7 +136,7 @@
           <label class="govuk-label" for="your-full-name">
             Full name
           </label>
-        <input class="govuk-input" id="your-full-name" name="your-full-name" type="text" spellcheck="false" autocomplete="name" value="{{data['your-full-name']}}">
+        <input class="govuk-input" id="your-full-name" name="applicant-full-name" type="text" spellcheck="false" autocomplete="name" value="{{data['applicant-full-name']}}">
         </div>
         <div class="govuk-form-group">
           <label class="govuk-label" for="your-business-name">
@@ -145,7 +145,7 @@
           <div id="event-name-hint" class="govuk-hint">
           If you are a business, give the business name.
         </div>
-        <input class="govuk-input" id="your-business-name" name="your-business-name" type="text" spellcheck="false" autocomplete="name" value="{{data['your-business-name']}}">
+        <input class="govuk-input" id="your-business-name" name="applicant-business-name" type="text" spellcheck="false" autocomplete="name" value="{{data['applicant-business-name']}}">
         </div>
         <div class="govuk-form-group">
           <label class="govuk-label" for="email">
@@ -154,7 +154,7 @@
           <div id="email-hint" class="govuk-hint">
             We’ll only use this to send you a copy of the application.
           </div>
-          <input class="govuk-input" id="email" name="your-email" type="email" spellcheck="false" aria-describedby="email-hint"  value="{{data['your-email']}}">
+          <input class="govuk-input" id="email" name="applicant-email" type="email" spellcheck="false" aria-describedby="email-hint"  value="{{data['applicant-email']}}">
         </div>
         {% endif %}
       </legend>
