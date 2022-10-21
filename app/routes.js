@@ -176,6 +176,11 @@ router.post('/v7/what-is-your-address-applicant', function (req, res) {
 // What type of permit or certificate are you applying for
 router.post('/v7/what-type-of-permit-or-certificate-are-you-applying-for', function (req, res) {
   let permitType = req.session.data['permitType']
+
+  if (permitType === 'import') {
+    res.redirect('are-you-applying-on-behalf-of-someone-else')
+  }
+
   if (permitType === 'import') {
     res.redirect('are-you-applying-on-behalf-of-someone-else')
   }

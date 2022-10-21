@@ -39,9 +39,6 @@
 
                   <tr class="govuk-table__row">
                     <th scope="row" class="govuk-table__header govuk-!-width-one-half">Do you know the trade term code?
-                      <div id="hatch-date-hint" class="govuk-hint">
-                          For example, 'LIV' for live animals.
-                      </div>
                     </th>
                     <td class="govuk-table__cell"> <div class="govuk-radios govuk-radios" data-module="govuk-radios">
                       <div class="govuk-radios govuk-radios" data-module="govuk-radios">
@@ -54,8 +51,11 @@
                         <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-trade-tern">
                           <div class="govuk-form-group">
                             <label class="govuk-label" for="trade-term">
-                              Enter the trade term code?
+                              Enter the trade term code
                             </label>
+                            <div id="hatch-date-hint" class="govuk-hint">
+                                For example, 'LIV' for live animals.
+                            </div>
                             <input class="govuk-input govuk-!-width-one-third" id="trade-term" name="tradeTerm" type="text">
                           </div>
                       </div>
@@ -111,7 +111,7 @@
                   </tr>
 
                   <tr class="govuk-table__row">
-                    <th scope="row" class="govuk-table__header govuk-!-width-one-half">What is the hatch or birth date?</th>
+                    <th scope="row" class="govuk-table__header govuk-!-width-one-half">When was the hatch or birth date?</th>
                     <td class="govuk-table__cell">
                       <div class="govuk-form-group">
                         <label class="govuk-label" for="hatch-birth-date">

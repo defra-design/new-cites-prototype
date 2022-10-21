@@ -11,11 +11,11 @@
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-full">
         <form method="post" novalidate>
-          <span class="govuk-caption-l">{{data['speciesName']}} ({{data['specimenCount']}} of {{data['quantity']}})</span>
-          <!-- <h1 class="govuk-heading-l">Check and confirm details for {{data['speciesName']}} ({{data['specimenCount']}} of {{data['quantity']}})</h1> -->
-          {% if data['specimenCount'] == 1%}
+          {% if data['quantity'] == 1%}
+          <span class="govuk-caption-l">{{data['speciesName']}}</span>
           <h1 class="govuk-heading-l">Confirm the details for {{data['speciesName']}}</h1>
           {% else %}
+          <span class="govuk-caption-l">{{data['speciesName']}} ({{data['specimenCount']}} of {{data['quantity']}})</span>
           <h1 class="govuk-heading-l">Confirm the details for {{data['speciesName']}} ({{data['specimenCount']}} of {{data['quantity']}})</h1>
           {% endif %}
 
@@ -315,7 +315,7 @@
           <div><p class="govuk-body">Preview your answers in a <a href="application-preview">CITES application form</a></p></div>
 
             <div class="govuk-grid-two-thirds">
-              {% if data['specimenCount'] == 1%}
+              {% if data['quantity'] == 1%}
               <h2 class="govuk-heading-m">Confirm the details are correct for {{data['speciesName']}}</h2>
               {% else %}
               <h2 class="govuk-heading-m">Confirm the details are correct for {{data['speciesName']}} ({{data['specimenCount']}} of {{data['quantity']}})</h2>
