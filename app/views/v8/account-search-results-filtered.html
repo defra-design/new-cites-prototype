@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+<!-- {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %} -->
 
 {% set pageTitle = "account-search-results-filtered" %}
 
@@ -15,7 +15,7 @@
     </span>
   </p>
 </div>
-
+<a id="back" class="govuk-back-link" href="javascript:history.back()">Back</a>
 {% endblock %}
 
 {% block content %}

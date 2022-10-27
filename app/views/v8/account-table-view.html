@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+<!-- {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %} -->
 
 {% set pageTitle = "account-table-view" %}
 
@@ -15,13 +15,13 @@
     </span>
   </p>
 </div>
-
+<a id="back" class="govuk-back-link" href="javascript:history.back()">Back</a>
 {% endblock %}
 
 {% block content %}
 
 
-{%- from "moj/components/side-navigation/macro.njk" import mojSideNavigation -%}
+<!-- {%- from "moj/components/side-navigation/macro.njk" import mojSideNavigation -%} -->
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full-width">
@@ -158,7 +158,7 @@
     </thead>
     <tbody class="govuk-table__body">
       <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="#">ABC00000000</a></td>
+        <td class="govuk-table__cell"><a href="manage-application">ABC12345678</a></td>
         <td class="govuk-table__cell">Acipenser nudiventris, Caviar</td>
         <td class="govuk-table__cell">24 04 2022</td>
         <td class="govuk-table__cell">Permit Issued</td>
@@ -265,7 +265,7 @@
 </div>
 
 <style>
-  
+
   .ScrollStyle
   {
       max-height: 780px;
