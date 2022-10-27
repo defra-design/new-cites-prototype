@@ -20,5 +20,18 @@ Example usage:
 module.exports = {
 
   // Insert values here
+  "permitType": "import",
+  "isAgent": [ "yes" ],
+  "your-full-name": [ "Agent Collins" ],
+  "your-business-name": [ "MI5" ],
+  "your-email": [ "agent.collins@mi5.com" ],
+  "agent-address": [ "13 Barton Street Manchester ME19 4TT" ],
+  "agent-address-line-1": [ "15 Barton Street" ],
+  "agent-address-line-2": [ "Manchester" ],
+  "agent-address-line-3": [ "ME19 4TT" ],
+  "isAlive": [ "yes" ],
 
+  "isAlive": [ "yes" ],
+  "speciesName": [ "Tortoise" ],
+  "quantity": "10",
 }

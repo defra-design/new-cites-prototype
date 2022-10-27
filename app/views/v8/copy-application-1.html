@@ -1,0 +1,539 @@
+{% extends "layout.html" %}
+
+{% set thisPageTitle = "copy-application" %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+
+        <!-- <span class="govuk-caption-l">Falco rusticolus, Gyr Falcon {{data['speciesName']}}</span> -->
+        <h1 class="govuk-heading-l">Copy CITES {{data['permitType']}} AP123456789 {{data['applicationReferenceNumber']}}</h1>
+
+        <!-- Permit details -->
+                <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+                  <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                      <h2 class="govuk-heading-m">About the permit</h2>
+                    </dt>
+                    <dd class="govuk-summary-list__value"></dd>
+                    <dd class="govuk-summary-list__value"></dd>
+                  </div>
+
+                  <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                      Permit type
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                      Import
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="#">
+                        Change<span class="govuk-visually-hidden">permit type</span>
+                      </a>
+                    </dd>
+                  </div>
+                  <!-- <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                      Purpose code
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                      D
+                    </dd>
+                    <dd class="govuk-summary-list__actions">
+                      <a class="govuk-link" href="#">
+                        Change<span class="govuk-visually-hidden">purpose code</span>
+                      </a>
+                    </dd>
+                  </div> -->
+                </dl>
+
+<!-- Your contact details (agent) -->
+{% if data['isAgent'] == 'yes'%}
+        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              <h2 class="govuk-heading-m">Your contact details</h2>
+            </dt>
+            <dd class="govuk-summary-list__value"></dd>
+            <dd class="govuk-summary-list__value"></dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Full name
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Martin Shaw
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden">agent name</span>
+              </a>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Business name
+            </dt>
+            <dd class="govuk-summary-list__value">
+              International Shipping Ltd
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden">agent business name</span>
+              </a>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Email address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              mark.shaw@internationalshipping.co.uk
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden">agent email</span>
+              </a>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              International Shipping Ltd<br>33 Prospect Wharf<br>Folkstone<br>FO23 6MY
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden">agent address</span>
+              </a>
+            </dd>
+          </div>
+        </dl>
+
+        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              <h2 class="govuk-heading-m">Applicant's contact details</h2>
+            </dt>
+            <dd class="govuk-summary-list__value"></dd>
+            <dd class="govuk-summary-list__value"></dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Full name
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Sarah Philips
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden">agent name</span>
+              </a>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Business name
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Kew Gardens
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden">agent business name</span>
+              </a>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Email address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              sarah@kew.org.uk
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden">agent email</span>
+              </a>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Kew Gardens<br>4 Chalk Walk<br>London<br>SW23 2FH
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden">agent address</span>
+              </a>
+            </dd>
+          </div>
+        </dl>
+
+        {% else %}
+
+        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              <h2 class="govuk-heading-m">Your contact details</h2>
+            </dt>
+            <dd class="govuk-summary-list__value"></dd>
+            <dd class="govuk-summary-list__value"></dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Full name
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Sarah Philips
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden">agent name</span>
+              </a>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Business name
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Kew Gardens
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden">agent business name</span>
+              </a>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Email address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              sarah@kew.org.uk
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden">agent email</span>
+              </a>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Address
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Kew Gardens<br>4 Chalk Walk<br>London<br>SW23 2FH
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden">agent address</span>
+              </a>
+            </dd>
+          </div>
+        </dl>
+        {% endif %}
+
+
+<!-- Specimen details -->
+        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              <h2 class="govuk-heading-m">Species details</h2>
+            </dt>
+            <dd class="govuk-summary-list__value"></dd>
+            <dd class="govuk-summary-list__value"></dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Scientific name<br>
+              Quantity
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Falco rusticolus, Gyr Falcon {{data['speciesName']}}<br>
+              10 {{data['quantity']}}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden">Scientific name</span>
+              </a>
+            </dd>
+          </div>
+          <!-- <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Quantity
+            </dt>
+            <dd class="govuk-summary-list__value">
+              4 {{data['quantity']}}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden">Quantity</span>
+              </a>
+            </dd>
+          </div> -->
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Source code
+            </dt>
+            <dd class="govuk-summary-list__value">
+              B {{data['sourceCode']}}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden">Source code</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Purpose code
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Z {{data['purposeCode']}}
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden">Purpose code</span>
+              </a>
+            </dd>
+          </div>
+
+          {% if data['isAlive'] == 'yes'%}
+          {% if data['specimenType'] == 'animal'%}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Trade term code
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Not known
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> Trade term code</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Gender
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Female
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> Gender</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Closed ring number or microchip
+            </dt>
+            <dd class="govuk-summary-list__value">
+              100 - 200
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> Closed ring number or microchip</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Hatch or birth date
+            </dt>
+            <dd class="govuk-summary-list__value">
+              2 January 2000
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> Hatch or birth date</span>
+              </a>
+            </dd>
+          </div>
+          {% endif %}
+          {% endif %}
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Any other information?
+            </dt>
+            <dd class="govuk-summary-list__value">
+              no information provided
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> Any other information?</span>
+              </a>
+            </dd>
+          </div>
+        </dl>
+
+        <!-- Country of import or re-export details -->
+        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+          {% if data['permitType'] == 'import'%}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              <h2 class="govuk-heading-m">Country of {{data['permitType']}} details</h2>
+            </dt>
+            <dd class="govuk-summary-list__value"></dd>
+            <dd class="govuk-summary-list__value"></dd>
+          </div>
+          {% endif %}
+          {% if data['permitType'] == 're-export'%}
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  <h2 class="govuk-heading-m">Country of last {{data['permitType']}} details</h2>
+                </dt>
+                <dd class="govuk-summary-list__value"></dd>
+                <dd class="govuk-summary-list__value"></dd>
+              </div>
+          {% endif %}
+
+          {% if data['permitType'] == 'import' or data['permitType'] == 're-export' %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Country
+            </dt>
+            <dd class="govuk-summary-list__value">
+              France
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden">Country</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Permit number
+            </dt>
+            <dd class="govuk-summary-list__value">
+              ABC123456789
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden">Permit number</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Permit issue date
+            </dt>
+            <dd class="govuk-summary-list__value">
+              18 March 2001
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> Permit issue date</span>
+              </a>
+            </dd>
+          </div>
+        </dl>
+
+    <!-- Country of origin details -->
+        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              <h2 class="govuk-heading-m">Country of origin details</h2>
+            </dt>
+            <dd class="govuk-summary-list__value"></dd>
+            <dd class="govuk-summary-list__value"></dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Country
+            </dt>
+            <dd class="govuk-summary-list__value">
+              Spain
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden"> Country of origin</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Permit number
+            </dt>
+            <dd class="govuk-summary-list__value">
+              DEF123456789
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden">Permit number</span>
+              </a>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Permit issue date
+            </dt>
+            <dd class="govuk-summary-list__value">
+              3 January 1995
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="#">
+                Change<span class="govuk-visually-hidden">Permit issue date</span>
+              </a>
+            </dd>
+          </div>
+        </dl>
+    {% endif %}
+
+
+        <h2 class="govuk-heading-m">Do you want to use these details for all 4 specimens?</h2>
+
+        <div class="govuk-form-group">
+          <div class="govuk-radios govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="yes-all" name="useDetails" type="radio" value="yes-all">
+              <label class="govuk-label govuk-radios__label" for="yes-all">
+                Yes - use these details
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="no-none" name="useDetails"  type="radio" value="no-none">
+              <label class="govuk-label govuk-radios__label" for="no-none">
+                No - I want to use different details
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <form method="post" novalidate>
+
+          <!-- <input type="hidden" name="answers-checked" value="true"> -->
+
+          <button class="govuk-button" data-module="govuk-button">
+            Continue
+          </button>
+
+        </form>
+
+      </div>
+    </div>
+
+{% endblock %}

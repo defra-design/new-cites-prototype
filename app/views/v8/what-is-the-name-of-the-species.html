@@ -1,0 +1,141 @@
+{% extends "layout.html" %}
+
+{% set thisPageTitle = "what-is-the-name-of-the-species" %}
+
+
+
+    <style>
+      /* Example page specific styling. */
+      html {
+        color: #111;
+        background: #FFF;
+        font-family: -apple-system, BlinkMacSystemFont, 'avenir next', avenir, 'helvetica neue', helvetica, ubuntu, roboto, noto, 'segoe ui', arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      body {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        line-height: normal;
+      }
+
+      label {
+        display: block;
+        margin-bottom: .5rem;
+      }
+
+      code {
+        padding-left: .5em;
+        padding-right: .5em;
+        background: #EFEFEF;
+        font-weight: normal;
+        font-family: monospace;
+      }
+
+      main {
+        max-width: 40em;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .autocomplete-wrapper {
+        max-width: 20em;
+        margin-bottom: 4rem;
+      }
+
+    </style>
+
+
+  {% block content %}
+
+  <link rel="stylesheet" href="/public/stylesheets/accessible-autocomplete.min.css">
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <form method="post" autocomplete="off">
+        <div class="govuk-form-group">
+          <h1 class="govuk-heading-l">What is the name of the species?</h1>
+
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-one-half">
+          <label class="govuk-label" for="autocomplete-default">Search using the scientific or common name.</label>
+          <div id="tt-default" class="autocomplete-wrapper  govuk-input--width-25" name="speciesName" type="text"></div>
+        </div>
+<!-- Nested divs -->
+          <div class="govuk-grid-column-one-half">
+            <div class="govuk-grid-row">
+              <div class="govuk-grid-column-one-quarter">
+                <label class="govuk-label" for="quantity">Quantity</label>
+                <input class="govuk-input govuk-input--width-4" id="quantity" name="quantity" type="text" value="{{data['quantity']}}">
+              </div>
+              <div class="govuk-grid-column-two-quarter">
+                <label class="govuk-label" for="unit-of-measure">Unit of measure</label>
+                <div class="govuk-input__wrapper"><input class="govuk-input govuk-input--width-4" id="unit-of-measure" name="unitOfMeasure" type="text" spellcheck="false">
+                  <!-- <div class="govuk-input__suffix" aria-hidden="true">kg</div> -->
+                  <select class="govuk-select" id="unit-of-measure" name="sort" value="{{data['unitOfMeasure']}}">
+                    <option value="unit-0">Choose unit of measure</option>
+                    <option value="unit-1">Cm3</option>
+                    <option value="unit-2">g</option>
+                    <option value="unit-3" selected>Kg</option>
+                    <option value="unit-4">I</option>
+                    <option value="unit-4">m</option>
+                    <option value="unit-4">m2</option>
+                    <option value="unit-4">m3</option>
+                    <option value="unit-4">ml</option>
+                    <option value="unit-4">number</option>
+                    <option value="unit-4">tonne</option>
+                  </select>
+                </div>
+              </div>
+          </div>
+        </div>
+<!-- End nested dives -->
+    </div>
+  </div>
+
+    <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+    </div>
+  </div>
+
+    <script type="text/javascript" src="/public/javascripts/accessible-autocomplete.min.js"></script>
+
+    <script type="text/javascript">
+      var speciesName = [
+        'Huso huso, Beluga',
+        'Elephantidae spp',
+        'Dalbergia nigra, Brazilian rosewood',
+        'Cheloniidae spp',
+        'Tyto alba, Barn Owl',
+        'Falco peregrinus, Peregrine Falcon',
+        'Falco rusticolus, Gyr Falcon',
+        'Buteo buteo, Buzzard',
+        'Odobenus rosmarus, Walrus',
+        'Python reticulatus, Reticulated Python',
+        'Varanus salvator, Rice Lizard',
+        'Coral',
+        'Tortoise'
+        // 'Testudo Hermanni,Tortoise'
+      ]
+
+    </script>
+
+    <script type="text/javascript">
+      var element = document.querySelector('#tt-default')
+      var id = 'autocomplete-default'
+      accessibleAutocomplete({
+        element: element,
+        id: id,
+        name: "speciesName",
+        source: speciesName
+      })
+    </script>
+
+
+
+    {% endblock %}

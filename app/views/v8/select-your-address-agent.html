@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% set thisPageTitle = "select-your-address-agent" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="post" class="form">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              Select an address
+            </h1>
+          </legend>
+
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="sort">
+                  Address
+                </label>
+                <select class="govuk-select govuk-!-width-two-thirds" id="sort" name="agent-address" value="agent-address">
+                  <option value="address-1" selected>3 addresses found</option>
+                  <option value="9 Barton Street, Manchester ME19 4TT">9 Barton Street, Manchester ME19 4TT</option>
+                  <option value="11 Barton Street, Manchester ME19 4TT">11 Barton Street, Manchester ME19 4TT</option>
+                  <option value="13 Barton Street, Manchester ME19 4TT">13 Barton Street, Manchester ME19 4TT</option>
+                </select>
+              </div>
+
+              <div class="govuk-form-group">
+              <details class="govuk-details" data-module="govuk-details">
+                <summary class="govuk-details__summary">
+                  <span class="govuk-details__summary-text">
+                    I cannot find the address in this list
+                  </span>
+                </summary>
+                <div class="govuk-details__text">
+                    If you cannot find the address, <a href="enter-your-address-manually-agent">enter your address manually</a>.
+                </div>
+              </details>
+
+              <div class="govuk-form-group">
+                <p><a href="search-for-your-address-agent">Search for the address again.</a></p>
+              </div>
+
+              <button class="govuk-button" data-module="govuk-button">Continue</button>
+            </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+  {% endblock %}
