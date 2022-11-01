@@ -1,11 +1,6 @@
 const express = require('express')
 const router = express.Router()
 
-
-// router.use('/v7', require('./v7/routes/routes-public'))
-// router.use('/v8', require('./v8/routes/routes-public'))
-
-
 // Add any other information
 router.post('/v7/add-any-other-information', function (req, res) {
   res.redirect('check-your-answers')
@@ -276,44 +271,6 @@ router.post('/v7/where-did-you-source-your-specimen-from', function (req, res) {
 else
   res.redirect('what-will-you-use-your-permit-for')
 })
-
-// *********** v8 routes *************
-
-// Account no applications
-router.post('/v8/account-no-applications', function (req, res) {
-  res.redirect('what-type-of-permit-or-certificate-are-you-applying-for')
-})
-
-// Manage application
-router.post('/v8/manage-application', function (req, res) {
-  res.redirect('manage-application-new')
-})
-
-// What type of permit or certificate are you applying for
-router.post('/v8/what-type-of-permit-or-certificate-are-you-applying-for', function (req, res) {
-  let permitType = req.session.data['permitType']
-
-  if (req.session.data['cya'] == 'yes') {
-    res.redirect('check-your-answers')
-  }
-
-  if (permitType === 'import') {
-    res.redirect('are-you-applying-on-behalf-of-someone-else')
-  }
-  if (permitType === 'export') {
-    res.redirect('are-you-applying-on-behalf-of-someone-else')
-  }
-  if (permitType === 're-export') {
-    res.redirect('are-you-applying-on-behalf-of-someone-else')
-  }
-  if (permitType === 'A10') {
-    res.redirect('what-will-you-use-the-certificate-for')
-  }
-  if (permitType === 'other') {
-    res.redirect('you-cannot-use-this-service-yet')
-  }
-})
-
 
 
 module.exports = router
