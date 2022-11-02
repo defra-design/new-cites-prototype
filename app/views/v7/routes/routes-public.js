@@ -635,7 +635,7 @@ router.post('/do-you-know-the-trade-term-code', function (req, res) {
     let specimen = req.session.data['specimen']
 
     if (isAlive === 'alive') {
-      if (specimen === 'Tortoise') {
+      if (specimen === 'Homopus solus') {
         res.redirect('is-the-specimens-plastron-longer-than-60mm')
       } else {
           res.redirect('description-dynamic')
@@ -799,7 +799,7 @@ router.post('/is-this-specimen-alive', function (req, res) {
   let specimen = req.session.data['speciesName']
 
   if (isAlive === 'alive') {
-    if (specimen === 'Testudo Hermanni, Tortoise') {
+    if (specimen === 'Testudo Hermanni, Homopus solus') {
       res.redirect('is-the-specimens-plastron-longer-than-60mm')
     } else {
         res.redirect('do-you-know-the-trade-term-code')
@@ -1094,7 +1094,7 @@ router.post('/what-is-your-proxy-address', function (req, res) {
   res.redirect('select-proxy-address')
 })
 
-// What is the total weight of the specimen? (Coral)
+// What is the total weight of the specimen? (Abyssopathes lyra)
 router.get('/what-is-the-total-weight-of-the-specimen', function (req, res) {
   res.render(viewsFolder + 'what-is-the-total-weight-of-the-specimen')
 })
@@ -1174,7 +1174,7 @@ router.get('/what-will-you-use-your-permit-for', function (req, res) {
 
 router.post('/what-will-you-use-your-permit-for', function (req, res) {
   res.redirect('specimen-details')
-// if (req.session.data['specimen'] == 'Coral') {
+// if (req.session.data['specimen'] == 'Abyssopathes lyra') {
 //   res.redirect('description-dynamic')
 // } else {
 // res.redirect('is-this-specimen-alive')

@@ -53,6 +53,7 @@
   {% block content %}
 
   <link rel="stylesheet" href="/public/stylesheets/accessible-autocomplete.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
@@ -62,8 +63,8 @@
 
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-one-half">
-          <label class="govuk-label" for="autocomplete-default">Search using the scientific or common name.</label>
-          <div id="tt-default" class="autocomplete-wrapper  govuk-input--width-25" name="speciesName" type="text"></div>
+          <label class="govuk-label" for="autocomplete-default">Search for the scientific name.</label>
+          <div id="tt-default" class="autocomplete-wrapper govuk-input--width-25" name="speciesName" type="text"></div>
         </div>
 <!-- Nested divs -->
           <div class="govuk-grid-column-one-half">
@@ -75,18 +76,18 @@
               <div class="govuk-grid-column-two-quarter">
                 <label class="govuk-label" for="unit-of-measure">Unit of measure</label>
                 <div>
-                  <select class="govuk-select" id="unit-of-measure" name="sort" value="{{data['unitOfMeasure']}}">
-                    <option value="unit-0" selected>Choose unit of measure</option>
-                    <option value="unit-1">Cm3</option>
-                    <option value="unit-2">g</option>
-                    <option value="unit-3">Kg</option>
-                    <option value="unit-4">I</option>
-                    <option value="unit-5">m</option>
-                    <option value="unit-6">m2</option>
-                    <option value="unit-7">m3</option>
-                    <option value="unit-8">ml</option>
-                    <option value="unit-9">number</option>
-                    <option value="unit-10">tonne</option>
+                  <select class="govuk-select" id="unit-of-measure" name="unitOfMeasure" value="{{data['unitOfMeasure']}}">
+                    <option value="Not provided" selected>Choose unit of measure</option>
+                    <option value="Cm3">Cm3</option>
+                    <option value="g">g</option>
+                    <option value="Kg">Kg</option>
+                    <option value="I">I</option>
+                    <option value="m">m</option>
+                    <option value="m2">m2</option>
+                    <option value="m3">m3</option>
+                    <option value="ml">ml</option>
+                    <option value="number">number</option>
+                    <option value="tonne">tonne</option>
                   </select>
                 </div>
               </div>
@@ -108,18 +109,18 @@
       var speciesName = [
         'Huso huso, Beluga',
         'Elephantidae spp',
-        'Dalbergia nigra, Brazilian rosewood',
+        'Dalbergia nigra',
         'Cheloniidae spp',
-        'Tyto alba, Barn Owl',
-        'Falco peregrinus, Peregrine Falcon',
-        'Falco rusticolus, Gyr Falcon',
-        'Buteo buteo, Buzzard',
-        'Odobenus rosmarus, Walrus',
-        'Python reticulatus, Reticulated Python',
-        'Varanus salvator, Rice Lizard',
-        'Coral',
-        'Tortoise'
-        // 'Testudo Hermanni,Tortoise'
+        'Tyto alba',
+        'Falco peregrinus',
+        'Falco rusticolus',
+        'Buteo buteo',
+        'Odobenus rosmarus',
+        'Python reticulatus',
+        'Varanus salvator',
+        'Abyssopathes lyra',
+        'Homopus solus'
+        // 'Testudo Hermanni,Homopus solus'
       ]
 
     </script>
