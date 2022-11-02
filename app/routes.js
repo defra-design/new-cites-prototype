@@ -289,6 +289,11 @@ router.post('/v8/manage-application', function (req, res) {
   res.redirect('manage-application-new')
 })
 
+// Manage application
+router.post('/v8/manage-application-new', function (req, res) {
+  res.redirect('account-table-view')
+})
+
 // What type of permit or certificate are you applying for
 router.post('/v8/what-type-of-permit-or-certificate-are-you-applying-for', function (req, res) {
   let permitType = req.session.data['permitType']
