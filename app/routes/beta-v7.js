@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
+
 // Add any other information
 router.post('/v7/add-any-other-information', function (req, res) {
   res.redirect('check-your-answers')
@@ -271,6 +272,5 @@ router.post('/v7/where-did-you-source-your-specimen-from', function (req, res) {
 else
   res.redirect('what-will-you-use-your-permit-for')
 })
-
 
 module.exports = router

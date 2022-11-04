@@ -1,16 +1,22 @@
 const express = require('express')
 const router = express.Router()
 
+// *********** v8 routes *************
+
+// Account no applications
+router.post('/v8/account-no-applications', function (req, res) {
+  res.redirect('what-type-of-permit-or-certificate-are-you-applying-for')
+})
+
 // Add any other information
 router.post('/v8/add-any-other-information', function (req, res) {
   res.redirect('check-your-answers')
 })
 
-// Account table view
-router.post('/v8/account-table-view', function (req, res) {
-  res.redirect('account-search-results')
+// Application complete
+router.post('/v8/application-complete', function (req, res) {
+  res.redirect('#')
 })
-
 
 // Are you applying on behalf of someone else
 router.post('/v8/are-you-applying-on-behalf-of-someone-else', function (req, res) {
@@ -134,7 +140,7 @@ router.post('/v8/enter-your-address-manually-agent-led', function (req, res) {
 })
 
 // Enter your address manually - applicant
-router.post('/v8/enter-your-address-manually-applicant', function (req, res) {
+router.post('/v7/enter-your-address-manually-applicant', function (req, res) {
   res.redirect('confirm-your-address-applicant')
 })
 
@@ -168,6 +174,15 @@ router.post('/v8/file-upload', function (req, res) {
   res.redirect('declaration')
 })
 
+// Manage application
+router.post('/v8/manage-application', function (req, res) {
+  res.redirect('manage-application-new')
+})
+
+// Manage application new
+router.post('/v8/manage-application-new', function (req, res) {
+  res.redirect('file-upload')
+})
 
 // Permit details
 router.post('/v8/permit-details', function (req, res) {
@@ -272,6 +287,7 @@ router.post('/v8/where-did-you-source-your-specimen-from', function (req, res) {
 else
   res.redirect('what-will-you-use-your-permit-for')
 })
+
 
 
 module.exports = router
