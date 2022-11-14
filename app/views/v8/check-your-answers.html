@@ -36,7 +36,7 @@
                     </dd>
 
                     <dd class="govuk-summary-list__actions">
-                      <a class="govuk-link" href="what-type-of-permit-or-certificate-are-you-applying-for?cya=yes">
+                      <a class="govuk-link" href="what-type-of-permit-or-certificate-are-you-applying-for?fromPage=cya">
                       <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">permit type</span></p>
                       </a>
                     </dd>
@@ -60,7 +60,7 @@
               <p class="govuk-!-margin-bottom-1">{{data['your-email']}}</p>
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="enter-your-contact-details-agent?cya=yes">
+              <a class="govuk-link" href="enter-your-contact-details-agent?fromPage=cya">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">agent name</span></p>
               </a>
             </dd>
@@ -78,7 +78,7 @@
               <p class="govuk-!-margin-bottom-1">FO23 6MY</p> -->
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="what-is-your-address-agent?cya=yes">
+              <a class="govuk-link" href="what-is-your-address-agent?fromPage=cya">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">agent address</span></p>
               </a>
             </dd>
@@ -100,7 +100,7 @@
               <p class="govuk-!-margin-bottom-1">{{data['applicant-email']}}</p>
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="enter-your-contact-details-applicant?cya=yes">
+              <a class="govuk-link" href="enter-your-contact-details-applicant?fromPage=cya">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">applicant name</span></p>
               </a>
             </dd>
@@ -118,7 +118,7 @@
               <p class="govuk-!-margin-bottom-1">SW23 2FH</p> -->
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="what-is-your-address-applicant?cya=yes">
+              <a class="govuk-link" href="what-is-your-address-applicant?fromPage=cya">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">applicant address</span></p>
               </a>
             </dd>
@@ -142,7 +142,7 @@
               <p class="govuk-!-margin-bottom-1">{{data['applicant-email']}}</p>
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="enter-your-contact-details-applicant?cya=yes">
+              <a class="govuk-link" href="enter-your-contact-details-applicant?fromPage=cya">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">applicant name</span></p>
               </a>
             </dd>
@@ -160,7 +160,7 @@
               <p class="govuk-!-margin-bottom-1">SW23 2FH</p> -->
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="what-is-your-address-applicant?cya=yes">
+              <a class="govuk-link" href="what-is-your-address-applicant?fromPage=cya">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">applicant address</span></p>
               </a>
             </dd>
@@ -185,7 +185,7 @@
               <p class="govuk-!-margin-bottom-1">{{data['unitOfMeasure']}}</p>
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="what-is-the-name-of-the-species?cya=yes">
+              <a class="govuk-link" href="what-is-the-name-of-the-species?fromPage=cya">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Scientific name</span></p>
               </a>
             </dd>
@@ -198,7 +198,7 @@
               <p class="govuk-!-margin-bottom-1">{{data['sourceCode']}}</p>
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="where-did-you-source-your-specimen-from?cya=yes">
+              <a class="govuk-link" href="where-did-you-source-your-specimen-from?fromPage=cya">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Source code</span></p>
               </a>
             </dd>
@@ -212,9 +212,9 @@
             </dd>
             <dd class="govuk-summary-list__actions">
             {% if data['permitType'] == 'A10' %}
-              <a class="govuk-link" href="what-will-you-use-the-certificate-for?cya=yes">
+              <a class="govuk-link" href="what-will-you-use-the-certificate-for?fromPage=cya">
                 {% else %}
-              <a class="govuk-link" href="what-will-you-use-your-permit-for?cya=yes">
+              <a class="govuk-link" href="what-will-you-use-your-permit-for?fromPage=cya">
             {% endif %}
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Purpose code</span></p>
               </a>
@@ -258,7 +258,7 @@
               </div>
 
               <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="specimen-details?cya=yes">
+                <a class="govuk-link" href="specimen-details?fromPage=cya">
                   <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Specimen details</span></p>
                 </a>
               </dd>
@@ -292,7 +292,7 @@
               <p class="govuk-!-margin-bottom-1">{{data['importPermitIssueDay']}} {{data['importPermitIssueMonth']}} {{data['importPermitIssueYear']}}</p>
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="permit-details?cya=yes">
+              <a class="govuk-link" href="permit-details?fromPage=cya">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden"> Permit issue date</span></p>
               </a>
             </dd>
@@ -315,13 +315,39 @@
               <p class="govuk-!-margin-bottom-1">{{data['originPermitIssueDay']}} {{data['originPermitIssueMonth']}} {{data['originPermitIssueYear']}}</p>
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="permit-details?cya=yes">
+              <a class="govuk-link" href="permit-details?fromPage=cya">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Permit issue date</span></p>
               </a>
             </dd>
           </div>
         </dl>
     {% endif %}
+
+    <!-- Add comments -->
+            <h2 class="govuk-heading-m">Comments</h2>
+            <hr>
+            <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Add comments</p>
+                  </dt>
+                  <div class="container">
+                      <label for="chk-2"><a>Show/Hide</a>
+                          <input id="chk-2" type="checkbox" unchecked/>
+                              <div class="title"></div>
+                              <div class="content govuk-!-width-full">
+                                <p>{{data['comment']}}</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit delectus sapiente dicta eligendi quis minus nulla maxime illo reiciendis corporis repudiandae excepturi? Velit molestiae reprehenderit eligendi neque repellendus! Illum molestiae quam iusto doloribus culpa sint similique quaerat libero! Molestiae facilis quidem explicabo totam nostrum in voluptatum ipsam sequi officia error id rerum unde nisi neque!</p>
+                              </div>
+                      </label>
+                  </div>
+                  <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href="add-comments?fromPage=cya">
+                    <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">add comments</span></p>
+                    </a>
+                  </dd>
+                </div>
+              </dl>
 
           <div><p class="govuk-body">Preview your answers in a <a href="application-preview">CITES application form</a></p></div>
 

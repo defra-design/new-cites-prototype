@@ -70,7 +70,7 @@
                   </tr>
 
                   <tr class="govuk-table__row">
-                    <th scope="row" class="govuk-table__header govuk-!-width-one-half">What is the specimen's gender?</th>
+                    <th scope="row" class="govuk-table__header govuk-!-width-one-half">What is the specimen's sex?</th>
                     <td class="govuk-table__cell">
                     <div class="govuk-radios" data-module="govuk-radios">
                         <div class="govuk-radios__item">
@@ -96,11 +96,8 @@
                   </tr>
 
                   <tr class="govuk-table__row">
-                    <th scope="row" class="govuk-table__header govuk-!-width-one-half">What is the closed ring or microchip number?</th>
+                    <th scope="row" class="govuk-table__header govuk-!-width-one-half">What is the specimen's identification mark?</th>
                     <td class="govuk-table__cell">
-                      <div id="closed-ring-number-hint" class="govuk-hint">
-                        Select all that apply.
-                      </div>
 
                       <div class="govuk-form-group">
                       <fieldset class="govuk-fieldset" aria-describedby="identifier-hint">
@@ -108,13 +105,13 @@
                           <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="identifier-1" name="identifier" type="radio" value="ring" data-aria-controls="conditional-identifier-1">
                             <label class="govuk-label govuk-radios__label" for="identifier-1">
-                              Ring number
+                              Closed ring number
                             </label>
                           </div>
                           <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-identifier-1">
                             <div class="govuk-form-group">
                               <label class="govuk-label" for="closed-ring-number">
-                                Closed ring number
+                                Enter closed ring number
                               </label>
                               <input class="govuk-input govuk-!-width-one-third" id="closed-ring-number" name="closedRingNumber" value="{{data['closedRingNumber']}}"type="text" spellcheck="false" autocomplete="identifier">
                             </div>
@@ -123,13 +120,13 @@
                           <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="identifier-2" name="identifier" type="radio" value="microchip" data-aria-controls="conditional-identifier-2">
                             <label class="govuk-label govuk-radios__label" for="identifier-2">
-                              Microhip
+                              Microhip number
                             </label>
                           </div>
                           <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-identifier-2">
                             <div class="govuk-form-group">
                               <label class="govuk-label" for="identifier-by-microchip">
-                                Microchip number
+                                Enter the microchip number
                               </label>
                               <input class="govuk-input govuk-!-width-one-third" id="identifier-by-microchip" name="microchipNumber" value="{{data['microchipNumber']}}" type="text" autocomplete="identifier">
                             </div>
@@ -138,7 +135,7 @@
                           <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="identifier-3" name="identifier" type="radio" value="unmarked" data-aria-controls="conditional-identifier-3">
                             <label class="govuk-label govuk-radios__label" for="identifier-3">
-                              Unmarked
+                              The specimen is not marked
                             </label>
                           </div>
                         </div>
@@ -212,14 +209,11 @@
                   </tr>
 
                   <tr class="govuk-table__row">
-                    <th scope="row" class="govuk-table__header govuk-!-width-one-half">Other information?</th>
+                    <th scope="row" class="govuk-table__header govuk-!-width-one-half">Describe the specimen</th>
                     <td class="govuk-table__cell">
                       <div class="govuk-character-count" data-module="govuk-character-count" data-maxwords="200">
-                          <label class="govuk-label govuk-date-input__label" for="hatch-date-month">
-                            Add any other information
-                          </label>
                           <div id="additional-info-hint" class="govuk-hint">
-                            Include anything else that helps to describe the specimen.
+                            Include anything else that helps to describe the specimen (optional).
                           </div>
                           <textarea class="govuk-textarea govuk-js-character-count" id="word-count" name="comment" rows="10" aria-describedby="word-count-info" value="{{data['comment']}}"></textarea>
                         <div id="word-count-info" class="govuk-hint govuk-character-count__message" aria-live="polite">

@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% set thisPageTitle = "what-is-the-name-of-the-species" %}
+{% set thisPageTitle = "what-is-the-name-of-the-species-stacked" %}
 
 
 
@@ -56,24 +56,67 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
+    <div class="govuk-grid-two-thirds">
       <form method="post" autocomplete="off">
-        <div class="govuk-form-group">
-          <h1 class="govuk-heading-l">What is the name of the species?</h1>
+      <div class="govuk-form-group">
+        <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="event-name">
+            What is the name of the event?
+          </label>
+        </h1>
+        <input class="govuk-input govuk-!-width-two-thirds" id="speciesName" name="event-name" type="text">
+      </div>
 
-      <div class="govuk-grid-row">
-        <div class="govuk-grid-column-one-half">
-          <label class="govuk-label" for="autocomplete-default">Search for the scientific name.</label>
-          <div id="tt-default" class="autocomplete-wrapper govuk-input--width-25" name="speciesName" type="text"></div>
-        </div>
-<!-- Nested divs -->
-          <div class="govuk-grid-column-one-half">
+      <div class="govuk-form-group govuk-form-group--error">
+        <fieldset class="govuk-fieldset" role="group" aria-describedby="passport-issued-hint passport-issued-error">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              When was your passport issued?
+            </h1>
+          </legend>
+          <div id="passport-issued-hint" class="govuk-hint">
+            For example, 27 3 2007
+          </div>
+          <p id="passport-issued-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> The date your passport was issued must be in the past
+          </p>
+          <div class="govuk-date-input" id="passport-issued">
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="passport-issued-day">
+                  Day
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="passport-issued-day" name="passport-issued-day" type="text" value="6" inputmode="numeric">
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="passport-issued-month">
+                  Month
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2 govuk-input--error" id="passport-issued-month" name="passport-issued-month" type="text" value="3" inputmode="numeric">
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
+                  Year
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-4 govuk-input--error" id="passport-issued-year" name="passport-issued-year" type="text" value="2076" inputmode="numeric">
+              </div>
+            </div>
+          </div>
+
+        </fieldset>
+      </div>
+
+
             <div class="govuk-grid-row">
-              <div class="govuk-grid-column-one-quarter">
+              <div class="govuk-grid-column-one-quarter govuk-form-group govuk-form-group--error">
                 <label class="govuk-label" for="quantity">Quantity</label>
                 <input class="govuk-input govuk-input--width-4" id="quantity" name="quantity" type="text" value="{{data['quantity']}}">
               </div>
-              <div class="govuk-grid-column-two-quarter">
+
+              <div class="govuk-grid-column-two-quarters">
                 <label class="govuk-label" for="unit-of-measure">Unit of measure</label>
                 <div>
                   <select class="govuk-select" id="unit-of-measure" name="unitOfMeasure" value="{{data['unitOfMeasure']}}">
@@ -92,9 +135,7 @@
                 </div>
               </div>
           </div>
-        </div>
-<!-- End nested dives -->
-    </div>
+
   </div>
 
     <button class="govuk-button" data-module="govuk-button">Continue</button>
