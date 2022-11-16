@@ -1,53 +1,6 @@
 {% extends "layout.html" %}
 
-{% set thisPageTitle = "what-is-the-name-of-the-species" %}
-
-
-
-    <style>
-      /* Example page specific styling. */
-      html {
-        color: #111;
-        background: #FFF;
-        font-family: -apple-system, BlinkMacSystemFont, 'avenir next', avenir, 'helvetica neue', helvetica, ubuntu, roboto, noto, 'segoe ui', arial, sans-serif;
-        font-size: 16px;
-        line-height: 1.5;
-      }
-
-      body {
-        padding-left: 1rem;
-        padding-right: 1rem;
-      }
-
-      h1, h2, h3, h4, h5, h6 {
-        line-height: normal;
-      }
-
-      label {
-        display: block;
-        margin-bottom: .5rem;
-      }
-
-      code {
-        padding-left: .5em;
-        padding-right: .5em;
-        background: #EFEFEF;
-        font-weight: normal;
-        font-family: monospace;
-      }
-
-      main {
-        max-width: 40em;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .autocomplete-wrapper {
-        max-width: 20em;
-        margin-bottom: 4rem;
-      }
-
-    </style>
+{% set thisPageTitle = "what-is-the-name-of-the-species-stacked" %}
 
 
   {% block content %}
@@ -56,86 +9,57 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
+    <div class="govuk-grid-column-two-thirds">
       <form method="post" autocomplete="off">
-        <div class="govuk-form-group">
-          <h1 class="govuk-heading-l">What is the name of the species?</h1>
 
+      <div class="govuk-form-group">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              What is the scientific name of the species?
+            </h1>
+          </legend>
+          <p>You can <a href="https://speciesplus.net">search for the scientific name on species+</a></p>
+
+          <div id="speciesName">
+            <label class="govuk-label" for="species-name">Scientific name</label>
+            <input class="govuk-input govuk-!-width-two-thirds" id="species-name" name="speciesName" type="text">
+          </div>
+      </div>
+
+      <div class="govuk-form-group">
       <div class="govuk-grid-row">
-        <div class="govuk-grid-column-one-half">
-          <label class="govuk-label" for="autocomplete-default">Search for the scientific name.</label>
-          <div id="tt-default" class="autocomplete-wrapper govuk-input--width-25" name="speciesName" type="text"></div>
+        <div class="govuk-grid-column-two-thirds">
+          <label class="govuk-label" for="quantity">Quantity</label>
+          <input class="govuk-input govuk-input--width-4" id="quantity" name="quantity" type="text" value="{{data['quantity']}}">
         </div>
-<!-- Nested divs -->
-          <div class="govuk-grid-column-one-half">
-            <div class="govuk-grid-row">
-              <div class="govuk-grid-column-one-quarter">
-                <label class="govuk-label" for="quantity">Quantity</label>
-                <input class="govuk-input govuk-input--width-4" id="quantity" name="quantity" type="text" value="{{data['quantity']}}">
-              </div>
-              <div class="govuk-grid-column-two-quarter">
-                <label class="govuk-label" for="unit-of-measure">Unit of measure</label>
-                <div>
-                  <select class="govuk-select" id="unit-of-measure" name="unitOfMeasure" value="{{data['unitOfMeasure']}}">
-                    <option value="Not provided" selected>Choose unit of measure</option>
-                    <option value="number">number of specimens</option>
-                    <option value="Cm3">Cm3</option>
-                    <option value="g">g</option>
-                    <option value="Kg">Kg</option>
-                    <option value="I">I</option>
-                    <option value="m">m</option>
-                    <option value="m2">m2</option>
-                    <option value="m3">m3</option>
-                    <option value="ml">ml</option>
-                    <option value="tonne">tonne</option>
-                  </select>
-                </div>
-              </div>
+      </div>
+    </div>
+
+    <div class="govuk-form-group">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <label class="govuk-label" for="unit-of-measure">Unit of measurement</label>
+            <select class="govuk-select" id="unit-of-measure" name="unitOfMeasure" value="{{data['unitOfMeasure']}}">
+              <option value="Not provided" selected>Choose unit of measurement</option>
+              <option value="number">number of specimens</option>
+              <option value="Cm3">Cm3</option>
+              <option value="g">g</option>
+              <option value="Kg">Kg</option>
+              <option value="I">I</option>
+              <option value="m">m</option>
+              <option value="m2">m2</option>
+              <option value="m3">m3</option>
+              <option value="ml">ml</option>
+              <option value="tonne">tonne</option>
+            </select>
           </div>
         </div>
-<!-- End nested dives -->
-    </div>
+      </div>
+
+    <button class="govuk-button">Continue</button>
+    </form>
+
   </div>
-
-    <button class="govuk-button" data-module="govuk-button">Continue</button>
-
-      </form>
-    </div>
-  </div>
-
-    <script type="text/javascript" src="/public/javascripts/accessible-autocomplete.min.js"></script>
-
-    <script type="text/javascript">
-      var speciesName = [
-        'Huso huso, Beluga',
-        'Elephantidae spp',
-        'Dalbergia nigra',
-        'Cheloniidae spp',
-        'Tyto alba',
-        'Falco peregrinus',
-        'Falco rusticolus',
-        'Buteo buteo',
-        'Odobenus rosmarus',
-        'Python reticulatus',
-        'Varanus salvator',
-        'Abyssopathes lyra',
-        'Homopus solus'
-        // 'Testudo Hermanni,Homopus solus'
-      ]
-
-    </script>
-
-    <script type="text/javascript">
-      var element = document.querySelector('#tt-default')
-      var id = 'autocomplete-default'
-      accessibleAutocomplete({
-        element: element,
-        id: id,
-        name: "speciesName",
-        source: speciesName
-      })
-    </script>
-
-
+</div>
 
     {% endblock %}

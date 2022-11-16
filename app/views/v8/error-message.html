@@ -71,45 +71,51 @@
                 <a href="#quantity">Enter quantity</a>
               </li>
               <li>
-                <a href="#unit-of-measure">Select unit of measurement</a>
+                <a href="#unit-of-measurement">Select unit of measurement</a>
               </li>
             </ul>
           </div>
         </div>
 
-  <div class="govuk-form-group govuk-form-group--error">
-    <fieldset class="govuk-fieldset" role="group" aria-describedby="passport-issued-hint passport-issued-error">
+  <div>
+    <fieldset class="govuk-fieldset" role="group" aria-describedby="species-hint species-error">
       <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
         <h1 class="govuk-fieldset__heading">
-          Enter the species scientific name
+          What is the scientific name of the species?
         </h1>
       </legend>
-      <p id="species-name-error" class="govuk-error-message">
-        <span class="govuk-visually-hidden">Error:</span> Enter the scientific name
-      </p>
-      <div  id="speciesName">
+      <p>You can <a href="https://speciesplus.net">search for the scientific name on species+</a></p>
+      <div  class="govuk-form-group govuk-form-group--error" id="speciesName">
         <label class="govuk-label" for="species-name">Scientific name</label>
+        <p id="species-name-error" class="govuk-error-message">
+          <span class="govuk-visually-hidden">Error:</span> Enter the scientific name
+        </p>
         <input class="govuk-input govuk-!-width-two-thirds" id="species-name" name="speciesName" type="text">
       </div>
     </fieldset>
   </div>
 
-  <div class="govuk-grid-column-two-thirds govuk-form-group govuk-form-group--error">
-    <fieldset class="govuk-fieldset" role="group" aria-describedby="passport-issued-hint passport-issued-error">
-      <p id="passport-issued-error" class="govuk-error-message">
-        <span class="govuk-visually-hidden">Error:</span> Enter the quantity using numbers 0 to 9
-      </p>
-      <p id="passport-issued-error" class="govuk-error-message">
-        <span class="govuk-visually-hidden">Error:</span> Select the unit of measurement
-      </p>
-      <div class="govuk-grid-row">
-        <div class="govuk-grid-column-one-quarter">
-          <label class="govuk-label" for="quantity">Quantity</label>
-          <input class="govuk-input govuk-input--width-4" id="quantity" name="quantity" type="text" value="{{data['quantity']}}">
-        </div>
-        <div>
-            <label class="govuk-label" for="unit-of-measure">Unit of measurement</label>
-            <select class="govuk-select" id="unit-of-measure" name="unitOfMeasure" value="{{data['unitOfMeasure']}}">
+  <div class="govuk-form-group govuk-form-group--error">
+    <fieldset class="govuk-fieldset" role="group" aria-describedby="quantity-hint quantity-error">
+      <div>
+        <label class="govuk-label" for="quantity">Quantity</label>
+        <p id="quantity-error" class="govuk-error-message">
+          <span class="govuk-visually-hidden">Error:</span> Enter the quantity using numbers 0 to 9
+        </p>
+        <input class="govuk-input govuk-input--width-4" id="quantity" name="quantity" type="text" value="{{data['quantity']}}">
+      </div>
+    </fieldset>
+  </div>
+
+
+
+  <div class="govuk-form-group govuk-form-group--error">
+    <fieldset class="govuk-fieldset" role="group" aria-describedby="unit-of-measurement-hint unit-of-measurement-error">
+            <label class="govuk-label" for="unit-of-measurement">Unit of measurement</label>
+            <p id="unit-of-measurement-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Select the unit of measurement
+            </p>
+            <select class="govuk-select" id="unit-of-measurement" name="unitOfMeasurement" value="{{data['unitOfMeasurement']}}">
               <option value="Not provided" selected>Choose unit of measurement</option>
               <option value="number">number of specimens</option>
               <option value="Cm3">Cm3</option>
@@ -122,13 +128,9 @@
               <option value="ml">ml</option>
               <option value="tonne">tonne</option>
             </select>
-        </div>
-      </div>
     </fieldset>
   </div>
 
-  <br>
-  <br>
 
   <div class="govuk-grid-column-two-thirds">
     <button class="govuk-button" data-module="govuk-button">Continue</button>

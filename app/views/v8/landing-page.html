@@ -23,11 +23,10 @@
 
 <!-- {%- from "moj/components/side-navigation/macro.njk" import mojSideNavigation -%} -->
 
+
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-full-width">
-    <div class="govuk-grid-column-three-quarters">
-      <h1 class="govuk-heading-l">Your applications</h1>
-    </div>
+  <div class="govuk-grid-column-three-quarters">
+    <h1 class="govuk-heading-l">Your applications</h1>
   </div>
 </div>
 
@@ -44,13 +43,36 @@
       </div>
     </div>
   </div>
-  <div class="govuk-grid-one-third">
+  <div class="govuk-grid-column-one-third">
     <br>
     <br>
     <br>
     <p class="govuk-!-text-align-right"> Showing 16 of 125</p>
   </div>
 </div>
+
+<!-- <div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-form-group">
+      <h3 class="govuk-heading-s"></h3>
+      <label class="govuk-label" for="input-with-suffix">Search</label>
+      <div class="govuk-input__wrapper">
+        <input class="govuk-input" id="input-with-suffix" name="searchValue" type="text" value="{{data['searchValue']}}">
+        <div class="govuk-input__suffix" aria-hidden="true">
+          <a href="account-search-results?searchValue=Coral"><i class="fa fa-search icon searchicon"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+    <a href="what-type-of-permit-or-certificate-are-you-applying-for"><button class="govuk-button govuk-button" data-module="govuk-button">Start new application</button><a>
+  </div>
+
+</div> -->
+
+
+
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-one-quarter">
@@ -66,7 +88,7 @@
             <div class="govuk-checkboxes__item">
               <input class="govuk-checkboxes__input" id="status-1" name="status" type="checkbox" value="submitted">
               <label class="govuk-label govuk-checkboxes__label" for="status-1">
-                import
+                Import
               </label>
             </div>
             <div class="govuk-checkboxes__item">
@@ -84,7 +106,7 @@
             <div class="govuk-checkboxes__item">
               <input class="govuk-checkboxes__input" id="status-4" name="status" type="checkbox" value="assigned">
               <label class="govuk-label govuk-checkboxes__label" for="status-4">
-                Annex 10
+                Article 10
               </label>
             </div>
           </div>
@@ -104,31 +126,13 @@
               <div class="govuk-checkboxes__item">
                 <input class="govuk-checkboxes__input" id="status-1" name="status" type="checkbox" value="submitted">
                 <label class="govuk-label govuk-checkboxes__label" for="status-1">
-                  Submitted
+                  In process
                 </label>
               </div>
               <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="status-2" name="status" type="checkbox" value="awaiting payment">
-                <label class="govuk-label govuk-checkboxes__label" for="status-2">
-                  Awaiting payment
-                </label>
-              </div>
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="status-3" name="status" type="checkbox" value="awaiting information">
+                <input class="govuk-checkboxes__input" id="status-3" name="status" type="checkbox" value="awaiting-further-information">
                 <label class="govuk-label govuk-checkboxes__label" for="status-3">
-                  Awaiting information
-                </label>
-              </div>
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="status-4" name="status" type="checkbox" value="assigned">
-                <label class="govuk-label govuk-checkboxes__label" for="status-4">
-                  Assigned
-                </label>
-              </div>
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="status-5" name="status" type="checkbox" value="permit-issued">
-                <label class="govuk-label govuk-checkboxes__label" for="status-5">
-                  Permit issued
+                  Awaiting further information
                 </label>
               </div>
               <div class="govuk-checkboxes__item">
@@ -137,17 +141,20 @@
                   Rejected
                 </label>
               </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="status-5" name="status" type="checkbox" value="permit-issued">
+                <label class="govuk-label govuk-checkboxes__label" for="status-5">
+                  Permit issued
+                </label>
+              </div>
             </div>
           </fieldset>
         </div>
       </div>
-
-      <a href="account-search-results-filtered"><button class="govuk-button govuk-button--secondary" data-module="govuk-button">Apply filter</button><a>
-      <a href="what-type-of-permit-or-certificate-are-you-applying-for"><button class="govuk-button govuk-button" data-module="govuk-button">Start new application</button><a>
+    <a href="account-search-results-filtered"><button class="govuk-button govuk-button--secondary" data-module="govuk-button">Apply filter</button><a>
   </div>
 
 <div class="ScrollStyle">
-  <div class="govuk-grid-column-full-width">
   <table class="govuk-table">
     <thead class="govuk-table__head">
       <tr class="govuk-table__row">
@@ -161,25 +168,25 @@
       <tr class="govuk-table__row">
         <td class="govuk-table__cell"><a href="manage-application?applicationRef=ABC12345678">ABC12345678</a></td>
         <td class="govuk-table__cell">Coral</td>
-        <td class="govuk-table__cell">24 04 2022</td>
-        <td class="govuk-table__cell">Permit Issued</td>
+        <td class="govuk-table__cell">24 April 2022</td>
+        <td class="govuk-table__cell">Permit issued</td>
       </tr>
       <tr class="govuk-table__row">
         <td class="govuk-table__cell"><a href="manage-application?applicationRef=ABC22222222">ABC22222222</a></td>
         <td class="govuk-table__cell">Alisterus chloropterus</td>
-        <td class="govuk-table__cell">06 03 2022</td>
+        <td class="govuk-table__cell">06 March 2022</td>
         <td class="govuk-table__cell">In progress</td>
       </tr>
       <tr class="govuk-table__row">
         <td class="govuk-table__cell"><a href="manage-application?applicationRef=ABC33333333">ABC33333333</a></td>
         <td class="govuk-table__cell">Buteo buteo, Buzzard</td>
-        <td class="govuk-table__cell">11 12 2021</td>
-        <td class="govuk-table__cell">Awaiting payment</td>
+        <td class="govuk-table__cell">11 December 2021</td>
+        <td class="govuk-table__cell">Awaiting further information</td>
       </tr>
       <tr class="govuk-table__row">
         <td class="govuk-table__cell"><a href="manage-application?applicationRef=ABC44444444">ABC44444444</a></td>
         <td class="govuk-table__cell">Table</td>
-        <td class="govuk-table__cell">18 09 2021</td>
+        <td class="govuk-table__cell">18 September 2021</td>
         <td class="govuk-table__cell">Permit issued</td>
       </tr>
     </tbody>
@@ -187,25 +194,25 @@
       <tr class="govuk-table__row">
         <td class="govuk-table__cell"><a href="manage-application?applicationRef=ABC55555555">ABC55555555</a></td>
         <td class="govuk-table__cell">Coral</td>
-        <td class="govuk-table__cell">24 04 2022</td>
-        <td class="govuk-table__cell">Permit Issued</td>
+        <td class="govuk-table__cell">24 April 2022</td>
+        <td class="govuk-table__cell">Permit issued</td>
       </tr>
       <tr class="govuk-table__row">
         <td class="govuk-table__cell"><a href="manage-application?applicationRef=ABC66666666">ABC66666666</a></td>
         <td class="govuk-table__cell">Erythrura coloria</td>
-        <td class="govuk-table__cell">06 03 2022</td>
+        <td class="govuk-table__cell">06 June 2022</td>
         <td class="govuk-table__cell">In progress</td>
       </tr>
       <tr class="govuk-table__row">
         <td class="govuk-table__cell"><a href="manage-application?applicationRef=ABC7777777">ABC7777777</a></td>
         <td class="govuk-table__cell">Tyto alba</td>
-        <td class="govuk-table__cell">11 12 2021</td>
-        <td class="govuk-table__cell">Awaiting payment</td>
+        <td class="govuk-table__cell">11 November 2021</td>
+        <td class="govuk-table__cell">Awaiting further information</td>
       </tr>
       <tr class="govuk-table__row">
         <td class="govuk-table__cell"><a href="manage-application?applicationRef=ABC88888888">ABC88888888</a></td>
         <td class="govuk-table__cell">Falco rusticolus</td>
-        <td class="govuk-table__cell">18 09 2021</td>
+        <td class="govuk-table__cell">18 January 2021</td>
         <td class="govuk-table__cell">Permit issued</td>
       </tr>
     </tbody>
@@ -213,25 +220,25 @@
       <tr class="govuk-table__row">
         <td class="govuk-table__cell"><a href="manage-application?applicationRef=ABC99999999">ABC99999999</a></td>
         <td class="govuk-table__cell">Caviar</td>
-        <td class="govuk-table__cell">24 04 2022</td>
-        <td class="govuk-table__cell">Permit Issued</td>
+        <td class="govuk-table__cell">24 July 2022</td>
+        <td class="govuk-table__cell">Permit issued</td>
       </tr>
       <tr class="govuk-table__row">
         <td class="govuk-table__cell"><a href="manage-application?applicationRef=ABC00000010">ABC00000010</a></td>
         <td class="govuk-table__cell">Odobenus rosmarus</td>
-        <td class="govuk-table__cell">06 03 2022</td>
+        <td class="govuk-table__cell">06 August 2022</td>
         <td class="govuk-table__cell">In progress</td>
       </tr>
       <tr class="govuk-table__row">
         <td class="govuk-table__cell"><a href="manage-application?applicationRef=ABC00000011">ABC00000011</a></td>
         <td class="govuk-table__cell">Handbag</td>
-        <td class="govuk-table__cell">11 12 2021</td>
-        <td class="govuk-table__cell">Awaiting payment</td>
+        <td class="govuk-table__cell">11 December 2021</td>
+        <td class="govuk-table__cell">Awaiting further information</td>
       </tr>
       <tr class="govuk-table__row">
         <td class="govuk-table__cell"><a href="manage-application?applicationRef=ABC00000012">ABC00000012</a></td>
         <td class="govuk-table__cell">Python</td>
-        <td class="govuk-table__cell">18 09 2021</td>
+        <td class="govuk-table__cell">18 February 2021</td>
         <td class="govuk-table__cell">Permit issued</td>
       </tr>
     </tbody>
@@ -240,36 +247,82 @@
         <td class="govuk-table__cell"><a href="manage-application?applicationRef=ABC00000013">ABC00000013</a></td>
         <td class="govuk-table__cell">Caviar</td>
         <td class="govuk-table__cell">24 04 2022</td>
-        <td class="govuk-table__cell">Permit Issued</td>
+        <td class="govuk-table__cell">Permit issued</td>
       </tr>
       <tr class="govuk-table__row">
         <td class="govuk-table__cell"><a href="manage-application?applicationRef=ABC00000014">ABC00000014</a></td>
         <td class="govuk-table__cell">Homopus solus</td>
-        <td class="govuk-table__cell">06 03 2022</td>
+        <td class="govuk-table__cell">06 March 2022</td>
         <td class="govuk-table__cell">In progress</td>
       </tr>
       <tr class="govuk-table__row">
         <td class="govuk-table__cell"><a href="manage-application?applicationRef=ABC00000015">ABC00000015</a></td>
         <td class="govuk-table__cell">Testudo Hermann</td>
-        <td class="govuk-table__cell">11 12 2021</td>
-        <td class="govuk-table__cell">Awaiting payment</td>
+        <td class="govuk-table__cell">11 May 2021</td>
+        <td class="govuk-table__cell">Awaiting further information</td>
       </tr>
       <tr class="govuk-table__row">
         <td class="govuk-table__cell"><a href="manage-application?applicationRef=ABC00000016">ABC00000016</a></td>
         <td class="govuk-table__cell">Rice Lizard</td>
-        <td class="govuk-table__cell">18 09 2021</td>
+        <td class="govuk-table__cell">18 July 2021</td>
         <td class="govuk-table__cell">Permit issued</td>
       </tr>
     </tbody>
   </table>
-  </div>
+</div>
+
+<hr>
+<br>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-quarter">
+      <a href="what-type-of-permit-or-certificate-are-you-applying-for"><button class="govuk-button" data-module="govuk-button">Start new application</button><a>
+    </div>
+
+    <div class="govuk-grid-column-one-quarter">
+      <p></p>
+    </div>
+
+    <div class="govuk-grid-column-one-half">
+      <nav class="govuk-pagination" role="navigation" aria-label="results">
+        <div class="govuk-pagination__prev">
+          <a class="govuk-link govuk-pagination__link" href="#" rel="prev">
+            <svg class="govuk-pagination__icon govuk-pagination__icon--prev" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+              <path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
+            </svg>
+            <span class="govuk-pagination__link-title">Previous</span></a>
+        </div>
+        <ul class="govuk-pagination__list">
+          <li class="govuk-pagination__item">
+            <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 1">
+              1
+            </a>
+          </li>
+          <li class="govuk-pagination__item govuk-pagination__item--current">
+            <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 2" aria-current="page">
+              2
+            </a>
+          </li>
+          <li class="govuk-pagination__item">
+            <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 3">
+              3
+            </a>
+          </li>
+        </ul>
+        <div class="govuk-pagination__next">
+          <a class="govuk-link govuk-pagination__link" href="#" rel="next"> <span class="govuk-pagination__link-title">Next</span> <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+              <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+            </svg></a>
+        </div>
+      </nav>
+    </div>
 </div>
 
 <style>
 
   .ScrollStyle
   {
-      max-height: 780px;
+      max-height: 680px;
       overflow-y: scroll;
   }
 
@@ -308,7 +361,7 @@ div.ex1 {
 }
 
 div.ex2 {
-  height: 300px;
+  height: 200px;
   overflow-x: hidden;
   overflow-y: auto;
 }
