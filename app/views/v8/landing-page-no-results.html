@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 <!-- {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %} -->
 
-{% set pageTitle = "landing-page" %}
+{% set pageTitle = "landing-page-no-results" %}
 
 {% block beforeContent %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
@@ -56,7 +56,6 @@
     <a href="what-type-of-permit-or-certificate-are-you-applying-for"><button class="govuk-button" data-module="govuk-button">Start new application</button><a>
   </div>
 </div>
-
 
 <!-- <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
@@ -158,7 +157,7 @@
           </fieldset>
         </div>
       </div>
-    <a href="landing-page-filtered?searchValue=Coral"><button class="govuk-button govuk-button--secondary" data-module="govuk-button">Apply filter</button><a>
+    <a href="#"><button class="govuk-button govuk-button--secondary" data-module="govuk-button">Apply filter</button><a>
       <!-- <br>
       <br>
       <br>
@@ -175,6 +174,13 @@
       </tr>
     </thead>
     <tbody class="govuk-table__body">
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell"><p class="govuk-!-font-size-24 govuk-!-font-weight-bold">0 applications</p><p>We could not find any applications.</p></td>
+  <td class="govuk-table__cell"></td>
+  <td class="govuk-table__cell"></td>
+</tr>
+    </tbody>
+    <!-- <tbody class="govuk-table__body">
       <tr class="govuk-table__row">
         <td class="govuk-table__cell"><a href="manage-application?applicationRef=ABC22222222">ABC22222222</a><br>Alisterus chloropterus</td>
         <td class="govuk-table__cell">24 April 2022</td>
@@ -225,7 +231,7 @@
         <td class="govuk-table__cell">24 April 2022</td>
         <td class="govuk-table__cell">Permit issued</td>
       </tr>
-    </tbody>
+    </tbody> -->
   </table>
 </div>
 </div>
@@ -251,8 +257,8 @@
               1
             </a>
           </li>
-          <li class="govuk-pagination__item">
-            <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 2" aria-current="page">
+          <!-- <li class="govuk-pagination__item">
+            <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 2">
               2
             </a>
           </li>
@@ -260,7 +266,7 @@
             <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 3">
               3
             </a>
-          </li>
+          </li> -->
         </ul>
         <div class="govuk-pagination__next">
           <a class="govuk-link govuk-pagination__link" href="#" rel="next"> <span class="govuk-pagination__link-title">Next</span> <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
@@ -270,7 +276,7 @@
       </nav>
     </div>
     <div class="govuk-grid-one-quarter">
-      <p class="govuk-!-text-align-right">1 to 10 of 1225 applications.</p>
+      <p class="govuk-!-text-align-right">0 applications.</p>
     </div>
   </div>
 

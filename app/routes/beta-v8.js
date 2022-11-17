@@ -229,6 +229,12 @@ router.post('/v8/file-upload', function (req, res) {
   res.redirect('check-your-answers')
 })
 
+// Landing page
+router.post('/v8/landing-page', function (req, res) {
+  res.redirect('what-type-of-permit-or-certificate-are-you-applying-for')
+})
+
+
 // Manage application
 
 router.post('/v8/manage-application', function (req, res) {
