@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 <!-- {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %} -->
 
-{% set pageTitle = "landing-page" %}
+{% set pageTitle = "your-applications" %}
 
 {% block beforeContent %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
@@ -131,27 +131,45 @@
           <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
             <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
               <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="status-1" name="status" type="checkbox" value="submitted">
+                <input class="govuk-checkboxes__input" id="status-1" name="status" type="checkbox" value="received">
                 <label class="govuk-label govuk-checkboxes__label" for="status-1">
+                  Received
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="status-3" name="status" type="checkbox" value="awaiting-payment">
+                <label class="govuk-label govuk-checkboxes__label" for="status-3">
+                  Awaiting payment
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="status-6" name="status" type="checkbox" value="awaiting-reply">
+                <label class="govuk-label govuk-checkboxes__label" for="status-6">
+                  Awaiting-reply
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="status-6" name="status" type="checkbox" value="in-progress">
+                <label class="govuk-label govuk-checkboxes__label" for="status-6">
                   In progress
                 </label>
               </div>
               <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="status-3" name="status" type="checkbox" value="awaiting-further-information">
-                <label class="govuk-label govuk-checkboxes__label" for="status-3">
-                  Awaiting further information
-                </label>
-              </div>
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="status-6" name="status" type="checkbox" value="rejected">
+                <input class="govuk-checkboxes__input" id="status-6" name="status" type="checkbox" value="issued">
                 <label class="govuk-label govuk-checkboxes__label" for="status-6">
-                  Rejected
+                  Issued
                 </label>
               </div>
               <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="status-5" name="status" type="checkbox" value="permit-issued">
+                <input class="govuk-checkboxes__input" id="status-6" name="status" type="checkbox" value="refused">
+                <label class="govuk-label govuk-checkboxes__label" for="status-6">
+                  Refused
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="status-5" name="status" type="checkbox" value="cancelled">
                 <label class="govuk-label govuk-checkboxes__label" for="status-5">
-                  Permit issued
+                  Cancelled
                 </label>
               </div>
             </div>
@@ -313,14 +331,14 @@
 
 div.ex1 {
   height: 180px;
-  overflow-x: hidden;
-  overflow-y: auto;
+  /* overflow-x: hidden;
+  overflow-y: auto; */
 }
 
 div.ex2 {
-  height: 200px;
-  overflow-x: hidden;
-  overflow-y: auto;
+  height: 330px;
+  /* overflow-x: hidden;
+  overflow-y: auto; */
 }
 
 a {
