@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% set thisPageTitle = "what-best-describes-the-specimen" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <form method="post" autocomplete="off">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <span class="govuk-caption-l">{{data['speciesName']}} ({{data['specimenCount']}} of {{data['quantity']}})</span>
+            <h1 class="govuk-fieldset__heading">
+              What best describes the specimen?
+            </h1>
+          </legend>
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="description-1" name="description" type="radio" value="living animal">
+              <label class="govuk-label govuk-radios__label" for="description-1">
+                <p class=" govuk-!-margin-bottom-0">A living animal
+              </label>
+            </div>
+            <div class="govuk-radios" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="description-2" name="description" type="radio" value="animal part or derivative">
+                <label class="govuk-label govuk-radios__label" for="description-2">
+                  <p class="govuk-!-margin-bottom-0">An animal part or derivative</p>
+                </label>
+              </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="description-3" name="description" type="radio" value="worked item or finished product">
+              <label class="govuk-label govuk-radios__label" for="description-3">
+                <p class="govuk-!-margin-bottom-0">A worked item or finished product</P>
+              </label>
+            </div>
+        </fieldset>
+      </div>
+      <button class="govuk-button">Continue</button>
+
+    </form>
+  </div>
+</div>
+
+
+
+{% endblock %}

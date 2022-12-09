@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 
-{% set thisPageTitle = "enter-your-address-manually-applicant" %}
+
+{% set thisPageTitle = "enter-address-manually" %}
 
 {% block content %}
 
@@ -11,14 +12,38 @@
           <div class="govuk-form-group">
             <fieldset class="govuk-fieldset">
               <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-                <h1 class="govuk-fieldset__heading">
-                  Enter your address<address class="">
-
-                  </address>
+      <!-- Agent -->
+                {% if data['isAgent'] == 'yes' %}
+                <h1 class="govuk-heading-l">
+                  Enter your address
                 </h1>
+                <p class="govuk-body">If you are a business, give the business name.</p>
+      <!-- import -->
+                {% elseif data['permitType'] == 'import' %}
+                <h1 class="govuk-heading-l">
+                  Enter the importer's address
+                </h1>
+                <p class="govuk-body">If the importer is a business, give the business name.</p>
+      <!-- export -->
+                {% elseif data['permitType'] == 'export' %}
+                <h1 class="govuk-heading-l">
+                  Enter the exporter's address
+                </h1>
+                <p class="govuk-body">If the exporter is a business, give the business name.</p>
+      <!-- re-export -->
+                {% elseif data['permitType'] == 're-export' %}
+                <h1 class="govuk-heading-l">
+                  Enter the re-exporter's address
+                </h1>
+                <p class="govuk-body">If the re-exporter is a business, give the business name.</p>
+      <!-- A10 -->
+                {% elseif data['permitType'] == 'A10'%}
+                <h1 class="govuk-heading-l">
+                  Enter the applicant's address
+                </h1>
+                <p class="govuk-body">If the applicant is a business, give the business name.</p>
+              {% endif %}
               </legend>
-
-              <p class="govuk-body">If it's a business, give the business address.</p>
 
               <div class="govuk-form-group">
                 <label class="govuk-label" for="address-line-1">
