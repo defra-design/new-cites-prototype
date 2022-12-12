@@ -16,26 +16,45 @@
             </h1>
           </legend>
 
-      <div class="govuk-radios" data-module="govuk-radios">
-        <div class="govuk-radios__item">
-          <input class="govuk-radios__input" id="delivery-address-1" name="delivery-address" type="radio" value="delivery-address-1" required>
-          <label class="govuk-label govuk-radios__label" for="delivery-address-1">
-            Deliver the permit to 13 Barton Street, Manchester ME19 4TT
-          </label>
+        {% if data['isAgent'] === 'no'  %}
+        <div class="govuk-radios" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="delivery-address-1" name="delivery-address" type="radio" value="delivery-address-1" required>
+            <label class="govuk-label govuk-radios__label" for="delivery-address-1">
+              Deliver the permit to 13 Barton Street, Manchester ME19 4TT
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="delivery-address-3" name="delivery-address" type="radio" value="delivery-address-3">
+              <label class="govuk-label govuk-radios__label" for="delivery-address-3">
+              Deliver the permit to a different address
+            </label>
+          </div>
         </div>
-        <div class="govuk-radios__item">
-          <input class="govuk-radios__input" id="delivery-address-2" name="delivery-address" type="radio" value="delivery-address-2">
-          <label class="govuk-label govuk-radios__label" for="delivery-address-2">
-            Deliver the permit to 42 Western Road, Billericay CM12 9DX
-          </label>
+        {% endif %}
+
+        {% if data['isAgent'] === 'yes'  %}
+        <div class="govuk-radios" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="delivery-address-1" name="delivery-address" type="radio" value="delivery-address-1" required>
+            <label class="govuk-label govuk-radios__label" for="delivery-address-1">
+              Deliver the permit to 13 Barton Street, Manchester ME19 4TT
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="delivery-address-2" name="delivery-address" type="radio" value="delivery-address-2">
+            <label class="govuk-label govuk-radios__label" for="delivery-address-2">
+              Deliver the permit to 42 Western Road, Billericay CM12 9DX
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="delivery-address-3" name="delivery-address" type="radio" value="delivery-address-3">
+            <label class="govuk-label govuk-radios__label" for="delivery-address-3">
+              Deliver the permit to a different address
+            </label>
+          </div>
         </div>
-        <div class="govuk-radios__item">
-          <input class="govuk-radios__input" id="delivery-address-3" name="delivery-address" type="radio" value="delivery-address-3">
-          <label class="govuk-label govuk-radios__label" for="delivery-address-3">
-            Deliver the permit to a different address
-          </label>
-        </div>
-      </div>
+        {% endif %}
 
         </fieldset>
       </div>
