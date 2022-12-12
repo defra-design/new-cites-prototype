@@ -65,6 +65,29 @@ router.post('/v8/check-your-answers-reuse', function (req, res) {
 //   res.redirect('what-is-the-name-of-the-species')
 // })
 
+// Choose delivery address
+router.post('/v8/choose-delivery-address', function (req, res) {
+  if (req.session.data['delivery-address'] == 'delivery-address-1') {
+    if (req.session.data['fromPage'] == 'cya') {
+      res.redirect('check-your-answers') }
+    else {
+      res.redirect('what-is-the-name-of-the-species')
+    }
+  }
+
+  if (req.session.data['delivery-address'] == 'delivery-address-2') {
+    if (req.session.data['fromPage'] == 'cya') {
+      res.redirect('check-your-answers') }
+    else {
+      res.redirect('what-is-the-name-of-the-species')
+    }
+  }
+
+  if (req.session.data['delivery-address'] == 'delivery-address-3') {
+      res.redirect('what-is-the-delivery-address')
+    }
+})
+
 // Confirm delivery address
 router.post('/v8/confirm-delivery-address', function (req, res) {
   if (req.session.data['fromPage'] == 'cya') {
@@ -118,57 +141,60 @@ else {
 // Confirm your address agent led
 router.post('/v8/confirm-your-address-agent-led', function (req, res) {
 
-  if (req.session.data['delivery-address'] == 'delivery-address-1') {
-    if (req.session.data['fromPage'] == 'cya') {
-      res.redirect('check-your-answers') }
-    else {
-      res.redirect('what-is-the-name-of-the-species')
-    }
-  }
+  // if (req.session.data['delivery-address'] == 'delivery-address-1') {
+  //   if (req.session.data['fromPage'] == 'cya') {
+  //     res.redirect('check-your-answers') }
+  //   else {
+  //     res.redirect('what-is-the-name-of-the-species')
+  //   }
+  // }
+  //
+  // if (req.session.data['delivery-address'] == 'delivery-address-2') {
+  //   if (req.session.data['fromPage'] == 'cya') {
+  //     res.redirect('check-your-answers') }
+  //   else {
+  //     res.redirect('what-is-the-name-of-the-species')
+  //   }
+  // }
+  //
+  // if (req.session.data['delivery-address'] == 'delivery-address-3') {
+  //     res.redirect('what-is-the-delivery-address')
+  //   }
 
-  if (req.session.data['delivery-address'] == 'delivery-address-2') {
-    if (req.session.data['fromPage'] == 'cya') {
-      res.redirect('check-your-answers') }
-    else {
-      res.redirect('what-is-the-name-of-the-species')
-    }
-  }
-
-  if (req.session.data['delivery-address'] == 'delivery-address-3') {
-      res.redirect('what-is-the-delivery-address')
-    }
+    res.redirect('choose-delivery-address')
   })
 
 // Confirm your address applicant
 router.post('/v8/confirm-your-address-applicant', function (req, res) {
 
-  if (req.session.data['delivery-address-applicant'] == 'delivery-address-1-applicant') {
-    if (req.session.data['fromPage'] == 'cya') {
-    res.redirect('check-your-answers')
-  }
-}
+//   if (req.session.data['delivery-address-applicant'] == 'delivery-address-1-applicant') {
+//     if (req.session.data['fromPage'] == 'cya') {
+//     res.redirect('check-your-answers')
+//   }
+// }
+//
+//     if (req.session.data['delivery-address-applicant'] == 'delivery-address-2-applicant') {
+//       if (req.session.data['fromPage'] == 'cya') {
+//       res.redirect('enter-address-manually')
+//     }
+//   }
+//
+//     if (req.session.data['fromPage'] == 'manageApplication') {
+//     res.redirect('manage-application')
+//     }
+//
+//     if (req.session.data['fromPage'] == 'manageApplicationNew') {
+//     res.redirect('manage-application-new')
+//     }
 
-    if (req.session.data['delivery-address-applicant'] == 'delivery-address-2-applicant') {
-      if (req.session.data['fromPage'] == 'cya') {
-      res.redirect('enter-address-manually')
-    }
-  }
-
-    if (req.session.data['fromPage'] == 'manageApplication') {
-    res.redirect('manage-application')
-    }
-
-    if (req.session.data['fromPage'] == 'manageApplicationNew') {
-    res.redirect('manage-application-new')
-    }
-
-    if (req.session.data['address-applicant'] == 'address-1-applicant') {
-      res.redirect('what-is-the-name-of-the-species')
-    }
-
-    if (req.session.data['address-applicant'] == 'address-2-applicant') {
-      res.redirect('what-is-the-delivery-address')
-    }
+    // if (req.session.data['address-applicant'] == 'address-1-applicant') {
+    //   res.redirect('what-is-the-name-of-the-species')
+    // }
+    //
+    // if (req.session.data['address-applicant'] == 'address-2-applicant') {
+    //   res.redirect('what-is-the-delivery-address')
+    // }
+    res.redirect('choose-delivery-address')
 
   })
 
