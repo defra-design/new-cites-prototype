@@ -413,12 +413,12 @@ router.post('/v8/what-is-the-purpose-code', function (req, res) {
     if (req.session.data['speciesName'] == 'coral') {
       res.redirect('trade-term-code') }
       else {
-      res.redirect('specimen-type')
+      res.redirect('specimen-details')
       }
   }
 
   if (req.session.data['specimenType'] == 'plant') {
-    res.redirect('specimen-type')
+    res.redirect('specimen-details')
 }
 })
 
@@ -517,7 +517,7 @@ router.post('/v8/where-did-you-source-your-specimen-from', function (req, res) {
   }
 
 else {
-  res.redirect('what-will-you-use-your-permit-for')
+  res.redirect('what-is-the-purpose-code')
 }
 })
 
