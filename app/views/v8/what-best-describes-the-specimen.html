@@ -16,6 +16,9 @@
               What best describes the specimen?
             </h1>
           </legend>
+
+<!-- Animal -->
+{% if data['speciesType'] === 'animal'%}
           <div class="govuk-radios" data-module="govuk-radios">
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="description-1" name="description" type="radio" value="living animal">
@@ -23,7 +26,6 @@
                 <p class=" govuk-!-margin-bottom-0">A living animal
               </label>
             </div>
-            <div class="govuk-radios" data-module="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="description-2" name="description" type="radio" value="animal part or derivative">
                 <label class="govuk-label govuk-radios__label" for="description-2">
@@ -36,6 +38,38 @@
                 <p class="govuk-!-margin-bottom-0">A worked item or finished product</P>
               </label>
             </div>
+          </div>
+{% endif %}
+
+<!-- Plant -->
+{% if data['speciesType'] === 'plant'%}
+            <div class="govuk-radios" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="description-1" name="description" type="radio" value="living animal">
+                <label class="govuk-label govuk-radios__label" for="description-1">
+                  <p class=" govuk-!-margin-bottom-0">A living plant
+                </label>
+              </div>
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="description-2" name="description" type="radio" value="animal part or derivative">
+                  <label class="govuk-label govuk-radios__label" for="description-2">
+                    <p class="govuk-!-margin-bottom-0">A plant product</p>
+                  </label>
+                  <div id="sign-in-item-hint" class="govuk-hint govuk-radios__hint">
+                    Any plant body or part that was removed from its natural habitat to make a product. For example, seeds, fruits, roots, stems, flowers or leaves, including extracts or powders.
+                  </div>
+                </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="description-3" name="description" type="radio" value="worked item or finished product">
+                <label class="govuk-label govuk-radios__label" for="description-3">
+                  <p class="govuk-!-margin-bottom-0">A worked item or finished product</P>
+                </label>
+                <div id="sign-in-item-hint" class="govuk-hint govuk-radios__hint">
+                  A specimen that has been significantly altered from its natural raw state and used for items such as furniture, jewellery, carved figures or musical instruments.
+                </div>
+              </div>
+            </div>
+{% endif %}
         </fieldset>
       </div>
       <button class="govuk-button">Continue</button>
