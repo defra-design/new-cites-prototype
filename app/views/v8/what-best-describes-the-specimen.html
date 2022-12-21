@@ -21,23 +21,29 @@
 {% if data['speciesType'] === 'animal'%}
           <div class="govuk-radios" data-module="govuk-radios">
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="description-1" name="description" type="radio" value="living animal">
+              <input class="govuk-radios__input" id="description-1" name="specimenType" type="radio" value="livingAnimal">
               <label class="govuk-label govuk-radios__label" for="description-1">
                 <p class=" govuk-!-margin-bottom-0">A living animal
               </label>
             </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="description-2" name="description" type="radio" value="animal part or derivative">
+                <input class="govuk-radios__input" id="description-2" name="specimenType" type="radio" value="animalPart">
                 <label class="govuk-label govuk-radios__label" for="description-2">
                   <p class="govuk-!-margin-bottom-0">An animal part or derivative</p>
                 </label>
               </div>
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="description-3" name="description" type="radio" value="worked item or finished product">
-              <label class="govuk-label govuk-radios__label" for="description-3">
-                <p class="govuk-!-margin-bottom-0">A worked item or finished product</P>
-              </label>
-            </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="description-3" name="specimenType" type="radio" value="workedItem">
+                <label class="govuk-label govuk-radios__label" for="description-3">
+                  <p class="govuk-!-margin-bottom-0">A worked item or finished product</P>
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="description-4" name="specimenType" type="radio" value="coral">
+                <label class="govuk-label govuk-radios__label" for="description-3">
+                  <p class="govuk-!-margin-bottom-0">Coral</P>
+                </label>
+              </div>
           </div>
 {% endif %}
 
@@ -45,13 +51,13 @@
 {% if data['speciesType'] === 'plant'%}
             <div class="govuk-radios" data-module="govuk-radios">
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="description-1" name="description" type="radio" value="living animal">
+                <input class="govuk-radios__input" id="description-1" name="specimenType" type="radio" value="livingAnimal">
                 <label class="govuk-label govuk-radios__label" for="description-1">
                   <p class=" govuk-!-margin-bottom-0">A living plant
                 </label>
               </div>
                 <div class="govuk-radios__item">
-                  <input class="govuk-radios__input" id="description-2" name="description" type="radio" value="animal part or derivative">
+                  <input class="govuk-radios__input" id="description-2" name="specimenType" type="radio" value="animalPart">
                   <label class="govuk-label govuk-radios__label" for="description-2">
                     <p class="govuk-!-margin-bottom-0">A plant product</p>
                   </label>
@@ -60,7 +66,7 @@
                   </div>
                 </div>
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="description-3" name="description" type="radio" value="worked item or finished product">
+                <input class="govuk-radios__input" id="description-3" name="specimenType" type="radio" value="workedItem">
                 <label class="govuk-label govuk-radios__label" for="description-3">
                   <p class="govuk-!-margin-bottom-0">A worked item or finished product</P>
                 </label>

@@ -369,6 +369,31 @@ router.post('/v8/specimen-details', function (req, res) {
 }
 })
 
+// Trade term code
+router.post('/v8/trade-term-code', function (req, res) {
+  if (req.session.data['fromPage'] == 'cya') {
+  res.redirect('check-your-answers')
+  }
+
+  if (req.session.data['fromPage'] == 'manageApplication') {
+  res.redirect('manage-application')
+  }
+
+  if (req.session.data['fromPage'] == 'manageApplicationNew') {
+  res.redirect('manage-application-new')
+  }
+
+  if (req.session.data['specimenType'] == 'workedItem') {
+  res.redirect('created-date') //created date page
+  }
+
+  else {
+  res.redirect('unique-identification-mark') //unique identification mark page
+}
+})
+
+
+
 // What best describes the specimen
 router.post('/v8/what-best-describes-the-specimen', function (req, res) {
   res.redirect('trade-term-code')
@@ -485,7 +510,7 @@ router.post('/v8/what-will-you-use-the-certificate-for', function (req, res) {
   if (req.session.data['fromPage'] == 'cya') {
     res.redirect('check-your-answers') }
 else
-  res.redirect('specimen-details')
+  res.redirect('what-best-describes-the-specimen')
 })
 
 // What will you use the permit for
