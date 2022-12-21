@@ -409,17 +409,22 @@ router.post('/v8/what-is-the-purpose-code', function (req, res) {
   res.redirect('manage-application-new')
   }
 
+  if (req.session.data['permitType'] == 'A10') {
+      res.redirect('what-will-you-use-the-certificate-for')
+  }
+
+  if (req.session.data['speciesName'] == 'Coral') {
+  res.redirect('trade-term-code')
+  }
+
   if (req.session.data['specimenType'] == 'animal') {
-    if (req.session.data['speciesName'] == 'coral') {
-      res.redirect('trade-term-code') }
-      else {
-      res.redirect('specimen-details')
-      }
+      res.redirect('what-best-describes-the-specimen')
   }
 
   if (req.session.data['specimenType'] == 'plant') {
-    res.redirect('specimen-details')
-}
+    res.redirect('what-best-describes-the-specimen')
+  }
+
 })
 
 // What is the delivery address
@@ -468,7 +473,7 @@ router.post('/v8/what-type-of-permit-or-certificate-are-you-applying-for', funct
     res.redirect('are-you-applying-on-behalf-of-someone-else')
   }
   if (permitType === 'A10') {
-    res.redirect('what-will-you-use-the-certificate-for')
+    res.redirect('are-you-applying-on-behalf-of-someone-else')
   }
   if (permitType === 'other') {
     res.redirect('you-cannot-use-this-service-yet')
@@ -480,7 +485,7 @@ router.post('/v8/what-will-you-use-the-certificate-for', function (req, res) {
   if (req.session.data['fromPage'] == 'cya') {
     res.redirect('check-your-answers') }
 else
-  res.redirect('are-you-applying-on-behalf-of-someone-else')
+  res.redirect('specimen-details')
 })
 
 // What will you use the permit for
@@ -495,6 +500,10 @@ router.post('/v8/what-will-you-use-your-permit-for', function (req, res) {
 
   if (req.session.data['fromPage'] == 'manageApplicationNew') {
   res.redirect('manage-application-new')
+  }
+
+  if (req.session.data['permitType'] == 'A10') {
+  res.redirect('what-best-describes-the-specimen')
   }
 
 else {
