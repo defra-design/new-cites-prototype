@@ -392,13 +392,15 @@ router.post('/v8/trade-term-code', function (req, res) {
 }
 })
 
-
+// We could not confirm the scientific name
+router.post('/v8/we-could-not-confirm-the-scientific-name', function (req, res) {
+  res.redirect('what-is-the-name-of-the-species')
+})
 
 // What best describes the specimen
 router.post('/v8/what-best-describes-the-specimen', function (req, res) {
   res.redirect('trade-term-code')
 })
-
 
 // What is the name of the species
 router.post('/v8/what-is-the-name-of-the-species', function (req, res) {
