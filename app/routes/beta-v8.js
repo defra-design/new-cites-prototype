@@ -203,6 +203,11 @@ router.post('/v8/copy-application', function (req, res) {
   res.redirect('file-upload')
 })
 
+// Created date
+router.post('/v8/created-date', function (req, res) {
+  res.redirect('trade-term-code')
+})
+
 // Declaration
 router.post('/v8/declaration', function (req, res) {
   res.redirect('application-complete')
