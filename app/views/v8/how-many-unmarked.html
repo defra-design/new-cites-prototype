@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% set thisPageTitle = "how-many-unmarked" %}
+
+
+  {% block content %}
+
+  <link rel="stylesheet" href="/public/stylesheets/accessible-autocomplete.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="post" autocomplete="off">
+
+      <div class="govuk-form-group">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <span class="govuk-caption-l">{{data['speciesName']}} ({{data['specimenCount']}} of {{data['totalSpecimens1']}})</span>
+            <h1 class="govuk-fieldset__heading">
+              How many of the {{data['totalSpecimens1']}} {{data['speciesName']}} are unmarked?
+            </h1>
+          </legend>
+      <div class="govuk-form-group">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <label class="govuk-label" for="unmarked-quantity">Number of unmarked specimens</label>
+          <input class="govuk-input govuk-input--width-4" id="unmarked-quantity" name="unmarkedQuantity" type="text" value="{{data['unmarkedQuantity']}}">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <button class="govuk-button">Continue</button>
+    </form>
+
+  </div>
+</div>
+
+    {% endblock %}

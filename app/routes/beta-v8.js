@@ -369,9 +369,17 @@ router.post('/v8/specimen-details', function (req, res) {
   res.redirect('manage-application-new')
   }
 
-  else {
-  res.redirect('permit-details')
+if (req.session.data['isAlive'] == 'yes') {
+  if (req.session.data['identificationMark'] == 'I do not know') {
+    if (req.session.data['totalSpecimens1'] > 1 ) {
+    res.redirect('how-many-unmarked')
+  }
+else {
+res.redirect('permit-details')
 }
+}
+}
+
 })
 
 // Trade term code
@@ -394,6 +402,16 @@ router.post('/v8/trade-term-code', function (req, res) {
 
   else {
   res.redirect('unique-identification-mark') //unique identification mark page
+}
+})
+
+// Unique identification mark
+router.post('/v8/unique-identification-mark', function (req, res) {
+  if (req.session.data['isAlive'] == 'yes') {
+  res.redirect('specimen-details')
+  }
+  else {
+  res.redirect('specimen-description')
 }
 })
 
