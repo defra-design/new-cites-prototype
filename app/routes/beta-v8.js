@@ -449,7 +449,7 @@ router.post('/v8/we-could-not-confirm-the-scientific-name', function (req, res) 
 
 // What best describes the specimen
 router.post('/v8/what-best-describes-the-specimen', function (req, res) {
-if (req.session.data['specimenType'] == 'workedItem') {
+if (req.session.data['specimenDescription'] == 'workedItem') {
 res.redirect('created-date')
 }
 else {
