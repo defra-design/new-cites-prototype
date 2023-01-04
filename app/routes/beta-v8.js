@@ -227,16 +227,14 @@ router.post('/v8/describe-living-animal', function (req, res) {
   res.redirect('manage-application-new')
   }
 
-if (req.session.data['isAlive'] == 'yes') {
-  if (req.session.data['identificationMark'] == 'I do not know') {
-    if (req.session.data['quantity'] > 1 ) {
-    res.redirect('how-many-unmarked')
-  }
-else {
-res.redirect('permit-details')
+  if (req.session.data['isAlive'] == 'yes') {
+    if (req.session.data['identificationMark'] == 'unmarked') {
+      if (req.session.data['quantity'] > 1 ) {
+      res.redirect('how-many-unmarked')
+    }
   }
   }
-}
+res.redirect('importer-exporter-details')
 })
 
 // Description generic
@@ -326,6 +324,10 @@ router.post('/v8/landing-page', function (req, res) {
   res.redirect('what-type-of-permit-or-certificate-are-you-applying-for')
 })
 
+// How many unmarked
+router.post('/v8/how-many-unmarked', function (req, res) {
+  res.redirect('importer-exporter-details')
+})
 
 // Manage application
 
