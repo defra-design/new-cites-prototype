@@ -213,10 +213,37 @@ router.post('/v8/declaration', function (req, res) {
   res.redirect('application-complete')
 })
 
-// Enter an international address
-// router.post('/v8/enter-an-international-address', function (req, res) {
-//   res.redirect('confirm-applicants-international-address')
-// })
+// Describe living animal
+router.post('/v8/describe-living-animal', function (req, res) {
+  if (req.session.data['fromPage'] == 'cya') {
+  res.redirect('check-your-answers')
+  }
+
+  if (req.session.data['fromPage'] == 'manageApplication') {
+  res.redirect('manage-application')
+  }
+
+  if (req.session.data['fromPage'] == 'manageApplicationNew') {
+  res.redirect('manage-application-new')
+  }
+
+if (req.session.data['isAlive'] == 'yes') {
+  if (req.session.data['identificationMark'] == 'I do not know') {
+    if (req.session.data['quantity'] > 1 ) {
+    res.redirect('how-many-unmarked')
+  }
+else {
+res.redirect('permit-details')
+  }
+  }
+}
+})
+
+// Description generic
+router.post('/v8/describe-generic', function (req, res) {
+  res.redirect('importer-exporter-details')
+})
+
 
 // Enter delivery address manually
 router.post('/v8/enter-delivery-address-manually', function (req, res) {
@@ -408,10 +435,10 @@ router.post('/v8/trade-term-code', function (req, res) {
 // Unique identification mark
 router.post('/v8/unique-identification-mark', function (req, res) {
   if (req.session.data['isAlive'] == 'yes') {
-  res.redirect('specimen-details')
+  res.redirect('describe-living-animal')
   }
   else {
-  res.redirect('specimen-description')
+  res.redirect('describe-generic')
 }
 })
 
