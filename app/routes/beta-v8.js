@@ -319,6 +319,16 @@ router.post('/v8/file-upload', function (req, res) {
   res.redirect('check-your-answers')
 })
 
+// Importer / exporter details
+router.post('/v8/importer-exporter-details', function (req, res) {
+  if (req.session.data['permitType'] === 'export') {
+  res.redirect('remarks')
+}
+  else {
+    res.redirect('permit-details')
+  }
+})
+
 // Landing page
 router.post('/v8/landing-page', function (req, res) {
   res.redirect('what-type-of-permit-or-certificate-are-you-applying-for')

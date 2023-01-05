@@ -60,30 +60,28 @@
         <h1 class="govuk-heading-l">Permit details</h1>
         <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
         <h2 class="govuk-heading-m ">Country of import</h2>
-
-
               <table class="govuk-table">
                 <tbody class="govuk-table__body">
                   <tr class="govuk-table__row">
 
                     {% if data['permitType'] == 'import'%}
-                    <th scope="row" class="govuk-table__header  govuk-!-width-one-half">Where are you importing the specimen from?</th>
+                    <th scope="row" class="govuk-table__header  govuk-!-width-one-half">Export or re-export permit details</th>
                     {% else %}
-                    <th scope="row" class="govuk-table__header  govuk-!-width-one-half">Where was the specimen imported from?</th>
+                    <th scope="row" class="govuk-table__header  govuk-!-width-one-half">Export into Great Britain permit details</th>
                     {% endif %}
                     <td class="govuk-table__cell">
                       <div class="govuk-form-group">
                         <label class="govuk-label" for="autocomplete-default">Country</label>
-                        <div id="tt-default" class="autocomplete-wrapper govuk-input--width-20" name="importCountry" type="text" value="{{data['importCountry']}}"></div>
+                        <div id="tt-default" class="autocomplete-wrapper govuk-input--width-20" name="permitDetailsCountry" type="text" value="{{data['permitDetailsCountry']}}"></div>
                       </div>
                       <div class="govuk-form-group">
-                        <label class="govuk-label" for="import-permit-number">
+                        <label class="govuk-label" for="permit-details-permit-number">
                           Permit number
                         </label>
-                        <input class="govuk-input govuk-input--width-20" id="import-permit-number" name="importPermitNumber" type="text" spellcheck="false" autocomplete="import-permit-number" value="{{data['import-permit-number']}}">
+                        <input class="govuk-input govuk-input--width-20" id="permit-details-permit-number" name="permitDetailsPermitNumber" type="text" spellcheck="false" autocomplete="permit-details-permit-number" value="{{data['permitDetailsPermitNumber']}}">
                       </div>
                       <div class="govuk-form-group">
-                        <label class="govuk-label" for="import-permit-issue-date">
+                        <label class="govuk-label" for="permit-details-permit-issue-date">
                           Permit issue date
                         </label>
                         <div id="import-permit-issue-date" class="govuk-hint">
@@ -91,34 +89,63 @@
                         </div>
                       </div>
                       <div class="govuk-form-group">
-                      <div class="govuk-date-input" id="import-permit-issue-date">
+                      <div class="govuk-date-input" id="permit-details-permit-issue-date">
                         <div class="govuk-date-input__item">
                           <div class="govuk-form-group">
-                            <label class="govuk-label govuk-date-input__label" for="import-permit-issue-day">
+                            <label class="govuk-label govuk-date-input__label" for="permit-details-permit-issue-day">
                               Day
                             </label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="import-permit-issue-day" name="importPermitIssueDay" type="text" inputmode="numeric">
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="permit-details-permit-issue-day" name="permitDetailsPermitIssueDay" type="text" inputmode="numeric">
                           </div>
                         </div>
                         <div class="govuk-date-input__item">
                           <div class="govuk-form-group">
-                            <label class="govuk-label govuk-date-input__label" for="import-permit-issue-month">
+                            <label class="govuk-label govuk-date-input__label" for="permit-details-permit-issue-month">
                               Month
                             </label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="import-permit-issue-month" name="importPermitIssueMonth" type="text" inputmode="numeric">
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="permit-details-permit-issue-month" name="permitDetailsPermitIssueMonth" type="text" inputmode="numeric">
                           </div>
                         </div>
                         <div class="govuk-date-input__item">
                           <div class="govuk-form-group">
-                            <label class="govuk-label govuk-date-input__label" for="import-permit-issue-year">
+                            <label class="govuk-label govuk-date-input__label" for="permit-details-permit-issue-year">
                               Year
                             </label>
-                            <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="import-permit-issue-year" name="importPermitIssueYear" type="text" inputmode="numeric">
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="permit-details-permit-issue-year" name="permitDetailsPermitIssueYear" type="text" inputmode="numeric">
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="govuk-form-group">
+
+                    <p>Or</p>
+                    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                       <div class="govuk-checkboxes__item">
+                         <input class="govuk-checkboxes__input" id="importer-exporter-details-not-applicable" name="importer-exporter-details-not-applicable" type="checkbox" value="not applicable">
+                         <label class="govuk-label govuk-checkboxes__label" for="importer-exporter-details-not-applicable">
+                           Not applicable
+                         </label>
+                       </div>
+                    </div>
+
+                    <!-- <div class="govuk-checkboxes govuk-checkboxes" data-module="govuk-checkboxes">
+                      <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="approximate-dob" name="approximateDate" type="checkbox" value="text" data-aria-controls="conditional-approximate-dob">
+                        <label class="govuk-label govuk-checkboxes__label" for="approximate-dob">
+                          I do not know
+                        </label>
+                      </div>
+                      <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-approximate-dob">
+                        <div class="govuk-form-group">
+                          <label class="govuk-label" for="approximate-dob">
+                            Enter an approximate date or period of time
+                          </label>
+                          <input class="govuk-input" id="approximate-dob" name="approximate-dob" type="text" spellcheck="false">
+                        </div>
+                      </div>
+                       </div> -->
+
+
+                    <!-- <div class="govuk-form-group">
                         <div class="govuk-checkboxes" data-module="govuk-checkboxes">
                           <div class="govuk-checkboxes__item">
                             <input class="govuk-checkboxes__input" id="origin" name="origin" type="checkbox" value="origin" onclick=“copyImportDetails”>
@@ -127,7 +154,7 @@
                             </label>
                           </div>
                         </div>
-                    </div>
+                    </div> -->
                   </td>
                 </tr>
               </tbody>
@@ -149,7 +176,7 @@
                               <label class="govuk-label" for="origin-permit-number">
                                 Permit number
                               </label>
-                              <input class="govuk-input govuk-input--width-20" id="origin-permit-number" name="originPermitNumber" type="text" spellcheck="false" autocomplete="origin-permit-number" value="{{data['origin-permit-number']}}">
+                              <input class="govuk-input govuk-input--width-20" id="origin-permit-number" name="originPermitNumber" type="text" spellcheck="false" autocomplete="origin-permit-number" value="{{data['originPermitNumber']}}">
                             </div>
                             <div class="govuk-form-group">
                               <label class="govuk-label" for="origin-permit-issue-date">
@@ -190,9 +217,9 @@
                           <p>Or</p>
                           <div class="govuk-checkboxes" data-module="govuk-checkboxes">
                              <div class="govuk-checkboxes__item">
-                               <input class="govuk-checkboxes__input" id="hatch-date-not-known" name="hatch-date-not-known" type="checkbox" value="known">
-                               <label class="govuk-label govuk-checkboxes__label" for="hatch-date-not-known">
-                                 I do not know
+                               <input class="govuk-checkboxes__input" id="country-of-origin" name="country-of-origin" type="checkbox" value="not applicable">
+                               <label class="govuk-label govuk-checkboxes__label" for="country-of-origin">
+                                 Not applicable
                                </label>
                              </div>
                           </div>
