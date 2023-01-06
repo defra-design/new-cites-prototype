@@ -334,6 +334,27 @@ else {
 }
 })
 
+// Ever been imported or exported
+router.post('/v8/ever-been-imported-exported', function (req, res) {
+
+  if (req.session.data['fromPage'] == 'cya') {
+  res.redirect('check-your-answers')
+  }
+
+  if (req.session.data['fromPage'] == 'manageApplication') {
+  res.redirect('manage-application')
+  }
+
+  if (req.session.data['fromPage'] == 'manageApplicationNew') {
+  res.redirect('manage-application-new')
+  }
+
+  if (req.session.data['everImportedExported'] === 'no') {
+    res.redirect('comments') }
+else
+  res.redirect('permit-details')
+})
+
 // File upload
 router.post('/v8/file-upload', function (req, res) {
   res.redirect('check-your-answers')
