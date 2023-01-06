@@ -28,6 +28,15 @@ res.redirect('file-upload')
 }
 })
 
+// Acquired date
+router.post('/v8/acquired-date', function (req, res) {
+  res.redirect('already-have-a10')
+})
+
+// already-have-a10
+router.post('/v8/already-have-a10', function (req, res) {
+  res.redirect('ever-been-imported-exported')
+})
 
 // Application complete
 router.post('/v8/application-complete', function (req, res) {
@@ -230,6 +239,12 @@ router.post('/v8/describe-living-animal', function (req, res) {
 
   if (req.session.data['fromPage'] == 'manageApplicationNew') {
   res.redirect('manage-application-new')
+  }
+
+  if (req.session.data['isAlive'] == 'yes') {
+    if (req.session.data['permitType'] == 'A10') {
+      res.redirect('acquired-date')
+    }
   }
 
   if (req.session.data['isAlive'] == 'yes') {
