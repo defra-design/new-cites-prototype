@@ -88,6 +88,11 @@ router.post('/v8/choose-delivery-address', function (req, res) {
     }
 })
 
+// Comments
+router.post('/v8/comments', function (req, res) {
+  res.redirect('file-upload')
+})
+
 // Confirm delivery address
 router.post('/v8/confirm-delivery-address', function (req, res) {
   if (req.session.data['fromPage'] == 'cya') {
