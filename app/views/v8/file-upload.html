@@ -13,15 +13,31 @@
   <div class="govuk-grid-column-full">
     <form method="post" novalidate>
 
-<div class="container">
-    <div class="row">
-            <div class="upload-file">
-                <div class="row">
-                    <div class="col-6">
-                      <h1 class="govuk-heading-l">Upload files</h1>
-                    </div>
+      <h1 class="govuk-heading-l">Upload supporting documents</h1>
+      <p class="govuk-body">You should add any documents that may support your application. For example, you can upload:</p>
 
-                </div>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>an export, re-export or import permit</li>
+            <li>an Article 10 certificate for the specimen's parents</li>
+            <li>proof of ownership or how you acquired the specimen</li>
+            <li>the specimen's proof of identity</li>
+            {% if data['isAgent'] == 'yes'%}
+            <li>permission to act on the applicant's behalf</li>
+            {% endif %}
+          </ul>
+
+          <h2 class="govuk-heading-m">Upload files</h2>
+          <p class="govuk-body">You can upload a total of 6 files. Files must be smaller than 10MB and either:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>a PDF</li>
+            <li>a Microsoft Word document (.DOC or .DOCX)</li>
+            <li>an image file (.JPG or PNG)</li>
+          </ul>
+
+      <div class="container">
+        <div class="row">
+            <div class="upload-file">
+
                 <div class="govuk-form-group">
                   <label class="govuk-label" for="file-upload-1">
                     <!-- Upload a file -->
@@ -30,26 +46,23 @@
                   <hr>
                 </div>
             </div>
-
-
             <div class="row">
                 <div class="col-12">
-                    <h2 class="govuk-heading-m">Files ready for uploading</h2>
+                    <h2 class="govuk-heading-m">Files to upload</h2>
+                    <p class="govuk-body">You don't have any files to upload.</p>
                 </div>
             </div>
             <output id="image-gallery"></output>
         </div>
       </div>
 
-    <hr><br>
-    <!-- <a href="check-your-answers" class="govuk-button" data-module="govuk-button">Upload and continue</a> -->
-    <button class="govuk-button" data-module="govuk-button">
-      Continue
-    </button>
+      <hr><br>
+      <!-- <a href="check-your-answers" class="govuk-button" data-module="govuk-button">Upload and continue</a> -->
+      <button class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
 
-  </form>
-
-
+    </form>
   </div>
 </div>
 
