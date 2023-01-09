@@ -13,6 +13,21 @@
   <div class="govuk-grid-column-full">
     <form method="post" novalidate>
 
+      <div class="govuk-error-summary" data-module="govuk-error-summary">
+         <div role="alert">
+           <h2 class="govuk-error-summary__title">
+             There is a problem
+           </h2>
+           <div class="govuk-error-summary__body">
+             <ul class="govuk-list govuk-error-summary__list">
+               <li>
+                 <a href="#passport-issued-year">File too big. The selected file must be smaller than 10MB</a>
+               </li>
+             </ul>
+           </div>
+         </div>
+       </div>
+
       <h1 class="govuk-heading-l">Upload supporting documents</h1>
       <p class="govuk-body">You should add any documents that may support your application. For example, you can upload:</p>
 
@@ -38,14 +53,18 @@
         <div class="row">
             <div class="upload-file">
 
-                <div class="govuk-form-group">
+              <div class="govuk-form-group govuk-form-group--error">
                   <label class="govuk-label" for="file-upload-1">
                     <!-- Upload a file -->
                   </label>
+                  <p id="file-upload-1-error" class="govuk-error-message">
+                    <span class="govuk-visually-hidden">Error:</span> File too big. The selected file must be smaller than 10MB
+                  </p>
                   <input class="govuk-file-upload" type="file" name="files[]" id="files" multiple accept="image/jpeg, image/png, image/gif, application/pdf, application/msword">
                   <hr>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-12">
                     <h2 class="govuk-heading-m">Files to upload</h2>
