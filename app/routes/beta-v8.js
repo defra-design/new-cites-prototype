@@ -370,11 +370,6 @@ router.post('/v8/importer-exporter-details', function (req, res) {
   }
 })
 
-// Landing page
-router.post('/v8/landing-page', function (req, res) {
-  res.redirect('what-type-of-permit-or-certificate-are-you-applying-for')
-})
-
 // How many unmarked
 router.post('/v8/how-many-unmarked', function (req, res) {
   res.redirect('importer-exporter-details')
@@ -663,6 +658,16 @@ router.post('/v8/where-did-you-source-your-specimen-from', function (req, res) {
 else {
   res.redirect('what-is-the-purpose-code')
 }
+})
+
+// Your applications
+router.post('/v8/your-applications', function (req, res) {
+  res.redirect('what-type-of-permit-or-certificate-are-you-applying-for')
+})
+
+// Your submissions
+router.post('/v8/your-submissions', function (req, res) {
+  res.redirect('your-applications')
 })
 
 
