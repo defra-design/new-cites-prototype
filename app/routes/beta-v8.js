@@ -30,7 +30,21 @@ res.redirect('file-upload')
 
 // Acquired date
 router.post('/v8/acquired-date', function (req, res) {
+  if (req.session.data['fromPage'] == 'cya') {
+  res.redirect('check-your-answers')
+  }
+
+  if (req.session.data['fromPage'] == 'manageApplication') {
+  res.redirect('manage-application')
+  }
+
+  if (req.session.data['fromPage'] == 'manageApplicationNew') {
+  res.redirect('manage-application-new')
+  }
+
+else {
   res.redirect('already-have-a10')
+}
 })
 
 // already-have-a10
@@ -482,6 +496,18 @@ router.post('/v8/trade-term-code', function (req, res) {
 
 // Unique identification mark
 router.post('/v8/unique-identification-mark', function (req, res) {
+  if (req.session.data['fromPage'] == 'cya') {
+  res.redirect('check-your-answers')
+  }
+
+  if (req.session.data['fromPage'] == 'manageApplication') {
+  res.redirect('manage-application')
+  }
+
+  if (req.session.data['fromPage'] == 'manageApplicationNew') {
+  res.redirect('manage-application-new')
+  }
+
   if (req.session.data['isAlive'] == 'yes') {
   res.redirect('describe-living-animal')
   }
