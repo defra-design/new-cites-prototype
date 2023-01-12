@@ -199,7 +199,7 @@
             <dt class="govuk-summary-list__key">
               <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Scientific name</p>
               <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Quantity or net mass</p>
-              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Unit of measure</p>
+              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Unit of measurement</p>
               <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Source code</p>
               <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Purpose code</p>
             </dt>
@@ -213,8 +213,8 @@
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="what-is-the-name-of-the-species?fromPage=cya">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Scientific name</span></p>
-                <br>
-                <br>
+                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Quantity</span></p>
+                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Unit of measurement></p>
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Source code</span></p>
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Purpose code</span></p>
               </a>
@@ -223,6 +223,8 @@
         </dl>
 
 <!-- Living animal description -->
+{% if data['isAlive'] == 'yes'%}
+  {% if data['specimenType'] == 'animal'%}
         <h2 class="govuk-heading-m">Description</h2>
         <hr>
         <dl class="govuk-summary-list govuk-!-margin-bottom-9">
@@ -230,64 +232,131 @@
             <!-- Labels -->
             <dt class="govuk-summary-list__key">
               <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Trade term code</p>
-              {% if data['isAlive'] == 'yes'%}
-              {% if data['specimenType'] == 'animal'%}
-              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Sex</p>
-              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Hatch or birth date</p>
-                {% if data['permitType'] === 'A10'%}
-                  <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Parent 1: Identification mark</p>
-                  <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Parent 1: A10 number</p>
-                  <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Parent 2: Identification mark</p>
-                  <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Parent 2: A10 number</p>
-                {% endif %}
-              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Other information</p>
-              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Acquired date</p>
-              {% if data['hasA10'] === 'yes'%}
-              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Existing Article 10 certificate</p>
-              {% endif %}
+              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Unique identification mark</p>
+                <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Sex</p>
+                <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Hatch or birth date</p>
+                  {% if data['permitType'] === 'A10'%}
+                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Parent 1: Identification mark</p>
+                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Parent 1: A10 number</p>
+                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Parent 2: Identification mark</p>
+                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Parent 2: A10 number</p>
+                  {% endif %}
+                <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Acquired date</p>
+                  {% if data['hasA10'] === 'yes'%}
+                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Existing Article 10 certificate</p>
+                  {% endif %}
+                  {% if data['quantity'] > 1%}
+                    {% if data['identificationMark'] === 'unmarked'%}
+                      <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Unmarked specimens</p>
+                    {% endif %}
+                  {% endif %}
+                  {% if data['specimenDescription'] === 'workedItem'%}
+                      <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Created date</p>
+                  {% endif %}
+                <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Description</p>
+
             </dt>
             <!-- Values -->
             <dd class="govuk-summary-list__value">
-              <p class="govuk-!-margin-bottom-1">{{data['tradeTerm']}} LIV</p>
+              {% if data['tradeTermCode'] === ''%}
+                <p class="govuk-!-margin-bottom-1">Not known</p>
+                {% else %}
+                <p class="govuk-!-margin-bottom-1">{{data['tradeTermCode']}}</p>
+              {% endif %}
+
+              {% if data['identificationMark'] === 'Microchip number'%}
+              <p class="govuk-!-margin-bottom-1">{{data['identificationMark-1']}}</p>
+              {% endif %}
+              {% if data['identificationMark'] === 'Closed ring number'%}
+              <p class="govuk-!-margin-bottom-1">{{data['identificationMark-2']}}</p>
+              {% endif %}
+              {% if data['identificationMark'] === 'Split ring number'%}
+              <p class="govuk-!-margin-bottom-1">{{data['identificationMark-3']}}</p>
+              {% endif %}
+              {% if data['identificationMark'] === 'Other type of metal ring'%}
+              <p class="govuk-!-margin-bottom-1">{{data['identificationMark-4']}}</p>
+              {% endif %}
+              {% if data['identificationMark'] === 'Cable tie'%}
+              <p class="govuk-!-margin-bottom-1">{{data['identificationMark-5']}}</p>
+              {% endif %}
+              {% if data['identificationMark'] === 'Hunting trophy'%}
+              <p class="govuk-!-margin-bottom-1">{{data['identificationMark-6']}}</p>
+              {% endif %}
+              {% if data['identificationMark'] === 'Label'%}
+              <p class="govuk-!-margin-bottom-1">{{data['identificationMark-7']}}</p>
+              {% endif %}
+              {% if data['identificationMark'] === 'Swiss institute'%}
+              <p class="govuk-!-margin-bottom-1">{{data['identificationMark-8']}}</p>
+              {% endif %}
+              {% if data['identificationMark'] === 'Serial number'%}
+              <p class="govuk-!-margin-bottom-1">{{data['identificationMark-9']}}</p>
+              {% endif %}
+              {% if data['identificationMark'] === 'unmarked'%}
+              <p class="govuk-!-margin-bottom-1">The specimen is unmarked</p>
+              {% endif %}
+
+
               <p class="govuk-!-margin-bottom-1">{{data['gender']}}</p>
               {% if data['hatch-date-day'] === ''%}
-                  <p class="govuk-!-margin-bottom-1">04 12 2020</p>
-                  {% else %}
-                  <p class="govuk-!-margin-bottom-1">{{data['hatch-date-day']}} {{data['hatch-date-month']}} {{data['hatch-date-year']}}</p>
+                <p class="govuk-!-margin-bottom-1">04 12 2020</p>
+                {% else %}
+                <p class="govuk-!-margin-bottom-1">{{data['hatch-date-day']}} {{data['hatch-date-month']}} {{data['hatch-date-year']}}</p>
               {% endif %}
           {% if data['permitType'] === 'A10'%}
-              <p class="govuk-!-margin-bottom-1">{{data['uniqueIdentificationMark']}} Closed ring number</p>
-              <p class="govuk-!-margin-bottom-1">{{data['uniqueIdentificationMark']}} ABC00001</p>
-              <p class="govuk-!-margin-bottom-1">{{data['uniqueIdentificationMark']}} Microchip</p>
-              <p class="govuk-!-margin-bottom-1">{{data['uniqueIdentificationMark']}} ABC00002</p>
-              {% if data['comment'] === ''%}
-                <p class="govuk-!-margin-bottom-1">No other information</p>
-                {% else %}
-                <p>{{data['comment']}}</p>
-                <!-- Accordion -->
-                <!-- <div class="container">
-                    <label for="chk-1"><a>Show/Hide</a>
-                        <input id="chk-1" type="checkbox" unchecked/>
-                            <div class="title"></div>
-                            <div class="content govuk-!-width-full">
-                              <p>{{data['comment']}}</p>
-                              <p>{{data['comment']}}</p>
-                            </div>
-                    </label>
-                </div> -->
-            {% endif %}
+              <p class="govuk-!-margin-bottom-1">{{data['parent1IdentificationMark']}}</p>
+              <p class="govuk-!-margin-bottom-1">{{data['parent1CertificateNumber']}}</p>
+              <p class="govuk-!-margin-bottom-1">{{data['parent2IdentificationMark']}}</p>
+              <p class="govuk-!-margin-bottom-1">{{data['parent2CertificateNumber']}}</p>
           {% endif %}
 
+          <p class="govuk-!-margin-bottom-1">{{data['acquired-date-day']}} {{data['acquired-date-month']}} {{data['acquired-date-year']}}</p>
 
-              {% if data['hasA10'] === 'yes'%}
-                <p class="govuk-!-margin-bottom-1">{{data['certificateNumber']}}</p>
-              {% endif %}
+          {% if data['hasA10'] === 'yes'%}
+          <p class="govuk-!-margin-bottom-1">{{data['certificateNumber']}}</p>
+          {% endif %}
+          <!-- {% if data['quantity'] > 1%}
+            {% if data['identificationMark'] === 'unmarked'%}
+              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Unmarked specimens</p>
+            {% endif %}
+          {% endif %}
+          {% if data['specimenDescription'] === 'workedItem'%}
+              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Created date</p>
+          {% endif %} -->
+          <p class="govuk-!-margin-bottom-1">{{data['unmarkedQuantity']}}</p>
+          <p class="govuk-!-margin-bottom-1">{{data['created-date-day']}} {{data['created-date-month']}} {{data['created-date-year']}}</p>
+
+          {% if data['comment'] === ''%}
+            <p class="govuk-!-margin-bottom-1">No other information</p>
+            {% else %}
+            <!-- Accordion -->
+            <!-- <div class="container">
+                <label for="chk-1"><a>Show/Hide</a>
+                    <input id="chk-1" type="checkbox" unchecked/>
+                        <div class="title"></div>
+                        <div class="content govuk-!-width-full">
+                          <p>{{data['comment']}}</p>
+                          <p>{{data['comment']}}</p>
+                        </div>
+                </label>
+            </div> -->
+            <p class="govuk-!-margin-bottom-1">{{data['comment']}} {{data['word-count']}}</p>
+          {% endif %}
           </dd>
+
           <!-- Change links -->
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="trade-term-code?fromPage=cya">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
               </a>
+              <a class="govuk-link" href="unique-identification-mark?fromPage=cya">
+                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
+              </a>
+              <a class="govuk-link" href="describe-living-animal?fromPage=cya">
+                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
+              </a>
+              <a class="govuk-link" href="describe-living-animal?fromPage=cya">
+                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
+              </a>
               <a class="govuk-link" href="describe-living-animal?fromPage=cya">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
               </a>
@@ -297,106 +366,200 @@
               <a class="govuk-link" href="describe-living-animal?fromPage=cya">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
               </a>
-                  <br>
-                  <br>
-                  <br>
-                  <br>
-                  <br>
-                  <!-- <a class="govuk-link" href="describe-living-animal?fromPage=cya">
-                    <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
-                  </a> -->
-                <a class="govuk-link" href="acquired-date?fromPage=cya">
-                  <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
-                </a>
+              <a class="govuk-link" href="describe-living-animal?fromPage=cya">
+                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
+              </a>
+              <a class="govuk-link" href="acquired-date?fromPage=cya">
+                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
+              </a>
+              <a class="govuk-link" href="already-have-a10?fromPage=cya">
+                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
+              </a>
+              <a class="govuk-link" href="how-many-unmarked?fromPage=cya">
+                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
+              </a>
+              <a class="govuk-link" href="created-date?fromPage=cya">
+                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
+              </a>
+                  {% if data['isAlive'] === 'yes'%}
+                        <a class="govuk-link" href="describe-living-animal?fromPage=cya">
+                          <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
+                        </a>
+                        {% else %}
+                        <a class="govuk-link" href="describe-generic?fromPage=cya">
+                          <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
+                        </a>
+                  {% endif %}
+
               </dd>
-          {% endif %}
-          {% endif %}
-          </dl>
+            {% endif %}
+            {% endif %}
+            </dl>
+
+<!-- Description - generic -->
+            {% if data['isAlive'] == 'no'%}
+                    <h2 class="govuk-heading-m">Description</h2>
+                    <hr>
+                    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+                      <div class="govuk-summary-list__row">
+                        <!-- Labels -->
+                        <dt class="govuk-summary-list__key">
+                          <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Trade term code</p>
+                          <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Unique identification mark</p>
+                          <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Created date</p>
+                          <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Description</p>
+
+                        </dt>
+                        <!-- Values -->
+                        <dd class="govuk-summary-list__value">
+                          {% if data['tradeTermCode'] === ''%}
+                            <p class="govuk-!-margin-bottom-1">Not known</p>
+                            {% else %}
+                            <p class="govuk-!-margin-bottom-1">{{data['tradeTermCode']}}</p>
+                          {% endif %}
+
+                          {% if data['identificationMark'] === 'Microchip number'%}
+                          <p class="govuk-!-margin-bottom-1">{{data['identificationMark-1']}}</p>
+                          {% endif %}
+                          {% if data['identificationMark'] === 'Closed ring number'%}
+                          <p class="govuk-!-margin-bottom-1">{{data['identificationMark-2']}}</p>
+                          {% endif %}
+                          {% if data['identificationMark'] === 'Split ring number'%}
+                          <p class="govuk-!-margin-bottom-1">{{data['identificationMark-3']}}</p>
+                          {% endif %}
+                          {% if data['identificationMark'] === 'Other type of metal ring'%}
+                          <p class="govuk-!-margin-bottom-1">{{data['identificationMark-4']}}</p>
+                          {% endif %}
+                          {% if data['identificationMark'] === 'Cable tie'%}
+                          <p class="govuk-!-margin-bottom-1">{{data['identificationMark-5']}}</p>
+                          {% endif %}
+                          {% if data['identificationMark'] === 'Hunting trophy'%}
+                          <p class="govuk-!-margin-bottom-1">{{data['identificationMark-6']}}</p>
+                          {% endif %}
+                          {% if data['identificationMark'] === 'Label'%}
+                          <p class="govuk-!-margin-bottom-1">{{data['identificationMark-7']}}</p>
+                          {% endif %}
+                          {% if data['identificationMark'] === 'Swiss institute'%}
+                          <p class="govuk-!-margin-bottom-1">{{data['identificationMark-8']}}</p>
+                          {% endif %}
+                          {% if data['identificationMark'] === 'Serial number'%}
+                          <p class="govuk-!-margin-bottom-1">{{data['identificationMark-9']}}</p>
+                          {% endif %}
+                          {% if data['identificationMark'] === 'unmarked'%}
+                          <p class="govuk-!-margin-bottom-1">The specimen is unmarked</p>
+                          {% endif %}
+
+                          <p class="govuk-!-margin-bottom-1">{{data['created-date-day']}} {{data['created-date-month']}} {{data['created-date-year']}}</p>
+
+                      {% if data['comment'] === ''%}
+                        <p class="govuk-!-margin-bottom-1">No other information</p>
+                        {% else %}
+                        <p class="govuk-!-margin-bottom-1">{{data['comment']}} {{data['word-count']}}</p>
+                        <!-- Accordion -->
+                        <!-- <div class="container">
+                            <label for="chk-1"><a>Show/Hide</a>
+                                <input id="chk-1" type="checkbox" unchecked/>
+                                    <div class="title"></div>
+                                    <div class="content govuk-!-width-full">
+                                      <p>{{data['comment']}}</p>
+                                      <p>{{data['comment']}}</p>
+                                    </div>
+                            </label>
+                        </div> -->
+                      {% endif %}
+
+                      </dd>
+
+                      <!-- Change links -->
+                        <dd class="govuk-summary-list__actions">
+                          <a class="govuk-link" href="trade-term-code?fromPage=cya">
+                            <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
+                          </a>
+                          <a class="govuk-link" href="unique-identification-mark?fromPage=cya">
+                            <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
+                          </a>
+                          <a class="govuk-link" href="created-date?fromPage=cya">
+                            <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
+                          </a>
+                          <a class="govuk-link" href="describe-generic?fromPage=cya">
+                            <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
+                          </a>
+
+                          </dd>
+                        {% endif %}
+                        </dl>
 
 
 
-<!-- Country of import or re-export details -->
-          {% if data['permitType'] == 'import'%}
-          <h2 class="govuk-heading-m">Country of {{data['permitType']}} details</h2>
+<!-- Import permit details -->
+{% if data['permitType'] == 'import'%}
+          <h2 class="govuk-heading-m">Export or re-exporter's contact details</h2>
           <hr>
           <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-          {% endif %}
-          {% if data['permitType'] == 're-export'%}
-          <h2 class="govuk-heading-m">Country of last {{data['permitType']}} details</h2>
-          <hr>
-          <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-          {% endif %}
-
-          {% if data['permitType'] == 'import' or data['permitType'] == 're-export' %}
           <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
-              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Country</p>
-              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Permit number</p>
-              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Permit issue date</p>
+              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Full name</p>
+              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Address</p>
             </dt>
             <dd class="govuk-summary-list__value">
-              <p class="govuk-!-margin-bottom-1">{{data['importCountry']}}</p>
-              <p class="govuk-!-margin-bottom-1">{{data['importPermitNumber']}}</p>
-              <p class="govuk-!-margin-bottom-1">{{data['importPermitIssueDay']}} {{data['importPermitIssueMonth']}} {{data['importPermitIssueYear']}}</p>
+              <p class="govuk-!-margin-bottom-1">{{data['importer-exporter-full-name']}}</p>
+              <p class="govuk-!-margin-bottom-1"> {{data['address-line-1']}} {{data['address-line-2']}} {{data['address-line-3']}} {{data['address-line-4']}} {{data['address-postcode']}} {{data['address-country']}}</p>
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="permit-details?fromPage=cya">
+              <a class="govuk-link" href="importer-exporter-details?fromPage=cya">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden"> Permit issue date</span></p>
               </a>
             </dd>
           </div>
         </dl>
 
-
-<!-- Country of origin details -->
-        <h2 class="govuk-heading-m">Country of origin details</h2>
-        <hr>
-        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Country</p>
-              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Permit number</p>
-              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Permit issue date</p>
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <p class="govuk-!-margin-bottom-1">{{data['originCountry']}}</p>
-              <p class="govuk-!-margin-bottom-1">{{data['originPermitNumber']}}</p>
-              <p class="govuk-!-margin-bottom-1">{{data['originPermitIssueDay']}} {{data['originPermitIssueMonth']}} {{data['originPermitIssueYear']}}</p>
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="permit-details?fromPage=cya">
+        <!-- Export or re-export permit details -->
+          <h2 class="govuk-heading-m">Export or re-export permit details</h2>
+          <hr>
+          <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Country</p>
+                <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Permit number</p>
+                <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Permit issue date</p>
+              </dt>
+              <dd class="govuk-summary-list__value">
+                <p class="govuk-!-margin-bottom-1">{{data['originCountry']}}</p>
+                <p class="govuk-!-margin-bottom-1">{{data['originPermitNumber']}}</p>
+                <p class="govuk-!-margin-bottom-1">{{data['originPermitIssueDay']}} {{data['originPermitIssueMonth']}} {{data['originPermitIssueYear']}}</p>
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="permit-details?fromPage=cya">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Permit issue date</span></p>
-              </a>
-            </dd>
-          </div>
-        </dl>
-    {% endif %}
+                </a>
+              </dd>
+            </div>
+          </dl>
 
-    <!-- Add comments -->
-            <!-- <h2 class="govuk-heading-m">Comments</h2>
+    <!-- Country of origin permit details -->
+            <h2 class="govuk-heading-m">Country of origin permit details</h2>
             <hr>
             <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-                <div class="govuk-summary-list__row">
-                  <dt class="govuk-summary-list__key">
-                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Add comments</p>
-                  </dt>
-                  <div class="container">
-                      <label for="chk-2"><a>Show/Hide</a>
-                          <input id="chk-2" type="checkbox" unchecked/>
-                              <div class="title"></div>
-                              <div class="content govuk-!-width-full">
-                                <p>{{data['comment']}}</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit delectus sapiente dicta eligendi quis minus nulla maxime illo reiciendis corporis repudiandae excepturi? Velit molestiae reprehenderit eligendi neque repellendus! Illum molestiae quam iusto doloribus culpa sint similique quaerat libero! Molestiae facilis quidem explicabo totam nostrum in voluptatum ipsam sequi officia error id rerum unde nisi neque!</p>
-                              </div>
-                      </label>
-                  </div>
-                  <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="add-comments?fromPage=cya">
-                    <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">add comments</span></p>
-                    </a>
-                  </dd>
-                </div>
-              </dl> -->
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Country</p>
+                  <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Permit number</p>
+                  <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Permit issue date</p>
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  <p class="govuk-!-margin-bottom-1">{{data['originCountry']}}</p>
+                  <p class="govuk-!-margin-bottom-1">{{data['originPermitNumber']}}</p>
+                  <p class="govuk-!-margin-bottom-1">{{data['originPermitIssueDay']}} {{data['originPermitIssueMonth']}} {{data['originPermitIssueYear']}}</p>
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="permit-details?fromPage=cya">
+                    <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Permit issue date</span></p>
+                  </a>
+                </dd>
+              </div>
+            </dl>
+{% endif %}
+
 
 
             <div class="govuk-grid-two-thirds">

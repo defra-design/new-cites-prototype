@@ -49,7 +49,20 @@ else {
 
 // already-have-a10
 router.post('/v8/already-have-a10', function (req, res) {
+  if (req.session.data['fromPage'] == 'cya') {
+  res.redirect('check-your-answers')
+  }
+
+  if (req.session.data['fromPage'] == 'manageApplication') {
+  res.redirect('manage-application')
+  }
+
+  if (req.session.data['fromPage'] == 'manageApplicationNew') {
+  res.redirect('manage-application-new')
+  }
+  else {
   res.redirect('ever-been-imported-exported')
+}
 })
 
 // Application complete
@@ -233,7 +246,20 @@ router.post('/v8/copy-application', function (req, res) {
 
 // Created date
 router.post('/v8/created-date', function (req, res) {
+  if (req.session.data['fromPage'] == 'cya') {
+  res.redirect('check-your-answers')
+  }
+
+  if (req.session.data['fromPage'] == 'manageApplication') {
+  res.redirect('manage-application')
+  }
+
+  if (req.session.data['fromPage'] == 'manageApplicationNew') {
+  res.redirect('manage-application-new')
+  }
+  else {
   res.redirect('trade-term-code')
+}
 })
 
 // Declaration
@@ -273,7 +299,21 @@ res.redirect('importer-exporter-details')
 
 // Description generic
 router.post('/v8/describe-generic', function (req, res) {
+  if (req.session.data['fromPage'] == 'cya') {
+  res.redirect('check-your-answers')
+  }
+
+  if (req.session.data['fromPage'] == 'manageApplication') {
+  res.redirect('manage-application')
+  }
+
+  if (req.session.data['fromPage'] == 'manageApplicationNew') {
+  res.redirect('manage-application-new')
+  }
+
+else {
   res.redirect('importer-exporter-details')
+}
 })
 
 
@@ -376,6 +416,18 @@ router.post('/v8/file-upload', function (req, res) {
 
 // Importer / exporter details
 router.post('/v8/importer-exporter-details', function (req, res) {
+  if (req.session.data['fromPage'] == 'cya') {
+  res.redirect('check-your-answers')
+  }
+
+  if (req.session.data['fromPage'] == 'manageApplication') {
+  res.redirect('manage-application')
+  }
+
+  if (req.session.data['fromPage'] == 'manageApplicationNew') {
+  res.redirect('manage-application-new')
+  }
+
   if (req.session.data['permitType'] === 'export') {
   res.redirect('remarks')
 }
@@ -386,7 +438,20 @@ router.post('/v8/importer-exporter-details', function (req, res) {
 
 // How many unmarked
 router.post('/v8/how-many-unmarked', function (req, res) {
+  if (req.session.data['fromPage'] == 'cya') {
+  res.redirect('check-your-answers')
+  }
+
+  if (req.session.data['fromPage'] == 'manageApplication') {
+  res.redirect('manage-application')
+  }
+
+  if (req.session.data['fromPage'] == 'manageApplicationNew') {
+  res.redirect('manage-application-new')
+  }
+  else {
   res.redirect('importer-exporter-details')
+}
 })
 
 // Manage application
@@ -415,7 +480,7 @@ router.post('/v8/permit-details', function (req, res) {
   }
 
 else {
-  res.redirect('add-comments')
+  res.redirect('comments')
 }
 })
 
