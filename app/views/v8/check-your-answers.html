@@ -357,19 +357,38 @@
               <a class="govuk-link" href="describe-living-animal?fromPage=cya">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
               </a>
-              <a class="govuk-link" href="describe-living-animal?fromPage=cya">
-                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
-              </a>
-              <a class="govuk-link" href="describe-living-animal?fromPage=cya">
-                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
-              </a>
-              <a class="govuk-link" href="describe-living-animal?fromPage=cya">
-                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
-              </a>
-              <a class="govuk-link" href="describe-living-animal?fromPage=cya">
-                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
-              </a>
               <a class="govuk-link" href="acquired-date?fromPage=cya">
+                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
+              </a>
+              <a class="govuk-link" href="already-have-A10?fromPage=cya">
+                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
+              </a>
+              {% if data['permitType'] === 'A10'%}
+              <a class="govuk-link" href="#"?fromPage=cya">
+                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
+              </a>
+              <a class="govuk-link" href="#"?fromPage=cya">
+                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
+              </a>
+              <a class="govuk-link" href="#"?fromPage=cya">
+                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
+              </a>
+              <a class="govuk-link" href="#"?fromPage=cya">
+                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
+              </a>
+              {% endif %}
+<!-- If unmarked speciment start-->
+              <!-- <a class="govuk-link" href="unique-identification-mark?fromPage=cya">
+                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
+              </a> -->
+<!-- If unmarked specimen end -->
+<a class="govuk-link" href="created-date?fromPage=cya">
+  <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
+</a>
+<a class="govuk-link" href="describe-living-animal?fromPage=cya">
+  <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
+</a>
+              <!-- <a class="govuk-link" href="acquired-date?fromPage=cya">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
               </a>
               <a class="govuk-link" href="already-have-a10?fromPage=cya">
@@ -389,7 +408,7 @@
                         <a class="govuk-link" href="describe-generic?fromPage=cya">
                           <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
                         </a>
-                  {% endif %}
+                  {% endif %} -->
 
               </dd>
             {% endif %}
@@ -560,6 +579,74 @@
             </dl>
 {% endif %}
 
+<!-- Export permit details -->
+{% if data['permitType'] == 'export'%}
+          <h2 class="govuk-heading-m">Export or re-exporter's contact details</h2>
+          <hr>
+          <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Full name</p>
+              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Address</p>
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <p class="govuk-!-margin-bottom-1">{{data['importer-exporter-full-name']}}</p>
+              <p class="govuk-!-margin-bottom-1"> {{data['address-line-1']}} {{data['address-line-2']}} {{data['address-line-3']}} {{data['address-line-4']}} {{data['address-postcode']}} {{data['address-country']}}</p>
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="importer-exporter-details?fromPage=cya">
+                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden"> Permit issue date</span></p>
+              </a>
+            </dd>
+          </div>
+        </dl>
+
+        <!-- Export or re-export permit details -->
+          <h2 class="govuk-heading-m">Export or re-export permit details</h2>
+          <hr>
+          <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Country</p>
+                <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Permit number</p>
+                <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Permit issue date</p>
+              </dt>
+              <dd class="govuk-summary-list__value">
+                <p class="govuk-!-margin-bottom-1">{{data['originCountry']}}</p>
+                <p class="govuk-!-margin-bottom-1">{{data['originPermitNumber']}}</p>
+                <p class="govuk-!-margin-bottom-1">{{data['originPermitIssueDay']}} {{data['originPermitIssueMonth']}} {{data['originPermitIssueYear']}}</p>
+              </dd>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="permit-details?fromPage=cya">
+                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Permit issue date</span></p>
+                </a>
+              </dd>
+            </div>
+          </dl>
+
+    <!-- Country of origin permit details -->
+            <h2 class="govuk-heading-m">Country of origin permit details</h2>
+            <hr>
+            <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+              <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                  <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Country</p>
+                  <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Permit number</p>
+                  <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Permit issue date</p>
+                </dt>
+                <dd class="govuk-summary-list__value">
+                  <p class="govuk-!-margin-bottom-1">{{data['originCountry']}}</p>
+                  <p class="govuk-!-margin-bottom-1">{{data['originPermitNumber']}}</p>
+                  <p class="govuk-!-margin-bottom-1">{{data['originPermitIssueDay']}} {{data['originPermitIssueMonth']}} {{data['originPermitIssueYear']}}</p>
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                  <a class="govuk-link" href="permit-details?fromPage=cya">
+                    <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Permit issue date</span></p>
+                  </a>
+                </dd>
+              </div>
+            </dl>
+{% endif %}
 
 
             <div class="govuk-grid-two-thirds">

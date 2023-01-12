@@ -429,7 +429,7 @@ router.post('/v8/importer-exporter-details', function (req, res) {
   }
 
   if (req.session.data['permitType'] === 'export') {
-  res.redirect('remarks')
+  res.redirect('comments')
 }
   else {
     res.redirect('permit-details')
