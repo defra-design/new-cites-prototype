@@ -240,11 +240,11 @@
                     <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Parent 1: A10 number</p>
                     <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Parent 2: Identification mark</p>
                     <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Parent 2: A10 number</p>
-                  {% endif %}
-                <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Acquired date</p>
-                  {% if data['hasA10'] === 'yes'%}
-                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Existing Article 10 certificate</p>
-                  {% endif %}
+                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Acquired date</p>
+                    {% if data['hasA10'] === 'yes'%}
+                      <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Existing Article 10 certificate</p>
+                    {% endif %}
+                {% endif %}
                   {% if data['quantity'] > 1%}
                     {% if data['identificationMark'] === 'unmarked'%}
                       <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Unmarked specimens</p>
@@ -307,9 +307,8 @@
               <p class="govuk-!-margin-bottom-1">{{data['parent1CertificateNumber']}}</p>
               <p class="govuk-!-margin-bottom-1">{{data['parent2IdentificationMark']}}</p>
               <p class="govuk-!-margin-bottom-1">{{data['parent2CertificateNumber']}}</p>
+              <p class="govuk-!-margin-bottom-1">{{data['acquired-date-day']}} {{data['acquired-date-month']}} {{data['acquired-date-year']}}</p>
           {% endif %}
-
-          <p class="govuk-!-margin-bottom-1">{{data['acquired-date-day']}} {{data['acquired-date-month']}} {{data['acquired-date-year']}}</p>
 
           {% if data['hasA10'] === 'yes'%}
           <p class="govuk-!-margin-bottom-1">{{data['certificateNumber']}}</p>
@@ -357,23 +356,26 @@
               <a class="govuk-link" href="describe-living-animal?fromPage=cya">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
               </a>
-              <a class="govuk-link" href="acquired-date?fromPage=cya">
-                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
-              </a>
+
+              {% if data['permitType'] === 'A10'%}
+                {% if data['hasA10'] === 'yes'%}
+                <a class="govuk-link" href="acquired-date?fromPage=cya">
+                  <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
+                </a>
+                {% endif %}
               <a class="govuk-link" href="already-have-A10?fromPage=cya">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
               </a>
-              {% if data['permitType'] === 'A10'%}
-              <a class="govuk-link" href="#"?fromPage=cya">
+              <a class="govuk-link" href="describe-living-animal"?fromPage=cya">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
               </a>
-              <a class="govuk-link" href="#"?fromPage=cya">
+              <a class="govuk-link" href="describe-living-animal"?fromPage=cya">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
               </a>
-              <a class="govuk-link" href="#"?fromPage=cya">
+              <a class="govuk-link" href="describe-living-animal"?fromPage=cya">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
               </a>
-              <a class="govuk-link" href="#"?fromPage=cya">
+              <a class="govuk-link" href="describe-living-animal"?fromPage=cya">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
               </a>
               {% endif %}
