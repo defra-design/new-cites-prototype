@@ -281,13 +281,13 @@ router.post('/v8/describe-living-animal', function (req, res) {
   res.redirect('manage-application-new')
   }
 
-  if (req.session.data['isAlive'] == 'yes') {
+  if (req.session.data['specimenDescription'] == 'livingAnimal') {
     if (req.session.data['permitType'] == 'A10') {
       res.redirect('acquired-date')
     }
   }
 
-  if (req.session.data['isAlive'] == 'yes') {
+  if (req.session.data['specimenDescription'] == 'livingAnimal') {
     if (req.session.data['identificationMark'] == 'unmarked') {
       if (req.session.data['quantity'] > 1 ) {
       res.redirect('how-many-unmarked')
@@ -523,7 +523,7 @@ router.post('/v8/specimen-details', function (req, res) {
   res.redirect('manage-application-new')
   }
 
-if (req.session.data['isAlive'] == 'yes') {
+if (req.session.data['specimenDescription'] == 'livingAnimal') {
   if (req.session.data['identificationMark'] == 'I do not know') {
     if (req.session.data['totalSpecimens1'] > 1 ) {
     res.redirect('how-many-unmarked')
@@ -573,7 +573,7 @@ router.post('/v8/unique-identification-mark', function (req, res) {
   res.redirect('manage-application-new')
   }
 
-  if (req.session.data['isAlive'] == 'yes') {
+  if (req.session.data['specimenDescription'] == 'livingAnimal') {
   res.redirect('describe-living-animal')
   }
   else {

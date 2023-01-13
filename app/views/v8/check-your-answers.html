@@ -223,7 +223,7 @@
         </dl>
 
 <!-- Living animal description -->
-{% if data['isAlive'] == 'yes'%}
+{% if data['specimenDescription'] == 'livingAnimal'%}
   {% if data['specimenType'] == 'animal'%}
         <h2 class="govuk-heading-m">Description</h2>
         <hr>
@@ -402,7 +402,7 @@
               <a class="govuk-link" href="created-date?fromPage=cya">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
               </a>
-                  {% if data['isAlive'] === 'yes'%}
+                  {% if data['specimenDescription'] === 'livingAnimal'%}
                         <a class="govuk-link" href="describe-living-animal?fromPage=cya">
                           <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
                         </a>
@@ -418,7 +418,7 @@
             </dl>
 
 <!-- Description - generic -->
-            {% if data['isAlive'] == 'no'%}
+            {% if data['specimenDescription'] != 'livingAnimal'%}
                     <h2 class="govuk-heading-m">Description</h2>
                     <hr>
                     <dl class="govuk-summary-list govuk-!-margin-bottom-9">
