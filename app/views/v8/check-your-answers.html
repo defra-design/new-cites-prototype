@@ -221,7 +221,7 @@
             </dd>
           </div>
         </dl>
-
+<!-- ********************************************************************************************************************************** -->
 <!-- Living animal description -->
 {% if data['specimenDescription'] == 'livingAnimal'%}
   {% if data['specimenType'] == 'animal'%}
@@ -256,12 +256,17 @@
                 <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Description</p>
 
             </dt>
+
             <!-- Values -->
             <dd class="govuk-summary-list__value">
-              {% if data['tradeTermCode'] === ''%}
+              {% if data['tradeTerm'] === 'yes'%}
+                {% if data['tradeTermCode'] === ''%}
+                  <p class="govuk-!-margin-bottom-1">Code not provided</p>
+                  {% else %}
+                  <p class="govuk-!-margin-bottom-1">{{data['tradeTermCode']}}</p>
+                {% endif %}
+              {% else %}
                 <p class="govuk-!-margin-bottom-1">Not known</p>
-                {% else %}
-                <p class="govuk-!-margin-bottom-1">{{data['tradeTermCode']}}</p>
               {% endif %}
 
               {% if data['identificationMark'] === 'Microchip number'%}
@@ -295,13 +300,14 @@
               <p class="govuk-!-margin-bottom-1">The specimen is unmarked</p>
               {% endif %}
 
-
               <p class="govuk-!-margin-bottom-1">{{data['gender']}}</p>
+
               {% if data['hatch-date-day'] === ''%}
                 <p class="govuk-!-margin-bottom-1">04 12 2020</p>
                 {% else %}
                 <p class="govuk-!-margin-bottom-1">{{data['hatch-date-day']}} {{data['hatch-date-month']}} {{data['hatch-date-year']}}</p>
               {% endif %}
+
           {% if data['permitType'] === 'A10'%}
               <p class="govuk-!-margin-bottom-1">{{data['parent1IdentificationMark']}}</p>
               <p class="govuk-!-margin-bottom-1">{{data['parent1CertificateNumber']}}</p>
@@ -311,36 +317,21 @@
           {% endif %}
 
           {% if data['hasA10'] === 'yes'%}
-          <p class="govuk-!-margin-bottom-1">{{data['certificateNumber']}}</p>
+              <p class="govuk-!-margin-bottom-1">{{data['certificateNumber']}}</p>
           {% endif %}
-          <!-- {% if data['quantity'] > 1%}
-            {% if data['identificationMark'] === 'unmarked'%}
-              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Unmarked specimens</p>
-            {% endif %}
-          {% endif %}
-          {% if data['specimenDescription'] === 'workedItem'%}
-              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Created date</p>
-          {% endif %} -->
+
           <p class="govuk-!-margin-bottom-1">{{data['unmarkedQuantity']}}</p>
-          <p class="govuk-!-margin-bottom-1">{{data['created-date-day']}} {{data['created-date-month']}} {{data['created-date-year']}}</p>
+
+          {% if data['specimenDescription'] === 'workedItem'%}
+            <p class="govuk-!-margin-bottom-1">{{data['created-date-day']}} {{data['created-date-month']}} {{data['created-date-year']}}</p>
+          {% endif %}
 
           {% if data['comment'] === ''%}
             <p class="govuk-!-margin-bottom-1">No other information</p>
             {% else %}
-            <!-- Accordion -->
-            <!-- <div class="container">
-                <label for="chk-1"><a>Show/Hide</a>
-                    <input id="chk-1" type="checkbox" unchecked/>
-                        <div class="title"></div>
-                        <div class="content govuk-!-width-full">
-                          <p>{{data['comment']}}</p>
-                          <p>{{data['comment']}}</p>
-                        </div>
-                </label>
-            </div> -->
-            <p class="govuk-!-margin-bottom-1">{{data['comment']}} {{data['word-count']}}</p>
+              <p class="govuk-!-margin-bottom-1">{{data['comment']}} {{data['word-count']}}</p>
           {% endif %}
-          </dd>
+        </dd>
 
           <!-- Change links -->
             <dd class="govuk-summary-list__actions">
@@ -357,65 +348,37 @@
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
               </a>
 
-              {% if data['permitType'] === 'A10'%}
-                {% if data['hasA10'] === 'yes'%}
+          {% if data['permitType'] === 'A10'%}
+                <a class="govuk-link" href="describe-living-animal?fromPage=cya">
+                  <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
+                </a>
+                <a class="govuk-link" href="describe-living-animal?fromPage=cya">
+                  <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
+                </a>
+                <a class="govuk-link" href="describe-living-animal?fromPage=cya">
+                  <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
+                </a>
+                <a class="govuk-link" href="describe-living-animal?fromPage=cya">
+                  <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
+                </a>
                 <a class="govuk-link" href="acquired-date?fromPage=cya">
                   <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
                 </a>
-                {% endif %}
-              <a class="govuk-link" href="already-have-A10?fromPage=cya">
-                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
-              </a>
-              <a class="govuk-link" href="describe-living-animal"?fromPage=cya">
-                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
-              </a>
-              <a class="govuk-link" href="describe-living-animal"?fromPage=cya">
-                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
-              </a>
-              <a class="govuk-link" href="describe-living-animal"?fromPage=cya">
-                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
-              </a>
-              <a class="govuk-link" href="describe-living-animal"?fromPage=cya">
-                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
-              </a>
+              {% if data['hasA10'] === 'yes'%}
+                  <a class="govuk-link" href="already-have-A10?fromPage=cya">
+                    <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
+                  </a>
               {% endif %}
-<!-- If unmarked speciment start-->
-              <!-- <a class="govuk-link" href="unique-identification-mark?fromPage=cya">
-                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
-              </a> -->
-<!-- If unmarked specimen end -->
-<a class="govuk-link" href="created-date?fromPage=cya">
-  <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
-</a>
-<a class="govuk-link" href="describe-living-animal?fromPage=cya">
-  <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
-</a>
-              <!-- <a class="govuk-link" href="acquired-date?fromPage=cya">
-                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
-              </a>
-              <a class="govuk-link" href="already-have-a10?fromPage=cya">
-                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
-              </a>
-              <a class="govuk-link" href="how-many-unmarked?fromPage=cya">
-                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
-              </a>
-              <a class="govuk-link" href="created-date?fromPage=cya">
-                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
-              </a>
-                  {% if data['specimenDescription'] === 'livingAnimal'%}
-                        <a class="govuk-link" href="describe-living-animal?fromPage=cya">
-                          <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
-                        </a>
-                        {% else %}
-                        <a class="govuk-link" href="describe-generic?fromPage=cya">
-                          <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
-                        </a>
-                  {% endif %} -->
+            {% endif %}
 
-              </dd>
-            {% endif %}
-            {% endif %}
-            </dl>
+              <a class="govuk-link" href="describe-living-animal?fromPage=cya">
+                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
+              </a>
+            </dd>
+    {% endif %}
+  {% endif %}
+          </dl>
+<!-- ********************************************************************************************************************************** -->
 
 <!-- Description - generic -->
             {% if data['specimenDescription'] != 'livingAnimal'%}

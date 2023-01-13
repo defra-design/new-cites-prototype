@@ -18,7 +18,7 @@
           </legend>
 
 <!-- Animal -->
-{% if data['speciesType'] === 'animal'%}
+{% if data['specimenType'] === 'animal'%}
           <div class="govuk-radios" data-module="govuk-radios">
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="description-1" name="specimenDescription" type="radio" value="livingAnimal">
@@ -48,7 +48,7 @@
 {% endif %}
 
 <!-- Plant -->
-{% if data['speciesType'] === 'plant'%}
+{% if data['specimenType'] === 'plant'%}
             <div class="govuk-radios" data-module="govuk-radios">
               <div class="govuk-radios__item">
                 <input class="govuk-radios__input" id="description-1" name="specimenType" type="radio" value="livingAnimal">

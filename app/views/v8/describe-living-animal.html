@@ -29,7 +29,7 @@
                     <td class="govuk-table__cell">
                     <div class="govuk-radios" data-module="govuk-radios">
                         <div class="govuk-radios__item">
-                          <input class="govuk-radios__input" id="specimen-gender-1" name="gender" type="radio" value="Female">
+                          <input class="govuk-radios__input" id="specimen-gender-1" name="gender" type="radio" value="Female" required>
                           <label class="govuk-label govuk-radios__label" for="specimen-gender-1">
                             Female
                           </label>
@@ -126,7 +126,7 @@
                         <div class="govuk-grid-row">
                           <div class="govuk-grid-column-three-quarters">
                             <label class="govuk-label" for="parent-1-mark">Unique identification mark for parent 1</label>
-                            <input class="govuk-input govuk-input--width-6" id="parent-1-mark" name="parent1IdentificationMark" type="text" value="{{data['parent1IdentificationMark']}}">
+                            <input class="govuk-input govuk-input--width-6" id="parent-1-mark" name="parent1IdentificationMark" type="text" value="{{data['parent1IdentificationMark']}}" required>
                           </div>
                         </div>
                       </div>
@@ -137,7 +137,7 @@
                             <div id="certificate-number-hint" class="govuk-hint">
                               For example, '10AB010C'
                             </div>
-                            <input class="govuk-input govuk-input--width-10" id="parent-1-certificate-number" name="parent1CertificateNumber" type="text" value="{{data['parent1CertificateNumber']}}">
+                            <input class="govuk-input govuk-input--width-10" id="parent-1-certificate-number" name="parent1CertificateNumber" type="text" value="{{data['parent1CertificateNumber']}}" required>
                           </div>
                         </div>
                       </div>
@@ -145,7 +145,7 @@
                         <div class="govuk-grid-row">
                           <div class="govuk-grid-column-three-quarters">
                             <label class="govuk-label" for="parent-2-mark">Unique identification mark for parent 2</label>
-                            <input class="govuk-input govuk-input--width-6" id="parent-2-mark" name="parent2IdentificationMark" type="text" value="{{data['parent2IdentificationMark']}}">
+                            <input class="govuk-input govuk-input--width-6" id="parent-2-mark" name="parent2IdentificationMark" type="text" value="{{data['parent2IdentificationMark']}}" required>
                           </div>
                         </div>
                       </div>
@@ -156,7 +156,7 @@
                             <div id="certificate-number-hint" class="govuk-hint">
                               For example, '10AB010C'
                             </div>
-                            <input class="govuk-input govuk-input--width-10" id="parent-2-certificate-number" name="parent2CertificateNumber" type="text" value="{{data['parent2CertificateNumber']}}">
+                            <input class="govuk-input govuk-input--width-10" id="parent-2-certificate-number" name="parent2CertificateNumber" type="text" value="{{data['parent2CertificateNumber']}}" required>
                           </div>
                         </div>
                       </div>
