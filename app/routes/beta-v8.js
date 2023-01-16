@@ -609,10 +609,15 @@ router.post('/v8/what-is-the-name-of-the-species', function (req, res) {
   if (req.session.data['fromPage'] == 'manageApplicationNew') {
   res.redirect('manage-application-new')
   }
-  else {
 
-req.session.data['specimenCount'] = 1
-  res.redirect('where-did-you-source-your-specimen-from')
+  if (req.session.data['unitOfMeasure'] == 'number') {
+    req.session.data['specimenCount'] = 1
+    res.redirect('where-did-you-source-your-specimen-from')
+  }
+  else {
+    req.session.data['specimenCount'] = 1
+    req.session.data['quantity'] = 1
+    res.redirect('where-did-you-source-your-specimen-from')
 }
 })
 
