@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% set thisPageTitle = "are-you-applying-on-behalf-of-someone-else" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form method="post" autocomplete="off">
+
+      <div class="govuk-form-group">
+        <h1 class="govuk-heading-l">Are you applying on behalf of someone else?</h1>
+        <p>Select 'yes' if you are completing this application:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>as an agent</li>
+          <li>for a friend or family member </li>
+        </ul>
+        <p>Select 'no' if you are completing this application on behalf of yourself, your business or the business that you work for.</p>
+        <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="isAgent-yes" name="isAgent" type="radio" value="yes" required>
+            <label class="govuk-label govuk-radios__label" for="isAgent-yes">
+              Yes
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="isAgent-no" name="isAgent"  type="radio" value="no">
+            <label class="govuk-label govuk-radios__label" for="isAgent-no">
+              No
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <button class="govuk-button">Continue</button>
+
+    </form>
+  </div>
+</div>
+
+
+
+{% endblock %}

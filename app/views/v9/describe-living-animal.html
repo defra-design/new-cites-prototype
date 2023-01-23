@@ -110,74 +110,11 @@
                           </div>
                         </div>
                       </div>
-
-                      <!-- <p>Or</p>
-
-                      <div class="govuk-form-group">
-                        <div class="govuk-date-input" id="hatch-date">
-                          <p>Enter an approximate date</p>
-                          <!-- <div class="govuk-date-input__item">
-                            <div class="govuk-form-group">
-                              <label class="govuk-label govuk-date-input__label" for="hatch-date-day">
-                                Day
-                              </label>
-                              <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="hatch-date-day" name="hatch-date-day" type="text" inputmode="numeric">
-                            </div>
-                          </div> -->
-                          <!-- <div class="govuk-date-input__item">
-                            <div class="govuk-form-group">
-                              <label class="govuk-label govuk-date-input__label" for="hatch-date-month">
-                                Month
-                              </label>
-                              <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="hatch-date-month" name="hatch-date-month" type="text" inputmode="numeric">
-                            </div>
-                          </div>
-                          <div class="govuk-date-input__item">
-                            <div class="govuk-form-group">
-                              <label class="govuk-label govuk-date-input__label" for="hatch-date-year">
-                                Year
-                              </label>
-                              <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="hatch-date-year" name="hatch-date-year" type="text" inputmode="numeric">
-                            </div>
-                          </div>
-                        </div>
-                      </div> -->
-
-                      <!-- <div class="govuk-checkboxes govuk-checkboxes" data-module="govuk-checkboxes">
-                        <div class="govuk-checkboxes__item">
-                          <input class="govuk-checkboxes__input" id="approximate-dob" name="approximateDate" type="checkbox" value="text" data-aria-controls="conditional-approximate-dob">
-                          <label class="govuk-label govuk-checkboxes__label" for="approximate-dob">
-                            I do not know
-                          </label>
-                        </div>
-                        <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-approximate-dob">
-                          <div class="govuk-form-group">
-                            <div class="govuk-date-input" id="hatch-date">
-                              <div class="govuk-date-input__item">
-                                <div class="govuk-form-group">
-                                  <label class="govuk-label govuk-date-input__label" for="hatch-date-month">
-                                    Month
-                                  </label>
-                                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="hatch-date-month" name="hatch-date-month" type="text" inputmode="numeric">
-                                </div>
-                              </div>
-                              <div class="govuk-date-input__item">
-                                <div class="govuk-form-group">
-                                  <label class="govuk-label govuk-date-input__label" for="hatch-date-year">
-                                    Year
-                                  </label>
-                                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="hatch-date-year" name="hatch-date-year" type="text" inputmode="numeric">
-                                </div>
-                              </div>
-                            </div>
-                        </div>
-                      </div>
-                    </div> -->
                   </td>
                 </tr>
 
               {% if data['permitType'] === 'A10' %}
-                  <tr class="govuk-table__row">
+                  <!-- <tr class="govuk-table__row">
                     <th scope="row" class="govuk-table__header govuk-!-width-one-half">Parent details</th>
                     <td class="govuk-table__cell">
                       <div class="govuk-form-group">
@@ -219,6 +156,22 @@
                         </div>
                       </div>
                     </td>
+                  </tr> -->
+                  <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header govuk-!-width-one-half">Parent details</th>
+                    <td class="govuk-table__cell">
+                    <div class="govuk-character-count" data-module="govuk-character-count" data-maxlength="250">
+                      <div id="additional-info-hint" class="govuk-hint">
+                        Enter the unique identification mark and A10 certificate number of each parent.
+                      </div>
+                      <div class="govuk-form-group">
+                        <textarea class="govuk-textarea govuk-js-character-count" id="with-hint" name="description" rows="10" aria-describedby="with-hint-info with-hint-hint" value="{{data['description']}}"></textarea>
+                      </div>
+                      <div id="with-hint-info" class="govuk-hint govuk-character-count__message">
+                        You can enter up to 250 characters
+                      </div>
+                    </div>
+                    </td>
                   </tr>
               {% endif %}
 
@@ -226,16 +179,7 @@
                   <tr class="govuk-table__row">
                     <th scope="row" class="govuk-table__header govuk-!-width-one-half">Other description</th>
                     <td class="govuk-table__cell">
-                      <!-- <div class="govuk-character-count" data-module="govuk-character-count" data-maxwords="200">
-                          <div id="additional-info-hint" class="govuk-hint">
-                            Include anything else that helps to describe the specimen (optional).
-                          </div>
-                          <textarea class="govuk-textarea govuk-js-character-count" id="word-count" name="other-description" rows="10" aria-describedby="word-count-info" value="{{data['otherDescription']}}"></textarea>
-                        <div id="word-count-info" class="govuk-hint govuk-character-count__message" aria-live="polite">
-                          You have 200 words remaining
-                        </div>
-                    </div> -->
-                    <div class="govuk-character-count" data-module="govuk-character-count" data-maxlength="450">
+                    <div class="govuk-character-count" data-module="govuk-character-count" data-maxlength="250">
                       <div id="additional-info-hint" class="govuk-hint">
                         Include anything else that helps to describe the specimen (optional).
                       </div>
@@ -243,7 +187,7 @@
                         <textarea class="govuk-textarea govuk-js-character-count" id="with-hint" name="description" rows="10" aria-describedby="with-hint-info with-hint-hint" value="{{data['description']}}"></textarea>
                       </div>
                       <div id="with-hint-info" class="govuk-hint govuk-character-count__message">
-                        You can enter up to 450 characters
+                        You can enter up to 250 characters
                       </div>
                     </div>
                     </td>

@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% set thisPageTitle = "we-could-not-confirm-the-scientific-name" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form method="post" autocomplete="off">
+        <h1 class="govuk-heading-l">
+            We could not confirm the scientific name
+        </h1>
+        <p class="govuk-body govuk-!-margin-bottom-7">We could not confirm the scientific name {{data['speciesName']}} on the species list. You can
+          <a href="https://speciesplus.net" target="_blank">check scientific names on Species+</a> (opens in a new tab).
+        </p>
+
+      <button class="govuk-button">Search again</button>
+
+    </form>
+  </div>
+
+
+{% endblock %}
