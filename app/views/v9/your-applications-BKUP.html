@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 <!-- {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %} -->
 
-{% set pageTitle = "your-submissions" %}
+{% set pageTitle = "your-applications" %}
 
 {% block beforeContent %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
@@ -15,22 +15,20 @@
     </span>
   </p>
 </div>
-
 <!-- <a id="back" class="govuk-back-link" href="javascript:history.back()">Back</a> -->
 <div class="govuk-breadcrumbs">
   <ol class="govuk-breadcrumbs__list">
     <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="your-submissions">Your applications</a>
-    </li>
-    <!-- <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="#">Passports, travel and living abroad</a>
+      <a class="govuk-breadcrumbs__link" href="your-applications">Your applications</a>
     </li>
     <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="your-applications">{{data['submissionRef']}} </a>
+    </li>
+    <!-- <li class="govuk-breadcrumbs__list-item">
       <a class="govuk-breadcrumbs__link" href="#">Travel abroad</a>
     </li> -->
   </ol>
 </div>
-
 {% endblock %}
 
 {% block content %}
@@ -71,6 +69,30 @@
     <a href="what-type-of-permit-or-certificate-are-you-applying-for"><button class="govuk-button" data-module="govuk-button">Start new application</button><a>
   </div>
 </div>
+
+
+<!-- <div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-form-group">
+      <h3 class="govuk-heading-s"></h3>
+      <label class="govuk-label" for="input-with-suffix">Search</label>
+      <div class="govuk-input__wrapper">
+        <input class="govuk-input" id="input-with-suffix" name="searchValue" type="text" value="{{data['searchValue']}}">
+        <div class="govuk-input__suffix" aria-hidden="true">
+          <a href="account-search-results?searchValue=Coral"><i class="fa fa-search icon searchicon"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+    <a href="what-type-of-permit-or-certificate-are-you-applying-for"><button class="govuk-button govuk-button" data-module="govuk-button">Start new application</button><a>
+  </div>
+
+</div> -->
+
+
+
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-one-quarter">
@@ -167,7 +189,7 @@
           </fieldset>
         </div>
       </div>
-    <a href="your-submissions-filtered?searchValue="><button class="govuk-button govuk-button--secondary" data-module="govuk-button">Apply filter</button><a>
+    <a href="your-submissions-filtered"><button class="govuk-button govuk-button--secondary" data-module="govuk-button">Apply filter</button><a>
       <!-- <br>
       <br>
       <br>
@@ -185,55 +207,21 @@
     </thead>
     <tbody class="govuk-table__body">
       <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N10">AB7N10</a><br>Alisterus chloropterus</td>
-        <td class="govuk-table__cell" name="submissionDate" value="10 April 2022">10 April 2022</td>
+        <td class="govuk-table__cell"><a href="application">{{data['submissionRef']}}/001</a><br>Alisterus chloropterus</td>
+        <td class="govuk-table__cell">8 April 2022</td>
         <td class="govuk-table__cell">Received</td>
       </tr>
       <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N09">AB7N09</a><br>Alisterus chloropterus</td>
-        <td class="govuk-table__cell">9 April 2022</td>
-        <td class="govuk-table__cell">Issued</td>
-      </tr>
-      <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N08">AB7N08</a><br>Alisterus chloropterus</td>
+        <td class="govuk-table__cell"><a href="application">{{data['submissionRef']}}/002</a><br>Alisterus chloropterus</td>
         <td class="govuk-table__cell">8 April 2022</td>
-        <td class="govuk-table__cell">Issued</td>
+        <td class="govuk-table__cell">Received</td>
       </tr>
       <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N07">AB7N07</a><br>Alisterus chloropterus</td>
-        <td class="govuk-table__cell">7 April 2022</td>
-        <td class="govuk-table__cell">Issued</td>
+        <td class="govuk-table__cell"><a href="application">{{data['submissionRef']}}/003</a><br>Alisterus chloropterus</td>
+        <td class="govuk-table__cell">8 April 2022</td>
+        <td class="govuk-table__cell">Received</td>
       </tr>
-      <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N06">AB7N06</a><br>Alisterus chloropterus</td>
-        <td class="govuk-table__cell">6 April 2022</td>
-        <td class="govuk-table__cell">Issued</td>
-      </tr>
-      <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N05">AB7N05</a><br>Alisterus chloropterus</td>
-        <td class="govuk-table__cell">5 April 2022</td>
-        <td class="govuk-table__cell">Issued</td>
-      </tr>
-      <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N04">AB7N04</a><br>Alisterus chloropterus</td>
-        <td class="govuk-table__cell">4 April 2022</td>
-        <td class="govuk-table__cell">Issued</td>
-      </tr>
-      <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N03">AB7N03</a><br>Alisterus chloropterus</td>
-        <td class="govuk-table__cell">3 April 2022</td>
-        <td class="govuk-table__cell">Issued</td>
-      </tr>
-      <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N02">AB7N02</a><br>Alisterus chloropterus</td>
-        <td class="govuk-table__cell">2 April 2022</td>
-        <td class="govuk-table__cell">Issued</td>
-      </tr>
-      <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N01">AB7N01</a><br>Alisterus chloropterus</td>
-        <td class="govuk-table__cell">1 April 2022</td>
-        <td class="govuk-table__cell">Issued</td>
-      </tr>
+
     </tbody>
   </table>
 </div>

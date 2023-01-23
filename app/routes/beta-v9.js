@@ -509,6 +509,25 @@ else {
 }
 })
 
+// Quantity or net mass
+router.post('/v9/quantity-or-net-mass', function (req, res) {
+  if (req.session.data['fromPage'] == 'cya') {
+  res.redirect('check-your-answers')
+  }
+
+  if (req.session.data['fromPage'] == 'manageApplication') {
+  res.redirect('application')
+  }
+
+  if (req.session.data['fromPage'] == 'manageApplicationNew') {
+  res.redirect('new-application')
+  }
+
+else {
+  res.redirect('#')
+}
+})
+
 // Select address
 router.post('/v9/select-address', function (req, res) {
   res.redirect('confirm-the-address')
