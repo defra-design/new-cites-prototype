@@ -73,7 +73,9 @@ router.post('/v9/application', function (req, res) {
 
 // Application complete
 router.post('/v9/application-complete', function (req, res) {
-  res.redirect('#')
+  req.session.data['fromPage'] = ''
+  res.redirect('start')
+  // res.redirect('your-applications')
 })
 
 // Are you applying on behalf of someone else
@@ -654,7 +656,7 @@ router.post('/v9/what-is-the-name-of-the-species', function (req, res) {
   res.redirect('new-application')
   }
 
-  if (req.session.data['unitOfMeasure'] == 'number') {
+  if (req.session.data['unitOfMeasure'] == 'number of specimens') {
     req.session.data['specimenCount'] = 1
     res.redirect('where-did-you-source-your-specimen-from')
   }
