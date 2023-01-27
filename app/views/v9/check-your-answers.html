@@ -12,7 +12,7 @@
       <div class="govuk-grid-column-full">
         <form method="post" novalidate>
           {% if data['quantity'] == 1%}
-          <span class="govuk-caption-l">{{data['speciesName']}}</span>
+          <!-- <span class="govuk-caption-l">{{data['speciesName']}}</span> -->
           <h1 class="govuk-heading-l">Check and confirm details for {{data['speciesName']}}</h1>
           {% else %}
           <span class="govuk-caption-l">{{data['speciesName']}} ({{data['specimenCount']}} of {{data['quantity']}})</span>
