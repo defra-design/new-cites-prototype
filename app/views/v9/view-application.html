@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% set thisPageTitle = "new-application" %}
+{% set thisPageTitle = "view-application" %}
 
 {% block beforeContent %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
@@ -17,32 +17,15 @@
     </span>
   </p>
 </div>
-
-<div class="govuk-breadcrumbs">
-  <ol class="govuk-breadcrumbs__list">
-    <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="your-submissions">Your applications</a>
-    </li>
-    <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="your-applications">{{data['submissionRef']}}</a>
-    </li>
-    <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="application">{{data['submissionRef']}}/001</a>
-    </li>
-    <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="new-application">Copy as new application</a>
-    </li>
-  </ol>
-</div>
-
+<a id="back" class="govuk-back-link" href="javascript:history.back()">Back</a>
 {% endblock %}
 
-{% block content %}
 
+{% block content %}
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-full">
         <form method="post" novalidate>
-          <h1 class="govuk-heading-l">Copy as new application<h1>
+          <h1 class="govuk-heading-l">Application<h1>
           <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
 
@@ -59,9 +42,7 @@
                     </dd>
 
                     <dd class="govuk-summary-list__actions">
-                      <a class="govuk-link" href="what-type-of-permit-or-certificate-are-you-applying-for?fromPage=manageApplicationNew">
-                      <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">permit type</span></p>
-                      </a>
+                      <p></p>
                     </dd>
                   </div>
                 </dl>
@@ -83,9 +64,7 @@
               <p class="govuk-!-margin-bottom-1">{{data['your-email']}}</p>
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="enter-your-contact-details-agent?fromPage=manageApplicationNew">
-                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">agent name</span></p>
-              </a>
+              <p></p>
             </dd>
           </div>
 
@@ -101,9 +80,7 @@
               <p class="govuk-!-margin-bottom-1">FO23 6MY</p> -->
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="what-is-your-address-agent?fromPage=manageApplicationNew">
-                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">agent address</span></p>
-              </a>
+              <p></p>
             </dd>
           </div>
         </dl>
@@ -123,9 +100,7 @@
               <p class="govuk-!-margin-bottom-1">{{data['applicant-email']}}</p>
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="enter-your-contact-details-applicant?fromPage=manageApplicationNew">
-                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">applicant name</span></p>
-              </a>
+              <p></p>
             </dd>
           </div>
 
@@ -141,9 +116,7 @@
               <p class="govuk-!-margin-bottom-1">SW23 2FH</p> -->
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="what-is-your-address-applicant?fromPage=manageApplicationNew">
-                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">applicant address</span></p>
-              </a>
+              <p></p>
             </dd>
           </div>
         </dl>
@@ -165,9 +138,7 @@
               <p class="govuk-!-margin-bottom-1">{{data['applicant-email']}}</p>
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="enter-your-contact-details-applicant?fromPage=manageApplicationNew">
-                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">applicant name</span></p>
-              </a>
+              <p></p>
             </dd>
           </div>
 
@@ -183,9 +154,7 @@
               <p class="govuk-!-margin-bottom-1">SW23 2FH</p> -->
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="what-is-your-address-applicant?fromPage=manageApplicationNew">
-                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">applicant address</span></p>
-              </a>
+              <p></p>
             </dd>
           </div>
         </dl>
@@ -208,15 +177,7 @@
               <p class="govuk-!-margin-bottom-1">{{data['unitOfMeasure']}}</p>
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="what-is-the-name-of-the-species?fromPage=manageApplicationNew">
-                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Scientific name</span></p>
-              </a>
-              <a class="govuk-link" href="quantity-or-net-mass?fromPage=manageApplicationNew">
-                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Quantity or net mass</span></p>
-              </a>
-              <a class="govuk-link" href="quantity-or-net-mass?fromPage=manageApplicationNew">
-                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Quantity or net mass</span></p>
-              </a>
+              <p></p>
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -227,9 +188,7 @@
               <p class="govuk-!-margin-bottom-1">{{data['sourceCode']}}</p>
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="where-did-you-source-your-specimen-from?fromPage=manageApplicationNew">
-                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Source code</span></p>
-              </a>
+              <p></p>
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -240,13 +199,7 @@
               <p class="govuk-!-margin-bottom-1">{{data['purposeCode']}}</p>
             </dd>
             <dd class="govuk-summary-list__actions">
-            {% if data['permitType'] == 'A10' %}
-              <a class="govuk-link" href="what-will-you-use-the-certificate-for?fromPage=manageApplicationNew">
-                {% else %}
-              <a class="govuk-link" href="what-is-the-purpose-code?fromPage=manageApplicationNew">
-            {% endif %}
-                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Purpose code</span></p>
-              </a>
+              <p></p>
             </dd>
           </div>
 
@@ -279,9 +232,7 @@
               </div>
 
               <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="specimen-details?fromPage=manageApplicationNew">
-                  <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Specimen details</span></p>
-                </a>
+                <p></p>
               </dd>
 
           {% endif %}
@@ -313,9 +264,7 @@
               <p class="govuk-!-margin-bottom-1">{{data['importPermitIssueDay']}} {{data['importPermitIssueMonth']}} {{data['importPermitIssueYear']}}</p>
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="permit-details?fromPage=manageApplicationNew">
-                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden"> Permit issue date</span></p>
-              </a>
+              <p></p>
             </dd>
           </div>
         </dl>
@@ -336,9 +285,7 @@
               <p class="govuk-!-margin-bottom-1">{{data['originPermitIssueDay']}} {{data['originPermitIssueMonth']}} {{data['originPermitIssueYear']}}</p>
             </dd>
             <dd class="govuk-summary-list__actions">
-              <a class="govuk-link" href="permit-details?fromPage=manageApplicationNew">
-                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Permit issue date</span></p>
-              </a>
+              <p></p>
             </dd>
           </div>
         </dl>
@@ -363,26 +310,22 @@
                       </label>
                   </div>
                   <dd class="govuk-summary-list__actions">
-                    <a class="govuk-link" href="comments?fromPage=manageApplicationNew">
-                    <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">add comments</span></p>
-                    </a>
+                    <p></p>
                   </dd>
                 </div>
               </dl>
 
     <!-- <div><p class="govuk-body">Preview in a <a href="application-preview">CITES application form</a></p></div> -->
 
-        <div class="govuk-button-group">
-          <button class="govuk-button" data-module="govuk-button">
-            Confirm
-          </button>
-        </div>
+          <div class="govuk-button-group">
+            <button class="govuk-button" data-module="govuk-button">
+              Return to your applications
+            </button>
+          </div>
 
         </form>
 
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-
-
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
       </div>
     </div>
 

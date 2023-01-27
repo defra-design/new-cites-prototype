@@ -263,7 +263,7 @@ router.post('/v9/confirm-your-address-applicant', function (req, res) {
 
 // Copy application
 router.post('/v9/copy-application', function (req, res) {
-  res.redirect('file-upload')
+  res.redirect('your-applications-pre-submission')
 })
 
 // Created date
@@ -482,14 +482,9 @@ router.post('/v9/application', function (req, res) {
     res.redirect('new-application')
 })
 
-// Manage application new
-router.post('/v9/new-application', function (req, res) {
-  res.redirect('declaration')
-})
-
 // New application
 router.post('/v9/new-application', function (req, res) {
-  res.redirect('declaration')
+  res.redirect('your-applications-pre-submission')
 })
 
 // Permit details
@@ -625,6 +620,11 @@ router.post('/v9/unique-identification-mark', function (req, res) {
   else {
   res.redirect('describe-generic')
 }
+})
+
+// View application
+router.post('/v9/view-application', function (req, res) {
+  res.redirect('your-applications-pre-submission')
 })
 
 // We could not confirm the scientific name
@@ -807,11 +807,14 @@ router.post('/v9/your-applications', function (req, res) {
   res.redirect('what-type-of-permit-or-certificate-are-you-applying-for')
 })
 
+// Your applications pre-submission
+router.post('/v9/your-applications-pre-submission', function (req, res) {
+  res.redirect('declaration')
+})
+
 // Your submissions
 router.post('/v9/your-submissions', function (req, res) {
   res.redirect('your-applications')
 })
-
-
 
 module.exports = router
