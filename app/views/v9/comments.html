@@ -11,16 +11,27 @@
           <form method="post" autocomplete="off">
             <!-- <span class="govuk-caption-l">{{data['speciesName']}} ({{data['specimenCount']}} of {{data['quantity']}})</span> -->
             <h1 class="govuk-label-wrapper">
-              <label class="govuk-label govuk-label--l" for="word-count">
+              <label class="govuk-label govuk-label--l" for="comment">
                 Add remarks
               </label>
             </h1>
-            <p>Include any other information or comments that may support your application.</p>
+            <div class="govuk-character-count" data-module="govuk-character-count" data-maxlength="250">
+              <div id="additional-info-hint" class="govuk-hint">
+                Include any other information or comments that may support your application (optional).
+              </div>
+              <div class="govuk-form-group">
+                <textarea class="govuk-textarea govuk-js-character-count" id="with-hint" name="comment" rows="10" aria-describedby="with-hint-comment with-hint-hint" value="{{data['comment']}}"></textarea>
+              </div>
+              <div id="with-hint-comment" class="govuk-hint govuk-character-count__message">
+                You can enter up to 500 characters
+              </div>
+            </div>
+          <!-- <p>Include any other information or comments that may support your application.</p>
             <textarea class="govuk-textarea govuk-js-character-count" id="word-count" name="comment" rows="10" aria-describedby="word-count-info" value="{{data['comment']}}"></textarea>
             <div id="word-count-info" class="govuk-hint govuk-character-count__message" aria-live="polite">
-              You have 500 words remaining
+              You have 500 characters remaining
             </div>
-            <br>
+            <br> -->
             <button class="govuk-button">Continue</button>
         </form>
       </div>

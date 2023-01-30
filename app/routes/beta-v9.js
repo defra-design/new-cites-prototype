@@ -87,16 +87,21 @@ if (req.session.data['isAgent'] == 'yes') {
 }
 })
 
+// Check your answers pre-multiplicity
+// router.post('/v9/check-your-answers', function (req, res) {
+//   req.session.data['fromPage'] = 'cya'
+//
+//   if (req.session.data['specimenCount'] == req.session.data['quantity']) {
+//     res.redirect('declaration')
+// } else {
+//     req.session.data['specimenCount'] = req.session.data['specimenCount'] + 1
+//     res.redirect('check-your-answers')
+// }
+// })
+
 // Check your answers
 router.post('/v9/check-your-answers', function (req, res) {
-  req.session.data['fromPage'] = 'cya'
-
-  if (req.session.data['specimenCount'] == req.session.data['quantity']) {
-    res.redirect('declaration')
-} else {
-    req.session.data['specimenCount'] = req.session.data['specimenCount'] + 1
-    res.redirect('check-your-answers')
-}
+  res.redirect('your-applications-pre-submission')
 })
 
 // Check your answers reuse
