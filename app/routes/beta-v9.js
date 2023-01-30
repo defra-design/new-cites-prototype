@@ -526,7 +526,7 @@ router.post('/v9/quantity-or-net-mass', function (req, res) {
   }
 
 else {
-  res.redirect('#')
+  res.redirect('trade-term-code')
 }
 })
 
@@ -639,9 +639,14 @@ router.post('/v9/we-could-not-confirm-the-scientific-name', function (req, res) 
 
 // What best describes the specimen
 router.post('/v9/what-best-describes-the-specimen', function (req, res) {
-if (req.session.data['specimenDescription'] == 'workedItem') {
-res.redirect('created-date')
-}
+
+  if (req.session.data['specimenType'] == 'plant') {
+  res.redirect('quantity-or-net-mass')
+  }
+
+    if (req.session.data['specimenDescription'] == 'workedItem') {
+    res.redirect('created-date')
+    }
 else {
   res.redirect('trade-term-code')
 }

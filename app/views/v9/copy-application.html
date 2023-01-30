@@ -156,14 +156,51 @@
         <h2 class="govuk-heading-m">Species details</h2>
         <hr>
         <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+
           <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Scientific name</p>
+              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Quantity or net mass</p>
+              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Unit of measurement</p>
+              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Source code</p>
+              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Purpose code</p>
+            </dt>
+            <dd class="govuk-summary-list__value">
+              <p class="govuk-!-margin-bottom-1">{{data['speciesName']}}</p>
+              <p class="govuk-!-margin-bottom-1">{{data['quantity']}}</p>
+              <p class="govuk-!-margin-bottom-1">{{data['unitOfMeasure']}}</p>
+              <p class="govuk-!-margin-bottom-1">{{data['specimenSource']}}</p>
+              <p class="govuk-!-margin-bottom-1">{{data['purposeCode']}}</p>
+            </dd>
+            <dd class="govuk-summary-list__actions">
+              <a class="govuk-link" href="what-is-the-name-of-the-species?fromPage=cya">
+                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Scientific name</span></p>
+              <a/>
+              <a class="govuk-link" href="quantity-or-net-mass?fromPage=cya">
+                  <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Quantity</span></p>
+              </a>
+              <a class="govuk-link" href="quantity-or-net-mass?fromPage=cya">
+                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Unit of measurement></p>
+              </a>
+              <a class="govuk-link" href="where-did-you-source-your-specimen-from?fromPage=cya">
+                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Source code</span></p>
+              </a>
+              <a class="govuk-link" href="what-is-the-purpose-code?fromPage=cya">
+                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Purpose code</span></p>
+              </a>
+            </dd>
+          </div>
+
+          <!-- <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key">
               <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Scientific name</p>
               <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Quantity</p>
             </dt>
             <dd class="govuk-summary-list__value">
-              <p class="govuk-!-margin-bottom-1">Falco rusticolus, Gyr Falcon {{data['speciesName']}}</p>
-              <p class="govuk-!-margin-bottom-1">10 {{data['quantity']}} 120g {{data['umitOfMeasure']}}</p>
+              <p class="govuk-!-margin-bottom-1">{{data['speciesName']}}</p>
+              <a class="govuk-link" href="quantity-or-net-mass?fromPage=manageApplicationNew">
+                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Quantity or net mass</span></p>
+              </a>
             </dd>
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="what-is-the-name-of-the-species">
@@ -200,7 +237,7 @@
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Purpose code</span></p>
               </a>
             </dd>
-          </div>
+          </div> -->
 
           {% if data['isAlive'] == 'yes'%}
           {% if data['specimenType'] == 'animal'%}
