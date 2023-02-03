@@ -87,6 +87,15 @@ if (req.session.data['isAgent'] == 'yes') {
 }
 })
 
+// Are you sure
+router.post('/v9/are-you-sure', function (req, res) {
+if (req.session.data['remove'] == 'yes') {
+  res.redirect('your-applications-removed')
+} else {
+  res.redirect('your-applications-pre-submission')
+}
+})
+
 // Check your answers pre-multiplicity
 // router.post('/v9/check-your-answers', function (req, res) {
 //   req.session.data['fromPage'] = 'cya'

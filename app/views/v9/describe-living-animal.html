@@ -12,14 +12,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
       <form method="post" autocomplete="off">
-        <!-- <span class="govuk-caption-l">{{data['speciesName']}} ({{data['specimenCount']}} of {{data['quantity']}})</span> -->
-
-        {% if data['quantity'] == 1 %}
-        <h1 class="govuk-heading-l">Describe the {{data['speciesName']}}</h1>
-        {% else %}
-        <h1 class="govuk-heading-l">Describe the {{data['speciesName']}} ({{data['specimenCount']}} of {{data['quantity']}})</h1>
-        {% endif %}
-
+        <h1 class="govuk-heading-l">Describe the specimen</h1>
           <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
               <table class="govuk-table">
                 <tbody class="govuk-table__body">
@@ -71,17 +64,15 @@
                     <th scope="row" class="govuk-table__header govuk-!-width-one-half">What is the specimen's date of birth?</th>
                     <td class="govuk-table__cell">
                       <div id="hatch-date-hint" class="govuk-hint">
-                        If you don't know the exact date, enter an approximate month and year.
+                        If you do not know the exact date, enter an approximate month and year, or do not enter a date.
                       </div>
-                      <div class="govuk-form-group">
-                        <!-- <label class="govuk-label" for="hatch-birth-date">
-                          Hatch or birth date
-                        </label> -->
-                        <!-- <div id="hatch-date-hint" class="govuk-hint">
-                          For example, 27 3 2007
-                        </div>
-                      </div> -->
-
+                      <!-- <div id="hatch-date-hint" class="govuk-hint">
+                      <p class="govuk-body">If you do not know the:</p>
+                      <ul class="govuk-list govuk-list--bullet">
+                        <li>exact date, enter an approximate month and year</li>
+                        <li>approximate date, do not enter a date</li>
+                      </ul>
+                    </div> -->
                       <div class="govuk-form-group">
                         <div class="govuk-date-input" id="hatch-date">
                           <div class="govuk-date-input__item">
@@ -162,7 +153,7 @@
                     <td class="govuk-table__cell">
                     <div class="govuk-character-count" data-module="govuk-character-count" data-maxlength="250">
                       <div id="additional-info-hint" class="govuk-hint">
-                        Enter the unique identification mark and A10 certificate number of each parent. For example, 'Parent female A10: 10AB010C/01, closed ring number: WEL0072257'
+                        Enter the unique identification mark and A10 certificate number for each parent. For example, 'Parent female A10: 10AB010C/01, closed ring number: WEL0072257'
                       </div>
                       <div class="govuk-form-group">
                         <textarea class="govuk-textarea govuk-js-character-count" id="with-hint" name="description" rows="10" aria-describedby="with-hint-info with-hint-hint" value="{{data['description']}}"></textarea>

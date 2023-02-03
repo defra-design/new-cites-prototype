@@ -22,11 +22,11 @@
       {% if data['simplePayment'] === 'yes'%}
       <p class="govuk-body">We have sent your application to the APHA team for endangered plant and animal species (CITES).</p>
       <p class="govuk-body">APHA aims to process your application within 30 days. They will contact you either to confirm your application, or to ask for more information.</p>
-      <p class="govuk-body">You can view the status of your application in your <a href="your-submissions" data-module="govuk-button">CITES account</a>.</p>
+      <p class="govuk-body">You can view the status of your application in your <a href="your-submissions?fromPage='reset'" data-module="govuk-button">CITES account</a>.</p>
       {% else %}
       <p class="govuk-body">We have sent your application to the APHA team for endangered plant and animal species (CITES).</p>
       <p class="govuk-body">They will check your application and send you an email to confirm the amount that you need to pay.</p>
-      <p class="govuk-body">You can view the status of your application in your <a href="your-submissions" data-module="govuk-button">CITES account</a>.</p>
+      <p class="govuk-body">You can view the status of your application in your <a href="your-submissions?fromPage='reset'" data-module="govuk-button">CITES account</a>.</p>
       {% endif %}
 
       <a href="your-submissions?fromPage='reset'" role="button" draggable="false" class="govuk-button" data-module="govuk-button">Finish</a>
