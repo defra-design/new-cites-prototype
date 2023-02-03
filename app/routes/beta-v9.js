@@ -485,9 +485,9 @@ router.post('/v9/how-many-unmarked', function (req, res) {
   if (req.session.data['fromPage'] == 'manageApplicationNew') {
   res.redirect('new-application')
   }
-  else {
-  res.redirect('importer-exporter-details')
-}
+
+  res.redirect('describe-generic')
+
 })
 
 // Manage application
@@ -632,7 +632,7 @@ router.post('/v9/unique-identification-mark', function (req, res) {
   res.redirect('describe-living-animal')
   }
   else {
-  res.redirect('describe-generic')
+  res.redirect('how-many-unmarked')
 }
 })
 
