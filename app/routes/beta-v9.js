@@ -47,7 +47,7 @@ else {
 }
 })
 
-// already-have-a10
+// Already have A10
 router.post('/v9/already-have-a10', function (req, res) {
   if (req.session.data['fromPage'] == 'cya') {
   res.redirect('check-your-answers')
@@ -96,6 +96,33 @@ if (req.session.data['remove'] == 'yes') {
 }
 })
 
+// Are you sure chane permit type
+router.post('/v9/are-you-sure-change-permit-type', function (req, res) {
+if (req.session.data['changePermitType'] == 'yes') {
+  res.redirect('are-you-applying-on-behalf-of-someone-else')
+} else {
+  res.redirect('check-your-answers')
+}
+})
+
+// Are you sure change applicant contact details
+router.post('/v9/are-you-sure-change-applicant-contact-details', function (req, res) {
+if (req.session.data['changeApplicantContactDetails'] == 'yes') {
+  res.redirect('enter-your-contact-details-applicant?pageFrom=cya')
+} else {
+  res.redirect('check-your-answers')
+}
+})
+
+// Are you sure change applicant address
+router.post('/v9/are-you-sure-change-applicant-address', function (req, res) {
+if (req.session.data['changeApplicantAddress'] == 'yes') {
+  res.redirect('what-is-your-address-applicant?pageFrom=cya')
+} else {
+  res.redirect('check-your-answers')
+}
+})
+
 // Check your answers pre-multiplicity
 // router.post('/v9/check-your-answers', function (req, res) {
 //   req.session.data['fromPage'] = 'cya'
@@ -114,9 +141,9 @@ router.post('/v9/check-your-answers', function (req, res) {
 })
 
 // Check your answers reuse
-router.post('/v9/check-your-answers-reuse', function (req, res) {
-  res.redirect('declaration')
-})
+// router.post('/v9/check-your-answers-reuse', function (req, res) {
+//   res.redirect('declaration')
+// })
 
 // Confirm applicants international address
 // router.post('/v9/confirm-applicants-international-address', function (req, res) {
@@ -161,7 +188,7 @@ router.post('/v9/comments', function (req, res) {
   }
 
 else {
-  res.redirect('file-upload')
+  res.redirect('check-your-answers')
 }
 })
 
@@ -217,63 +244,18 @@ else {
 
 // Confirm your address agent led
 router.post('/v9/confirm-your-address-agent-led', function (req, res) {
-
-  // if (req.session.data['delivery-address'] == 'delivery-address-1') {
-  //   if (req.session.data['fromPage'] == 'cya') {
-  //     res.redirect('check-your-answers') }
-  //   else {
-  //     res.redirect('what-is-the-name-of-the-species')
-  //   }
-  // }
-  //
-  // if (req.session.data['delivery-address'] == 'delivery-address-2') {
-  //   if (req.session.data['fromPage'] == 'cya') {
-  //     res.redirect('check-your-answers') }
-  //   else {
-  //     res.redirect('what-is-the-name-of-the-species')
-  //   }
-  // }
-  //
-  // if (req.session.data['delivery-address'] == 'delivery-address-3') {
-  //     res.redirect('what-is-the-delivery-address')
-  //   }
-
     res.redirect('choose-delivery-address')
   })
 
 // Confirm your address applicant
 router.post('/v9/confirm-your-address-applicant', function (req, res) {
-
-//   if (req.session.data['delivery-address-applicant'] == 'delivery-address-1-applicant') {
-//     if (req.session.data['fromPage'] == 'cya') {
-//     res.redirect('check-your-answers')
-//   }
-// }
-//
-//     if (req.session.data['delivery-address-applicant'] == 'delivery-address-2-applicant') {
-//       if (req.session.data['fromPage'] == 'cya') {
-//       res.redirect('enter-address-manually')
-//     }
-//   }
-//
-//     if (req.session.data['fromPage'] == 'manageApplication') {
-//     res.redirect('application')
-//     }
-//
-//     if (req.session.data['fromPage'] == 'manageApplicationNew') {
-//     res.redirect('new-application')
-//     }
-
-    // if (req.session.data['address-applicant'] == 'address-1-applicant') {
-    //   res.redirect('what-is-the-name-of-the-species')
-    // }
-    //
-    // if (req.session.data['address-applicant'] == 'address-2-applicant') {
-    //   res.redirect('what-is-the-delivery-address')
-    // }
+    if (req.session.data['fromPage'] == 'cya') {
+    res.redirect('check-your-answers')
+    }
+    else {
     res.redirect('choose-delivery-address')
-
-  })
+}
+})
 
 // Copy application
 router.post('/v9/copy-application', function (req, res) {
@@ -447,7 +429,7 @@ else
 
 // File upload
 router.post('/v9/file-upload', function (req, res) {
-  res.redirect('check-your-answers')
+  res.redirect('declaration')
 })
 
 // Importer / exporter details
@@ -828,7 +810,7 @@ router.post('/v9/your-applications', function (req, res) {
 
 // Your applications pre-submission
 router.post('/v9/your-applications-pre-submission', function (req, res) {
-  res.redirect('declaration')
+  res.redirect('file-upload')
 })
 
 // Your submissions
