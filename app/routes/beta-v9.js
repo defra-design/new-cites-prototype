@@ -123,6 +123,24 @@ if (req.session.data['changeApplicantAddress'] == 'yes') {
 }
 })
 
+// Are you sure change agent contact details
+router.post('/v9/are-you-sure-change-agent-contact-details', function (req, res) {
+if (req.session.data['changeAgentContactDetails'] == 'yes') {
+  res.redirect('enter-your-contact-details-agent?pageFrom=cya')
+} else {
+  res.redirect('check-your-answers')
+}
+})
+
+// Are you sure change agent address
+router.post('/v9/are-you-sure-change-agent-address', function (req, res) {
+if (req.session.data['changeAgentAddress'] == 'yes') {
+  res.redirect('what-is-your-address-agent?pageFrom=cya')
+} else {
+  res.redirect('check-your-answers')
+}
+})
+
 // Check your answers pre-multiplicity
 // router.post('/v9/check-your-answers', function (req, res) {
 //   req.session.data['fromPage'] = 'cya'
