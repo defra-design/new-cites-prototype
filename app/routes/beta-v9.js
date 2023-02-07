@@ -98,11 +98,21 @@ if (req.session.data['remove'] == 'yes') {
 
 // Are you sure chane permit type
 router.post('/v9/are-you-sure-change-permit-type', function (req, res) {
-if (req.session.data['changePermitType'] == 'yes') {
-  res.redirect('are-you-applying-on-behalf-of-someone-else')
-} else {
-  res.redirect('check-your-answers')
-}
+  if (req.session.data['changePermitType'] == 'yes') {
+      res.redirect('what-type-of-permit-or-certificate-are-you-applying-for')
+  }
+
+  if (req.session.data['changePermitType'] == 'no') {
+    if (req.session.data['fromPage'] == 'pre-submission') {
+      res.redirect('your-applications-pre-submission')
+    }
+  }
+
+  if (req.session.data['changePermitType'] == 'no') {
+    if (req.session.data['fromPage'] == 'cya') {
+      res.redirect('check-your-answers')
+    }
+  }
 })
 
 // Are you sure change applicant contact details
@@ -136,6 +146,15 @@ if (req.session.data['changeAgentContactDetails'] == 'yes') {
 router.post('/v9/are-you-sure-change-agent-address', function (req, res) {
 if (req.session.data['changeAgentAddress'] == 'yes') {
   res.redirect('what-is-your-address-agent?pageFrom=cya')
+} else {
+  res.redirect('check-your-answers')
+}
+})
+
+// Are you sure change delivery address
+router.post('/v9/are-you-sure-change-delivery-address', function (req, res) {
+if (req.session.data['changeDeliveryAddress'] == 'yes') {
+  res.redirect('what-is-the-delivery-address?pageFrom=cya')
 } else {
   res.redirect('check-your-answers')
 }

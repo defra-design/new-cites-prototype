@@ -9,8 +9,13 @@
     <form method="post" autocomplete="off">
 
       <div class="govuk-form-group">
-        <h1 class="govuk-heading-l">Are you sure you want to change the applicant's contact details?</h1>
-        <p class="govuk-body">If you change the applicant's contact details, the change will be applied to all the applications waiting to be submitted.</p>
+      {% if data['isAgent'] == 'yes'%}
+        <h1 class="govuk-heading-l">Are you sure you want to change the {{data['permitType']}}er's contact details?</h1>
+        <p class="govuk-body">If you change the {{data['permitType']}}er's contact details, the change will be applied to all the applications waiting to be submitted.</p>
+      {% else %}
+        <h1 class="govuk-heading-l">Are you sure you want to change your contact details?</h1>
+        <p class="govuk-body">If you change your contact details, the change will be applied to all the applications waiting to be submitted.</p>
+      {% endif %}
         <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
           <div class="govuk-radios__item">
             <input class="govuk-radios__input" id="change-applicant-contact-details-yes" name="changeApplicantContactDetails" type="radio" value="yes" required>
