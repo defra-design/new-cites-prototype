@@ -96,7 +96,7 @@ if (req.session.data['remove'] == 'yes') {
 }
 })
 
-// Are you sure chane permit type
+// Are you sure change permit type
 router.post('/v9/are-you-sure-change-permit-type', function (req, res) {
   if (req.session.data['changePermitType'] == 'yes') {
       res.redirect('what-type-of-permit-or-certificate-are-you-applying-for')
@@ -113,41 +113,91 @@ router.post('/v9/are-you-sure-change-permit-type', function (req, res) {
       res.redirect('check-your-answers')
     }
   }
+
+  if (req.session.data['changePermitType'] == 'no') {
+    if (req.session.data['fromPage'] == 'copy') {
+      res.redirect('copy-application')
+    }
+  }
 })
 
 // Are you sure change applicant contact details
 router.post('/v9/are-you-sure-change-applicant-contact-details', function (req, res) {
-if (req.session.data['changeApplicantContactDetails'] == 'yes') {
-  res.redirect('enter-your-contact-details-applicant?pageFrom=cya')
-} else {
-  res.redirect('check-your-answers')
-}
+
+  if (req.session.data['changeApplicantContactDetails'] == 'yes') {
+    res.redirect('enter-your-contact-details-applicant?pageFrom=cya')
+    }
+
+  if (req.session.data['changeApplicantContactDetails'] == 'no') {
+    if (req.session.data['fromPage'] == 'cya') {
+      res.redirect('check-your-answers')
+    }
+  }
+
+  if (req.session.data['changeApplicantContactDetails'] == 'no') {
+    if (req.session.data['fromPage'] == 'copy') {
+      res.redirect('copy-application')
+    }
+  }
 })
 
 // Are you sure change applicant address
 router.post('/v9/are-you-sure-change-applicant-address', function (req, res) {
+
 if (req.session.data['changeApplicantAddress'] == 'yes') {
   res.redirect('what-is-your-address-applicant?pageFrom=cya')
-} else {
-  res.redirect('check-your-answers')
+}
+
+if (req.session.data['changeApplicantAddress'] == 'no') {
+  if (req.session.data['fromPage'] == 'cya') {
+    res.redirect('check-your-answers')
+  }
+}
+
+if (req.session.data['changeApplicantAddress'] == 'no') {
+  if (req.session.data['fromPage'] == 'copy') {
+    res.redirect('copy-application')
+  }
 }
 })
+
 
 // Are you sure change agent contact details
 router.post('/v9/are-you-sure-change-agent-contact-details', function (req, res) {
 if (req.session.data['changeAgentContactDetails'] == 'yes') {
   res.redirect('enter-your-contact-details-agent?pageFrom=cya')
-} else {
-  res.redirect('check-your-answers')
+}
+
+if (req.session.data['changeAgentContactDetails'] == 'no') {
+  if (req.session.data['fromPage'] == 'cya') {
+    res.redirect('check-your-answers')
+  }
+}
+
+if (req.session.data['changeAgentContactDetails'] == 'no') {
+  if (req.session.data['fromPage'] == 'copy') {
+    res.redirect('copy-application')
+  }
 }
 })
+
 
 // Are you sure change agent address
 router.post('/v9/are-you-sure-change-agent-address', function (req, res) {
 if (req.session.data['changeAgentAddress'] == 'yes') {
   res.redirect('what-is-your-address-agent?pageFrom=cya')
-} else {
-  res.redirect('check-your-answers')
+}
+
+if (req.session.data['changeAgentAddress'] == 'no') {
+  if (req.session.data['fromPage'] == 'cya') {
+    res.redirect('check-your-answers')
+  }
+}
+
+if (req.session.data['changeAgentAddress'] == 'no') {
+  if (req.session.data['fromPage'] == 'copy') {
+    res.redirect('copy-application')
+  }
 }
 })
 
@@ -155,8 +205,18 @@ if (req.session.data['changeAgentAddress'] == 'yes') {
 router.post('/v9/are-you-sure-change-delivery-address', function (req, res) {
 if (req.session.data['changeDeliveryAddress'] == 'yes') {
   res.redirect('what-is-the-delivery-address?pageFrom=cya')
-} else {
-  res.redirect('check-your-answers')
+}
+
+if (req.session.data['changeDeliveryAddress'] == 'no') {
+  if (req.session.data['fromPage'] == 'cya') {
+    res.redirect('check-your-answers')
+  }
+}
+
+if (req.session.data['changeDeliveryAddress'] == 'no') {
+  if (req.session.data['fromPage'] == 'copy') {
+    res.redirect('copy-application')
+  }
 }
 })
 
@@ -648,10 +708,12 @@ router.post('/v9/unique-identification-mark', function (req, res) {
   }
 
   if (req.session.data['specimenDescription'] == 'livingAnimal') {
-  res.redirect('describe-living-animal')
+    if (req.session.data['identificationMark'] == 'unmarked') {
+      res.redirect('how-many-unmarked')
+    }
+    else {
+    res.redirect('describe-living-animal')
   }
-  else {
-  res.redirect('how-many-unmarked')
 }
 })
 
