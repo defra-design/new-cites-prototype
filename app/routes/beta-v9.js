@@ -145,7 +145,12 @@ router.post('/v9/are-you-sure-change-applicant-contact-details', function (req, 
 router.post('/v9/are-you-sure-change-applicant-address', function (req, res) {
 
 if (req.session.data['changeApplicantAddress'] == 'yes') {
+  if (req.session.data['isAgent'] == 'yes') {
+  res.redirect('what-is-your-address-agent-led?pageFrom=cya')
+}
+else {
   res.redirect('what-is-your-address-applicant?pageFrom=cya')
+}
 }
 
 if (req.session.data['changeApplicantAddress'] == 'no') {

@@ -8,7 +8,9 @@
   <div class="govuk-grid-column-two-thirds">
     <form method="post" autocomplete="off">
       <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
-  {% if data['permitType'] == 'import' %}
+
+      {% if data['isAgent'] == 'yes'%}
+        {% if data['permitType'] == 'import' %}
         <h1 class="govuk-heading-l">
           Enter the importer's contact details
         </h1>
@@ -120,7 +122,39 @@
           </div>
           <input class="govuk-input" id="email" name="applicant-email" type="email" spellcheck="false" aria-describedby="email-hint"  value="{{data['applicant-email']}}">
         </div>
-  {% endif %}
+        {% endif %}
+        {% endif %}
+
+        {% if data['isAgent'] == 'no'%}
+          <h1 class="govuk-heading-l">
+            Enter your contact details
+          </h1>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="your-full-name">
+              Full name
+            </label>
+          <input class="govuk-input" id="your-full-name" name="applicant-full-name" type="text" spellcheck="false" autocomplete="name" value="{{data['applicant-full-name']}}">
+          </div>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="your-business-name">
+              Business name (optional)
+            </label>
+            <div id="event-name-hint" class="govuk-hint">
+            If you are a business, give the business name.
+          </div>
+          <input class="govuk-input" id="your-business-name" name="applicant-business-name" type="text" spellcheck="false" autocomplete="name" value="{{data['applicant-business-name']}}">
+          </div>
+          <div class="govuk-form-group">
+            <label class="govuk-label" for="email">
+              Email address
+            </label>
+            <div id="email-hint" class="govuk-hint">
+              We will only use your email address to contact you about the application.
+            </div>
+            <input class="govuk-input" id="email" name="applicant-email" type="email" spellcheck="false" aria-describedby="email-hint"  value="{{data['applicant-email']}}">
+          </div>
+        {% endif %}
+
       </legend>
 
         <button class="govuk-button">Continue</button>
