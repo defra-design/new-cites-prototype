@@ -297,9 +297,13 @@ else {
 // Confirm delivery address
 router.post('/v9/confirm-delivery-address', function (req, res) {
   if (req.session.data['fromPage'] == 'cya') {
-    res.redirect('check-your-answers')
+  res.redirect('check-your-answers')
   }
-  else
+
+  if (req.session.data['fromPage'] == 'copy') {
+  res.redirect('copy-application')
+  }
+
   res.redirect('what-is-the-name-of-the-species')
 })
 
@@ -331,6 +335,10 @@ router.post('/v9/confirm-your-address-agent', function (req, res) {
   res.redirect('check-your-answers')
   }
 
+  if (req.session.data['fromPage'] == 'copy') {
+  res.redirect('copy-application')
+  }
+
   if (req.session.data['fromPage'] == 'manageApplication') {
   res.redirect('application')
   }
@@ -346,8 +354,16 @@ else {
 
 // Confirm your address agent led
 router.post('/v9/confirm-your-address-agent-led', function (req, res) {
-    res.redirect('choose-delivery-address')
-  })
+  if (req.session.data['fromPage'] == 'cya') {
+  res.redirect('check-your-answers')
+  }
+
+  if (req.session.data['fromPage'] == 'copy') {
+  res.redirect('copy-application')
+  }
+
+  res.redirect('choose-delivery-address')
+})
 
 // Confirm your address applicant
 router.post('/v9/confirm-your-address-applicant', function (req, res) {
@@ -368,6 +384,10 @@ router.post('/v9/copy-application', function (req, res) {
 router.post('/v9/created-date', function (req, res) {
   if (req.session.data['fromPage'] == 'cya') {
   res.redirect('check-your-answers')
+  }
+
+  if (req.session.data['fromPage'] == 'copy') {
+  res.redirect('copy-application')
   }
 
   if (req.session.data['fromPage'] == 'manageApplication') {
@@ -391,6 +411,10 @@ router.post('/v9/declaration', function (req, res) {
 router.post('/v9/describe-living-animal', function (req, res) {
   if (req.session.data['fromPage'] == 'cya') {
   res.redirect('check-your-answers')
+  }
+
+  if (req.session.data['fromPage'] == 'copy') {
+  res.redirect('copy-application')
   }
 
   if (req.session.data['fromPage'] == 'manageApplication') {
@@ -421,6 +445,10 @@ res.redirect('importer-exporter-details')
 router.post('/v9/describe-generic', function (req, res) {
   if (req.session.data['fromPage'] == 'cya') {
   res.redirect('check-your-answers')
+  }
+
+  if (req.session.data['fromPage'] == 'copy') {
+  res.redirect('copy-application')
   }
 
   if (req.session.data['fromPage'] == 'manageApplication') {
@@ -469,6 +497,10 @@ router.post('/v9/enter-your-contact-details-agent', function (req, res) {
   res.redirect('check-your-answers')
   }
 
+  if (req.session.data['fromPage'] == 'copy') {
+  res.redirect('copy-application')
+  }
+
   if (req.session.data['fromPage'] == 'manageApplication') {
   res.redirect('application')
   }
@@ -493,6 +525,9 @@ else
 router.post('/v9/enter-your-contact-details-applicant', function (req, res) {
   if (req.session.data['fromPage'] == 'cya') {
   res.redirect('check-your-answers')
+  }
+  if (req.session.data['fromPage'] == 'copy') {
+  res.redirect('copy-application')
   }
 
   if (req.session.data['fromPage'] == 'manageApplication') {
@@ -538,6 +573,10 @@ router.post('/v9/file-upload', function (req, res) {
 router.post('/v9/importer-exporter-details', function (req, res) {
   if (req.session.data['fromPage'] == 'cya') {
   res.redirect('check-your-answers')
+  }
+
+  if (req.session.data['fromPage'] == 'copy') {
+  res.redirect('copy-application')
   }
 
   if (req.session.data['fromPage'] == 'manageApplication') {
@@ -591,6 +630,10 @@ router.post('/v9/permit-details', function (req, res) {
   res.redirect('check-your-answers')
   }
 
+  if (req.session.data['fromPage'] == 'copy') {
+  res.redirect('copy-application')
+  }
+
   if (req.session.data['fromPage'] == 'manageApplication') {
   res.redirect('application')
   }
@@ -608,6 +651,10 @@ else {
 router.post('/v9/quantity-or-net-mass', function (req, res) {
   if (req.session.data['fromPage'] == 'cya') {
   res.redirect('check-your-answers')
+  }
+
+  if (req.session.data['fromPage'] == 'copy') {
+  res.redirect('copy-application')
   }
 
   if (req.session.data['fromPage'] == 'manageApplication') {
@@ -681,6 +728,10 @@ router.post('/v9/trade-term-code', function (req, res) {
   res.redirect('check-your-answers')
   }
 
+  if (req.session.data['fromPage'] == 'copy') {
+  res.redirect('copy-application')
+  }
+
   if (req.session.data['fromPage'] == 'manageApplication') {
   res.redirect('application')
   }
@@ -693,15 +744,17 @@ router.post('/v9/trade-term-code', function (req, res) {
   res.redirect('created-date') //created date page
   }
 
-  else {
   res.redirect('unique-identification-mark') //unique identification mark page
-}
 })
 
 // Unique identification mark
 router.post('/v9/unique-identification-mark', function (req, res) {
   if (req.session.data['fromPage'] == 'cya') {
   res.redirect('check-your-answers')
+  }
+
+  if (req.session.data['fromPage'] == 'copy') {
+  res.redirect('copy-application')
   }
 
   if (req.session.data['fromPage'] == 'manageApplication') {
@@ -749,10 +802,6 @@ else {
 
 // What is the name of the species
 router.post('/v9/what-is-the-name-of-the-species', function (req, res) {
-  if (req.session.data['fromPage'] == 'cya') {
-  res.redirect('check-your-answers')
-  }
-
   if (req.session.data['fromPage'] == 'manageApplication') {
   res.redirect('application')
   }
@@ -776,6 +825,10 @@ router.post('/v9/what-is-the-name-of-the-species', function (req, res) {
 router.post('/v9/what-is-the-purpose-code', function (req, res) {
   if (req.session.data['fromPage'] == 'cya') {
   res.redirect('check-your-answers')
+  }
+
+  if (req.session.data['fromPage'] == 'copy') {
+  res.redirect('copy-application')
   }
 
   if (req.session.data['fromPage'] == 'manageApplication') {
@@ -827,10 +880,6 @@ router.post('/v9/what-is-your-address-applicant', function (req, res) {
 // What type of permit or certificate are you applying for
 router.post('/v9/what-type-of-permit-or-certificate-are-you-applying-for', function (req, res) {
   let permitType = req.session.data['permitType']
-
-  if (req.session.data['fromPage'] == 'cya') {
-    res.redirect('check-your-answers')
-  }
 
   if (req.session.data['fromPage'] == 'manageApplication') {
     res.redirect('application')
@@ -894,6 +943,10 @@ router.post('/v9/where-did-you-source-your-specimen-from', function (req, res) {
   res.redirect('check-your-answers')
   }
 
+  if (req.session.data['fromPage'] == 'copy') {
+  res.redirect('copy-application')
+  }
+
   if (req.session.data['fromPage'] == 'manageApplication') {
   res.redirect('application')
   }
@@ -902,9 +955,7 @@ router.post('/v9/where-did-you-source-your-specimen-from', function (req, res) {
   res.redirect('new-application')
   }
 
-else {
   res.redirect('what-is-the-purpose-code')
-}
 })
 
 // Your applications
