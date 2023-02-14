@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+
+{% set thisPageTitle = "what-is-your-address-agent-led" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="post" autocomplete="off">
+
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+<!-- import -->
+          {% if data['permitType'] == 'import' %}
+          <h1 class="govuk-heading-l">
+            What's the importer's address?
+          </h1>
+<!-- export -->
+          {% elseif data['permitType'] == 'export' %}
+          <h1 class="govuk-heading-l">
+            What's the exporter's address?
+          </h1>
+<!-- re-export -->
+          {% elseif data['permitType'] == 're-export' %}
+          <h1 class="govuk-heading-l">
+            What's the re-exporter's address?
+          </h1>
+<!-- A10 -->
+          {% elseif data['permitType'] == 'A10'%}
+          <h1 class="govuk-heading-l">
+            What's the applicant's address?
+          </h1>
+          {% endif %}
+        </legend>
+
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="postcode">
+                Postcode
+              </label>
+              <input class="govuk-input govuk-input--width-10" id="address-postcode" name="address-postcode" type="text" autocomplete="postal-code" value="{{data['your-address-postcode']}}">
+            </div>
+
+            <button class="govuk-button">Find address</button>
+            <p><a href="enter-address-manually">Enter address manually</a></p>
+
+        </form>
+
+      </div>
+    </div>
+
+  {% endblock %}

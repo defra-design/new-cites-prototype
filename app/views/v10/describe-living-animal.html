@@ -1,0 +1,196 @@
+{% extends "layout.html" %}
+
+{% set thisPageTitle = "describe-living-animal" %}
+
+<link rel="stylesheet" href="../dist/location-autocomplete.min.css" />
+
+{% block content %}
+
+<link rel="stylesheet" href="/public/stylesheets/accessible-autocomplete.min.css">
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <form method="post" autocomplete="off">
+        <h1 class="govuk-heading-l">Describe the specimen</h1>
+          <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+              <table class="govuk-table">
+                <tbody class="govuk-table__body">
+
+                  <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header govuk-!-width-one-half">What sex is the specimen?</th>
+                    <td class="govuk-table__cell">
+                    <div class="govuk-radios" data-module="govuk-radios">
+                        <div class="govuk-radios__item">
+                          <input class="govuk-radios__input" id="specimen-gender-1" name="gender" type="radio" value="Female" required>
+                          <label class="govuk-label govuk-radios__label" for="specimen-gender-1">
+                            Female
+                          </label>
+                        </div>
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="specimen-gender-2" name="gender" type="radio" value="Male">
+                        <label class="govuk-label govuk-radios__label" for="specimen-gender-2">
+                          Male
+                        </label>
+                      </div>
+
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="specimen-gender-3" name="gender" type="radio" value=">Not known">
+                        <label class="govuk-label govuk-radios__label" for="specimen-gender-3">
+                          <p class="govuk-body govuk-!-margin-bottom-0">Not known</p>
+                        </label>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <!-- <div class="govuk-radios__item">
+                      <input class="govuk-radios__input" id="specimen-gender-3" name="gender" type="radio" value=">Not known" data-aria-controls="conditional-specimen-gender-3">
+                      <label class="govuk-label govuk-radios__label" for="specimen-gender-3">
+                        <p class="govuk-body govuk-!-margin-bottom-0">Not known</p>
+                      </label>
+                      </div>
+                      <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-specimen-gender-3">
+                        <div class="govuk-form-group">
+                          <label class="govuk-label" for="gender">
+                            Enter a reason
+                          </label>
+                          <input class="govuk-input" id="gender" name="specimen-gender-3" type="text">
+                        </div>
+                      </div>
+                    </td>
+                  </tr> -->
+
+                  <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header govuk-!-width-one-half">What is the specimen's date of birth?</th>
+                    <td class="govuk-table__cell">
+                      <div id="hatch-date-hint" class="govuk-hint">
+                        If you do not know the exact date, enter an approximate month and year, or do not enter a date.
+                      </div>
+                      <!-- <div id="hatch-date-hint" class="govuk-hint">
+                      <p class="govuk-body">If you do not know the:</p>
+                      <ul class="govuk-list govuk-list--bullet">
+                        <li>exact date, enter an approximate month and year</li>
+                        <li>approximate date, do not enter a date</li>
+                      </ul>
+                    </div> -->
+                      <div class="govuk-form-group">
+                        <div class="govuk-date-input" id="hatch-date">
+                          <div class="govuk-date-input__item">
+                            <div class="govuk-form-group">
+                              <label class="govuk-label govuk-date-input__label" for="hatch-date-day">
+                                Day
+                              </label>
+                              <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="hatch-date-day" name="hatch-date-day" type="text" inputmode="numeric">
+                            </div>
+                          </div>
+                          <div class="govuk-date-input__item">
+                            <div class="govuk-form-group">
+                              <label class="govuk-label govuk-date-input__label" for="hatch-date-month">
+                                Month
+                              </label>
+                              <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="hatch-date-month" name="hatch-date-month" type="text" inputmode="numeric">
+                            </div>
+                          </div>
+                          <div class="govuk-date-input__item">
+                            <div class="govuk-form-group">
+                              <label class="govuk-label govuk-date-input__label" for="hatch-date-year">
+                                Year
+                              </label>
+                              <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="hatch-date-year" name="hatch-date-year" type="text" inputmode="numeric">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </td>
+                </tr>
+
+              {% if data['permitType'] === 'A10' %}
+                  <!-- <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header govuk-!-width-one-half">Parent details</th>
+                    <td class="govuk-table__cell">
+                      <div class="govuk-form-group">
+                        <div class="govuk-grid-row">
+                          <div class="govuk-grid-column-three-quarters">
+                            <label class="govuk-label" for="parent-1-mark">Unique identification mark for parent 1</label>
+                            <input class="govuk-input govuk-input--width-6" id="parent-1-mark" name="parent1IdentificationMark" type="text" value="{{data['parent1IdentificationMark']}}" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="govuk-form-group">
+                        <div class="govuk-grid-row">
+                          <div class="govuk-grid-column-three-quarters">
+                            <label class="govuk-label" for="parent-1-certificate-number">Article 10 certificate number for parent 1</label>
+                            <div id="certificate-number-hint" class="govuk-hint">
+                              For example, '10AB010C'
+                            </div>
+                            <input class="govuk-input govuk-input--width-10" id="parent-1-certificate-number" name="parent1CertificateNumber" type="text" value="{{data['parent1CertificateNumber']}}" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="govuk-form-group">
+                        <div class="govuk-grid-row">
+                          <div class="govuk-grid-column-three-quarters">
+                            <label class="govuk-label" for="parent-2-mark">Unique identification mark for parent 2</label>
+                            <input class="govuk-input govuk-input--width-6" id="parent-2-mark" name="parent2IdentificationMark" type="text" value="{{data['parent2IdentificationMark']}}" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="govuk-form-group">
+                        <div class="govuk-grid-row">
+                          <div class="govuk-grid-column-three-quarters">
+                            <label class="govuk-label" for="parent-2-certificate-number">Article 10 certificate number for parent 2</label>
+                            <div id="certificate-number-hint" class="govuk-hint">
+                              For example, '10AB010C'
+                            </div>
+                            <input class="govuk-input govuk-input--width-10" id="parent-2-certificate-number" name="parent2CertificateNumber" type="text" value="{{data['parent2CertificateNumber']}}" required>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr> -->
+                  <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header govuk-!-width-one-half">Parent details</th>
+                    <td class="govuk-table__cell">
+                    <div class="govuk-character-count" data-module="govuk-character-count" data-maxlength="250">
+                      <div id="additional-info-hint" class="govuk-hint">
+                        Enter the unique identification mark and A10 certificate number for each parent. For example, 'Parent female A10: 10AB010C/01, closed ring number: WEL0072257'
+                      </div>
+                      <div class="govuk-form-group">
+                        <textarea class="govuk-textarea govuk-js-character-count" id="with-hint" name="description" rows="10" aria-describedby="with-hint-info with-hint-hint" value="{{data['description']}}"></textarea>
+                      </div>
+                      <div id="with-hint-info" class="govuk-hint govuk-character-count__message">
+                        You can enter up to 250 characters
+                      </div>
+                    </div>
+                    </td>
+                  </tr>
+              {% endif %}
+
+
+                  <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header govuk-!-width-one-half">Other description</th>
+                    <td class="govuk-table__cell">
+                    <div class="govuk-character-count" data-module="govuk-character-count" data-maxlength="250">
+                      <div id="additional-info-hint" class="govuk-hint">
+                        Include anything else that helps to describe the specimen (optional).
+                      </div>
+                      <div class="govuk-form-group">
+                        <textarea class="govuk-textarea govuk-js-character-count" id="with-hint" name="description" rows="10" aria-describedby="with-hint-info with-hint-hint" value="{{data['description']}}"></textarea>
+                      </div>
+                      <div id="with-hint-info" class="govuk-hint govuk-character-count__message">
+                        You can enter up to 250 characters
+                      </div>
+                    </div>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+
+              <button class="govuk-button">Continue</button>
+
+            </form>
+          </div>
+          </div>
+
+    {% endblock %}

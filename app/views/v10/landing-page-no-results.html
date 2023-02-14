@@ -1,0 +1,355 @@
+{% extends "layout.html" %}
+<!-- {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %} -->
+
+{% set pageTitle = "landing-page-no-results" %}
+
+{% block beforeContent %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+<a id="back" class="govuk-back-link" href="javascript:history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+
+<!-- {%- from "moj/components/side-navigation/macro.njk" import mojSideNavigation -%} -->
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-three-quarters">
+    <h1 class="govuk-heading-l">Your applications</h1>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-half">
+    <div class="govuk-form-group">
+      <h3 class="govuk-heading-s"></h3>
+      <label class="govuk-label" for="input-with-suffix">Search</label>
+      <div class="govuk-input__wrapper">
+        <input class="govuk-input" id="input-with-suffix" name="searchValue" type="text" value="{{data['searchValue']}}">
+        <div class="govuk-input__suffix" aria-hidden="true">
+          <a href="landing-page-filtered?searchValue=Coral"><i class="fa fa-search icon searchicon"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="govuk-grid-column-one-quarter">
+      <br>
+      <br>
+      <br>
+      <p class="govuk-body"><a href="landing-page" class="govuk-link">Clear all<a></p>
+    </div>
+  <div class="govuk-grid-column-one-quarter" align="right">
+    <br>
+    <br>
+    <br>
+    <a href="what-type-of-permit-or-certificate-are-you-applying-for"><button class="govuk-button" data-module="govuk-button">Start new application</button><a>
+  </div>
+</div>
+
+<!-- <div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-form-group">
+      <h3 class="govuk-heading-s"></h3>
+      <label class="govuk-label" for="input-with-suffix">Search</label>
+      <div class="govuk-input__wrapper">
+        <input class="govuk-input" id="input-with-suffix" name="searchValue" type="text" value="{{data['searchValue']}}">
+        <div class="govuk-input__suffix" aria-hidden="true">
+          <a href="account-search-results?searchValue=Coral"><i class="fa fa-search icon searchicon"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+    <a href="what-type-of-permit-or-certificate-are-you-applying-for"><button class="govuk-button govuk-button" data-module="govuk-button">Start new application</button><a>
+  </div>
+
+</div> -->
+
+
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-quarter">
+    <div>
+      <h2 class="govuk-heading-m">Filters</h2>
+      <p class="govuk-body govuk-!-font-weight-bold">Permit type</p>
+    </div>
+
+    <div class="govuk-form-group ex1">
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+          <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="status-1" name="status" type="checkbox" value="submitted">
+              <label class="govuk-label govuk-checkboxes__label" for="status-1">
+                Import
+              </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="status-2" name="status" type="checkbox" value="awaiting payment">
+              <label class="govuk-label govuk-checkboxes__label" for="status-2">
+                Export
+              </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="status-3" name="status" type="checkbox" value="awaiting information">
+              <label class="govuk-label govuk-checkboxes__label" for="status-3">
+                Re-export
+              </label>
+            </div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="status-4" name="status" type="checkbox" value="assigned">
+              <label class="govuk-label govuk-checkboxes__label" for="status-4">
+                Article 10
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+
+      <div>
+        <p class="govuk-body govuk-!-font-weight-bold">Status</p>
+      </div>
+
+      <div class="govuk-form-group ex2">
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+            <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="status-1" name="status" type="checkbox" value="received">
+                <label class="govuk-label govuk-checkboxes__label" for="status-1">
+                  Received
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="status-3" name="status" type="checkbox" value="awaiting-payment">
+                <label class="govuk-label govuk-checkboxes__label" for="status-3">
+                  Awaiting payment
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="status-6" name="status" type="checkbox" value="awaiting-reply">
+                <label class="govuk-label govuk-checkboxes__label" for="status-6">
+                  Awaiting reply
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="status-6" name="status" type="checkbox" value="in-progress">
+                <label class="govuk-label govuk-checkboxes__label" for="status-6">
+                  In progress
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="status-6" name="status" type="checkbox" value="issued">
+                <label class="govuk-label govuk-checkboxes__label" for="status-6">
+                  Issued
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="status-6" name="status" type="checkbox" value="refused">
+                <label class="govuk-label govuk-checkboxes__label" for="status-6">
+                  Refused
+                </label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="status-5" name="status" type="checkbox" value="cancelled">
+                <label class="govuk-label govuk-checkboxes__label" for="status-5">
+                  Cancelled
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    <a href="landing-page-filtered?searchValue=Coral"><button class="govuk-button govuk-button--secondary" data-module="govuk-button">Apply filter</button><a>
+      <!-- <br>
+      <br>
+      <br>
+    <a href="what-type-of-permit-or-certificate-are-you-applying-for"><button class="govuk-button" data-module="govuk-button">Start new application</button><a> -->
+    </div>
+
+    <div class="govuk-grid-column-three-quarters">
+  <table class="govuk-table">
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th scope="col" class="govuk-table__header govuk-!-width-one-half">Reference number</th>
+        <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Date</th>
+        <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Status</th>
+      </tr>
+    </thead>
+    <tbody class="govuk-table__body">
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell"><p class="govuk-!-font-size-24 govuk-!-font-weight-bold">0 applications</p><p>We could not find any applications.</p></td>
+  <td class="govuk-table__cell"></td>
+  <td class="govuk-table__cell"></td>
+</tr>
+    </tbody>
+    <!-- <tbody class="govuk-table__body">
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell"><a href="manage-application?applicationRef=ABC22222222">ABC22222222</a><br>Alisterus chloropterus</td>
+        <td class="govuk-table__cell">24 April 2022</td>
+        <td class="govuk-table__cell">Permit issued</td>
+      </tr>
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell"><a href="manage-application?applicationRef=ABC22222222">ABC22222222</a><br>Alisterus chloropterus</td>
+        <td class="govuk-table__cell">06 November 2022</td>
+        <td class="govuk-table__cell">In progress</td>
+      </tr>
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell"><a href="manage-application?applicationRef=ABC22222222">ABC22222222</a><br>Alisterus chloropterus</td>
+        <td class="govuk-table__cell">24 April 2022</td>
+        <td class="govuk-table__cell">Permit issued</td>
+      </tr>
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell"><a href="manage-application?applicationRef=ABC22222222">ABC22222222</a><br>Alisterus chloropterus</td>
+        <td class="govuk-table__cell">24 April 2022</td>
+        <td class="govuk-table__cell">Permit issued</td>
+      </tr>
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell"><a href="manage-application?applicationRef=ABC22222222">ABC22222222</a><br>Alisterus chloropterus</td>
+        <td class="govuk-table__cell">24 April 2022</td>
+        <td class="govuk-table__cell">Permit issued</td>
+      </tr>
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell"><a href="manage-application?applicationRef=ABC22222222">ABC22222222</a><br>Alisterus chloropterus</td>
+        <td class="govuk-table__cell">24 April 2022</td>
+        <td class="govuk-table__cell">Permit issued</td>
+      </tr>
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell"><a href="manage-application?applicationRef=ABC22222222">ABC22222222</a><br>Alisterus chloropterus</td>
+        <td class="govuk-table__cell">24 April 2022</td>
+        <td class="govuk-table__cell">Permit issued</td>
+      </tr>
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell"><a href="manage-application?applicationRef=ABC22222222">ABC22222222</a><br>Alisterus chloropterus</td>
+        <td class="govuk-table__cell">24 April 2022</td>
+        <td class="govuk-table__cell">Permit issued</td>
+      </tr>
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell"><a href="manage-application?applicationRef=ABC22222222">ABC22222222</a><br>Alisterus chloropterus</td>
+        <td class="govuk-table__cell">24 April 2022</td>
+        <td class="govuk-table__cell">Permit issued</td>
+      </tr>
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell"><a href="manage-application?applicationRef=ABC22222222">ABC22222222</a><br>Alisterus chloropterus</td>
+        <td class="govuk-table__cell">24 April 2022</td>
+        <td class="govuk-table__cell">Permit issued</td>
+      </tr>
+    </tbody> -->
+  </table>
+</div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <div class="govuk-grid-column-one-quarter">
+      <p></p>
+    </div>
+    <div class="govuk-grid-column-one-half">
+      <nav class="govuk-pagination" role="navigation" aria-label="results">
+        <div class="govuk-pagination__prev">
+          <a class="govuk-link govuk-pagination__link" href="#" rel="prev">
+            <svg class="govuk-pagination__icon govuk-pagination__icon--prev" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+              <path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
+            </svg>
+            <span class="govuk-pagination__link-title">Previous</span></a>
+        </div>
+        <ul class="govuk-pagination__list">
+          <li class="govuk-pagination__item govuk-pagination__item--current">
+            <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 1" aria-current="page">
+              1
+            </a>
+          </li>
+          <!-- <li class="govuk-pagination__item">
+            <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 2">
+              2
+            </a>
+          </li>
+          <li class="govuk-pagination__item">
+            <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 3">
+              3
+            </a>
+          </li> -->
+        </ul>
+        <div class="govuk-pagination__next">
+          <a class="govuk-link govuk-pagination__link" href="#" rel="next"> <span class="govuk-pagination__link-title">Next</span> <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+              <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+            </svg></a>
+        </div>
+      </nav>
+    </div>
+    <div class="govuk-grid-one-quarter">
+      <p class="govuk-!-text-align-right">0 applications.</p>
+    </div>
+  </div>
+
+
+<style>
+
+  .ScrollStyle
+  {
+      max-height: 680px;
+      overflow-y: auto;
+  }
+
+  th {
+    background: #ffffff;
+    position: sticky;
+    top: 0;
+  }
+
+  /* tr:nth-child(odd){background-color: #f2f2f2} */
+
+
+  /* Set a style for the submit button */
+
+.searchicon {
+  color: white;
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+.searchicon:hover {
+  opacity: 0.8;
+}
+
+.govuk-input__suffix{
+  background-color: #1d70b8;
+  color: white;
+  border: ffffff;
+  cursor: pointer;
+}
+
+div.ex1 {
+  height: 180px;
+  /* overflow-x: hidden;
+  overflow-y: auto; */
+}
+
+div.ex2 {
+  height: 330px;
+  /* overflow-x: hidden;
+  overflow-y: auto; */
+}
+
+a {
+  text-decoration: none;
+}
+
+</style>
+{% endblock %}

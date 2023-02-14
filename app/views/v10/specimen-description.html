@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% set thisPageTitle = "description-dynamic" %}
+
+{% block pageTitle %}
+{{ thisPageTitle }} - {{ serviceName }} - GOV.UK
+{% endblock %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+<!-- Generic description -->
+    <form method="post" autocomplete="off">
+        <div class="govuk-character-count" data-module="govuk-character-count" data-maxwords="500">
+          <span class="govuk-caption-l">{{data['speciesName']}} ({{data['specimenCount']}} of {{data['quantity']}})</span>
+          <h1 class="govuk-heading-l">
+
+            {% if data['quantity'] == 1 %}
+              <label class="govuk-label govuk-label--l" for="word-count">
+                Describe the {{data['speciesName']}}
+              </label>
+            {% else %}
+              <label class="govuk-label govuk-label--l" for="word-count">
+                Describe the {{data['speciesName']}} ({{data['specimenCount']}} of {{data['quantity']}})
+              </label>
+            {% endif %}
+
+          </h1>
+          <textarea class="govuk-textarea govuk-js-character-count" id="word-count" name="word-count" rows="10" aria-describedby="word-count-info" value="{{data['plants-description']}}"></textarea>
+          <div id="word-count-info" class="govuk-hint govuk-character-count__message" aria-live="polite">
+            You can enter up to 500 words
+          </div>
+        </div>
+
+
+        <button class="govuk-button">Continue</button>
+    </div>
+  </div>
+
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% set thisPageTitle = "are-you-sure" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form method="post" autocomplete="off">
+
+      <div class="govuk-form-group">
+        <h1 class="govuk-heading-l">Are you sure you want to change the permit type?</h1>
+        <p class="govuk-body">If you change the permit type, we will cancel your {{data['permitType']}} application and you will need to start again.</p>
+        <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="change-permit-type-yes" name="changePermitType" type="radio" value="yes" required>
+            <label class="govuk-label govuk-radios__label" for="change-permit-type-yes">
+              Yes
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="change-permit-type-no" name="changePermitType"  type="radio" value="no">
+            <label class="govuk-label govuk-radios__label" for="change-permit-type-no">
+              No
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <button class="govuk-button">Continue</button>
+
+    </form>
+  </div>
+</div>
+
+
+
+{% endblock %}

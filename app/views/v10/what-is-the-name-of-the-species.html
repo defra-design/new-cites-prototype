@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% set thisPageTitle = "what-is-the-name-of-the-species" %}
+
+
+  {% block content %}
+
+  <link rel="stylesheet" href="/public/stylesheets/accessible-autocomplete.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="post" autocomplete="off">
+
+      <div class="govuk-form-group">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              What is the scientific name of the species?
+            </h1>
+          </legend>
+          <p>Enter the exact scientific name as it appears on the CITES species list. You can <a href="https://speciesplus.net" target="_blank">search for the scientific name on species+</a> (opens in a new tab), then copy and paste it below.</p>
+
+          <div id="speciesName">
+            <label class="govuk-label" for="species-name">Scientific name</label>
+            <input class="govuk-input" id="species-name" name="speciesName" type="text">
+          </div>
+      </div>
+
+    <button class="govuk-button">Continue</button>
+    </form>
+
+  </div>
+</div>
+
+    {% endblock %}

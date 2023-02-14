@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% set thisPageTitle = "ever-been-imported-exported" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form method="post" autocomplete="off">
+
+      <div class="govuk-form-group">
+        <h1 class="govuk-heading-l">Has the specimen ever been imported or exported?</h1>
+        <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="ever-imported-exported-yes" name="everImportedExported" type="radio" value="yes" required>
+            <label class="govuk-label govuk-radios__label" for="ever-imported-exported-yes">
+              Yes
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="ever-imported-exported-no" name="everImportedExported"  type="radio" value="no">
+            <label class="govuk-label govuk-radios__label" for="ever-imported-exported-no">
+              No
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <button class="govuk-button">Continue</button>
+
+    </form>
+  </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% set thisPageTitle = "enter-your-address-manually-agent" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="post" autocomplete="off" {{ novalidateVal }}>
+
+          <div class="govuk-form-group">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+                  Enter your address<address class="">
+
+                  </address>
+                </h1>
+              </legend>
+
+              <p class="govuk-body">If it's a business, give the business address.</p>
+
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="address-line-1">
+                  Address line 1
+                </label>
+                <input class="govuk-input" id="address-line-1" name="address-line-1" type="text" autocomplete="address-line-1">
+              </div>
+
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="address-line-2">
+                  Address line 2
+                </label>
+                <input class="govuk-input" id="address-line-2" name="address-line-2" type="text" autocomplete="address-line-2">
+              </div>
+
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="address-line-3">
+                  Address line 3 (optional)
+                </label>
+                <input class="govuk-input" id="address-line-3" name="address-line-3" type="text" autocomplete="address-line-3">
+              </div>
+
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="address-line-4">
+                  Address line 4 (optional)
+                </label>
+                <input class="govuk-input" id="address-line-4" name="address-line-4" type="text" autocomplete="address-line-4">
+              </div>
+
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="address-postcode">
+                  Postal or zip code (if your country has one)
+                </label>
+                <input class="govuk-input govuk-!-width-two-thirds" id="address-postcode" name="address-postcode" type="text" autocomplete="address-postcode">
+              </div>
+
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="address-country">
+                  Country
+                </label>
+                <input class="govuk-input govuk-!-width-two-thirds" id="address-country" name="address-country" type="text">
+              </div>
+
+            </fieldset>
+          </div>
+
+        <button class="govuk-button">Continue</button>
+
+      </form>
+    </div>
+  </div>
+  {% endblock %}

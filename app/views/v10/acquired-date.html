@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+
+{% set thisPageTitle = "acquired-date" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form method="post" autocomplete="off">
+      <!-- <span class="govuk-caption-l">{{data['speciesName']}} ({{data['specimenCount']}} of {{data['quantity']}})</span> -->
+      <div class="govuk-form-group">
+        <h1 class="govuk-heading-l">When did you acquire the specimen?</h1>
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="created-date-hint">
+
+            <div id="created-date-hint" class="govuk-hint">
+            For example, 27 3 2007
+          </div>
+
+            <div class="govuk-date-input" id="created-date">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="acquired-date-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="acquired-date-day" name="acquired-date-day" type="text" inputmode="numeric">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="acquired-date-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="acquired-date-month" name="acquired-date-month" type="text" inputmode="numeric">
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="acquired-date-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="acquired-date-year" name="acquired-date-year" type="text" inputmode="numeric">
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+<p>Or</p>
+        <div class="govuk-checkboxes govuk-checkboxes" data-module="govuk-checkboxes">
+           <div class="govuk-checkboxes__item">
+             <input class="govuk-checkboxes__input" id="acquired-date-unknown" name="approximateDate" type="checkbox" value="text" data-aria-controls="conditional-approximate-acquired-date">
+             <label class="govuk-label govuk-checkboxes__label" for="acquired-date-unknown">
+               I do not know the exact date
+             </label>
+           </div>
+           <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-approximate-acquired-date">
+             <div class="govuk-form-group">
+               <label class="govuk-label" for="approximate-acquired-date">
+                 Enter an approximate date or period of time
+               </label>
+               <div id="created-date-hint" class="govuk-hint">
+                   For example, '1950' or '15th century'.
+               </div>
+               <input class="govuk-input govuk-!-width-two-thirds" id="approximate-acquired-date" name="approximate-acquired-date" type="text" spellcheck="false">
+             </div>
+           </div>
+      </div>
+    </div>
+
+      <button class="govuk-button">Continue</button>
+
+    </form>
+  </div>
+</div>
+
+
+
+{% endblock %}

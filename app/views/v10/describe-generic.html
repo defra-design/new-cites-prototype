@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% set thisPageTitle = "describe-generic" %}
+
+{% block pageTitle %}
+{{ thisPageTitle }} - {{ serviceName }} - GOV.UK
+{% endblock %}
+
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+<!-- Generic description -->
+    <form method="post" autocomplete="off">
+        <div class="govuk-character-count" data-module="govuk-character-count" data-maxlength="500">
+          <div class="govuk-form-group">
+            <!-- <span class="govuk-caption-l">{{data['speciesName']}} ({{data['specimenCount']}} of {{data['quantity']}})</span> -->
+            <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="with-hint">
+                Describe the {{data['speciesName']}}
+              </label>
+            </h1>
+            <textarea class="govuk-textarea govuk-js-character-count" id="with-hint" name="description" rows="10" aria-describedby="with-hint-info with-hint-hint" value="{{data['description']}}"></textarea>
+          </div>
+          <div id="with-hint-info" class="govuk-hint govuk-character-count__message">
+            You can enter up to 500 characters
+          </div>
+        </div>
+        <button class="govuk-button">Continue</button>
+    </div>
+  </div>
+
+
+{% endblock %}
