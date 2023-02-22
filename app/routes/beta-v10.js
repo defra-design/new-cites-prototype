@@ -509,7 +509,7 @@ router.post('/v10/enter-your-contact-details-agent', function (req, res) {
   res.redirect('new-application')
   }
 else {
-  res.redirect('what-is-your-address-agent')
+  res.redirect('confirm-your-address-agent')
 }
 })
 
@@ -539,7 +539,7 @@ router.post('/v10/enter-your-contact-details-applicant', function (req, res) {
   }
 
 else {
-  res.redirect('what-is-your-address-applicant')
+  res.redirect('confirm-your-address-applicant')
 }
 })
 
@@ -961,6 +961,11 @@ router.post('/v10/where-did-you-source-your-specimen-from', function (req, res) 
   else {
   res.redirect('what-is-the-purpose-code')
 }
+})
+
+// You cannot use this service yet
+router.post('/v10/you-cannot-use-this-service-yet', function (req, res) {
+  res.redirect('your-submissions')
 })
 
 // Your applications

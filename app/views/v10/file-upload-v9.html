@@ -9,31 +9,16 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <link rel="stylesheet" href="/public/stylesheets/style.css">
 
+
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
     <form method="post" novalidate>
-
-      <div class="govuk-error-summary" data-module="govuk-error-summary">
-         <div role="alert">
-           <h2 class="govuk-error-summary__title">
-             There is a problem
-           </h2>
-           <div class="govuk-error-summary__body">
-             <ul class="govuk-list govuk-error-summary__list">
-               <li>
-                 <a href="#passport-issued-year">File too big. The selected file must be smaller than 10MB</a>
-               </li>
-             </ul>
-           </div>
-         </div>
-       </div>
 
       <h1 class="govuk-heading-l">Upload supporting documents</h1>
       <p class="govuk-body">You should add any documents that may support your application. For example, you can upload:</p>
 
           <ul class="govuk-list govuk-list--bullet">
-            <li>an export or re-export permit</li>
-            <li>an endorsed import permit</li>
+            <li>an export, re-export or import permit</li>
             <li>an Article 10 certificate for the specimen's parents</li>
             <li>proof of ownership or how you acquired the specimen</li>
             <li>the specimen's proof of identity</li>
@@ -43,7 +28,7 @@
           </ul>
 
           <h2 class="govuk-heading-m">Upload files</h2>
-          <p class="govuk-body">You can upload a total of 10 files. Files must be smaller than 10MB and either:</p>
+          <p class="govuk-body">You can upload a total of 6 files. Files must be smaller than 10MB and either:</p>
           <ul class="govuk-list govuk-list--bullet">
             <li>a PDF</li>
             <li>a Microsoft Word document (.DOC or .DOCX)</li>
@@ -54,18 +39,14 @@
         <div class="row">
             <div class="upload-file">
 
-              <div class="govuk-form-group govuk-form-group--error">
+                <div class="govuk-form-group">
                   <label class="govuk-label" for="file-upload-1">
                     <!-- Upload a file -->
                   </label>
-                  <p id="file-upload-1-error" class="govuk-error-message">
-                    <span class="govuk-visually-hidden">Error:</span> File too big. The selected file must be smaller than 10MB
-                  </p>
                   <input class="govuk-file-upload" type="file" name="files[]" id="files" multiple accept="image/jpeg, image/png, image/gif, application/pdf, application/msword">
                   <hr>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-12">
                     <h2 class="govuk-heading-m">Files to upload</h2>
