@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% set thisPageTitle = "are-you-sure" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form method="post" autocomplete="off">
+
+      <div class="govuk-form-group">
+        <h1 class="govuk-heading-l">Are you sure you want to change the scientific name?</h1>
+        <p class="govuk-body">If you change the scientific name, you will have to enter the species details again.</p>
+        <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="change-scientific-name-yes" name="changeScientificName" type="radio" value="yes" required>
+            <label class="govuk-label govuk-radios__label" for="change-scientific-name-yes">
+              Yes
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="change-scientific-name-no" name="changeScientificName"  type="radio" value="no">
+            <label class="govuk-label govuk-radios__label" for="change-scientific-name-no">
+              No
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <button class="govuk-button">Continue</button>
+
+    </form>
+  </div>
+</div>
+
+
+
+{% endblock %}

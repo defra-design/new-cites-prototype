@@ -121,6 +121,31 @@ router.post('/v10/are-you-sure-change-permit-type', function (req, res) {
   }
 })
 
+// Are you sure change the scientific name
+router.post('/v10/are-you-sure-change-scientific-name', function (req, res) {
+  if (req.session.data['changeScientificName'] == 'yes') {
+      res.redirect('what-is-the-name-of-the-species?fromPage=noreturn')
+  }
+
+  if (req.session.data['changeScientificName'] == 'no') {
+    if (req.session.data['fromPage'] == 'pre-submission') {
+      res.redirect('your-applications-pre-submission')
+    }
+  }
+
+  if (req.session.data['changeScientificName'] == 'no') {
+    if (req.session.data['fromPage'] == 'cya') {
+      res.redirect('check-your-answers')
+    }
+  }
+
+  if (req.session.data['changeScientificName'] == 'no') {
+    if (req.session.data['fromPage'] == 'copy') {
+      res.redirect('copy-application')
+    }
+  }
+})
+
 // Are you sure change applicant contact details
 router.post('/v10/are-you-sure-change-applicant-contact-details', function (req, res) {
 
@@ -773,6 +798,9 @@ router.post('/v10/unique-identification-mark', function (req, res) {
     res.redirect('describe-living-animal')
   }
 }
+
+res.redirect('describe-generic')
+
 })
 
 // View application

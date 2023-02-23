@@ -205,6 +205,7 @@ function RenderThumbnail(e, readerEvt) {
 		// readerEvt.name,
 		// '"/></a>' +
 		// *******************************************************************
+		// "<span class=\"close\">remove</span></div>"
 		"<span class=\"close\"><i class=\"fa fa-trash-o\"></i></span></div>"
 	].join("");
 
