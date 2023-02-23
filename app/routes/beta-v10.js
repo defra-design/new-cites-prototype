@@ -99,7 +99,7 @@ if (req.session.data['remove'] == 'yes') {
 // Are you sure change permit type
 router.post('/v10/are-you-sure-change-permit-type', function (req, res) {
   if (req.session.data['changePermitType'] == 'yes') {
-      res.redirect('what-type-of-permit-or-certificate-are-you-applying-for')
+      res.redirect('what-type-of-permit-or-certificate-are-you-applying-for?fromPage=noreturn')
   }
 
   if (req.session.data['changePermitType'] == 'no') {
@@ -917,6 +917,14 @@ router.post('/v10/what-type-of-permit-or-certificate-are-you-applying-for', func
     res.redirect('new-application')
   }
 
+  if (permitType === 'other') {
+    res.redirect('you-cannot-use-this-service-yet')
+  }
+
+  if (req.session.data['changePermitType'] == 'yes') {
+    res.redirect('what-is-the-name-of-the-species')
+  }
+
   if (permitType === 'import') {
     res.redirect('are-you-applying-on-behalf-of-someone-else')
   }
@@ -928,9 +936,6 @@ router.post('/v10/what-type-of-permit-or-certificate-are-you-applying-for', func
   }
   if (permitType === 'A10') {
     res.redirect('are-you-applying-on-behalf-of-someone-else')
-  }
-  if (permitType === 'other') {
-    res.redirect('you-cannot-use-this-service-yet')
   }
 })
 
