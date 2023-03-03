@@ -42,9 +42,7 @@ router.post('/v10/acquired-date', function (req, res) {
   res.redirect('new-application')
   }
 
-else {
   res.redirect('already-have-a10')
-}
 })
 
 // Already have A10
@@ -484,6 +482,9 @@ router.post('/v10/describe-generic', function (req, res) {
   res.redirect('new-application')
   }
 
+  if (req.session.data['permitType'] == 'A10') {
+  res.redirect('acquired-date')
+  }
 else {
   res.redirect('importer-exporter-details')
 }
@@ -689,6 +690,12 @@ router.post('/v10/quantity-or-net-mass', function (req, res) {
   if (req.session.data['fromPage'] == 'manageApplicationNew') {
   res.redirect('new-application')
   }
+
+  if (req.session.data['specimenDescription'] == 'workedItem') {
+  res.redirect('created-date')
+  }
+
+
 
 else {
   res.redirect('trade-term-code')
