@@ -174,7 +174,9 @@
               <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Quantity or net mass</p>
               <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Unit of measurement</p>
               <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Source code</p>
+              {% if data['permitType'] != 'A10'%}
               <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Purpose code</p>
+              {% endif %}
               <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Trade term code</p>
               <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Unique identification mark</p>
               <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Sex</p>
@@ -208,7 +210,9 @@
               <p class="govuk-!-margin-bottom-1">{{data['quantity']}}</p>
               <p class="govuk-!-margin-bottom-1">{{data['unitOfMeasure']}}</p>
               <p class="govuk-!-margin-bottom-1">{{data['sourceCode']}}</p>
-              <p class="govuk-!-margin-bottom-1">{{data['purposeCode']}}</p>
+              {% if data['permitType'] != 'A10'%}
+              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Purpose code</p>
+              {% endif %}
               {% if data['tradeTerm'] === 'yes'%}
                 {% if data['tradeTermCode'] === ''%}
                   <p class="govuk-!-margin-bottom-1">Code not provided</p>
@@ -297,9 +301,11 @@
               <a class="govuk-link" href="where-did-you-source-your-specimen-from?fromPage=cya">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Source code</span></p>
               </a>
+              {% if data['permitType'] != 'A10'%}
               <a class="govuk-link" href="what-is-the-purpose-code?fromPage=cya">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Purpose code</span></p>
               </a>
+              {% endif %}
               <a class="govuk-link" href="trade-term-code?fromPage=cya">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Trade term code</span></p>
               </a>
@@ -373,11 +379,11 @@
             <!-- Values -->
             <dd class="govuk-summary-list__value">
               {% if data['tradeTerm'] === 'yes'%}
-                {% if data['tradeTermCode'] === ''%}
+                <!-- {% if data['tradeTermCode'] === ''%}
                   <p class="govuk-!-margin-bottom-1">Code not provided</p>
-                  {% else %}
+                  {% else %} -->
                   <p class="govuk-!-margin-bottom-1">{{data['tradeTermCode']}}</p>
-                {% endif %}
+                <!-- {% endif %} -->
               {% else %}
                 <p class="govuk-!-margin-bottom-1">Not known</p>
               {% endif %}
