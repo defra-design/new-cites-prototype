@@ -170,14 +170,15 @@
 <!-- List -->
             <dt class="govuk-summary-list__key">
               <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Scientific name</p>
-              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Quantity or net mass</p>
-              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Unit of measurement</p>
+                  <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Quantity or net mass</p>
+                  <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Unit of measurement</p>
               <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Source code</p>
               {% if data['permitType'] != 'A10'%}
                 <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Purpose code</p>
               {% endif %}
-                <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Trade term code</p>
-                <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Unique identification mark</p>
+              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Specimen type</p>
+              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Trade term code</p>
+              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Unique identification mark</p>
 
               {% if data['specimenDescription'] == 'livingAnimal'%}
                 {% if data['specimenType'] == 'animal'%}
@@ -194,11 +195,6 @@
                     {% endif %}
                   {% endif %}
 
-                  {% if data['quantity'] > 1%}
-                    {% if data['identificationMark'] === 'unmarked'%}
-                      <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Unmarked specimens</p>
-                    {% endif %}
-                  {% endif %}
                 {% endif %}
               {% endif %}
 
@@ -212,13 +208,25 @@
 <!-- Value -->
             <dd class="govuk-summary-list__value">
               <p class="govuk-!-margin-bottom-1">{{data['speciesName']}}</p>
-              <p class="govuk-!-margin-bottom-1">{{data['quantity']}}</p>
-              <p class="govuk-!-margin-bottom-1">{{data['unitOfMeasure']}}</p>
+
+              {% if data['specimenDescription'] === 'livingAnimal'%}
+                {% if data['identificationMark'] === 'unmarked'%}
+                  <p class="govuk-!-margin-bottom-1">{{data['unmarkedQuantity']}}</p>
+                  <p class="govuk-!-margin-bottom-1">{{data['unitOfMeasure']}}</p>
+                {% else %}
+                  <p class="govuk-!-margin-bottom-1">1</p>
+                  <p class="govuk-!-margin-bottom-1">Number of specimens</p>
+                {% endif %}
+              {% else %}
+                <p class="govuk-!-margin-bottom-1">{{data['quantity']}}</p>
+                <p class="govuk-!-margin-bottom-1">{{data['unitOfMeasure']}}</p>
+              {% endif %}
+
               <p class="govuk-!-margin-bottom-1">{{data['sourceCode']}}</p>
               {% if data['permitType'] != 'A10'%}
               <p class="govuk-!-margin-bottom-1">{{data['purposeCode']}}</p>
             {% endif %}
-
+              <p class="govuk-!-margin-bottom-1">{{data['specimenDescription']}}</p>
               {% if data['tradeTerm'] === 'yes'%}
                   <p class="govuk-!-margin-bottom-1">{{data['tradeTermCode']}}</p>
               {% else %}
@@ -257,55 +265,66 @@
               {% endif %}
 
 <!-- Value - Living animals -->
-        {% if data['specimenDescription'] == 'livingAnimal'%}
-          {% if data['specimenType'] == 'animal'%}
-              <p class="govuk-!-margin-bottom-1">{{data['gender']}}</p>
-              {% if data['hatch-date-day'] === ''%}
-                <p class="govuk-!-margin-bottom-1">04 12 2020</p>
-                {% else %}
-                <p class="govuk-!-margin-bottom-1">{{data['hatch-date-day']}} {{data['hatch-date-month']}} {{data['hatch-date-year']}}</p>
-              {% endif %}
-          {% if data['permitType'] === 'A10'%}
-              <p class="govuk-!-margin-bottom-1">{{data['parent1IdentificationMark']}}</p>
-              <p class="govuk-!-margin-bottom-1">{{data['parent1CertificateNumber']}}</p>
-              <p class="govuk-!-margin-bottom-1">{{data['parent2IdentificationMark']}}</p>
-              <p class="govuk-!-margin-bottom-1">{{data['parent2CertificateNumber']}}</p>
-              <p class="govuk-!-margin-bottom-1">{{data['acquired-date-day']}} {{data['acquired-date-month']}} {{data['acquired-date-year']}}</p>
-          {% endif %}
-          {% if data['hasA10'] === 'yes'%}
-              <p class="govuk-!-margin-bottom-1">{{data['certificateNumber']}}</p>
-          {% endif %}
+          {% if data['specimenDescription'] == 'livingAnimal'%}
+            {% if data['specimenType'] == 'animal'%}
+                <p class="govuk-!-margin-bottom-1">{{data['gender']}}</p>
+                {% if data['hatch-date-day'] === ''%}
+                  <p class="govuk-!-margin-bottom-1">04 12 2020</p>
+                  {% else %}
+                  <p class="govuk-!-margin-bottom-1">{{data['hatch-date-day']}} {{data['hatch-date-month']}} {{data['hatch-date-year']}}</p>
+                {% endif %}
+                {% if data['permitType'] === 'A10'%}
+                    <p class="govuk-!-margin-bottom-1">{{data['parent1IdentificationMark']}}</p>
+                    <p class="govuk-!-margin-bottom-1">{{data['parent1CertificateNumber']}}</p>
+                    <p class="govuk-!-margin-bottom-1">{{data['parent2IdentificationMark']}}</p>
+                    <p class="govuk-!-margin-bottom-1">{{data['parent2CertificateNumber']}}</p>
+                    <p class="govuk-!-margin-bottom-1">{{data['acquired-date-day']}} {{data['acquired-date-month']}} {{data['acquired-date-year']}}</p>
+                {% endif %}
+                {% if data['hasA10'] === 'yes'%}
+                    <p class="govuk-!-margin-bottom-1">{{data['certificateNumber']}}</p>
+                {% endif %}
 
-          {% if data['quantity'] > 1%}
-            {% if data['identificationMark'] === 'unmarked'%}
-              <p class="govuk-!-margin-bottom-1">{{data['unmarkedQuantity']}}</p>
             {% endif %}
           {% endif %}
-        {% endif %}
-      {% endif %}
 
-        {% if data['specimenDescription'] === 'workedItem'%}
-          <p class="govuk-!-margin-bottom-1">{{data['created-date-day']}} {{data['created-date-month']}} {{data['created-date-year']}}</p>
-        {% endif %}
+              {% if data['specimenDescription'] === 'workedItem'%}
+                <p class="govuk-!-margin-bottom-1">{{data['created-date-day']}} {{data['created-date-month']}} {{data['created-date-year']}}</p>
+              {% endif %}
 
-          {% if data['description'] === ''%}
-            <p class="govuk-!-margin-bottom-1">No other information</p>
-            {% else %}
-            <p class="govuk-!-margin-bottom-1">{{data['description']}}</p>
-          {% endif %}
-      </dd>
+                {% if data['description'] === ''%}
+                  <p class="govuk-!-margin-bottom-1">No other information</p>
+                  {% else %}
+                  <p class="govuk-!-margin-bottom-1">{{data['description']}}</p>
+                {% endif %}
+            </dd>
 
 <!-- Actions -->
             <dd class="govuk-summary-list__actions">
               <a class="govuk-link" href="are-you-sure-change-scientific-name?fromPage=cya">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Scientific name</span></p>
               <a/>
-              <a class="govuk-link" href="quantity-or-net-mass?fromPage=cya">
+
+          {% if data['specimenDescription'] == 'livingAnimal'%}
+            {% if data['specimenType'] == 'animal'%}
+              {% if data['identificationMark'] === 'unmarked'%}
+                <a class="govuk-link" href="how-many-unmarked?fromPage=cya">
                   <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Quantity</span></p>
-              </a>
-              <a class="govuk-link" href="quantity-or-net-mass?fromPage=cya">
-                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Unit of measurement></p>
-              </a>
+                </a>
+                <br>
+              {% else %}
+                <br>
+                <br>
+              {% endif %}
+            {% endif %}
+            {% else %}
+            <a class="govuk-link" href="quantity-or-net-mass?fromPage=cya">
+              <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Quantity</span></p>
+            </a>
+            <a class="govuk-link" href="quantity-or-net-mass?fromPage=cya">
+              <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Unit of measurement</span></p>
+            </a>
+          {% endif %}
+
               <a class="govuk-link" href="where-did-you-source-your-specimen-from?fromPage=cya">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Source code</span></p>
               </a>
@@ -314,6 +333,9 @@
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Purpose code</span></p>
               </a>
               {% endif %}
+              <a class="govuk-link" href="what-best-describes-the-specimen?fromPage=cya">
+                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Specimen type</span></p>
+              </a>
               <a class="govuk-link" href="trade-term-code?fromPage=cya">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Trade term code</span></p>
               </a>
@@ -321,7 +343,7 @@
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Unique identification mark</span></p>
               </a>
 
-<!-- Value - Living animals -->
+<!-- Actions - Living animals -->
         {% if data['specimenDescription'] == 'livingAnimal'%}
           {% if data['specimenType'] == 'animal'%}
           <a class="govuk-link" href="describe-living-animal?fromPage=cya">
@@ -352,16 +374,8 @@
                   </a>
                 {% endif %}
               {% endif %}
-
-              {% if data['quantity'] > 1%}
-                {% if data['identificationMark'] === 'unmarked'%}
-                <a class="govuk-link" href="how-many-unmarked?fromPage=cya">
-                  <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Change</span></p>
-                </a>
-                {% endif %}
-              {% endif %}
-          {% endif %}
-        {% endif %}
+      {% endif %}
+    {% endif %}
 
               {% if data['specimenDescription'] === 'workedItem'%}
               <a class="govuk-link" href="created-date?fromPage=cya">
