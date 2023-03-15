@@ -427,7 +427,12 @@ router.post('/v10/created-date', function (req, res) {
 
 // Declaration
 router.post('/v10/declaration', function (req, res) {
-  res.redirect('application-complete')
+  if (req.session.data['simplePayment'] == 'yes') {
+  res.redirect('pay-application')
+  }
+  else {
+    res.redirect('application-complete')
+}
 })
 
 // Describe living animal
@@ -648,6 +653,16 @@ router.post('/v10/application', function (req, res) {
 // New application
 router.post('/v10/new-application', function (req, res) {
   res.redirect('your-applications-pre-submission')
+})
+
+// Pay application
+router.post('/v10/pay-application', function (req, res) {
+  if (req.session.data['payNow'] == 'yes') {
+  res.redirect('#')
+  }
+else {
+  res.redirect('application-complete')
+}
 })
 
 // Permit details
