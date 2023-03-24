@@ -170,8 +170,19 @@
 <!-- List -->
             <dt class="govuk-summary-list__key">
               <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Scientific name</p>
-                  <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Quantity or net mass</p>
-                  <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Unit of measurement</p>
+
+              {% if data['specimenDescription'] == 'livingAnimal'%}
+                {% if data['specimenType'] == 'animal'%}
+                  {% if data['identificationMark'] === 'unmarked'%}
+                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Unmarked specimens</p>
+                    <!-- <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Unit of measurement</p> -->
+                  {% endif %}
+                {% endif %}
+              {% else %}
+                <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Quantity or net mass</p>
+                <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Unit of measurement</p>
+              {% endif %}
+
               <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Source code</p>
               {% if data['permitType'] != 'A10'%}
                 <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Purpose code</p>
@@ -209,13 +220,11 @@
             <dd class="govuk-summary-list__value">
               <p class="govuk-!-margin-bottom-1">{{data['speciesName']}}</p>
 
-              {% if data['specimenDescription'] === 'livingAnimal'%}
-                {% if data['identificationMark'] === 'unmarked'%}
-                  <p class="govuk-!-margin-bottom-1">{{data['unmarkedQuantity']}}</p>
-                  <p class="govuk-!-margin-bottom-1">{{data['unitOfMeasure']}}</p>
-                {% else %}
-                  <p class="govuk-!-margin-bottom-1">1</p>
-                  <p class="govuk-!-margin-bottom-1">Number of specimens</p>
+              {% if data['specimenDescription'] == 'livingAnimal'%}
+                {% if data['specimenType'] == 'animal'%}
+                  {% if data['identificationMark'] === 'unmarked'%}
+                    <p class="govuk-!-margin-bottom-1">{{data['unmarkedQuantity']}}</p>
+                  {% endif %}
                 {% endif %}
               {% else %}
                 <p class="govuk-!-margin-bottom-1">{{data['quantity']}}</p>
@@ -308,12 +317,10 @@
             {% if data['specimenType'] == 'animal'%}
               {% if data['identificationMark'] === 'unmarked'%}
                 <a class="govuk-link" href="how-many-unmarked?fromPage=cya">
-                  <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Quantity</span></p>
+                  <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Number of unmarkednmarked</span></p>
                 </a>
                 <br>
               {% else %}
-                <br>
-                <br>
               {% endif %}
             {% endif %}
             {% else %}

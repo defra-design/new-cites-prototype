@@ -43,12 +43,14 @@
 {% block header %}
   {# Set serviceName in config.js. #}
   {{ govukHeader({
+    navigation: [
+    {
+      href:"#",
+      text: "logout"
+    }],
     serviceName: serviceName,
     serviceUrl: "/",
-    containerClasses: "govuk-width-container",
-    navigation: [{
-
-    }]
+    containerClasses: "govuk-width-container"
   }) }}
 {% endblock %}
 
