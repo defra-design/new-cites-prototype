@@ -10,6 +10,9 @@
 
       <div class="govuk-form-group">
         <h1 class="govuk-heading-l">Are you sure you want to remove this specimen from your application?</h1>
+        {% if data['applicationCount'] == 1%}
+          <p class="govuk-body">If you remove the specimen you will need to add at least one species to your application to continue.</p>
+        {% endif %}
         <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
           <div class="govuk-radios__item">
             <input class="govuk-radios__input" id="remove-yes" name="remove" type="radio" value="yes" required>
