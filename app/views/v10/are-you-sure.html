@@ -9,7 +9,7 @@
     <form method="post" autocomplete="off">
 
       <div class="govuk-form-group">
-        <h1 class="govuk-heading-l">Are you sure you want to remove this specimen from your application?</h1>
+        <h1 class="govuk-heading-l">Are you sure you want to remove {{data['speciesName']}} from your application?</h1>
         {% if data['applicationCount'] == 1%}
           <p class="govuk-body">If you remove the specimen you will need to add at least one species to your application to continue.</p>
         {% endif %}
