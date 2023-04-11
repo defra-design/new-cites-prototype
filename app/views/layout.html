@@ -45,10 +45,7 @@
   {{ govukHeader({
     serviceName: serviceName,
     serviceUrl: "/",
-    containerClasses: "govuk-width-container",
-    navigation: [{
-
-    }]
+    containerClasses: "govuk-width-container"
   }) }}
 {% endblock %}
 
@@ -66,6 +63,10 @@
           {
             href: "https://govuk-prototype-kit.herokuapp.com/",
             text: "GOV.UK Prototype Kit " + releaseVersion
+          },
+          {
+            href: "privacy",
+            text: "Privacy"
           },
           {
             href: "/prototype-admin/clear-data",
