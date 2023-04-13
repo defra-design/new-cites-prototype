@@ -1,7 +1,7 @@
 {% extends "layout-with-logout.html" %}
 <!-- {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %} -->
 
-{% set pageTitle = "your-submissions" %}
+{% set pageTitle = "my-submissions-no-applications-made" %}
 
 {% block beforeContent %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
@@ -22,6 +22,12 @@
     <li class="govuk-breadcrumbs__list-item">
       <a class="govuk-breadcrumbs__link" href="your-submissions">Your applications</a>
     </li>
+    <!-- <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Passports, travel and living abroad</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="#">Travel abroad</a>
+    </li> -->
   </ol>
 </div>
 
@@ -172,89 +178,70 @@
   <table class="govuk-table">
     <thead class="govuk-table__head">
       <tr class="govuk-table__row">
-        <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Reference number</th>
-        <th scope="col" class="govuk-table__header govuk-!-width-one-quarter" style="text-align:right;">Application date</th>
-        <th scope="col" class="govuk-table__header govuk-!-width-one-third" style="text-align:right;">Status</th>
+        <th scope="col" class="govuk-table__header govuk-!-width-one-half">Reference number</th>
+        <th scope="col" class="govuk-table__header govuk-!-width-one-third">Application date</th>
+        <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Status</th>
       </tr>
     </thead>
     <tbody class="govuk-table__body">
       <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N10">AB7N15</a></td>
-        <td class="govuk-table__cell" style="text-align:right;" name="submissionDate" value="10 April 2022">15 April 2022</td>
-        <td class="govuk-table__cell" style="text-align:right;">Received</td>
+        <!-- <td class="govuk-table__cell"></td>
+        <td class="govuk-table__cell"></td>
+        <td class="govuk-table__cell"></td> -->
+      </tr>
+      <!-- <tr class="govuk-table__row">
+        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N10">AB7N10</a><br>Alisterus chloropterus</td>
+        <td class="govuk-table__cell" name="submissionDate" value="10 April 2022">10 April 2022</td>
+        <td class="govuk-table__cell">Received</td>
       </tr>
       <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N09">AB7N14</a></td>
-        <td class="govuk-table__cell" style="text-align:right;">14 April 2022</td>
-        <td class="govuk-table__cell" style="text-align:right;">Issued</td>
+        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N09">AB7N09</a><br>Alisterus chloropterus</td>
+        <td class="govuk-table__cell">9 April 2022</td>
+        <td class="govuk-table__cell">Issued</td>
       </tr>
       <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N08">AB7N13</a></td>
-        <td class="govuk-table__cell" style="text-align:right;">13 April 2022</td>
-        <td class="govuk-table__cell" style="text-align:right;">Issued</td>
+        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N08">AB7N08</a><br>Alisterus chloropterus</td>
+        <td class="govuk-table__cell">8 April 2022</td>
+        <td class="govuk-table__cell">Issued</td>
       </tr>
       <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N07">AB7N12</a></td>
-        <td class="govuk-table__cell" style="text-align:right;">12 April 2022</td>
-        <td class="govuk-table__cell" style="text-align:right;">Issued</td>
+        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N07">AB7N07</a><br>Alisterus chloropterus</td>
+        <td class="govuk-table__cell">7 April 2022</td>
+        <td class="govuk-table__cell">Issued</td>
       </tr>
       <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N01">AB7N11</a></td>
-        <td class="govuk-table__cell" style="text-align:right;">11 April 2022</td>
-        <td class="govuk-table__cell" style="text-align:right;">Issued</td>
+        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N06">AB7N06</a><br>Alisterus chloropterus</td>
+        <td class="govuk-table__cell">6 April 2022</td>
+        <td class="govuk-table__cell">Issued</td>
       </tr>
       <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N06">AB7N10</a></td>
-        <td class="govuk-table__cell" style="text-align:right;">10 April 2022</td>
-        <td class="govuk-table__cell" style="text-align:right;">Issued</td>
+        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N05">AB7N05</a><br>Alisterus chloropterus</td>
+        <td class="govuk-table__cell">5 April 2022</td>
+        <td class="govuk-table__cell">Issued</td>
       </tr>
       <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N05">AB7N09</a></td>
-        <td class="govuk-table__cell" style="text-align:right;">9 April 2022</td>
-        <td class="govuk-table__cell" style="text-align:right;">Issued</td>
+        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N04">AB7N04</a><br>Alisterus chloropterus</td>
+        <td class="govuk-table__cell">4 April 2022</td>
+        <td class="govuk-table__cell">Issued</td>
       </tr>
       <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N04">AB7N08</a></td>
-        <td class="govuk-table__cell" style="text-align:right;">8 April 2022</td>
-        <td class="govuk-table__cell" style="text-align:right;">Issued</td>
+        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N03">AB7N03</a><br>Alisterus chloropterus</td>
+        <td class="govuk-table__cell">3 April 2022</td>
+        <td class="govuk-table__cell">Issued</td>
       </tr>
       <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N03">AB7N07</a></td>
-        <td class="govuk-table__cell" style="text-align:right;">7 April 2022</td>
-        <td class="govuk-table__cell" style="text-align:right;">Issued</td>
+        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N02">AB7N02</a><br>Alisterus chloropterus</td>
+        <td class="govuk-table__cell">2 April 2022</td>
+        <td class="govuk-table__cell">Issued</td>
       </tr>
       <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N02">AB7N06</a></td>
-        <td class="govuk-table__cell" style="text-align:right;">6 April 2022</td>
-        <td class="govuk-table__cell" style="text-align:right;">Issued</td>
-      </tr>
-      <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N01">AB7N05</a></td>
-        <td class="govuk-table__cell" style="text-align:right;">5 April 2022</td>
-        <td class="govuk-table__cell" style="text-align:right;">Issued</td>
-      </tr>
-      <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N05">AB7N04</a></td>
-        <td class="govuk-table__cell" style="text-align:right;">4 April 2022</td>
-        <td class="govuk-table__cell" style="text-align:right;">Issued</td>
-      </tr>
-      <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N04">AB7N03</a></td>
-        <td class="govuk-table__cell" style="text-align:right;">3 April 2022</td>
-        <td class="govuk-table__cell" style="text-align:right;">Issued</td>
-      </tr>
-      <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N03">AB7N02</a></td>
-        <td class="govuk-table__cell" style="text-align:right;">2 April 2022</td>
-        <td class="govuk-table__cell" style="text-align:right;">Issued</td>
-      </tr>
-      <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N02">AB7N01</a></td>
-        <td class="govuk-table__cell" style="text-align:right;">1 April 2022</td>
-        <td class="govuk-table__cell" style="text-align:right;">Issued</td>
-      </tr>
+        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N01">AB7N01</a><br>Alisterus chloropterus</td>
+        <td class="govuk-table__cell">1 April 2022</td>
+        <td class="govuk-table__cell">Issued</td>
+      </tr> -->
     </tbody>
   </table>
+  <p>You have not yet made an application using this service.</p>
 </div>
 </div>
 
@@ -298,7 +285,7 @@
       </nav>
     </div>
     <div class="govuk-grid-one-quarter">
-      <p class="govuk-!-text-align-right">1 to 15 of 225 applications</p>
+      <p class="govuk-!-text-align-right">0 to 0 of 1225 applications.</p>
     </div>
   </div>
 
