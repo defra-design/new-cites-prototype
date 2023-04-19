@@ -39,7 +39,7 @@ module.exports = {
   "applicant-full-name": "John Doe",
   "applicant-business-name": "Magpie Enterprises Ltd",
   "applicant-email": "jd@magpieenterprises.com",
-  "your-address": [ "2 Ruskin Lane York YM6 8CT" ],
+  // "your-address": [ "2 Ruskin Lane York YM6 8CT" ],
   "sourceCode": "W",
   "purposeCode": "D",
   "tradeTerm": "LIV",
@@ -50,7 +50,7 @@ module.exports = {
   "importPermitNumber": "123456",
   "importPermitIssueDay": "01 10 2019",
   "originCountry": "Ireland",
-  "originPermitNumber": "654321",
+  "originPermitNumber": "",
   "originPermitIssueDay": "23 02 2010",
 
 }
