@@ -1027,6 +1027,11 @@ router.post('/v10/your-applications', function (req, res) {
   res.redirect('what-type-of-permit-or-certificate-are-you-applying-for')
 })
 
+// Your applications removed
+router.post('/v10/your-applications-removed', function (req, res) {
+  res.redirect('file-upload')
+})
+
 // Your applications pre-submission
 router.post('/v10/your-applications-pre-submission', function (req, res) {
   res.redirect('file-upload')
