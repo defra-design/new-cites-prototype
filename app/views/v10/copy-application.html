@@ -617,7 +617,32 @@
                     </dl>
         {% endif %}
 
-                    <div class="govuk-grid-two-thirds">
+        <h2 class="govuk-heading-m">Remarks</h2>
+        <hr>
+        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Add remarks</p>
+              </dt>
+              <div class="container">
+                  <label for="chk-2"><a>Show/Hide</a>
+                      <input id="chk-2" type="checkbox" unchecked/>
+                          <div class="title"></div>
+                          <div class="content govuk-!-width-full">
+                            <p>{{data['comment']}}</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit delectus sapiente dicta eligendi quis minus nulla maxime illo reiciendis corporis repudiandae excepturi? Velit molestiae reprehenderit eligendi neque repellendus! Illum molestiae quam iusto doloribus culpa sint similique quaerat libero! Molestiae facilis quidem explicabo totam nostrum in voluptatum ipsam sequi officia error id rerum unde nisi neque!</p>
+                          </div>
+                  </label>
+              </div>
+              <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="comments?fromPage=manageApplicationNew">
+                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">add comments</span></p>
+                </a>
+              </dd>
+            </div>
+          </dl>
+
+                    <!-- <div class="govuk-grid-two-thirds">
                       <h2 class="govuk-heading-m">Confirm the details are correct for {{data['speciesName']}}</h2>
                       <div class="govuk-form-group">
                           <div class="govuk-checkboxes">
@@ -629,7 +654,7 @@
                             </div>
                           </div>
                         </div>
-                  </div>
+                  </div> -->
 
                   <button class="govuk-button" data-module="govuk-button">
                     Confirm
