@@ -45,7 +45,19 @@
   {{ govukHeader({
     serviceName: serviceName,
     serviceUrl: "/",
-    containerClasses: "govuk-width-container"
+    containerClasses: "govuk-width-container",
+    navigation: [
+    {
+      href: "/",
+      text: "Account Management",
+      active: "false"
+    },
+    {
+      href: "/",
+      text: "Logout",
+      active: "false"
+    }
+    ]
   }) }}
 {% endblock %}
 
