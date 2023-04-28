@@ -175,83 +175,152 @@
       {% endif %}
 
 
-<!-- Species details -->
-        <h2 class="govuk-heading-m">Species details</h2>
-        <hr>
-        <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Scientific name</p>
-              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Quantity</p>
-              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Unit of measure</p>
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <p class="govuk-!-margin-bottom-1">Alisterus chloropterus</p>
-              <p class="govuk-!-margin-bottom-1">{{data['quantity']}}</p>
-              <p class="govuk-!-margin-bottom-1">{{data['unitOfMeasure']}}</p>
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <p></p>
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Source code</p>
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <p class="govuk-!-margin-bottom-1">{{data['sourceCode']}}</p>
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <p></p>
-            </dd>
-          </div>
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Purpose code</p>
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <p class="govuk-!-margin-bottom-1">{{data['purposeCode']}}</p>
-            </dd>
-            <dd class="govuk-summary-list__actions">
-              <p></p>
-            </dd>
-          </div>
+      <!-- Species details -->
+              <h2 class="govuk-heading-m">Specimen details</h2>
+              <hr>
+              <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+                <div class="govuk-summary-list__row">
+      <!-- List -->
+                  <dt class="govuk-summary-list__key">
+                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Scientific name</p>
 
-          {% if data['isAlive'] == 'yes'%}
-          {% if data['specimenType'] == 'animal'%}
-          <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key govuk-!-width-one-half">
-              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Trade term code</p>
-              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Gender</p>
-              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Closed ring or microchip number</p>
-              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Hatch or birth date</p>
-              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Other information</p>
-            </dt>
-            <dd class="govuk-summary-list__value">
-              <p class="govuk-!-margin-bottom-1">{{data['tradeTerm']}}</p>
-              <p class="govuk-!-margin-bottom-1">{{data['gender']}}</p>
-              <p class="govuk-!-margin-bottom-1">{{data['identifier']}}</p><br>
-              <p class="govuk-!-margin-bottom-1">{{data['hatch-date-day']}} {{data['hatch-date-month']}} {{data['hatch-date-year']}}</p>
-              <!-- <p class="govuk-!-margin-bottom-1">No other information</p>               -->
-<!-- Accordion -->
-              <div class="container">
-                  <label for="chk-1"><a>Show/Hide</a>
-                      <input id="chk-1" type="checkbox" unchecked/>
-                          <div class="title"></div>
-                          <div class="content govuk-!-width-full">
-                            <p>{{data['comment']}}</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit delectus sapiente dicta eligendi quis minus nulla maxime illo reiciendis corporis repudiandae excepturi? Velit molestiae reprehenderit eligendi neque repellendus! Illum molestiae quam iusto doloribus culpa sint similique quaerat libero! Molestiae facilis quidem explicabo totam nostrum in voluptatum ipsam sequi officia error id rerum unde nisi neque!</p>
-                          </div>
-                  </label>
-              </div>
+                    {% if data['specimenDescription'] == 'livingAnimal'%}
+                      {% if data['specimenType'] == 'animal'%}
+                        {% if data['identificationMark'] === 'unmarked'%}
+                          <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Unmarked specimens</p>
+                          <!-- <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Unit of measurement</p> -->
+                        {% endif %}
+                      {% endif %}
+                    {% else %}
+                      <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Quantity or net mass</p>
+                      <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Unit of measurement</p>
+                    {% endif %}
 
-              <dd class="govuk-summary-list__actions">
-                <p></p>
-              </dd>
+                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Source code</p>
+                    {% if data['permitType'] != 'A10'%}
+                      <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Purpose code</p>
+                    {% endif %}
+                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Specimen type</p>
+                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Trade term code</p>
+                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Unique identification mark</p>
 
-          {% endif %}
-          {% endif %}
-        </dl>
+                    {% if data['specimenDescription'] == 'livingAnimal'%}
+                      {% if data['specimenType'] == 'animal'%}
+                      <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Sex</p>
+                      <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Date of birth</p>
+                        {% if data['permitType'] === 'A10'%}
+                          <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Parent 1: Identification mark</p>
+                          <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Parent 1: A10 number</p>
+                          <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Parent 2: Identification mark</p>
+                          <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Parent 2: A10 number</p>
+                          <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Acquired date</p>
+                          {% if data['hasA10'] === 'yes'%}
+                            <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Existing Article 10 certificate</p>
+                          {% endif %}
+                        {% endif %}
+
+                      {% endif %}
+                    {% endif %}
+
+                    {% if data['specimenDescription'] === 'workedItem'%}
+                      <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Created date</p>
+                    {% endif %}
+
+                    <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Description</p>
+                  </dt>
+
+      <!-- Value -->
+                  <dd class="govuk-summary-list__value">
+                    <p class="govuk-!-margin-bottom-1">{{data['speciesName']}}</p>
+
+                    {% if data['specimenDescription'] == 'livingAnimal'%}
+                      {% if data['specimenType'] == 'animal'%}
+                        {% if data['identificationMark'] === 'unmarked'%}
+                          <p class="govuk-!-margin-bottom-1">{{data['unmarkedQuantity']}}</p>
+                        {% endif %}
+                      {% endif %}
+                    {% else %}
+                      <p class="govuk-!-margin-bottom-1">{{data['quantity']}}</p>
+                      <p class="govuk-!-margin-bottom-1">{{data['unitOfMeasure']}}</p>
+                    {% endif %}
+
+                    <p class="govuk-!-margin-bottom-1">{{data['sourceCode']}}</p>
+                    {% if data['permitType'] != 'A10'%}
+                    <p class="govuk-!-margin-bottom-1">{{data['purposeCode']}}</p>
+                  {% endif %}
+                    <p class="govuk-!-margin-bottom-1">{{data['specimenDescription']}}</p>
+                    {% if data['tradeTerm'] === 'yes'%}
+                        <p class="govuk-!-margin-bottom-1">{{data['tradeTermCode']}}</p>
+                    {% else %}
+                      <p class="govuk-!-margin-bottom-1">Not known</p>
+                    {% endif %}
+
+                    {% if data['identificationMark'] === 'Microchip number'%}
+                    <p class="govuk-!-margin-bottom-1">{{data['identificationMark-1']}}</p>
+                    {% endif %}
+                    {% if data['identificationMark'] === 'Closed ring number'%}
+                    <p class="govuk-!-margin-bottom-1">{{data['identificationMark-2']}}</p>
+                    {% endif %}
+                    {% if data['identificationMark'] === 'Split ring number'%}
+                    <p class="govuk-!-margin-bottom-1">{{data['identificationMark-3']}}</p>
+                    {% endif %}
+                    {% if data['identificationMark'] === 'Other type of metal ring'%}
+                    <p class="govuk-!-margin-bottom-1">{{data['identificationMark-4']}}</p>
+                    {% endif %}
+                    {% if data['identificationMark'] === 'Cable tie'%}
+                    <p class="govuk-!-margin-bottom-1">{{data['identificationMark-5']}}</p>
+                    {% endif %}
+                    {% if data['identificationMark'] === 'Hunting trophy'%}
+                    <p class="govuk-!-margin-bottom-1">{{data['identificationMark-6']}}</p>
+                    {% endif %}
+                    {% if data['identificationMark'] === 'Label'%}
+                    <p class="govuk-!-margin-bottom-1">{{data['identificationMark-7']}}</p>
+                    {% endif %}
+                    {% if data['identificationMark'] === 'Swiss institute'%}
+                    <p class="govuk-!-margin-bottom-1">{{data['identificationMark-8']}}</p>
+                    {% endif %}
+                    {% if data['identificationMark'] === 'Serial number'%}
+                    <p class="govuk-!-margin-bottom-1">{{data['identificationMark-9']}}</p>
+                    {% endif %}
+                    {% if data['identificationMark'] === 'unmarked'%}
+                    <p class="govuk-!-margin-bottom-1">The specimen is unmarked</p>
+                    {% endif %}
+
+      <!-- Value - Living animals -->
+                {% if data['specimenDescription'] == 'livingAnimal'%}
+                  {% if data['specimenType'] == 'animal'%}
+                      <p class="govuk-!-margin-bottom-1">{{data['gender']}}</p>
+                      {% if data['hatch-date-day'] === ''%}
+                        <p class="govuk-!-margin-bottom-1">04 12 2020</p>
+                        {% else %}
+                        <p class="govuk-!-margin-bottom-1">{{data['hatch-date-day']}} {{data['hatch-date-month']}} {{data['hatch-date-year']}}</p>
+                      {% endif %}
+                      {% if data['permitType'] === 'A10'%}
+                          <p class="govuk-!-margin-bottom-1">{{data['parent1IdentificationMark']}}</p>
+                          <p class="govuk-!-margin-bottom-1">{{data['parent1CertificateNumber']}}</p>
+                          <p class="govuk-!-margin-bottom-1">{{data['parent2IdentificationMark']}}</p>
+                          <p class="govuk-!-margin-bottom-1">{{data['parent2CertificateNumber']}}</p>
+                          <p class="govuk-!-margin-bottom-1">{{data['acquired-date-day']}} {{data['acquired-date-month']}} {{data['acquired-date-year']}}</p>
+                      {% endif %}
+                      {% if data['hasA10'] === 'yes'%}
+                          <p class="govuk-!-margin-bottom-1">{{data['certificateNumber']}}</p>
+                      {% endif %}
+
+                  {% endif %}
+                {% endif %}
+
+                    {% if data['specimenDescription'] === 'workedItem'%}
+                      <p class="govuk-!-margin-bottom-1">{{data['created-date-day']}} {{data['created-date-month']}} {{data['created-date-year']}}</p>
+                    {% endif %}
+
+                      {% if data['description'] === ''%}
+                        <p class="govuk-!-margin-bottom-1">No other information</p>
+                        {% else %}
+                        <p class="govuk-!-margin-bottom-1">{{data['description']}}</p>
+                      {% endif %}
+                  </dd>
+                </div>
+              </dl>
 
 <!-- Country of import or re-export details -->
           {% if data['permitType'] == 'import'%}
@@ -311,18 +380,12 @@
     <dl class="govuk-summary-list govuk-!-margin-bottom-9">
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Add remarks</p>
+            <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Remarks</p>
           </dt>
-          <div class="container">
-              <label for="chk-2"><a>Show/Hide</a>
-                  <input id="chk-2" type="checkbox" unchecked/>
-                      <div class="title"></div>
-                      <div class="content govuk-!-width-full">
-                        <p>{{data['comment']}}</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit delectus sapiente dicta eligendi quis minus nulla maxime illo reiciendis corporis repudiandae excepturi? Velit molestiae reprehenderit eligendi neque repellendus! Illum molestiae quam iusto doloribus culpa sint similique quaerat libero! Molestiae facilis quidem explicabo totam nostrum in voluptatum ipsam sequi officia error id rerum unde nisi neque!</p>
-                      </div>
-              </label>
-          </div>
+          <dd class="govuk-summary-list__value">
+            <p>{{data['comment']}}</p>
+          </dd>
+          <dd class="govuk-summary-list__actions">
           <dd class="govuk-summary-list__actions">
             <p></p>
           </dd>
