@@ -184,6 +184,7 @@
               {% endif %}
 
               <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Source code</p>
+              <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Other source code</p>
               {% if data['permitType'] != 'A10'%}
                 <p class="govuk-!-font-weight-bold govuk-!-margin-bottom-1">Purpose code</p>
               {% endif %}
@@ -232,9 +233,10 @@
               {% endif %}
 
               <p class="govuk-!-margin-bottom-1">{{data['sourceCode']}}</p>
+              <p class="govuk-!-margin-bottom-1">{{data['otherSourceCode-1']}} {{data['otherSourceCode-2']}} {{data['otherSourceCode-3']}} {{data['otherSourceCode-4']}}</p>
               {% if data['permitType'] != 'A10'%}
               <p class="govuk-!-margin-bottom-1">{{data['purposeCode']}}</p>
-            {% endif %}
+              {% endif %}
               <p class="govuk-!-margin-bottom-1">{{data['specimenDescription']}}</p>
               {% if data['tradeTerm'] === 'yes'%}
                   <p class="govuk-!-margin-bottom-1">{{data['tradeTermCode']}}</p>
@@ -331,9 +333,10 @@
             </a>
           {% endif %}
 
-              <a class="govuk-link" href="where-did-you-source-your-specimen-from?fromPage=cya">
-                <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Source code</span></p>
-              </a>
+          <a class="govuk-link" href="where-did-you-source-your-specimen-from?fromPage=cya">
+            <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Source code</span></p>
+          </a>
+          <br>
               {% if data['permitType'] != 'A10'%}
               <a class="govuk-link" href="what-is-the-purpose-code?fromPage=cya">
                 <p class="govuk-!-margin-bottom-1">Change<span class="govuk-visually-hidden">Purpose code</span></p>
