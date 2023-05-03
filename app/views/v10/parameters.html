@@ -4,10 +4,6 @@
 
 {% block content %}
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-three-quarters">
-    <form method="post" autocomplete="off">
-
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
@@ -19,6 +15,10 @@
           <div class="govuk-grid-row">
           <div class="govuk-grid-column-one-quarter">
               <p>
+                <br>otherSourceCode-1
+                <br>otherSourceCode-2
+                <br>otherSourceCode-3
+                <br>otherSourceCode-4
                 <br>changeApplicantAddress
                 <br>specimenDescription
                 <br>identifier
@@ -40,8 +40,12 @@
             </div>
 
           <div class="govuk-grid-row">
-          <div class="govuk-grid-column-two-quarters">
+          <div class="govuk-grid-column-one-half">
               <p>
+                <br>{{data['otherSourceCode-1']}}
+                <br>{{data['otherSourceCode-2']}}
+                <br>{{data['otherSourceCode-3']}}
+                <br>{{data['otherSourceCode-4']}}
                 <br>{{data['changeApplicantAddress']}}
                 <br>{{data['specimenDescription']}}
                 <br>{{data['identifier']}}
@@ -66,9 +70,7 @@
       </div>
       <button class="govuk-button">Confirm</button>
 
-    </form>
-  </div>
-</div>
+
 
 
 

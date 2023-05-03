@@ -836,7 +836,7 @@ router.post('/v10/we-could-not-confirm-the-scientific-name', function (req, res)
 router.post('/v10/what-best-describes-the-specimen', function (req, res) {
 
   if (req.session.data['specimenType'] == 'animal') {
-    if (req.session.data['specimenDescription'] == 'livingAnimal') {
+    if (req.session.data['specimenDescription'] == 'A living animal') {
     res.redirect('unique-identification-mark')
   }
   else {

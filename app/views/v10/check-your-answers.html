@@ -232,8 +232,16 @@
                 <p class="govuk-!-margin-bottom-1">{{data['unitOfMeasure']}}</p>
               {% endif %}
 
+              {% if data['specimenType'] == 'animal'%}
               <p class="govuk-!-margin-bottom-1">{{data['sourceCode']}}</p>
-              <p class="govuk-!-margin-bottom-1">{{data['otherSourceCode-1']}} {{data['otherSourceCode-2']}} {{data['otherSourceCode-3']}} {{data['otherSourceCode-4']}}</p>
+              <p class="govuk-!-margin-bottom-1">{{data['otherSourceCode-1']}} {{data['otherSourceCode-2']}}</p>
+              {% endif %}
+
+              {% if data['specimenType'] == 'plant'%}
+              <p class="govuk-!-margin-bottom-1">{{data['sourceCode']}}</p>
+              <p class="govuk-!-margin-bottom-1">{{data['otherSourceCode-3']}} {{data['otherSourceCode-4']}}</p>
+              {% endif %}
+
               {% if data['permitType'] != 'A10'%}
               <p class="govuk-!-margin-bottom-1">{{data['purposeCode']}}</p>
               {% endif %}
