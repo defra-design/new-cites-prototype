@@ -657,12 +657,7 @@ router.post('/v10/new-application', function (req, res) {
 
 // Pay application
 router.post('/v10/pay-application', function (req, res) {
-  if (req.session.data['payNow'] == 'yes') {
-  res.redirect('#')
-  }
-else {
   res.redirect('application-complete')
-}
 })
 
 // Permit details
