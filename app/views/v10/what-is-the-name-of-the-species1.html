@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% set thisPageTitle = "what-is-the-name-of-the-species" %}
+
+
+  {% block content %}
+
+  <link rel="stylesheet" href="/public/stylesheets/accessible-autocomplete.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="post" autocomplete="off">
+
+      <div class="govuk-form-group">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              What is the scientific name of the species?
+            </h1>
+          </legend>
+          <p>You can <a href="https://speciesplus.net" target="_blank">search for the scientific name on species+</a></p>
+
+          <div id="speciesName">
+            <label class="govuk-label" for="species-name">Scientific name</label>
+            <input class="govuk-input" id="species-name" name="speciesName" type="text">
+          </div>
+      </div>
+
+      <div class="govuk-form-group">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <label class="govuk-label" for="quantity">Quantity or net mass</label>
+          <input class="govuk-input govuk-input--width-4" id="quantity" name="quantity" type="text" value="{{data['quantity']}}">
+        </div>
+      </div>
+    </div>
+
+    <div class="govuk-form-group">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <label class="govuk-label" for="unit-of-measure">Unit of measurement</label>
+            <select class="govuk-select" id="unit-of-measure" name="unitOfMeasure" value="{{data['unitOfMeasure']}}">
+              <option value="Not provided" selected>Choose unit of measurement</option>
+              <option value="number">number of specimens</option>
+              <option value="Cm3">Cm3</option>
+              <option value="g">g</option>
+              <option value="Kg">Kg</option>
+              <option value="ltr">ltr</option>
+              <option value="m">m</option>
+              <option value="m2">m2</option>
+              <option value="m3">m3</option>
+              <option value="ml">ml</option>
+              <option value="tonne">tonne</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+    <button class="govuk-button">Continue</button>
+    </form>
+
+  </div>
+</div>
+
+    {% endblock %}
