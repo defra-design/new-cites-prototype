@@ -14,52 +14,26 @@
               Declaration
             </h1>
             </legend>
-
-            <!-- Declaration -->
-                        <p class="govuk-body">By submitting, you agree with the following statements:</p>
-                        <br>
-
-                        {% if data['isAgent'] === 'no'%}
-                            <!-- <h2 class="govuk-heading-m">Declaration</h2> -->
-                            <!-- <p class="govuk-body">By submitting, you agree that the information you have provided is correct.</p> -->
-                            <p>I attach the necessary documentary evidence and declare that all particulars provided are to the best of my knowledge and belief correct. I declare that an application for a certificate for the specimens was not previously rejected.</p>
-                              <div class="govuk-form-group">
-                                <div class="govuk-checkboxes">
-                                  <div class="govuk-checkboxes__item">
-                                    <input class="govuk-checkboxes__input" id="legalDec" name="legalDec" type="checkbox" value="agree" required>
-                                    <label class="govuk-label govuk-checkboxes__label" for="legalDec">
-                                      I agree
-                                    </label>
-                                  </div>
-                                </div>
-                              </div>
-                              {% else %}
-                              <!-- <p class="govuk-body">By submitting, you agree that:</p> -->
-                              <!-- <ul class="govuk-list govuk-list--bullet">
-                                <li>I attach the necessary documentary evidence and declare that all particulars provided are to the best of my knowledge and belief correct. I declare that an application for a certificate for the specimens was not previously rejected.</li>
-                                <li>I have the owner's permission to apply on their behalf</li>
-                              </ul> -->
-
-                              <p>I attach the necessary documentary evidence and declare that all particulars provided are correct to the best of my knowledge and belief.</p>
-                              <p>I declare that an application for a certificate for the specimens was not previously rejected.</p>
-                              <p>I have the owner's permission to apply on their behalf.</p>
-
-                              <br>
-                              <div class="govuk-form-group">
-                                  <div class="govuk-checkboxes">
-                                    <div class="govuk-checkboxes__item">
-                                      <input class="govuk-checkboxes__input" id="legalDec" name="legalDec" type="checkbox" value="agree" required>
-                                      <label class="govuk-label govuk-checkboxes__label" for="legalDec">
-                                        I agree
-                                      </label>
-                                    </div>
-                                  </div>
-                                </div>
-                        {% endif %}
-
+            <p class="govuk-body">By submitting, you agree with the following statements:</p>
+            <br>
+            {% if data['isAgent'] === 'no'%}
+            <p>I attach the necessary documentary evidence and declare that all particulars provided are correct to the best of my knowledge and belief.</p>
+            <p>I declare that an application for a certificate for the specimens was not previously rejected.</p>
+            {% else %}
+            <p>I attach the necessary documentary evidence and declare that all particulars provided are correct to the best of my knowledge and belief.</p>
+            <p>I declare that an application for a certificate for the specimens was not previously rejected.</p>
+            <p>I have the owner's permission to apply on their behalf.</p>
+            {% endif %}
+            <div class="govuk-form-group">
+              <div class="govuk-checkboxes">
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="legalDec" name="legalDec" type="checkbox" value="agree" required>
+                  <label class="govuk-label govuk-checkboxes__label" for="legalDec">I agree</label>
+                </div>
+              </div>
+            </div>
         </div>
-
-        <button class="govuk-button">Submit</button>
+      <button class="govuk-button">Submit</button>
     </form>
   </div>
 </div>
