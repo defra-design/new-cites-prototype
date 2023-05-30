@@ -1,4 +1,4 @@
-{% extends "layout.html" %}
+{% extends "layout-with-navigation.html" %}
 <!-- {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %} -->
 
 {% set pageTitle = "your-submissions-filtered" %}
@@ -16,19 +16,6 @@
   </p>
 </div>
 <!-- <a id="back" class="govuk-back-link" href="javascript:history.back()">Back</a> -->
-<div class="govuk-breadcrumbs">
-  <ol class="govuk-breadcrumbs__list">
-    <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="your-submissions">Your applications</a>
-    </li>
-    <!-- <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="#">Passports, travel and living abroad</a>
-    </li>
-    <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="#">Travel abroad</a>
-    </li> -->
-  </ol>
-</div>
 {% endblock %}
 
 {% block content %}
@@ -51,7 +38,7 @@
       <div class="govuk-input__wrapper">
         <input class="govuk-input" id="input-with-suffix" name="searchValue" type="text" value="{{data['searchValue']}}">
         <div class="govuk-input__suffix" aria-hidden="true">
-          <a href="your-submissions-filtered?searchValue="><i class="fa fa-search icon searchicon"></i></a>
+          <a href="your-submissions-filtered"><i class="fa fa-search icon searchicon"></i></a>
         </div>
       </div>
     </div>
@@ -70,29 +57,6 @@
   </div>
 </div>
 
-<!-- <div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-    <div class="govuk-form-group">
-      <h3 class="govuk-heading-s"></h3>
-      <label class="govuk-label" for="input-with-suffix">Search</label>
-      <div class="govuk-input__wrapper">
-        <input class="govuk-input" id="input-with-suffix" name="searchValue" type="text" value="{{data['searchValue']}}">
-        <div class="govuk-input__suffix" aria-hidden="true">
-          <a href="account-search-results?searchValue=Coral"><i class="fa fa-search icon searchicon"></i></a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="govuk-grid-column-one-third">
-    <a href="what-type-of-permit-or-certificate-are-you-applying-for"><button class="govuk-button govuk-button" data-module="govuk-button">Start new application</button><a>
-  </div>
-
-</div> -->
-
-
-
-
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-one-quarter">
     <div>
@@ -106,7 +70,6 @@
           <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
             <div class="govuk-checkboxes__item">
               <input class="govuk-checkboxes__input" id="status-1" name="status" type="checkbox" value="submitted">
-              <!-- <input class="govuk-checkboxes__input" id="status-1" name="status" type="checkbox" value="submitted" checked> -->
               <label class="govuk-label govuk-checkboxes__label" for="status-1">
                 Import
               </label>
@@ -141,125 +104,80 @@
 
       <div class="govuk-form-group ex2">
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+          <fieldset class="govuk-fieldset" aria-describedby="status-hint">
             <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
               <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="status-1" name="status" type="checkbox" value="received">
-                <label class="govuk-label govuk-checkboxes__label" for="status-1">
-                  Received
-                </label>
-              </div>
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="status-3" name="status" type="checkbox" value="awaiting-payment">
-                <label class="govuk-label govuk-checkboxes__label" for="status-3">
+                <input class="govuk-checkboxes__input" id="status-2" name="status" type="checkbox" checked value="awaiting-payment">
+                <label class="govuk-label govuk-checkboxes__label" for="status-2">
                   Awaiting payment
                 </label>
               </div>
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="status-6" name="status" type="checkbox" value="awaiting-reply">
-                <label class="govuk-label govuk-checkboxes__label" for="status-6">
-                  Awaiting reply
-                </label>
-              </div>
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="status-6" name="status" type="checkbox" value="in-progress">
-                <label class="govuk-label govuk-checkboxes__label" for="status-6">
-                  In progress
-                </label>
-              </div>
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="status-6" name="status" type="checkbox" value="issued">
-                <label class="govuk-label govuk-checkboxes__label" for="status-6">
-                  Issued
-                </label>
-              </div>
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="status-6" name="status" type="checkbox" value="refused">
-                <label class="govuk-label govuk-checkboxes__label" for="status-6">
-                  Refused
-                </label>
-              </div>
-              <div class="govuk-checkboxes__item">
-                <input class="govuk-checkboxes__input" id="status-5" name="status" type="checkbox" value="cancelled">
-                <label class="govuk-label govuk-checkboxes__label" for="status-5">
-                  Cancelled
-                </label>
-              </div>
-            </div>
           </fieldset>
+          <br>
+          <br>
+          <a href="your-submissions-filtered?searchValue="><button class="govuk-button govuk-button--secondary" data-module="govuk-button">Apply filters</button></a>
         </div>
       </div>
-    <a href="your-submissions-filtered"><button class="govuk-button govuk-button--secondary" data-module="govuk-button">Apply filter</button><a>
-      <!-- <br>
-      <br>
-      <br>
-    <a href="what-type-of-permit-or-certificate-are-you-applying-for"><button class="govuk-button" data-module="govuk-button">Start new application</button><a> -->
     </div>
 
-    <div class="govuk-grid-column-three-quarters">
+  <div class="govuk-grid-column-three-quarters">
   <table class="govuk-table">
     <thead class="govuk-table__head">
       <tr class="govuk-table__row">
-        <th scope="col" class="govuk-table__header govuk-!-width-one-half">Reference number</th>
-        <th scope="col" class="govuk-table__header govuk-!-width-one-third">Application date</th>
-        <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Status</th>
+        <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Reference number</th>
+        <th scope="col" class="govuk-table__header govuk-!-width-one-quarter" style="text-align:right;">Application date</th>
+        <th scope="col" class="govuk-table__header govuk-!-width-one-third" style="text-align:right;"></th>
       </tr>
     </thead>
     <tbody class="govuk-table__body">
       <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N10">AB7N10</a><br>Alisterus chloropterus</td>
-        <td class="govuk-table__cell" name="submissionDate" value="10 April 2022">10 April 2022</td>
-        <td class="govuk-table__cell">Issued</td>
+        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N10">AB7N15</a></td>
+        <td class="govuk-table__cell" style="text-align:right;" name="submissionDate" value="10 April 2022">15 April 2022</td>
+        <td class="govuk-table__cell" style="text-align:right;">Awaiting payment</td>
       </tr>
       <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N09">AB7N09</a><br>Alisterus chloropterus</td>
-        <td class="govuk-table__cell">9 April 2022</td>
-        <td class="govuk-table__cell">Issued</td>
+        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N08">AB7N13</a></td>
+        <td class="govuk-table__cell" style="text-align:right;">13 April 2022</td>
+        <td class="govuk-table__cell" style="text-align:right;">Awaiting payment</td>
       </tr>
       <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N08">AB7N08</a><br>Alisterus chloropterus</td>
-        <td class="govuk-table__cell">8 April 2022</td>
-        <td class="govuk-table__cell">Issued</td>
+        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N07">AB7N12</a></td>
+        <td class="govuk-table__cell" style="text-align:right;">12 April 2022</td>
+        <td class="govuk-table__cell" style="text-align:right;">Awaiting payment</td>
       </tr>
-      <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="your-applications?submissionRef=AB7N07">AB7N07</a><br>Alisterus chloropterus</td>
-        <td class="govuk-table__cell">7 April 2022</td>
-        <td class="govuk-table__cell">Issued</td>
-      </tr>
-      <!-- <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="manage-application?applicationRef=ABC22222222">ABC22222222</a><br>Alisterus chloropterus</td>
-        <td class="govuk-table__cell">24 April 2022</td>
-        <td class="govuk-table__cell">Permit issued</td>
-      </tr>
-      <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="manage-application?applicationRef=ABC22222222">ABC22222222</a><br>Alisterus chloropterus</td>
-        <td class="govuk-table__cell">24 April 2022</td>
-        <td class="govuk-table__cell">Permit issued</td>
-      </tr>
-      <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="manage-application?applicationRef=ABC22222222">ABC22222222</a><br>Alisterus chloropterus</td>
-        <td class="govuk-table__cell">24 April 2022</td>
-        <td class="govuk-table__cell">Permit issued</td>
-      </tr>
-      <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="manage-application?applicationRef=ABC22222222">ABC22222222</a><br>Alisterus chloropterus</td>
-        <td class="govuk-table__cell">24 April 2022</td>
-        <td class="govuk-table__cell">Permit issued</td>
-      </tr>
-      <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="manage-application?applicationRef=ABC22222222">ABC22222222</a><br>Alisterus chloropterus</td>
-        <td class="govuk-table__cell">24 April 2022</td>
-        <td class="govuk-table__cell">Permit issued</td>
-      </tr>
-      <tr class="govuk-table__row">
-        <td class="govuk-table__cell"><a href="manage-application?applicationRef=ABC22222222">ABC22222222</a><br>Alisterus chloropterus</td>
-        <td class="govuk-table__cell">24 April 2022</td>
-        <td class="govuk-table__cell">Permit issued</td>
-      </tr> -->
     </tbody>
   </table>
 </div>
 </div>
+
+
+<!-- If 2 or more pages, then show pagination -->
+<!-- <br><br><br>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <div class="govuk-grid-column-two-thirds">
+      <br>
+    </div>
+    <div class="govuk-grid-column-one-third">
+      <nav class="govuk-pagination" role="navigation" aria-label="results">
+
+        <div class="govuk-pagination__prev govuk-grid-column-one-quarter">
+          <a class="govuk-link govuk-pagination__link" href="#" rel="prev">
+            <span class="govuk-pagination__link-title">Previous</span>
+          </a>
+        </div>
+        <div class="govuk-pagination__prev govuk-grid-column-one-half">
+        <p class="govuk-!-text-align-right">1 to 3 of 225</p>
+      </div>
+        <div class="govuk-pagination__next govuk-grid-column-one-quarter">
+          <a class="govuk-link govuk-pagination__link" href="#" rel="next">
+            <span class="govuk-pagination__link-title">Next</span>
+          </a>
+        </div>
+
+      </nav>
+    </div>
+  </div> -->
 
 
 
