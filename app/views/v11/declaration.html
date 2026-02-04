@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% set thisPageTitle = "declaration" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="post" autocomplete="off">
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              Declaration
+            </h1>
+            </legend>
+            <p class="govuk-body">By submitting, you agree with the following statements:</p>
+            <br>
+            {% if data['isAgent'] === 'no'%}
+            <p>I attach the necessary documentary evidence and declare that all particulars provided are correct to the best of my knowledge and belief.</p>
+            <p>I declare that an application for a certificate for the specimens was not previously rejected.</p>
+            {% else %}
+            <p>I attach the necessary documentary evidence and declare that all particulars provided are correct to the best of my knowledge and belief.</p>
+            <p>I declare that an application for a certificate for the specimens was not previously rejected.</p>
+            <p>I have the owner's permission to apply on their behalf.</p>
+            {% endif %}
+            <div class="govuk-form-group">
+              <div class="govuk-checkboxes">
+                <div class="govuk-checkboxes__item">
+                  <input class="govuk-checkboxes__input" id="legalDec" name="legalDec" type="checkbox" value="agree" required>
+                  <label class="govuk-label govuk-checkboxes__label" for="legalDec">I agree</label>
+                </div>
+              </div>
+            </div>
+        </div>
+      <button class="govuk-button">Submit</button>
+    </form>
+  </div>
+</div>
+
+    {% endblock %}

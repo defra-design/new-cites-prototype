@@ -1,0 +1,147 @@
+{% extends "layout.html" %}
+
+{% set thisPageTitle = "do-you-know-the-trade-term-code" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form method="post" autocomplete="off">
+      <div class="govuk-form-group">
+        <h1 class="govuk-heading-l">Do you know the trade term code?</h1>
+        <p>If you are not sure, you can either <a class="govuk-link" href="https://trade.cites.org/cites_trade_guidelines/en-CITES_Trade_Database_Guide.pdf" target="_blank"> find the trade term code</a> (opens in a new tab) or select 'No'.</p>
+          <div class="govuk-radios govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="trade-term-yes" name="tradeTerm" type="radio" value="yes" data-aria-controls="conditional-trade-tern" required>
+              <label class="govuk-label govuk-radios__label" for="trade-term-yes">
+                Yes
+              </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-trade-tern">
+              <!-- <div class="govuk-form-group">
+                <label class="govuk-label" for="trade-term">
+                  Enter the trade term code
+                </label>
+                <div id="hatch-date-hint" class="govuk-hint">
+                    For example, 'LIV' for live animals.
+                </div>
+                <input class="govuk-input govuk-!-width-one-third" id="trade-term" name="tradeTermCode" type="text">
+              </div> -->
+              <div class="govuk-form-group">
+                <!-- <label class="govuk-label" for="sort">
+                  Select the trade term code
+                </label> -->
+                <select class="govuk-select" id="trade-term" name="tradeTermCode">
+                  <option value="Not known" selected>Select a trade term code...</option>
+                  <option value="BAL">BAL - Baleen</option>
+                  <option value="BAR">BAR - Bark</option>
+                  <option value="BOD">BOD - Body</option>
+                  <option value="BON">BON - Bones</option>
+                  <option value="CAL">CAL - Calipee</option>
+                  <option value="CAP">CAP - Carapace</option>
+                  <option value="CAR">CAR - Carving</option>
+                  <option value="BOC">BOC - Carving (bone)</option>
+                  <option value="HOC">HOC - Carving (horn)</option>
+                  <option value="IVC">IVC - Carving - ivory (worked ivory)</option>
+                  <option value="CAV">CAV - Caviar</option>
+                  <option value="CHP">CHP - Chips (woodchips)</option>
+                  <option value="CLA">CLA - Claw</option>
+                  <option value="CLO">CLO - Cloth</option>
+                  <option value="COR">COR - Coral (raw)</option>
+                  <option value="COS">COS - Cosmetics</option>
+                  <option value="CUL">CUL - Culture</option>
+                  <option value="DER">DER - Derivatives</option>
+                  <option value="DPL">DPL - Dried plant</option>
+                  <option value="EAR">EAR - Ear</option>
+                  <option value="EGG">EGG - Egg</option>
+                  <option value="EGL">EGL - Egg (live)</option>
+                  <option value="ESH">ESH - Eggshell</option>
+                  <option value="EXT">EXT - Extract</option>
+                  <option value="FEA">FEA - Feather</option>
+                  <option value="FIB">FIB - Fibre</option>
+                  <option value="FIN">FIN - Fin</option>
+                  <option value="FIG">FIG - Fingerlings</option>
+                  <option value="FLO">FLO - Flower</option>
+                  <option value="FPT">FPT - Flower pot</option>
+                  <option value="LEG">LEG - Frog legs</option>
+                  <option value="FRU">FRU - Fruit</option>
+                  <option value="FOO">FOO - Foot</option>
+                  <option value="FPL">FPL - Fur products (large)</option>
+                  <option value="FPS">FPS - Fur products (small)</option>
+                  <option value="GAL">GAL - Gall</option>
+                  <option value="GAB">GAB - Gall bladder</option>
+                  <option value="GAR">GAR - Garment</option>
+                  <option value="GEN">GEN - Genitalia</option>
+                  <option value="GIL">GIL - Gill plates</option>
+                  <option value="GRS">GRS - Graft rootstock</option>
+                  <option value="HAI">HAI - Hair</option>
+                  <option value="HAP">HAP - Hair products</option>
+                  <option value="HOR">HOR - Horn</option>
+                  <option value="JWL">JWL - Jewellery</option>
+                  <option value="IJW">IJW - Jewellery - ivory (worked ivory)</option>
+                  <option value="KNL">KNL - Kernel</option>
+                  <option value="LPL">LPL - Leather product (large)</option>
+                  <option value="LPS">LPS - Leather product (small)</option>
+                  <option value="LIV">LIV - Live</option>
+                  <option value="LVS">LVS - Leaf</option>
+                  <option value="LOG">LOG - Logs</option>
+                  <option value="MEA">MEA - Meat</option>
+                  <option value="MED">MED - Medicine</option>
+                  <option value="MUS">MUS - Musk</option>
+                  <option value="OIL">OIL - Oil</option>
+                  <option value="PRL">PRL - Pearl</option>
+                  <option value="KEY">KEY - Piano keys (worked ivory)</option>
+                  <option value="BOP">BOP - Piece (bone)</option>
+                  <option value="HOP">HOP - Piece (horn)</option>
+                  <option value="IVP">IVP - Piece - ivory (raw ivory)</option>
+                  <option value="PLA">PLA - Plate</option>
+                  <option value="PLY">PLY - Plywood</option>
+                  <option value="POW">POW - Powder</option>
+                  <option value="PUP">PUP - Pupae</option>
+                  <option value="ROO">ROO - Root</option>
+                  <option value="RUG">RUG - Rug</option>
+                  <option value="ROS">ROS - Sawfish rostrum</option>
+                  <option value="SAW">SAW - Sawn wood</option>
+                  <option value="SCA">SCA - Scale</option>
+                  <option value="SEE">SEE - Seed</option>
+                  <option value="SHE">SHE - Shell</option>
+                  <option value="SID">SID - Side</option>
+                  <option value="SKE">SKE - Skeleton</option>
+                  <option value="SKI">SKI - Skin</option>
+                  <option value="SKP">SKP - Skin piece</option>
+                  <option value="SKU">SKU - Skull</option>
+                  <option value="SOU">SOU - Soup</option>
+                  <option value="SPE">SPE - Specimen (scientific)</option>
+                  <option value="STE">STE - Stem</option>
+                  <option value="SWI">SWI - Swim bladder</option>
+                  <option value="TAI">TAI - Tail</option>
+                  <option value="TEE">TEE - Tooth</option>
+                  <option value="TIM">TIM - Timber</option>
+                  <option value="TRW">TRW - Transformed wood</option>
+                  <option value="TRO">TRO - Trophy</option>
+                  <option value="TRU">TRU - Trunk</option>
+                  <option value="TUS">TUS - Tusk (raw ivory)</option>
+                  <option value="VEN">VEN - Veneer sheets</option>
+                  <option value="WAX">WAX - Wax</option>
+                  <option value="WPR">WPR - Wood product</option>
+                </select>
+              </div>
+          </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="trade-term-no" name="tradeTerm"  type="radio" value="no">
+              <label class="govuk-label govuk-radios__label" for="trade-term-no">
+                No
+              </label>
+            </div>
+          </div>
+      </div>
+
+      <button class="govuk-button">Continue</button>
+
+    </form>
+  </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% set thisPageTitle = "file-upload" %}
+
+{% block content %}
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link rel="stylesheet" href="/public/stylesheets/style.css">
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <form method="post" novalidate>
+
+      <h1 class="govuk-heading-l">Upload supporting documents</h1>
+      <p class="govuk-body">You should add any documents that may support your application. For example, you can upload:</p>
+
+          <ul class="govuk-list govuk-list--bullet">
+            <li>an export or re-export permit</li>
+            <li>an endorsed import permit</li>
+            <li>an Article 10 certificate for the specimen's parents</li>
+            <li>proof of ownership or how you acquired the specimen</li>
+            <li>the specimen's proof of identity</li>
+            {% if data['isAgent'] == 'yes'%}
+            <li>permission to act on the applicant's behalf</li>
+            {% endif %}
+          </ul>
+
+          <h2 class="govuk-heading-m">Upload files</h2>
+          <p class="govuk-body">You can upload a total of 10 files. Files must be smaller than 10MB and either:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>a PDF</li>
+            <li>a Microsoft Word document (.DOC or .DOCX)</li>
+            <li>an image file (.JPG or PNG)</li>
+          </ul>
+
+      <div class="container">
+        <div class="row">
+            <div class="upload-file">
+                <div class="govuk-form-group">
+                  <label class="govuk-label" for="file-upload-1">
+                    <!-- Upload a file -->
+                  </label>
+                  <input class="govuk-file-upload" type="file" name="files[]" id="files" multiple accept="image/jpeg, image/png, image/gif, application/pdf, application/msword">
+                  <button class="govuk-button" data-module="govuk-button">Upload file</button>
+                  <hr>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="govuk-heading-m">Files uploaded</h2>
+                    <!-- <p class="govuk-body">You have not uploaded any files yet.</p> -->
+                </div>
+            </div>
+            <output id="image-gallery"></output>
+        </div>
+      </div>
+
+      <hr><br>
+      <!-- <a href="check-your-answers" class="govuk-button" data-module="govuk-button">Upload and continue</a> -->
+      <button class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+
+    </form>
+  </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="/public/javascripts/script.js"></script>
+
+  {% endblock %}

@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% set thisPageTitle = "already-have-a10" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form method="post" autocomplete="off">
+
+      <div class="govuk-form-group">
+        <h1 class="govuk-heading-l">Does the specimen already have an Article 10 certificate?</h1>
+        <div class="govuk-radios govuk-radios" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="has-a10-yes" name="hasA10" type="radio" value="yes" data-aria-controls="conditional-has-a10" required>
+            <label class="govuk-label govuk-radios__label" for="has-a10-yes">
+              Yes
+            </label>
+          </div>
+
+          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-has-a10">
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="has-a10">
+                Enter certificate number
+              </label>
+              <div id="with-hint-info" class="govuk-hint">
+                For example, '10AB010C'
+              </div>
+              <input class="govuk-input govuk-input--width-20" id="has-a10" name="certificateNumber" type="text">
+            </div>
+          </div>
+
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="has-a10-no" name="hasA10"  type="radio" value="no">
+            <label class="govuk-label govuk-radios__label" for="has-a10-no">
+              No
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <button class="govuk-button">Continue</button>
+
+    </form>
+  </div>
+</div>
+
+
+
+{% endblock %}

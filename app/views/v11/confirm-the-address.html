@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+
+{% set thisPageTitle = "confirm-the-address" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-three-quarters">
+    <form method="post" autocomplete="off">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              Confirm the address
+            </h1>
+          </legend>
+
+          {% if data['your-address'] === '38 Western Road, Billericay CM12 9DX'  %}
+          <p>
+            <br>38 Western Road
+            <br>Billericay
+            <br>CM12 9DX
+          </p>
+          {% endif %}
+
+          {% if data['your-address'] === '40 Western Road, Billericay CM12 9DX'  %}
+          <p>
+            <br>40 Western Road
+            <br>Billericay
+            <br>CM12 9DX
+          </p>
+          {% endif %}
+
+          {% if data['your-address'] === '42 Western Road, Billericay CM12 9DX'  %}
+          <p>
+            <br>42 Western Road
+            <br>Billericay
+            <br>CM12 9DX
+          </p>
+          {% endif %}
+
+          {% if data['your-address'] === "" %}
+            <p>
+              <br>{{data['address-line-1']}}
+              <br>{{data['address-line-2']}}
+              {% if data['address-line-3'] != ""  %}
+                <br>{{data['address-line-3']}}
+              {% endif %}
+              {% if data['address-line-4'] != ""  %}
+                <br>{{data['address-line-4']}}
+              {% endif %}
+              {% if data['address-postcode'] != ""  %}
+                <br>{{data['address-postcode']}}
+              {% endif %}
+              <br>{{data['address-country']}}
+            </p>
+          {% endif %}
+
+
+
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="delivery-address-1-applicant" name="delivery-address-applicant" type="radio" value="delivery-address-1-applicant" required>
+              <label class="govuk-label govuk-radios__label" for="delivery-address-1-applicant">
+                Deliver the permit to this address
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="delivery-address-2-applicant" name="delivery-address-applicant" type="radio" value="delivery-address-2-applicant">
+              <label class="govuk-label govuk-radios__label" for="delivery-address-2-applicant">
+                Deliver the permit to a different address
+              </label>
+            </div>
+          </div>
+
+        </fieldset>
+      </div>
+      <button class="govuk-button">Confirm</button>
+      <p><a href="what-is-your-address-applicant" >Change address</a></p>
+
+    </form>
+  </div>
+</div>
+
+
+
+{% endblock %}

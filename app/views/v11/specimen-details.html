@@ -1,0 +1,535 @@
+{% extends "layout.html" %}
+
+{% set thisPageTitle = "specimen-details" %}
+
+<link rel="stylesheet" href="../dist/location-autocomplete.min.css" />
+
+{% block content %}
+
+<link rel="stylesheet" href="/public/stylesheets/accessible-autocomplete.min.css">
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <form method="post" autocomplete="off">
+        <span class="govuk-caption-l">{{data['speciesName']}} ({{data['specimenCount']}} of {{data['quantity']}})</span>
+        <h1 class="govuk-heading-l">Specimen details</h1>
+          <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+              <table class="govuk-table">
+                <tbody class="govuk-table__body">
+                  <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header govuk-!-width-one-half">Is the specimen alive?</th>
+                    <td class="govuk-table__cell">
+                      <div class="govuk-radios govuk-radios" data-module="govuk-radios">
+                        <div class="govuk-radios__item">
+                          <input class="govuk-radios__input" id="isAlive-yes" name="isAlive" type="radio" value="yes">
+                          <label class="govuk-label govuk-radios__label" for="isAlive-yes">
+                            Yes
+                          </label>
+                        </div>
+                        <div class="govuk-radios__item">
+                          <input class="govuk-radios__input" id="isAlive-no" name="isAlive"  type="radio" value="no" data-aria-controls="conditional-isAlive">
+                          <label class="govuk-label govuk-radios__label" for="isAlive-no">
+                            No
+                          </label>
+                      </div>
+                    </div>
+                  </td>
+                  </tr>
+
+                  <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header govuk-!-width-one-half">Do you know the trade term code?
+                    </th>
+                    <td class="govuk-table__cell"> <div class="govuk-radios govuk-radios" data-module="govuk-radios">
+                      <div class="govuk-radios govuk-radios" data-module="govuk-radios">
+                        <div class="govuk-radios__item">
+                          <input class="govuk-radios__input" id="trade-term-yes" name="tradeTerm" type="radio" value="yes" data-aria-controls="conditional-trade-tern">
+                          <label class="govuk-label govuk-radios__label" for="trade-term-yes">
+                            Yes
+                          </label>
+                        </div>
+                        <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-trade-tern">
+                          <div class="govuk-form-group">
+                            <label class="govuk-label" for="trade-term">
+                              Enter the trade term code
+                            </label>
+                            <div id="hatch-date-hint" class="govuk-hint">
+                                For example, 'LIV' for live animals.
+                            </div>
+                            <input class="govuk-input govuk-!-width-one-third" id="trade-term" name="tradeTerm" type="text">
+                          </div>
+                      </div>
+                        <div class="govuk-radios__item">
+                          <input class="govuk-radios__input" id="trade-term-no" name="tradeTerm"  type="radio" value="no">
+                          <label class="govuk-label govuk-radios__label" for="trade-term-no">
+                            No
+                          </label>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header govuk-!-width-one-half">What is the specimen's sex?</th>
+                    <td class="govuk-table__cell">
+                    <div class="govuk-radios" data-module="govuk-radios">
+                        <div class="govuk-radios__item">
+                          <input class="govuk-radios__input" id="specimen-gender-1" name="gender" type="radio" value="Female">
+                          <label class="govuk-label govuk-radios__label" for="specimen-gender-1">
+                            Female
+                          </label>
+                        </div>
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="specimen-gender-2" name="gender" type="radio" value="Male">
+                        <label class="govuk-label govuk-radios__label" for="specimen-gender-2">
+                          Male
+                        </label>
+                      </div>
+                      <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="specimen-gender-3" name="gender" type="radio" value="I do not know">
+                        <label class="govuk-label govuk-radios__label" for="specimen-gender-3">
+                          I do not know
+                        </label>
+                      </div>
+                    </div>
+                  </td>
+                  </tr>
+
+                  <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header govuk-!-width-one-half">What is the specimen's identification mark?</th>
+                    <td class="govuk-table__cell">
+
+                      <div class="govuk-form-group">
+                      <fieldset class="govuk-fieldset" aria-describedby="identifier-hint">
+                        <div class="govuk-radios" data-module="govuk-radios">
+                          <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="identifier-1" name="identifier" type="radio" value="ring" data-aria-controls="conditional-identifier-1">
+                            <label class="govuk-label govuk-radios__label" for="identifier-1">
+                              Closed ring number
+                            </label>
+                          </div>
+                          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-identifier-1">
+                            <div class="govuk-form-group">
+                              <label class="govuk-label" for="closed-ring-number">
+                                Enter closed ring number
+                              </label>
+                              <input class="govuk-input govuk-!-width-one-third" id="closed-ring-number" name="closedRingNumber" value="{{data['closedRingNumber']}}"type="text" spellcheck="false" autocomplete="identifier">
+                            </div>
+
+                          </div>
+                          <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="identifier-2" name="identifier" type="radio" value="microchip" data-aria-controls="conditional-identifier-2">
+                            <label class="govuk-label govuk-radios__label" for="identifier-2">
+                              Microhip number
+                            </label>
+                          </div>
+                          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-identifier-2">
+                            <div class="govuk-form-group">
+                              <label class="govuk-label" for="identifier-by-microchip">
+                                Enter the microchip number
+                              </label>
+                              <input class="govuk-input govuk-!-width-one-third" id="identifier-by-microchip" name="microchipNumber" value="{{data['microchipNumber']}}" type="text" autocomplete="identifier">
+                            </div>
+
+                          </div>
+                          <div class="govuk-radios__item">
+                            <input class="govuk-radios__input" id="identifier-3" name="identifier" type="radio" value="unmarked" data-aria-controls="conditional-identifier-3">
+                            <label class="govuk-label govuk-radios__label" for="identifier-3">
+                              The specimen is not marked
+                            </label>
+                          </div>
+                        </div>
+
+                      </fieldset>
+                    </div>
+                      </td>
+                  </tr>
+
+
+                  <!-- <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header govuk-!-width-one-half">What is the closed ring or microchip number?</th>
+                    <td class="govuk-table__cell">
+                      <div class="govuk-form-group">
+                        <label class="govuk-label" for="identifier">
+                          Closed ring or microchip number
+                        </label>
+                        <input class="govuk-input govuk-input--width-20" id="identifier" name="identifier" type="text" spellcheck="false" autocomplete="identifier" value="{{data['identifier']}}">
+                      </div>
+                    </td>
+                  </tr> -->
+
+                  <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header govuk-!-width-one-half">When was the hatch or birth date?</th>
+                    <td class="govuk-table__cell">
+                      <div class="govuk-form-group">
+                        <label class="govuk-label" for="hatch-birth-date">
+                          Hatch or birth date
+                        </label>
+                        <div id="hatch-date-hint" class="govuk-hint">
+                          For example, 27 3 2007
+                        </div>
+                      </div>
+                      <div class="govuk-form-group">
+                      <div class="govuk-date-input" id="hatch-date">
+                        <div class="govuk-date-input__item">
+                          <div class="govuk-form-group">
+                            <label class="govuk-label govuk-date-input__label" for="hatch-date-day">
+                              Day
+                            </label>
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="hatch-date-day" name="hatch-date-day" type="text" inputmode="numeric">
+                          </div>
+                        </div>
+                        <div class="govuk-date-input__item">
+                          <div class="govuk-form-group">
+                            <label class="govuk-label govuk-date-input__label" for="hatch-date-month">
+                              Month
+                            </label>
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="hatch-date-month" name="hatch-date-month" type="text" inputmode="numeric">
+                          </div>
+                        </div>
+                        <div class="govuk-date-input__item">
+                          <div class="govuk-form-group">
+                            <label class="govuk-label govuk-date-input__label" for="hatch-date-year">
+                              Year
+                            </label>
+                            <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="hatch-date-year" name="hatch-date-year" type="text" inputmode="numeric">
+                          </div>
+                        </div>
+                      </div>
+                      <br><p>Or</p>
+                      <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                         <div class="govuk-checkboxes__item">
+                           <input class="govuk-checkboxes__input" id="hatch-date-not-known" name="hatch-date-not-known" type="checkbox" value="known">
+                           <label class="govuk-label govuk-checkboxes__label" for="hatch-date-not-known">
+                             I do not know
+                           </label>
+                         </div>
+                    </div>
+                    </td>
+                  </tr>
+
+                  <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header govuk-!-width-one-half">Describe the specimen</th>
+                    <td class="govuk-table__cell">
+                      <div class="govuk-character-count" data-module="govuk-character-count" data-maxwords="200">
+                          <div id="additional-info-hint" class="govuk-hint">
+                            Include anything else that helps to describe the specimen (optional).
+                          </div>
+                          <textarea class="govuk-textarea govuk-js-character-count" id="word-count" name="otherInformation" rows="10" aria-describedby="word-count-info" value="{{data['otherInformation']}}"></textarea>
+                        <div id="word-count-info" class="govuk-hint govuk-character-count__message" aria-live="polite">
+                          You have 200 words remaining
+                        </div>
+                    </div>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+
+              <button class="govuk-button">Continue</button>
+
+            </form>
+          </div>
+          </div>
+
+          <!-- <script type="text/javascript" src="/public/javascripts/accessible-autocomplete.min.js"></script>
+          <script type="text/javascript">
+
+            var reexportCountry = [
+            'Azerbaijan',
+            'Bahrain',
+            'Baker Island',
+            'Bangladesh',
+            'Barbados',
+            'Belarus',
+            'Belgium',
+            'Belize',
+            'Benin',
+            'Bermuda',
+            'Bhutan',
+            'Bolivia',
+            'Bonaire',
+            'Bosnia and Herzegovina',
+            'Botswana',
+            'Bouvet Island',
+            'country:BR',
+            'Brazil',
+            'British Indian Ocean Territory',
+            'British Virgin Islands',
+            'Brunei',
+            'Bulgaria',
+            'Burkina Faso',
+            'Burundi',
+            'Cambodia',
+            'Cameroon',
+            'Canada',
+            'Cape Verde',
+            'Cayman Islands',
+            'Central African Republic',
+            'Ceuta',
+            'Chad',
+            'Chile',
+            'China',
+            'Christmas Island',
+            'Cocos (Keeling) Islands',
+            'Colombia',
+            'Comoros',
+            'Congo',
+            'Congo (Democratic Republic)',
+            'Cook Islands',
+            'Costa Rica',
+            'Croatia',
+            'Cuba',
+            'Curaçao',
+            'Cyprus',
+            'Czechia',
+            'Czechoslovakia',
+            'Denmark',
+            'Dhekelia',
+            'Djibouti',
+            'Dominica',
+            'Dominican Republic',
+            'Dubai',
+            'East Germany',
+            'East Timor',
+            'Ecuador',
+            'Egypt',
+            'El Salvador',
+            'Equatorial Guinea',
+            'Eritrea',
+            'Estonia',
+            'Ethiopia',
+            'Falkland Islands',
+            'Faroe Islands',
+            'Fiji',
+            'Finland',
+            'France',
+            'French Guiana',
+            'French Polynesia',
+            'French Southern Territories',
+            'Fujairah',
+            'Gabon',
+            'Georgia',
+            'Germany',
+            'Ghana',
+            'Gibraltar',
+            'Greece',
+            'Greenland',
+            'Grenada',
+            'Guadeloupe',
+            'Guam',
+            'Guatemala',
+            'Guernsey',
+            'Guinea',
+            'Guinea-Bissau',
+            'Guyana',
+            'Haiti',
+            'Heard Island and McDonald Islands',
+            'Honduras',
+            'Hong Kong',
+            'Howland Island',
+            'Hungary',
+            'Iceland',
+            'India',
+            'Indonesia',
+            'Iran',
+            'Iraq',
+            'Ireland',
+            'Isle of Man',
+            'Israel',
+            'Italy',
+            'Ivory Coast',
+            'Jamaica',
+            'Japan',
+            'Jarvis Island',
+            'Jersey',
+            'Johnston Atoll',
+            'Jordan',
+            'Kazakhstan',
+            'Kenya',
+            'Kingman Reef',
+            'Kiribati',
+            'Kosovo',
+            'Kuwait',
+            'Kyrgyzstan',
+            'Laos',
+            'Latvia',
+            'Lebanon',
+            'Lesotho',
+            'Liberia',
+            'Libya',
+            'Liechtenstein',
+            'Lithuania',
+            'Luxembourg',
+            'Macao',
+            'Macedonia',
+            'Madagascar',
+            'Malawi',
+            'Malaysia',
+            'Maldives',
+            'Mali',
+            'Malta',
+            'Marshall Islands',
+            'Martinique',
+            'Mauritania',
+            'Mauritius',
+            'Mayotte',
+            'Melilla',
+            'Mexico',
+            'Micronesia',
+            'Midway Islands',
+            'Moldova',
+            'Monaco',
+            'Mongolia',
+            'Montenegro',
+            'Montserrat',
+            'Morocco',
+            'Mozambique',
+            'Myanmar (Burma)',
+            'Namibia',
+            'Nauru',
+            'Navassa Island',
+            'Nepal',
+            'Netherlands',
+            'New Caledonia',
+            'New Zealand',
+            'Nicaragua',
+            'Niger',
+            'Nigeria',
+            'Niue',
+            'Norfolk Island',
+            'North Korea',
+            'Northern Mariana Islands',
+            'Norway',
+            'Occupied Palestinian Territories',
+            'Oman',
+            'Pakistan',
+            'Palau',
+            'Palmyra Atoll',
+            'Panama',
+            'Papua New Guinea',
+            'Paraguay',
+            'Peru',
+            'Philippines',
+            'Pitcairn, Henderson, Ducie and Oeno Islands',
+            'Poland',
+            'Portugal',
+            'Puerto Rico',
+            'Qatar',
+            'Ras al-Khaimah',
+            'Romania',
+            'Russia',
+            'Rwanda',
+            'Réunion',
+            'Saba',
+            'Saint Barthélemy',
+            'Saint Helena',
+            'Saint Pierre and Miquelon',
+            'Saint-Martin (French part)',
+            'Samoa',
+            'San Marino',
+            'Sao Tome and Principe',
+            'Saudi Arabia',
+            'Senegal',
+            'Serbia',
+            'Seychelles',
+            'Sharjah',
+            'Sierra Leone',
+            'Singapore',
+            'Sint Eustatius',
+            'Sint Maarten (Dutch part)',
+            'Slovakia',
+            'Slovenia',
+            'Solomon Islands',
+            'Somalia',
+            'South Africa',
+            'South Georgia and South Sandwich Islands',
+            'South Korea',
+            'South Sudan',
+            'Spain',
+            'Sri Lanka',
+            'St Kitts and Nevis',
+            'St Lucia',
+            'St Vincent',
+            'Sudan',
+            'Suriname',
+            'Svalbard and Jan Mayen',
+            'Swaziland',
+            'Sweden',
+            'Switzerland',
+            'Syria',
+            'Taiwan',
+            'Tajikistan',
+            'Tanzania',
+            'Thailand',
+            'The Bahamas',
+            'The Gambia',
+            'Togo',
+            'Tokelau',
+            'Tonga',
+            'Trinidad and Tobago',
+            'Tristan da Cunha',
+            'Tunisia',
+            'Turkey',
+            'Turkmenistan',
+            'Turks and Caicos Islands',
+            'Tuvalu',
+            'USSR',
+            'Uganda',
+            'Ukraine',
+            'Umm al-Quwain',
+            'United Arab Emirates',
+            'United Kingdom',
+            'United States',
+            'United States Virgin Islands',
+            'Uruguay',
+            'Uzbekistan',
+            'Vanuatu',
+            'Vatican City',
+            'Venezuela',
+            'Vietnam',
+            'Wake Island',
+            'Wallis and Futuna',
+            'Western Sahara',
+            'Yemen',
+            'Yugoslavia',
+            'Zambia',
+            'Zimbabwe',
+            'Aland Islands'
+            ]
+
+          </script>
+
+          <script type="text/javascript">
+            var element = document.querySelector('#tt1-default')
+            var id = 'autocomplete-default'
+            accessibleAutocomplete({
+              element: element,
+              id: id,
+              name: "re-export-country",
+              source: reexportCountry
+            })
+          </script>
+
+          <script type="text/javascript">
+            var element = document.querySelector('#tt2-default')
+            var id = 'autocomplete-default'
+            accessibleAutocomplete({
+              element: element,
+              id: id,
+              name: "export-country",
+              source: reexportCountry
+            })
+          </script>
+
+          <script type="text/javascript">
+            var element = document.querySelector('#tt3-default')
+            var id = 'autocomplete-default'
+            accessibleAutocomplete({
+              element: element,
+              id: id,
+              name: "last-re-export-country",
+              source: reexportCountry
+            })
+          </script> -->
+    {% endblock %}

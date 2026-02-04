@@ -1,0 +1,100 @@
+{% extends "layout.html" %}
+
+{% set thisPageTitle = "created-date" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form method="post" autocomplete="off">
+      <span class="govuk-caption-l">{{data['speciesName']}} ({{data['specimenCount']}} of {{data['quantity']}})</span>
+      <div class="govuk-form-group">
+        <h1 class="govuk-heading-l">When was the worked item or finished product created?</h1>
+
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset" role="group" aria-describedby="created-date-hint">
+
+            <div id="created-date-hint" class="govuk-hint">
+            For example, 27 3 2007
+          </div>
+
+            <div class="govuk-date-input" id="created-date">
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="created-date-day">
+                    Day
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="created-date-day" name="created-date-day" type="text" inputmode="numeric" >
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="created-date-month">
+                    Month
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="created-date-month" name="created-date-month" type="text" inputmode="numeric" >
+                </div>
+              </div>
+              <div class="govuk-date-input__item">
+                <div class="govuk-form-group">
+                  <label class="govuk-label govuk-date-input__label" for="created-date-year">
+                    Year
+                  </label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="created-date-year" name="created-date-year" type="text" inputmode="numeric" >
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+           <div class="govuk-checkboxes__item">
+             <input class="govuk-checkboxes__input" id="approximate-date" name="approximateDate" type="checkbox" value="email" data-aria-controls="conditional-approximate-date">
+             <label class="govuk-label govuk-checkboxes__label" for="approximate-date">
+               I do not know the exact date
+             </label>
+           </div>
+           <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-approximate-date">
+             <div class="govuk-form-group">
+               <label class="govuk-label" for="approximate-created-date">
+                 Enter an approximate date or period of time
+               </label>
+               <div id="created-date-hint" class="govuk-hint">
+                   For example, '1950' or '15th century'.
+               </div>
+               <input class="govuk-input govuk-!-width-two-thirds" id="approximate-created-date" name="approximate-created-date" type="text" spellcheck="false">
+             </div>
+           </div>
+
+          <!-- <div class="govuk-radios govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="trade-term-yes" name="tradeTerm" type="radio" value="yes" data-aria-controls="conditional-trade-tern">
+              <label class="govuk-label govuk-radios__label" for="trade-term-yes">
+                I do not know the exact date
+              </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-trade-tern">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="trade-term">
+                  Enter an approximate date or period of time
+                </label>
+                <div id="hatch-date-hint" class="govuk-hint">
+                    For example, '1950' or '15th century'.
+                </div>
+                <input class="govuk-input govuk-!-width-one-third" id="trade-term" name="tradeTerm" type="text">
+              </div>
+          </div>
+        </div> -->
+
+      </div>
+    </div>
+
+      <button class="govuk-button">Continue</button>
+
+    </form>
+  </div>
+</div>
+
+
+
+{% endblock %}

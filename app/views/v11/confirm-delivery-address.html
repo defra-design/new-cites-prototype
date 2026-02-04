@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+
+{% set thisPageTitle = "confirm-delivery-address" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-three-quarters">
+    <form method="post" autocomplete="off">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              Confirm the delivery address
+            </h1>
+          </legend>
+
+          <p>
+            <br>38 Western Road
+            <br>Billericay
+            <br>CM12 9DX
+            <!-- <br>{{data['address-postcode']}} -->
+          </p>
+
+          <!-- <p>
+            <br>{{data['delivery-address-line-1']}}
+            <br>{{data['delivery-address-line-2']}}
+            <br>{{data['delivery-address-line-3']}}
+            <br>{{data['delivery-address-town']}}
+            <br>{{data['delivery-address-postcode']}}
+          </p> -->
+
+        </fieldset>
+      </div>
+      <button class="govuk-button">Confirm</button>
+      <p><a href="what-is-the-delivery-address" >Change address</a></p>
+
+    </form>
+  </div>
+</div>
+
+
+
+{% endblock %}

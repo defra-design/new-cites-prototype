@@ -1,0 +1,260 @@
+{% extends "layout.html" %}
+
+{% set thisPageTitle = "where-did-you-source-your-specimen-from" %}
+
+{% block content %}
+
+{% if data['specimenType'] === 'animal' %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <form method="post" autocomplete="off">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <!-- <span class="govuk-caption-l">{{data['speciesName']}} ({{data['specimenCount']}} of {{data['quantity']}})</span> -->
+            <h1 class="govuk-fieldset__heading">
+              What is the source code?
+            </h1>
+          </legend>
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="specimen-source-1" name="sourceCode" type="radio" value="W - From the wild">
+              <label class="govuk-label govuk-radios__label" for="specimen-source-1">
+                <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-0">W</p>
+                <p class=" govuk-!-margin-bottom-0">From the wild</p>
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="specimen-source-2" name="sourceCode" type="radio" value="R - Reared in a controlled environment (taken as eggs or juveniles from the wild)">
+              <label class="govuk-label govuk-radios__label" for="specimen-source-2">
+                <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-0">R</p>
+                <p class=" govuk-!-margin-bottom-0">Reared in a controlled environment (taken as eggs or juveniles from the wild)</p>
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="specimen-source-3" name="sourceCode" type="radio" value="D - Animals bred in captivity by a CITES registered breeder">
+              <label class="govuk-label govuk-radios__label" for="specimen-source-3">
+                <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-0">D</p>
+                <p class=" govuk-!-margin-bottom-0">Animals bred in captivity by a CITES registered breeder</p>
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="specimen-source-4" name="sourceCode" type="radio" value="C - Animals bred in captivity to second generation specimens or that meet the Commission Regulation criteria">
+              <label class="govuk-label govuk-radios__label" for="specimen-source-4">
+                <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-0">C</p>
+                <p class=" govuk-!-margin-bottom-0">Animals bred in captivity to second generation specimens or that meet the<a href="#"> Commission Regulation criteria</a> (opens in a new tab)</p>
+                </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="specimen-source-5" name="sourceCode" type="radio" value="F - Animals bred in captivity to first generation specimens or that do not meet the Commission Regulation criteria">
+              <label class="govuk-label govuk-radios__label" for="specimen-source-5">
+                <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-0">F</p>
+                <p class=" govuk-!-margin-bottom-0">Animals bred in captivity to first generation specimens or that do not meet the<a href="#"> Commission Regulation criteria</a> (opens in a new tab)</p>
+              </label>
+            </div>
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="specimen-source-7" name="sourceCode" type="radio" value="I - Confiscated or seized" data-aria-controls="conditional-source-7">
+              <label class="govuk-label govuk-radios__label" for="specimen-source-7">
+                <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-0">I</p>
+                <p class=" govuk-!-margin-bottom-0">Confiscated or seized</p>
+              </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-source-7">
+                <div class="govuk-form-group">
+                  <select class="govuk-select" id="subject" name="otherSourceCode-1" aria-describedby="subject-hint">
+                    <option value="" selected>Choose a second source code</option>
+                    <option value="W - From the wild">W - From the wild</option>
+                    <option value="R - Reared in a controlled environment (taken as eggs or juveniles from the wild)">R - Reared in a controlled environment (taken as eggs or juveniles from the wild)</option>
+                    <option value="D - Animals bred in captivity by a CITES registered breeder">D - Animals bred in captivity by a CITES registered breeder</option>
+                    <option value="C - Animals bred in captivity to second generation specimens or that meet the Commission Regulation criteria">C - Animals bred in captivity to second generation specimens or that meet the Commission Regulation criteria</option>
+                    <option value="F - Animals bred in captivity to first generation specimens or that do not meet the Commission Regulation criteria">F - Animals bred in captivity to first generation specimens or that do not meet the Commission Regulation criteria</option>
+                    <option value="X - Taken from the marine environment">X - Taken from the marine environment</option>
+                  </select>
+                </div>
+              </div>
+              <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="specimen-source-8" name="sourceCode" type="radio" value="O - Pre-convention" data-aria-controls="conditional-source-8">
+              <label class="govuk-label govuk-radios__label" for="specimen-source-8">
+                <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-0">O</p>
+                <p class=" govuk-!-margin-bottom-0">Pre-convention</p>
+              </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-source-8">
+              <div class="govuk-form-group">
+                <select class="govuk-select" id="subject" name="otherSourceCode-2" aria-describedby="subject-hint">
+                  <option value="" selected>Choose a second source code</option>
+                  <option value="W - From the wild">W - From the wild</option>
+                  <option value="R - Reared in a controlled environment (taken as eggs or juveniles from the wild)">R - Reared in a controlled environment (taken as eggs or juveniles from the wild)</option>
+                  <option value="D - Animals bred in captivity by a CITES registered breeder">D - Animals bred in captivity by a CITES registered breeder</option>
+                  <option value="C - Animals bred in captivity to second generation specimens or that meet the Commission Regulation criteria">C - Animals bred in captivity to second generation specimens or that meet the Commission Regulation criteria</option>
+                  <option value="F - Animals bred in captivity to first generation specimens or that do not meet the Commission Regulation criteria">F - Animals bred in captivity to first generation specimens or that do not meet the Commission Regulation criteria</option>
+                  <option value="X - Taken from the marine environment">X - Taken from the marine environment</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="specimen-source-6" name="sourceCode" type="radio" value="X - Taken from the marine environment" data-aria-controls="conditional-source-6">
+              <label class="govuk-label govuk-radios__label" for="specimen-source-6">
+                <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-0">X</p>
+                <p class=" govuk-!-margin-bottom-0">Taken from the marine environment</p>
+              </label>
+            </div>
+
+            <div class="govuk-radios__divider">Or</div>
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="specimen-source-11" name="sourceCode" type="radio" value="I do not know" data-aria-controls="conditional-source">
+              <label class="govuk-label govuk-radios__label" for="specimen-source-11">
+                <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-0">U</p>
+                I do not know
+              </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-source">
+                <div class="govuk-form-group">
+                  <div class="govuk-character-count" data-module="govuk-character-count" data-maxlength="300">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label" for="sourceCode8">
+                        Enter a reason
+                      </label>
+                      <textarea class="govuk-textarea govuk-js-character-count" id="with-hint" name="with-hint" rows="5" aria-describedby="with-hint-info with-hint-hint"></textarea>
+                    </div>
+                    <div id="with-hint-info" class="govuk-hint govuk-character-count__message">
+                      You can enter up to 300 characters
+                    </div>
+                  </div>
+              </div>
+            </div>
+        </fieldset>
+      </div>
+      <button class="govuk-button">Continue</button>
+    </form>
+  </div>
+</div>
+{% endif %}
+
+{% if data['specimenType'] === 'plant' %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <form method="post" autocomplete="off">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <span class="govuk-caption-l">{{data['species-name-1']}}</span>
+            <h1 class="govuk-fieldset__heading">
+              What is the source code?
+            </h1>
+          </legend>
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="specimen-source-1" name="sourceCode" type="radio" value="W - From the wild">
+              <label class="govuk-label govuk-radios__label" for="specimen-source-1">
+                <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-0">W</p>
+                <p class=" govuk-!-margin-bottom-0">From the wild</p>
+              </label>
+            </div>
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="specimen-source-2" name="sourceCode" type="radio" value="D - Plants artificially propogated for commercial purposes">
+              <label class="govuk-label govuk-radios__label" for="specimen-source-2">
+                <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-0">D</p>
+                <P class=" govuk-!-margin-bottom-0">Plants artificially propogated for commercial purposes</p>
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="specimen-source-3" name="sourceCode" type="radio" value="A - Plants artificially propagated for non-commercial purposes">
+              <label class="govuk-label govuk-radios__label" for="specimen-source-3">
+                <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-0">A</p>
+                <p class=" govuk-!-margin-bottom-0">Plants artificially propogated for non-commercial purposes</p>
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="specimen-source-4" name="sourceCode" type="radio" value="I - Confiscated or seized" data-aria-controls="conditional-source-4">
+              <label class="govuk-label govuk-radios__label" for="specimen-source-4">
+                <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-0">I</p>
+                <p class=" govuk-!-margin-bottom-0">Confiscated or seized</p>
+              </label>
+            </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-source-4">
+                <div class="govuk-form-group">
+                  <select class="govuk-select" id="subject" name="otherSourceCode-3" aria-describedby="subject-hint">
+                    <option value="" selected>Choose a second source code</option>
+                    <option value="W - From the wild">W - From the wild</option>
+                    <option value="D - Reared in a controlled environment (taken as eggs or juveniles from the wild)">D - Plants artificially propogated for commercial purposes</option>
+                    <option value="A - Plants artificially propogated for non-commercial purposes">A - Plants artificially propogated for non-commercial purposes</option>
+                    <option value="X - Taken from the marine environment">X - Taken from the marine environment</option>
+                    <option value="Y - Plants that meet the definition for assisted production">Y - Plants that meet the definition for assisted production</option>
+                  </select>
+                </div>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="specimen-source-5" name="sourceCode" type="radio" value="O - Pre-convention" data-aria-controls="conditional-source-5">
+              <label class="govuk-label govuk-radios__label" for="specimen-source-5">
+                <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-0">O</p>
+                <p class=" govuk-!-margin-bottom-0">Pre-convention</p>
+              </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-source-5">
+              <div class="govuk-form-group">
+                <select class="govuk-select" id="subject" name="otherSourceCode-4" aria-describedby="subject-hint">
+                  <option value="" selected>Choose a second source code</option>
+                  <option value="W - From the wild">W - From the wild</option>
+                  <option value="D - Plants artificially propagated for commercial purposes">D - Plants artificially propagated for commercial purposes</option>
+                  <option value="A - Plants artificially propagated for non-commercial purposes">A - Plants artificially propagated for non-commercial purposes</option>
+                  <option value="X - Taken from the marine environment">X - Taken from the marine environment</option>
+                  <option value="Y - Plants that meet the definition for assisted production">Y - Plants that meet the definition for assisted production</option>
+                </select>
+              </div>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="specimen-source-6" name="sourceCode" type="radio" value="X - Taken from the marine environment" data-aria-controls="conditional-source-6">
+              <label class="govuk-label govuk-radios__label" for="specimen-source-6">
+                <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-0">X</p>
+                <p class=" govuk-!-margin-bottom-0">Taken from the marine environment</p>
+              </label>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="specimen-source-7" name="sourceCode" type="radio" value="Y - Plants that meet the definition for assisted production" data-aria-controls="conditional-source-6">
+              <label class="govuk-label govuk-radios__label" for="specimen-source-7">
+                <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-0">Y</p>
+                <p class=" govuk-!-margin-bottom-0">Plants that meet the definition for<a href="#"> assisted production</a> (opens in a new tab)</p>
+              </label>
+            </div>
+
+            <div class="govuk-radios__divider">Or</div>
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="specimen-source-8" name="sourceCode" type="radio" value="I do not know" data-aria-controls="conditional-source">
+              <label class="govuk-label govuk-radios__label" for="specimen-source-8">
+                <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-0">U</p>
+                I do not know
+              </label>
+              </div>
+              <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-source">
+                <div class="govuk-form-group">
+                  <div class="govuk-character-count" data-module="govuk-character-count" data-maxlength="300">
+                    <div class="govuk-form-group">
+                      <label class="govuk-label" for="sourceCode">
+                        Enter a reason
+                      </label>
+                      <textarea class="govuk-textarea govuk-js-character-count" id="with-hint" name="with-hint" rows="5" aria-describedby="with-hint-info with-hint-hint"></textarea>
+                    </div>
+                    <div id="with-hint-info" class="govuk-hint govuk-character-count__message">
+                      You can enter up to 300 characters
+                    </div>
+                  </div>
+              </div>
+            </div>
+        </fieldset>
+      </div>
+      <button class="govuk-button">Continue</button>
+    </form>
+  </div>
+</div>
+{% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% set thisPageTitle = "cookies" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Cookies</h1>
+    <p class="govuk-body">Cookies are small files saved on your phone, tablet or computer when you visit a website.</p>
+    <p class="govuk-body">We use cookies to make CITES work and collect information about how you use our service.</p>
+
+    <h2 class="govuk-heading-m">Essential cookies</h2>
+    <p>Essential cookies keep your information secure while you use CITES. We do not need to ask permission to use them.</p>
+
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Name</th>
+          <th scope="col" class="govuk-table__header govuk-!-width-one-half">Purpose</th>
+          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Expires</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Session</td>
+          <td class="govuk-table__cell">To store details you enter on this site</td>
+          <td class="govuk-table__cell">12 hours</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Token</td>
+          <td class="govuk-table__cell">To keep you signed in</td>
+          <td class="govuk-table__cell">When you close your browser</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+{% endblock %}

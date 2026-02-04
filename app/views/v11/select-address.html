@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% set thisPageTitle = "select-address" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="post" class="form">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              Select an address
+            </h1>
+          </legend>
+
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="sort">
+                  Address
+                </label>
+                <select class="govuk-select govuk-!-width-two-thirds" id="sort" name="your-address" value="your-address">
+                  <option value="address-1" selected>3 addresses found</option>
+                  <option value="38 Western Road, Billericay CM12 9DX">38 Western Road, Billericay CM12 9DX</option>
+                  <option value="40 Western Road, Billericay CM12 9DX">40 Western Road, Billericay CM12 9DX</option>
+                  <option value="42 Western Road, Billericay CM12 9DX">42 Western Road, Billericay CM12 9DX</option>
+                </select>
+              </div>
+
+              <p><a href="enter-address-manually?your-address="">Enter address manually</a></p>
+
+              <button class="govuk-button" data-module="govuk-button">Continue</button>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+  {% endblock %}

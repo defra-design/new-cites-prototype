@@ -1,0 +1,19 @@
+{% extends "layout-no-back-link.html" %}
+
+{% set thisPageTitle = "you-have-cancelled-your-payment" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">
+          You have cancelled your payment
+      </h1>
+      <p class="govuk-body">No money has been taken from your account.</p>
+      <p class="govuk-body">You must pay for your application before we can issue the permit.</p>
+      <p><a href="#">Go back to try the payment again</a></p>
+      <p><a href="application-complete">Submit application and pay later</a></p>
+  </div>
+
+
+{% endblock %}

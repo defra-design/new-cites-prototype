@@ -1,0 +1,36 @@
+
+{% extends "layout-no-back-link.html" %}
+
+{% set thisPageTitle = "application-complete" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-6">
+        <h1 class="govuk-panel__title">Application complete</h1>
+        <div class="govuk-panel__body">
+          Reference number
+          <br><strong>AB7N10</strong>
+        </div>
+      </div>
+
+      <h2 class="govuk-heading-m">What happens next</h2>
+
+      {% if data['payNow'] === 'yes'%}
+      <p class="govuk-body">We have received your application fee and have sent you a confirmation email.</p>
+      <p class="govuk-body">We have passed your application to the APHA team for endangered plant and animal species (CITES). APHA aims to process your application within 30 days. They may contact you if they require more information.</p>
+      <p class="govuk-body">To view the status of your application, go to <a href="your-submissions?fromPage='reset'" data-module="govuk-button">your CITES account</a>.  There may be a short delay before the application appears in your list of applications.</p>
+      {% else %}
+      <p class="govuk-body">We have passed your application to the APHA team for endangered plant and animal species (CITES).</p>
+      <p class="govuk-body">They will contact you to confirm the amount you need to pay.</p>
+      <p class="govuk-body">To view the status of your application go to <a href="your-submissions?fromPage='reset'" data-module="govuk-button">your CITES account</a>. There may be a short delay before the application appears in your list of applications.</p>
+      {% endif %}
+
+      <a href="your-submissions?fromPage='reset'" role="button" draggable="false" class="govuk-button" data-module="govuk-button">Finish</a>
+
+    </div>
+  </div>
+
+
+{% endblock %}

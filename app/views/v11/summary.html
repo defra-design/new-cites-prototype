@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% set thisPageTitle = "already-have-a10" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <form method="post" autocomplete="off">
+
+      <div class="govuk-form-group">
+        <h1 class="govuk-heading-l">Your applications</h1>
+
+        <table class="govuk-table">
+          <!-- <caption class="govuk-table__caption govuk-table__caption--m">Month you apply</caption> -->
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header govuk-!-width-one-half">Scientific name</th>
+              <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Quantity</th>
+              <!-- <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Mark</th> -->
+              <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"></th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link" href="check-your-answers">Homopus solus</a></td>
+              <td class="govuk-table__cell">1</td>
+              <!-- <td class="govuk-table__cell">Marked</td> -->
+              <td class="govuk-table__cell"><span><a class="govuk-link" href="check-your-answers">Copy to a new application</a></span></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link" href="#">Homopus solus</a></td>
+              <td class="govuk-table__cell">20</td>
+              <!-- <td class="govuk-table__cell">Unmarked</td> -->
+              <td class="govuk-table__cell"><a class="govuk-link" href="#">Copy to a new application</a></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link" href="#">Falcon</a></td>
+              <td class="govuk-table__cell">1</td>
+              <!-- <td class="govuk-table__cell">Marked</td> -->
+              <td class="govuk-table__cell"><a class="govuk-link" href="#">Copy to a new application</a></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link" href="#">Falcon</a></td>
+              <td class="govuk-table__cell">1</td>
+              <!-- <td class="govuk-table__cell">Marked</td> -->
+              <td class="govuk-table__cell"><a class="govuk-link" href="#">Copy to a new application</a></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell"><a class="govuk-link" href="#">Falcon</a></td>
+              <td class="govuk-table__cell">1</td>
+              <!-- <td class="govuk-table__cell">Marked</td> -->
+              <td class="govuk-table__cell"><a class="govuk-link" href="#">Copy to a new application</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+<!-- submit will take user to Declaration page. -->
+      <button class="govuk-button">Submit</button>
+<p><a class="govuk-link" href="What-is-the-name-of-the-species">Add another species</a></p>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

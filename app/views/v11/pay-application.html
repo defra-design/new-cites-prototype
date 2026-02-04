@@ -1,0 +1,50 @@
+{% extends "layout-no-back-link.html" %}
+
+{% set thisPageTitle = "Pay-application" %}
+
+
+{% block content %}
+<style>
+  #panel {
+    background-color: #f3f2f1;
+    border-style: solid;
+    border-color: #b1b4b6;
+    border-width:  10px;
+  }
+</style>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form method="post" autocomplete="off">
+      <div class="govuk-form-group">
+        <h1 class="govuk-heading-l">Pay for your CITES application</h1>
+        <p>You must pay for your application before we can start processing it.<p>
+        <h2 class="govuk-heading-m">Do you want to pay for your application now?</h2>
+        <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="payNow-yes" name="payNow" type="radio" value="yes" required>
+            <label class="govuk-label govuk-radios__label" for="payNow-yes">
+              Yes
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="payNow-no" name="payNow"  type="radio" value="no">
+            <label class="govuk-label govuk-radios__label" for="payNow-no">
+              No, pay later
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <button class="govuk-button">Continue</button>
+
+    </form>
+  </div>
+  <div class="govuk-grid-column-one-third">
+    <div id="panel" class="govuk-panel">
+      <h2 class="govuk-heading-m">Payment amount</h2>
+      <p class="govuk-body govuk-!-font-size-48 govuk-!-font-weight-bold">£20</p>
+    </div>
+  </div>
+</div>
+{% endblock %}
