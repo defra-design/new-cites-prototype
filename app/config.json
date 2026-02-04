@@ -1,0 +1,8 @@
+{
+  "serviceName": "Apply for a CITES permit",
+  "plugins": {
+    "govuk-frontend": {
+      "rebrand": true
+    }
+  }
+}
