@@ -1,0 +1,182 @@
+{% extends "layouts/main.html" %}
+
+{% set thisPageTitle = "permit-details" %}
+
+{% block pageTitle %}
+  Issued Permit Details - {{ data['permit-metadata']['permit-number'] }} - GOV.UK
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    
+    <!-- Page Heading with Caption -->
+    <span class="govuk-caption-l">Falconer's Nest Breeding Centre</span>
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px;">
+      <div>
+        <h1 class="govuk-heading-l govuk-!-margin-bottom-2">CITES Permit: {{ data['permit-metadata']['permit-number'] }}</h1>
+        <p class="govuk-body">Reference: <strong>{{ data['permit-metadata']['permit-number'] }}</strong></p>
+      </div>
+      
+      <div class="print-hidden" style="text-align: right; display: flex; gap: 10px; justify-content: flex-end; align-items: flex-start;">
+        {{ govukButton({
+          text: "View and print permit",
+          href: "export-falcon-permit"
+        }) }}
+        {{ govukButton({
+          text: "Print this page",
+          classes: "govuk-button--secondary",
+          attributes: {
+            "onclick": "window.print()"
+          }
+        }) }}
+      </div>
+    </div>
+
+    <!-- Quick Status & QR Summary Section -->
+    <div class="govuk-inset-text" style="background-color: #f3f2f1; padding: 25px; border-left: 10px solid #00703c; margin-top: 0;">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+        <div style="flex: 1; min-width: 250px;">
+          <h2 class="govuk-heading-s govuk-!-margin-bottom-2">Status</h2>
+          {{ govukTag({
+            text: "Permit Valid",
+            classes: "govuk-tag--green govuk-!-margin-bottom-4"
+          }) }}
+          
+          <p class="govuk-body govuk-!-margin-bottom-1"><strong>Valid until:</strong> {{ data['permit-metadata']['validity-date'] }}</p>
+          <p class="govuk-hint govuk-!-font-size-16">This permit is currently in date and active for international trade.</p>
+        </div>
+        
+        <div style="text-align: center; background: white; padding: 10px; border: 1px solid #b1b4b6;">
+          <img src="https://support.thinkific.com/hc/article_attachments/360042081334/5d37325ea1ff6.png" 
+               alt="Verification QR Code" 
+               style="width: 100px; height: 100px; display: block;">
+          <p class="govuk-body-s govuk-!-margin-top-1 govuk-!-margin-bottom-0"><strong>e-Verification</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- About the permit (Read Only) -->
+    <h2 class="govuk-heading-m">About the permit</h2>
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+    
+    {{ govukSummaryList({
+      classes: "govuk-!-margin-bottom-9",
+      rows: [
+        {
+          key: { text: "Permit type" },
+          value: { text: data['permit-metadata']['permit-type'] | capitalize }
+        },
+        {
+          key: { text: "Permit number" },
+          value: { text: data['permit-metadata']['permit-number'] }
+        },
+        {
+          key: { text: "Issuing official" },
+          value: { text: data['authorization']['issuing-official'] }
+        }
+      ]
+    }) }}
+
+    <!-- Your contact details -->
+    <h2 class="govuk-heading-m">Exporter details</h2>
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+    
+    {{ govukSummaryList({
+      classes: "govuk-!-margin-bottom-9",
+      rows: [
+        {
+          key: { text: "Full name" },
+          value: { text: "Dean Falconer" }
+        },
+        {
+          key: { text: "Address (Box 1)" },
+          value: { html: data['exporter-details'] | nl2br | safe }
+        }
+      ]
+    }) }}
+
+    <!-- Species details -->
+    <h2 class="govuk-heading-m">Species and specimen details</h2>
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+    
+    {{ govukSummaryList({
+      classes: "govuk-!-margin-bottom-9",
+      rows: [
+        {
+          key: { text: "Scientific name" },
+          value: { html: "<i>" + data['species-names']['scientific-name'] + "</i>" }
+        },
+        {
+          key: { text: "Common name" },
+          value: { text: data['species-names']['common-name'] }
+        },
+        {
+          key: { text: "Quantity and mass" },
+          value: { text: data['specimen-details']['quantity'] + " specimen (" + data['specimen-details']['net-mass'] + " kg)" }
+        },
+        {
+          key: { text: "Codes" },
+          value: { text: "Source: " + data['specimen-details']['source-code'] + " / Purpose: " + data['specimen-details']['purpose-code'] }
+        },
+        {
+          key: { text: "Description (Box 8)" },
+          value: { html: data['specimen-details']['description'] | nl2br | safe }
+        }
+      ]
+    }) }}
+
+    <!-- Shipment information -->
+    <h2 class="govuk-heading-m">Shipment information</h2>
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+    
+    {{ govukSummaryList({
+      classes: "govuk-!-margin-bottom-9",
+      rows: [
+        {
+          key: { text: "Importer (Box 3)" },
+          value: { html: data['importer-details'] | nl2br | safe }
+        },
+        {
+          key: { text: "Destination country" },
+          value: { text: data['country-import'] }
+        },
+        {
+          key: { text: "Waybill number" },
+          value: { text: data['authorization']['waybill-number'] }
+        }
+      ]
+    }) }}
+
+    <div class="govuk-button-group print-hidden">
+      <a href="/dashboard" class="govuk-button">
+        Return to dashboard
+      </a>
+      <a href="#" class="govuk-link">Report a problem with this permit</a>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  @media print {
+    .govuk-header, 
+    .govuk-footer, 
+    .govuk-phase-banner, 
+    .govuk-back-link, 
+    .print-hidden,
+    .govuk-button {
+      display: none !important;
+    }
+    .govuk-template__body {
+      background-color: white;
+    }
+    .govuk-main-wrapper {
+      padding-top: 0;
+    }
+    .govuk-inset-text {
+      border-color: #00703c !important;
+    }
+  }
+</style>
+{% endblock %}

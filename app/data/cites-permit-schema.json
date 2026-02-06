@@ -1,0 +1,229 @@
+{
+    "$schema": "https://www.google.com/search?q=http://json-schema.org/draft-07/schema%23",
+    "title": "CITES Permit Data (GDS Prototype Kit v13)",
+    "description": "Schema capturing all fields for a European Union CITES Permit/Certificate, optimized for GDS-style naming conventions.",
+    "type": "object",
+    "properties": {
+        "exporter-details": {
+            "type": "string",
+            "description": "Box 1: Name and full address of the exporter or re-exporter"
+        },
+        "permit-metadata": {
+            "type": "object",
+            "properties": {
+                "permit-type": {
+                    "type": "string",
+                    "enum": [
+                        "IMPORT",
+                        "EXPORT",
+                        "RE-EXPORT",
+                        "OTHER"
+                    ],
+                    "description": "Type of permit or certificate"
+                },
+                "permit-number": {
+                    "type": "string",
+                    "description": "Unique permit reference number"
+                },
+                "validity-date": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Box 2: Last day of validity"
+                }
+            },
+            "required": [
+                "permit-type",
+                "permit-number",
+                "validity-date"
+            ]
+        },
+        "importer-details": {
+            "type": "string",
+            "description": "Box 3: Name and full address of the importer"
+        },
+        "country-export": {
+            "type": "string",
+            "description": "Box 4: Country of (re)-export"
+        },
+        "country-import": {
+            "type": "string",
+            "description": "Box 5: Country of import"
+        },
+        "authorized-location": {
+            "type": "string",
+            "description": "Box 6: Authorized location for live specimens of Annex A species"
+        },
+        "issuing-authority": {
+            "type": "string",
+            "description": "Box 7: The management authority issuing the permit"
+        },
+        "specimen-details": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "Box 8: Marks, sex, and date of birth for live animals"
+                },
+                "net-mass": {
+                    "type": "number",
+                    "description": "Box 9: Net mass in kilograms"
+                },
+                "quantity": {
+                    "type": "string",
+                    "description": "Box 10: Total number of specimens"
+                },
+                "appendix": {
+                    "type": "string",
+                    "enum": [
+                        "I",
+                        "II",
+                        "III"
+                    ],
+                    "description": "Box 11: CITES Appendix number"
+                },
+                "annex": {
+                    "type": "string",
+                    "enum": [
+                        "A",
+                        "B",
+                        "C",
+                        "D"
+                    ],
+                    "description": "Box 12: EU Annex letter"
+                },
+                "source-code": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 1,
+                    "description": "Box 13: Source of the specimen"
+                },
+                "purpose-code": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 1,
+                    "description": "Box 14: Purpose of the transaction"
+                }
+            }
+        },
+        "origin-history": {
+            "type": "object",
+            "properties": {
+                "origin-country": {
+                    "type": "string",
+                    "description": "Box 15"
+                },
+                "origin-permit-number": {
+                    "type": "string",
+                    "description": "Box 16"
+                },
+                "origin-issue-date": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Box 17"
+                },
+                "last-re-export-country": {
+                    "type": "string",
+                    "description": "Box 18"
+                },
+                "last-re-export-cert-number": {
+                    "type": "string",
+                    "description": "Box 19"
+                },
+                "last-re-export-issue-date": {
+                    "type": "string",
+                    "format": "date",
+                    "description": "Box 20"
+                }
+            }
+        },
+        "species-names": {
+            "type": "object",
+            "properties": {
+                "scientific-name": {
+                    "type": "string",
+                    "description": "Box 21: Genus and species"
+                },
+                "common-name": {
+                    "type": "string",
+                    "description": "Box 22: Common name"
+                }
+            }
+        },
+        "special-conditions": {
+            "type": "string",
+            "description": "Box 23: Additional conditions or legal requirements"
+        },
+        "authorization": {
+            "type": "object",
+            "properties": {
+                "documentation-status": {
+                    "type": "string",
+                    "enum": [
+                        "surrendered",
+                        "to_be_surrendered"
+                    ],
+                    "description": "Box 24"
+                },
+                "permitted-action": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "importation",
+                            "exportation",
+                            "re-exportation"
+                        ]
+                    },
+                    "description": "Box 25"
+                },
+                "issuing-official": {
+                    "type": "string",
+                    "description": "Box 25: Name and details of official"
+                },
+                "waybill-number": {
+                    "type": "string",
+                    "description": "Box 26: Bill of Lading or Air Waybill"
+                }
+            }
+        },
+        "customs-use": {
+            "type": "object",
+            "properties": {
+                "actual-quantity": {
+                    "type": "string",
+                    "description": "Box 27"
+                },
+                "dead-on-arrival": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "Box 27"
+                },
+                "verification": {
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string"
+                        },
+                        "number": {
+                            "type": "string"
+                        },
+                        "date": {
+                            "type": "string",
+                            "format": "date"
+                        }
+                    }
+                },
+                "verification-token": {
+                    "type": "string",
+                    "description": "QR code validation data"
+                }
+            }
+        }
+    },
+    "required": [
+        "exporter-details",
+        "permit-metadata",
+        "importer-details",
+        "species-names"
+    ]
+}

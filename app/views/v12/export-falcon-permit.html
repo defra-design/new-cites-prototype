@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CITES Permit - {{ data['permit-metadata']['permit-number'] }}</title>
+    <style>
+        /* Print Styles */
+        @page {
+            size: A4;
+            margin: 0; 
+        }
+
+        :root {
+            --border-thick: 2px;
+            --border-thin: 1px;
+            --label-font: 7pt;
+            --content-font: 10pt;
+            --official-serif: "Times New Roman", Times, serif;
+            --official-sans: Arial, "Helvetica Neue", Helvetica, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            font-family: var(--official-sans);
+            -webkit-print-color-adjust: exact;
+            color: #000;
+        }
+
+        .page-container {
+            width: 210mm;
+            height: 297mm;
+            margin: 0 auto;
+            background: white;
+            position: relative;
+            padding: 5mm; 
+            box-sizing: border-box;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media print {
+            body { background: none; }
+            .page-container {
+                margin: 0;
+                width: 210mm;
+                height: 297mm;
+                padding: 5mm;
+                box-shadow: none;
+            }
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            .print-hidden {
+                display: none !important;
+            }
+        }
+
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 140pt;
+            color: rgba(0, 0, 0, 0.03);
+            font-weight: bold;
+            z-index: 1000;
+            pointer-events: none;
+            white-space: nowrap;
+            user-select: none;
+            letter-spacing: 15px;
+        }
+
+        .header-text {
+            font-weight: bold;
+            font-size: 10pt;
+            margin: 4px 0 4px 10px;
+            text-transform: uppercase;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            border-top: var(--border-thick) solid black;
+            border-left: var(--border-thick) solid black;
+            border-right: var(--border-thick) solid black;
+            border-bottom: var(--border-thick) solid black;
+            width: 100%;
+        }
+
+        .box {
+            border-right: var(--border-thin) solid black;
+            border-bottom: var(--border-thin) solid black;
+            padding: 8px 6px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .no-right { border-right: none !important; }
+        .no-bottom { border-bottom: none !important; }
+        .thick-top { border-top: var(--border-thick) solid black !important; }
+        
+        .col-12 { grid-column: span 12; }
+        .col-6 { grid-column: span 6; }
+        .col-3 { grid-column: span 3; }
+        .col-2 { grid-column: span 2; }
+        .col-1 { grid-column: span 1; }
+
+        .row-span-2 { grid-row: span 2; }
+        .row-span-4 { grid-row: span 4; }
+
+        .label {
+            display: block;
+            font-size: var(--label-font);
+            line-height: 1.1;
+            margin-bottom: 2px;
+            font-family: var(--official-sans);
+        }
+
+        .label-num {
+            font-weight: bold;
+            font-size: 8pt;
+            margin-right: 2px;
+        }
+
+        .content-area {
+            min-height: 14px;
+            font-size: var(--content-font);
+            font-weight: bold;
+            font-family: var(--official-serif); 
+            color: #000;
+            line-height: 1.1;
+        }
+
+        .cites-header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 4px 10px;
+            gap: 15px;
+        }
+
+        .cites-logo {
+            height: 42px;
+            width: auto;
+            display: block;
+            filter: grayscale(100%);
+        }
+
+        .cites-text {
+            font-size: 6.5pt;
+            text-align: left;
+            font-weight: bold;
+            line-height: 1.3;
+            max-width: 280px;
+        }
+
+        .checkbox-group {
+            font-size: 7.2pt;
+            line-height: 1.3;
+        }
+
+        .checkbox-group input {
+            margin: 0 4px 0 0;
+            vertical-align: middle;
+            accent-color: #000;
+        }
+
+        .customs-grid {
+            display: flex;
+            border-top: 1px solid black;
+            margin: 0 -6px -4px -6px; 
+            min-height: 140px; 
+        }
+
+        .customs-col {
+            border-right: 1px solid black;
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .customs-col.last {
+            border-right: none;
+            width: 110px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 7.5pt;
+        }
+
+        .footer-table th {
+            font-weight: bold;
+            text-align: left;
+            padding: 4px;
+            border: 1px solid black;
+            background-color: #f9f9f9;
+            font-family: var(--official-sans);
+        }
+
+        .footer-table td {
+            border: 1px solid black;
+            height: 50px; 
+            vertical-align: top;
+            padding: 5px;
+            font-family: var(--official-serif);
+            font-weight: bold;
+            font-size: 11pt;
+        }
+
+        .qr-label {
+            font-size: 5pt;
+            font-weight: bold;
+            margin-top: 4px;
+            text-transform: uppercase;
+            color: #000;
+            text-align: center;
+        }
+
+        .print-btn {
+            position: fixed;
+            top: 42px;
+            right: 20px;
+            background: #00703c;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            z-index: 2000;
+            font-weight: bold;
+            font-family: var(--official-sans);
+        }
+    </style>
+</head>
+<body>
+
+<button class="print-btn print-hidden" onclick="window.print()">Print Official Permit</button>
+
+<div class="page-container" role="document" aria-label="Official CITES Permit - European Union">
+    <div class="watermark" aria-hidden="true">SAMPLE</div>
+    <header class="header-text" id="document-header">EUROPEAN UNION</header>
+
+    <div class="form-grid" role="grid" aria-labelledby="document-header">
+        <!-- Row 1: Box 1 & Box 2 Metadata -->
+        <div class="box col-6 row-span-2" role="gridcell">
+            <label class="label"><span class="label-num">1.</span> Exporter/Re-exporter</label>
+            <div class="content-area" style="height: 85px;">{{ data['exporter-details'] | nl2br | safe }}</div>
+        </div>
+        <div class="box col-3" role="gridcell">
+            <fieldset class="checkbox-group" style="border:none; padding:0; margin:0;">
+                <legend class="label">PERMIT/CERTIFICATE</legend>
+                <label><input type="checkbox" {% if data['permit-metadata']['permit-type'] == 'IMPORT' %}checked{% endif %}> IMPORT</label><br>
+                <label><input type="checkbox" {% if data['permit-metadata']['permit-type'] == 'EXPORT' %}checked{% endif %}> EXPORT</label><br>
+                <label><input type="checkbox" {% if data['permit-metadata']['permit-type'] == 'RE-EXPORT' %}checked{% endif %}> RE-EXPORT</label><br>
+                <label><input type="checkbox" {% if data['permit-metadata']['permit-type'] == 'OTHER' %}checked{% endif %}> OTHER:</label>
+            </fieldset>
+        </div>
+        <div class="box col-3 no-right" role="gridcell">
+            <label class="label">No</label>
+            <div class="content-area" style="font-size: 11pt;">{{ data['permit-metadata']['permit-number'] }}</div>
+            <div style="border-top: 1px solid black; margin: 4px -5px;" aria-hidden="true"></div>
+            <label class="label"><span class="label-num">2.</span> Last day of validity:</label>
+            <div class="content-area">{{ data['permit-metadata']['validity-date'] }}</div>
+        </div>
+
+        <!-- Row 2: CITES Header -->
+        <div class="box col-6 cites-header no-right" role="gridcell">
+            <img src="https://cites.org/sites/default/files/gallery/Pics/New%20CITES%20logo(for%20large%20screen).gif/CITES_logo_high_resolution.jpg" alt="CITES Official Logo" class="cites-logo">
+            <div class="cites-text">Convention on International Trade in Endangered Species of Wild Fauna and Flora</div>
+        </div>
+
+        <!-- Row 3: Box 3 & Box 4 -->
+        <div class="box col-6 row-span-2" role="gridcell">
+            <label class="label"><span class="label-num">3.</span> Importer</label>
+            <div class="content-area" style="height: 85px;">{{ data['importer-details'] | nl2br | safe }}</div>
+        </div>
+        <div class="box col-6 no-right" role="gridcell">
+            <label class="label"><span class="label-num">4.</span> Country of (re)-export</label>
+            <div class="content-area">{{ data['country-export'] }}</div>
+        </div>
+        <!-- Row 4: Box 5 -->
+        <div class="box col-6 no-right" role="gridcell">
+            <label class="label"><span class="label-num">5.</span> Country of import</label>
+            <div class="content-area">{{ data['country-import'] }}</div>
+        </div>
+
+        <!-- Row 5: Box 6 & Box 7 -->
+        <div class="box col-6" role="gridcell">
+            <label class="label"><span class="label-num">6.</span> Authorized location (Annex A)</label>
+            <div class="content-area" style="height: 55px;">{{ data['authorized-location'] }}</div>
+        </div>
+        <div class="box col-6 no-right" role="gridcell">
+            <label class="label"><span class="label-num">7.</span> Issuing Management Authority</label>
+            <div class="content-area" style="height: 55px;">{{ data['issuing-authority'] | nl2br | safe }}</div>
+        </div>
+
+        <!-- Row 6: Box 8 & Boxes 9-20 Subgrid -->
+        <div class="box col-6 row-span-4" role="gridcell">
+            <label class="label"><span class="label-num">8.</span> Description of specimens (incl. marks, sex/DOB)</label>
+            <div class="content-area" style="height: 125px;">{{ data['specimen-details']['description'] | nl2br | safe }}</div>
+        </div>
+        
+        <!-- Boxes 9, 10, 11 -->
+        <div class="box col-2"><label class="label"><span class="label-num">9.</span> Net mass (kg)</label><div class="content-area">{{ data['specimen-details']['net-mass'] }}</div></div>
+        <div class="box col-2"><label class="label"><span class="label-num">10.</span> Quantity</label><div class="content-area">{{ data['specimen-details']['quantity'] }}</div></div>
+        <div class="box col-2 no-right"><label class="label"><span class="label-num">11.</span> App.</label><div class="content-area">{{ data['specimen-details']['appendix'] }}</div></div>
+        
+        <!-- Boxes 12, 13, 14 -->
+        <div class="box col-2"><label class="label"><span class="label-num">12.</span> Ann.</label><div class="content-area">{{ data['specimen-details']['annex'] }}</div></div>
+        <div class="box col-2"><label class="label"><span class="label-num">13.</span> Src</label><div class="content-area">{{ data['specimen-details']['source-code'] }}</div></div>
+        <div class="box col-2 no-right"><label class="label"><span class="label-num">14.</span> Purp</label><div class="content-area">{{ data['specimen-details']['purpose-code'] }}</div></div>
+
+        <!-- History: Boxes 15, 16, 17 -->
+        <div class="box col-2" role="gridcell"><label class="label">15. Country of origin</label><div class="content-area">{{ data['origin-history']['origin-country'] }}</div></div>
+        <div class="box col-2" role="gridcell"><label class="label">16. Permit No</label><div class="content-area">{{ data['origin-history']['origin-permit-number'] }}</div></div>
+        <div class="box col-2 no-right" role="gridcell"><label class="label">17. Issue Date</label><div class="content-area">{{ data['origin-history']['origin-issue-date'] }}</div></div>
+
+        <!-- History: Boxes 18, 19, 20 -->
+        <div class="box col-2" role="gridcell"><label class="label">18. Last re-export country</label><div class="content-area">{{ data['origin-history']['last-re-export-country'] }}</div></div>
+        <div class="box col-2" role="gridcell"><label class="label">19. Certificate No</label><div class="content-area">{{ data['origin-history']['last-re-export-cert-number'] }}</div></div>
+        <div class="box col-2 no-right" role="gridcell"><label class="label">20. Issue Date</label><div class="content-area">{{ data['origin-history']['last-re-export-issue-date'] }}</div></div>
+
+        <!-- Species Names -->
+        <div class="box col-12 no-right" role="gridcell"><label class="label">21. Scientific name of species</label><div class="content-area" style="font-style: italic;">{{ data['species-names']['scientific-name'] }}</div></div>
+        <div class="box col-12 no-right" role="gridcell"><label class="label">22. Common name of species</label><div class="content-area">{{ data['species-names']['common-name'] }}</div></div>
+
+        <!-- Special Conditions -->
+        <div class="box col-12 no-right" role="gridcell">
+            <label class="label">23. Special conditions</label>
+            <div class="content-area" style="height: 35px;">{{ data['special-conditions'] }}</div>
+            <p style="font-size: 5.8pt; margin-top: 3px;">Permit is only valid if transport complies with CITES Guidelines or IATA Live Animals Regulations.</p>
+        </div>
+
+        <!-- Permission Box -->
+        <div class="box col-6 row-span-2" role="gridcell">
+            <fieldset class="checkbox-group" style="border:none; padding:0; margin:0;">
+                <legend class="label">24. Documentation Status</legend>
+                <label><input type="checkbox" {% if data['authorization']['documentation-status'] == 'surrendered' %}checked{% endif %}> surrendered to issuing authority</label><br>
+                <label><input type="checkbox" {% if data['authorization']['documentation-status'] == 'to_be_surrendered' %}checked{% endif %}> to be surrendered to border customs</label>
+            </fieldset>
+            <div style="border: 1px solid black; height: 50px; margin-top: 8px; width: 95%;" aria-hidden="true"></div>
+        </div>
+        <div class="box col-6 no-right" role="gridcell">
+            <fieldset class="checkbox-group" style="border:none; padding:0; margin:0;">
+                <legend class="label">25. Permission</legend>
+                <div class="label" style="font-size: 6.5pt;">The 
+                    <input type="checkbox" {% if 'importation' in data['authorization']['permitted-action'] %}checked{% endif %}> importation 
+                    <input type="checkbox" {% if 'exportation' in data['authorization']['permitted-action'] %}checked{% endif %}> exportation 
+                    <input type="checkbox" {% if 're-exportation' in data['authorization']['permitted-action'] %}checked{% endif %}> re-exportation is hereby permitted.
+                </div>
+            </fieldset>
+            <div class="label" style="margin-top: 4px; font-weight: bold;">Signature and official stamp:</div>
+            <div style="height: 60px;" aria-hidden="true"></div>
+            <label class="label">Issuing official & Place/Date:</label>
+            <div class="content-area" style="min-height:10px;">{{ data['authorization']['issuing-official'] | nl2br | safe }}</div>
+        </div>
+
+        <!-- Box 26 -->
+        <div class="box col-6" role="gridcell" style="border-right: none;">
+            <label class="label">26. Bill of Lading / Air Waybill Number:</label>
+            <div class="content-area" style="height: 25px;">{{ data['authorization']['waybill-number'] }}</div>
+        </div>
+        
+
+        <!-- Box 27: Customs Footer -->
+        <div class="box col-12 thick-top no-right no-bottom" role="gridcell">
+            <label class="label" id="label-27"><span class="label-num">27.</span> For customs use only</label>
+            
+            <div class="customs-grid">
+                <div class="customs-col" style="flex: 3;">
+                    <table class="footer-table" role="table">
+                        <thead>
+                            <tr role="row">
+                                <th scope="col" style="border: 1px solid black; padding: 4px;">Quantity / Mass Exported</th>
+                                <th scope="col" style="border: 1px solid black; padding: 4px;">Dead on Arrival</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr role="row">
+                                <td>{{ data['customs-use']['actual-quantity'] }}</td>
+                                <td>{{ data['customs-use']['dead-on-arrival'] }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="customs-col" style="flex: 2;">
+                    <div class="label" style="font-weight: bold; font-size: 6.5pt;">Official stamp and signature</div>
+                    <div style="flex-grow: 1;" aria-hidden="true"></div>
+                </div>
+
+                <div class="customs-col" style="flex: 3;">
+                    <div class="label" style="font-weight: bold; font-size: 6.5pt;">Customs Verification</div>
+                    <div class="label" style="margin-top: 6px;">Document Type: <span class="content-area">{{ data['customs-use']['verification']['type'] }}</span></div>
+                    <div class="label" style="margin-top: 10px;">Permit Number: <span class="content-area">{{ data['customs-use']['verification']['number'] }}</span></div>
+                    <div class="label" style="margin-top: 10px;">Verification Date: <span class="content-area">{{ data['customs-use']['verification']['date'] }}</span></div>
+                </div>
+
+                <div class="customs-col last">
+                    <img src="https://support.thinkific.com/hc/article_attachments/360042081334/5d37325ea1ff6.png" alt="QR" style="width: 80px; height: 80px; display: block; filter: grayscale(100%);">
+                    <div class="qr-label">Secure e-Verification</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
