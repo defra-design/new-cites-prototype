@@ -226,9 +226,7 @@
         }
 
         .print-btn {
-            position: fixed;
-            top: 42px;
-            right: 20px;
+            position: relative;
             background: #00703c;
             color: #fff;
             padding: 10px 20px;
@@ -237,12 +235,15 @@
             z-index: 2000;
             font-weight: bold;
             font-family: var(--official-sans);
+            margin: 0 auto;
+            display: flex;
+            top: 20px;
         }
     </style>
 </head>
 <body>
 
-<button class="print-btn print-hidden" onclick="window.print()">Print Official Permit</button>
+<button class="print-btn print-hidden" onclick="window.print()">Print Permit</button>
 
 <div class="page-container" role="document" aria-label="Official CITES Permit - European Union">
     <div class="watermark" aria-hidden="true">SAMPLE</div>

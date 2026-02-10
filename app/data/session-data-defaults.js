@@ -6,7 +6,7 @@ module.exports = {
   // Box 2: Permit Metadata
   'permit-metadata': {
     'permit-type': 'EXPORT',
-    'permit-number': 'EU/GB/2026/F00482',
+    'permit-number': 'GB26EXP1234A',
     'validity-date': '2026-08-06'
   },
 
@@ -19,7 +19,7 @@ module.exports = {
 
   // Box 6 & 7: Authorities
   'authorized-location': 'Falconer\'s Nest Breeding Site A, Norfolk, UK',
-  'issuing-authority': 'Animal and Plant Health Agency (APHA)\nCentre for International Trade\nBristol, BS1 6EB',
+  'issuing-authority': 'UK CITES Management Authority Centre for International Trade. Bristol Horizon House Deanery Road Bristol, BS1 5AH\nTel: +44 (0) 3000 200 301',
 
   // Box 8: Specimen Description
   'specimen-details': {
@@ -55,7 +55,7 @@ module.exports = {
   'authorization': {
     'documentation-status': 'to_be_surrendered',
     'permitted-action': ['exportation'],
-    'issuing-official': 'H. Sterling (APHA Wildlife Officer)',
+    'issuing-official': 'E.Biggs (APHA Wildlife Officer)',
     'waybill-number': 'EK-DXB-900213'
   },
 
@@ -65,7 +65,7 @@ module.exports = {
     'dead-on-arrival': 0,
     'verification': {
       'type': 'Export Declaration',
-      'number': 'GB-EX-2026-887',
+      'number': 'GB26EXP1234A',
       'date': '2026-02-06'
     },
     'verification-token': 'CITES-SECURE-DEAN-FALCONER-001'
