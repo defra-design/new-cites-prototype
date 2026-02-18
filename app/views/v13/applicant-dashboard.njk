@@ -1,0 +1,161 @@
+{% extends "layout-with-navigation.njk" %}
+
+{% from "moj/components/filter/macro.njk" import mojFilter %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "govuk/components/accordion/macro.njk" import govukAccordion %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+{% from "govuk/components/tag/macro.njk" import govukTag %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{# --- SET SPECIES AND STATUS CONSTANTS --- #}
+{% set species1 = "<em>Falco peregrinus</em>" %}
+{% set species2 = "<em>Accipiter gentilis</em>" %}
+{% set species3 = "<em>Aquila chrysaetos</em>" %}
+{% set species4 = "<em>Falco cherrug</em>" %}
+
+{% set statusIssued = govukTag({ text: "Issued", classes: "govuk-tag--green" }) %}
+{% set statusProg = govukTag({ text: "In progress", classes: "govuk-tag--blue" }) %}
+{% set statusPay = govukTag({ text: "Awaiting payment", classes: "govuk-tag--red" }) %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <span class="govuk-caption-xl">{{ data['applicant-business-name'] or "Falconer's Nest Breeding Centre" }}</span>
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-7">Your submitted applications</h1>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  {# --- LEFT COLUMN: FILTERS --- #}
+  <div class="govuk-grid-column-one-quarter">
+    {% set typeFilterHtml %}
+      {{ govukCheckboxes({
+        idPrefix: "type",
+        name: "type",
+        classes: "govuk-checkboxes--small",
+        items: [
+          { value: "export", text: "Export", checked: true },
+          { value: "import", text: "Import", checked: true }
+        ]
+      }) }}
+    {% endset %}
+
+    {% set statusFilterHtml %}
+      {{ govukCheckboxes({
+        idPrefix: "status",
+        name: "status",
+        classes: "govuk-checkboxes--small",
+        items: [
+          { value: "issued", text: "Issued", checked: true },
+          { value: "progress", text: "In progress", checked: true }
+        ]
+      }) }}
+    {% endset %}
+
+    {{ mojFilter({
+      heading: { text: "Filters" },
+      optionsHtml: govukAccordion({
+        id: "filter-accordion",
+        classes: "govuk-accordion--small",
+        items: [
+          { heading: { text: "Permit type" }, content: { html: typeFilterHtml } },
+          { heading: { text: "Status" }, content: { html: statusFilterHtml } }
+        ]
+      })
+    }) }}
+  </div>
+
+  {# --- RIGHT COLUMN: SUBMISSION CARDS --- #}
+  <div class="govuk-grid-column-three-quarters">
+    
+    {% set tableHead = [
+      { text: "App ref", classes: "govuk-!-width-one-eighth" },
+      { text: "Permit No.", classes: "govuk-!-width-one-quarter" },
+      { text: "Expires", classes: "govuk-!-width-one-eighth" },
+      { text: "Species" },
+      { text: "Status", style: "width: 160px;" }
+    ] %}
+
+    {# --- CARD 1: SINGLE EXPORT (FROM SESSION) --- #}
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title"><strong>AB7N10</strong>: {{ data['permitType'] or "Export" }}</h2>
+        <div class="govuk-summary-card__actions">{{ statusIssued }}</div>
+      </div>
+      <div class="govuk-summary-card__content">
+        <details class="govuk-details" data-module="govuk-details" style="margin-bottom: 0;">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">1 Export permit submitted on 18/02/26</span>
+          </summary>
+          <div class="govuk-details__text">
+            <div class="govuk-button-group govuk-!-margin-bottom-6">
+              {{ govukButton({
+                text: "Download permit",
+                classes: "govuk-button--secondary"
+              }) }}
+            </div>
+
+             {{ govukTable({
+              head: tableHead,
+              rows: [[ 
+                { html: '<a href="view-application?submissionRef=AB7N10" class="govuk-link">AB7N10/001</a>' }, 
+                { html: '<a href="view-permit" class="govuk-link">GB26EXP1234A</a>' },
+                { text: "18/08/26" },
+                { html: '<em>' + (data['speciesName'] or "Falco peregrinus") + '</em>' },
+                { html: statusIssued }
+              ]]
+            }) }}
+          </div>
+        </details>
+      </div>
+    </div>
+
+    {# --- CARD 2: BULK EXPORT --- #}
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title"><strong>TN5203</strong>: Export</h2>
+        <div class="govuk-summary-card__actions">{{ govukTag({ text: "In Progress (2/5)", classes: "govuk-tag--blue" }) }}</div>
+      </div>
+      <div class="govuk-summary-card__content">
+        <details class="govuk-details" data-module="govuk-details" style="margin-bottom: 0;">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">5 Export permits submitted on 15/02/26</span>
+          </summary>
+          <div class="govuk-details__text">
+            <div class="govuk-button-group govuk-!-margin-bottom-6">
+              {{ govukButton({
+                text: "Download permits (2)",
+                classes: "govuk-button--secondary"
+              }) }}
+            </div>
+
+            {{ govukTable({
+              head: tableHead,
+              rows: [
+                [
+                  { html: '<a href="#" class="govuk-link">TN5203/001</a>' }, 
+                  { html: '<a href="#" class="govuk-link">26GB10928/12</a>' },
+                  { text: "15/08/26" },
+                  { html: species1 }, 
+                  { html: statusIssued }
+                ],
+                [
+                  { html: '<a href="#" class="govuk-link">TN5203/002</a>' }, 
+                  { html: '<a href="#" class="govuk-link">26GB10928/08</a>' },
+                  { text: "15/08/26" },
+                  { html: species2 }, 
+                  { html: statusIssued }
+                ],
+                [ { html: '<a href="#" class="govuk-link">TN5203/003</a>' }, { text: "—" }, { text: "—" }, { html: species2 }, { html: statusProg } ],
+                [ { html: '<a href="#" class="govuk-link">TN5203/004</a>' }, { text: "—" }, { text: "—" }, { html: species1 }, { html: statusProg } ],
+                [ { html: '<a href="#" class="govuk-link">TN5203/005</a>' }, { text: "—" }, { text: "—" }, { html: species3 }, { html: statusPay } ]
+              ]
+            }) }}
+          </div>
+        </details>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

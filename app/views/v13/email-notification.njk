@@ -1,0 +1,30 @@
+{% extends "layouts/main.html" %}
+
+{% set pageTitle = "Email notification" %}
+
+{% block beforeContent %}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">                                              
+    
+    <h2 class="govuk-heading-m">Email preview</h2>  
+    <p class="govuk-body">To: Dean Falconer (dean.falconer@example.com)</p>
+    <p class="govuk-body">Subject: Your eCites EXPORT permit for application:AB7N10 has been issued</p>
+      <div class="govuk-panel__body">
+        <p class="govuk-body">Dear Dean,</p>
+        <p class="govuk-body">Your application for an eCITES Export permit: AB7N10 for a Peregrin falcon has now been issued. Please log in to your account to access your permit.</p>
+        <p class="govuk-body">You can access your application and make the payment by clicking the button below:</p>
+        <p class="govuk-body">
+            <a class="govuk-link" href="/v13/applicant-dashboard">
+                Login to dashboard
+            </a>
+        </p>
+        <p class="govuk-body">If you have any questions or need assistance, please contact our support team.</p>
+        <p class="govuk-body">Best regards,<br>The CITES Management Authority</p>
+      </div>
+    </div>
+    </div>
+
+</div>
+{% endblock %}                                                         

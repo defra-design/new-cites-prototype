@@ -2,6 +2,15 @@ const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 const userProfiles = require('../data/user-profiles.js')
 
+// Helper function to ensure session is populated with the falcon application data
+// This pulls from the session-data-defaults.js file we updated
+function loadSessionData (req) {
+  const sessionDataDefaults = require('../data/session-data-defaults.js')
+  // We use Object.assign to merge defaults into the session without destroying 
+  // the user's login state or existing profile data
+  req.session.data = Object.assign({}, sessionDataDefaults, req.session.data)
+}
+
 // *********** login routes *************
 
 // Login page
@@ -32,12 +41,13 @@ router.post('/login', function (req, res) {
         req.session.data[key] = authenticatedUser[key]
       }
     })
+    
     // Redirect based on user role
     const userRole = authenticatedUser['user-role']
     if (userRole === 'cites') {
       res.redirect('/')
     } else {
-      res.redirect('/v12/applicant-dashboard-preprod')
+      res.redirect('/v13/applicant-dashboard-preprod')
     }
   } else {
     // Invalid credentials - show login again with error
@@ -62,69 +72,38 @@ router.get('/', function (req, res) {
   res.render('index')
 })
 
-// *********** v12 routes *************
+// *********** v13 routes (Dean Falconer Journey) *************
 
-// Load falcon application data helper function
-function loadFalconApplicationData (req) {
-  const falconApplicationData = require('../data/falcon-application-data.js')
-  Object.keys(falconApplicationData).forEach(key => {
-    req.session.data[key] = falconApplicationData[key]
-  })
-}
-
-// Load falcon permit data helper function
-function loadFalconData (req) {
-  const falconData = require('../data/falcon-permit-data.js')
-  Object.keys(falconData).forEach(key => {
-    req.session.data[key] = falconData[key]
-  })
-}
-
-// Dashboard pages
-
-// Your submissions
-router.get('/v12/your-submissions', function (req, res) {
-  loadFalconData(req)
-  res.render('v12/your-submissions')
+// Email simulation page
+router.get('/v13/email-notification', function (req, res) {
+  const applicantProfile = userProfiles['dean-falconer']
+  res.render('v13/email-notification', { applicantProfile })
 })
 
-// Falcon permit application - load specific falcon permit data
-router.get('/v12/application-falcon-permit', function (req, res) {
-  loadFalconApplicationData(req)
-  res.render('v12/application-falcon-permit')
+// Applicant dashboard - loads session data to show the active application
+router.get('/v13/applicant-dashboard', function (req, res) {
+  loadSessionData(req)
+  const applicantProfile = userProfiles['dean-falconer']
+  res.render('v13/applicant-dashboard', { applicantProfile })
 })
 
-// Export falcon permit - display falcon data on form
-router.get('/v12/export-falcon-permit', function (req, res) {
-  loadFalconData(req)
-  res.render('v12/export-falcon-permit')
+// View the high-level submission container
+router.get('/v13/view-submission', function (req, res) {
+  loadSessionData(req)
+  res.render('v13/view-submission')
 })
 
-// Export falcon permit details
-router.get('/v12/export-falcon-permit-details', function (req, res) {
-  loadFalconData(req)
-  res.render('v12/export-falcon-permit-details')
+// View the specific application details (Check Your Answers page)
+// This uses the application.html template you provided
+router.get('/v13/view-application', function (req, res) {
+  loadSessionData(req)
+  res.render('v13/view-application')
 })
 
-// Export falcon permit summary
-router.get('/v12/export-falcon-permit-summary', function (req, res) {
-  loadFalconData(req)
-  res.render('v12/export-falcon-permit-summary')
+// View the APHA adjusted permit details
+router.get('/v13/view-permit', function (req, res) {
+  loadSessionData(req)
+  res.render('v13/view-permit')
 })
-
-// Export falcon submission details
-router.get('/v12/export-falcon-submission-details', function (req, res) {
-  loadFalconData(req)
-  res.render('v12/export-falcon-submission-details')
-})
-
-// Your applications
-router.get('/v12/your-applications', function (req, res) {
-  loadFalconData(req)
-  res.render('v12/your-applications')
-})
-
-
-
 
 module.exports = router
