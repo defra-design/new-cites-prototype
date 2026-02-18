@@ -28,11 +28,11 @@ module.exports = {
 
   // Applicant/Account holder - Dean Falconer
   "applicant-full-name": "Dean Falconer",
-  "applicant-business-name": "Falconer's Nest Breeding Centre",
+  "applicant-business-name": "Falconers ltd",
   "applicant-email": "dean@falconers-nest.co.uk",
   "your-address": "12 Falconry Way, Norwich, Norfolk, NR1 4FN, United Kingdom",
   "your-full-name": "Dean Falconer",
-  "your-business-name": "Falconer's Nest Breeding Centre",
+  "your-business-name": "Falconers ltd",
   "your-email": "dean@falconers-nest.co.uk",
 
   // Delivery address - importer location

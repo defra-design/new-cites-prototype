@@ -14,14 +14,14 @@ module.exports = {
 
   // Your contact details (Applicant)
   "your-full-name": "Dean Falconer",
-  "your-business-name": "Falconer's Nest Breeding Centre",
+  "your-business-name": "Falconers ltd",
   "your-email": "dean@falconers-nest.co.uk",
   "your-address": "12 Falconry Way, Norwich, Norfolk, NR1 4FN, United Kingdom",
 
   // Agent specific fields (empty as isAgent is 'no')
   "agent-address": "",
   "applicant-full-name": "Dean Falconer",
-  "applicant-business-name": "Falconer's Nest Breeding Centre",
+  "applicant-business-name": "Falconers ltd",
   "applicant-email": "dean@falconers-nest.co.uk",
 
   // Delivery address
