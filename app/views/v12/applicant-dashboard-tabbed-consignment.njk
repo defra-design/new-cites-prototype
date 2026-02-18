@@ -1,26 +1,212 @@
-{% extends "layout-with-navigation.html" %}
+{% extends "layout-with-navigation.njk" %}
 
-{% set pageTitle = "your-submissions" %}
+{% from "moj/components/filter/macro.njk" import mojFilter %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+{% from "govuk/components/tabs/macro.njk" import govukTabs %}
+{% from "govuk/components/pagination/macro.njk" import govukPagination %}
+{% from "govuk/components/accordion/macro.njk" import govukAccordion %}
 
-{% block beforeContent %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-<div class="govuk-phase-banner">
-  <p class="govuk-phase-banner__content">
-    <strong class="govuk-tag govuk-phase-banner__content__tag govuk-tag--green">
-      prototype
-    </strong>
-    <span class="govuk-phase-banner__text">
-      This is a new service - your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
-    </span>
-  </p>
-</div>
-{% endblock %}
+{% block beforeContent %}{% endblock %}
 
 {% block content %}
-
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
-    <img src="/public/images/applicant-dashboard-main-tabbed-consignment.png" alt="applicant dashboard tabbed" style="width: 100%; height: auto;">
+    <span class="govuk-caption-xl">Falconers Ltd</span>
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-5">Your applications</h1>
+    
+    <div class="govuk-grid-row govuk-!-margin-bottom-6">
+      <div class="govuk-grid-column-one-half govuk-!-margin-bottom-4">
+        {{ govukButton({ text: "Start new application", classes: "govuk-!-margin-bottom-0" }) }}
+      </div>
+      <div class="govuk-grid-column-one-half">
+        <div style="display: flex; justify-content: flex-end;">
+          <div class="govuk-input__wrapper" style="display: flex; width: 100%; max-width: 350px;">
+            <input class="govuk-input" id="search-input" name="searchValue" type="text" placeholder="Search reference">
+            <div class="govuk-input__suffix" aria-hidden="true" style="padding: 0; border: none; background: none;">
+              <button class="govuk-button govuk-!-margin-bottom-0" style="height: 40px; border: none; padding: 0 20px; background-color: #00703c;">Search</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+<div style="position: relative;">
+  <div style="position: absolute; right: 0; top: 0; z-index: 10;">
+    <button id="toggle-filter" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-0" style="height: 40px;">Hide filters</button>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters" id="main-content-col">
+      
+      {# Pre-calculate complex HTML strings to avoid parseAggregate errors #}
+      {% set statusProg %}<strong class="govuk-tag" style="background: #BCD1E6; color: #0b0c0c; border: none; text-transform: none;">In progress</strong>{% endset %}
+      {% set statusIssued %}<strong class="govuk-tag" style="background: #cce2d8; color: #0b0c0c; border: none; text-transform: none;">Issued</strong>{% endset %}
+      {% set statusWait %}<strong class="govuk-tag" style="background: #f1bdbd; color: #0b0c0c; border: none; text-transform: none;">Awaiting docs</strong>{% endset %}
+      {% set statusReady %}<strong class="govuk-tag" style="background: #D5E8E3; color: #0b0c0c; border: none; text-transform: none;">Issued</strong>{% endset %}
+      {% set statusDone %}<strong class="govuk-tag govuk-tag--grey">Endorsed</strong>{% endset %}
+      {% set statusActive %}<strong class="govuk-tag govuk-tag--green">Issued</strong>{% endset %}
+      {% set statusExpired %}<strong class="govuk-tag govuk-tag--grey">Expired</strong>{% endset %}
+      
+      {% set species1 %}<i>Falco</i> (1){% endset %}
+      {% set species2 %}<i>Falco</i> (2){% endset %}
+      {% set species3 %}<i>Falco</i> (3){% endset %}
+      {% set species4 %}<i>Falco</i> (4){% endset %}
+      {% set species5 %}<i>Falco</i> (5){% endset %}
+      {% set speciesOnly %}<i>Falco</i>{% endset %}
+
+      {# 1. APPLICATIONS TAB #}
+      {% set appHtml %}
+        <h2 class="govuk-heading-m">Recent applications</h2>
+        {{ govukTable({
+          attributes: { "data-module": "govuk-table" },
+          classes: "app-table--responsive app-table--left-aligned",
+          head: [
+            { text: "Date", attributes: { "aria-sort": "descending" } },
+            { text: "Application ID", attributes: { "aria-sort": "none" } },
+            { text: "Type", attributes: { "aria-sort": "none" } },
+            { text: "Species", attributes: { "aria-sort": "none" } },
+            { text: "Status", attributes: { "aria-sort": "none" } }
+          ],
+          rows: [
+            [{ text: "17/02/26" }, { html: '<a href="#">BGY4V1898-011</a>' }, { html: "<strong>Export</strong>" }, { html: species2 }, { html: statusProg }],
+            [{ text: "15/02/26" }, { html: '<a href="#">BGY4V1898-010</a>' }, { html: "<strong>Import</strong>" }, { html: species1 }, { html: statusIssued }],
+            [{ text: "14/02/26" }, { html: '<a href="#">BGY4V1898-009</a>' }, { html: "<strong>Export</strong>" }, { html: species1 }, { html: statusProg }],
+            [{ text: "12/02/26" }, { html: '<a href="#">BGY4V1898-008</a>' }, { html: "<strong>Export</strong>" }, { html: species3 }, { html: statusWait }],
+            [{ text: "10/02/26" }, { html: '<a href="#">BGY4V1898-007</a>' }, { html: "<strong>Re-export</strong>" }, { html: species1 }, { html: statusIssued }],
+            [{ text: "08/02/26" }, { html: '<a href="#">BGY4V1898-006</a>' }, { html: "<strong>Export</strong>" }, { html: species2 }, { html: statusProg }],
+            [{ text: "05/02/26" }, { html: '<a href="#">BGY4V1898-005</a>' }, { html: "<strong>Import</strong>" }, { html: species1 }, { html: statusIssued }],
+            [{ text: "01/02/26" }, { html: '<a href="#">BGY4V1898-004</a>' }, { html: "<strong>Export</strong>" }, { html: species4 }, { html: statusDone }],
+            [{ text: "28/01/26" }, { html: '<a href="#">BGY4V1898-003</a>' }, { html: "<strong>Export</strong>" }, { html: species1 }, { html: statusProg }],
+            [{ text: "25/01/26" }, { html: '<a href="#">BGY4V1898-002</a>' }, { html: "<strong>Article 10</strong>" }, { html: species1 }, { html: statusIssued }]
+          ]
+        }) }}
+        {{ govukPagination({ items: [{ number: 1, current: true, href: "#" }, { number: 2, href: "#" }] }) }}
+      {% endset %}
+
+      {# 2. PERMITS TAB #}
+      {% set permitHtml %}
+        <h2 class="govuk-heading-m">Issued permits</h2>
+        {{ govukTable({
+          attributes: { "data-module": "govuk-table" },
+          classes: "app-table--responsive app-table--left-aligned",
+          head: [
+            { text: "Permit number", attributes: { "aria-sort": "none" } },
+            { text: "Type", attributes: { "aria-sort": "none" } },
+            { text: "Species", attributes: { "aria-sort": "none" } },
+            { text: "Valid until", attributes: { "aria-sort": "ascending" } },
+            { text: "Status", attributes: { "aria-sort": "none" } }
+          ],
+          rows: [
+            [{ html: '<a href="#">GB26EXP1234A</a>' }, { html: "<strong>Export</strong>" }, { html: speciesOnly }, { text: "15/06/26" }, { html: statusActive }],
+            [{ html: '<a href="#">GB26IMP1235B</a>' }, { html: "<strong>Import</strong>" }, { html: speciesOnly }, { text: "20/07/26" }, { html: statusActive }],
+            [{ html: '<a href="#">GB26EXP1236C</a>' }, { html: "<strong>Export</strong>" }, { html: speciesOnly }, { text: "10/08/26" }, { html: statusActive }],
+            [{ html: '<a href="#">GB26EXP1237D</a>' }, { html: "<strong>Export</strong>" }, { html: speciesOnly }, { text: "15/09/26" }, { html: statusActive }],
+            [{ html: '<a href="#">GB26IMP1238E</a>' }, { html: "<strong>Import</strong>" }, { html: speciesOnly }, { text: "22/10/26" }, { html: statusActive }],
+            [{ html: '<a href="#">GB25REX0998Z</a>' }, { html: "<strong>Re-export</strong>" }, { html: speciesOnly }, { text: "12/01/26" }, { html: statusExpired }],
+            [{ html: '<a href="#">GB25EXP0997X</a>' }, { html: "<strong>Export</strong>" }, { html: speciesOnly }, { text: "05/12/25" }, { html: statusExpired }],
+            [{ html: '<a href="#">GB25IMP0996Y</a>' }, { html: "<strong>Import</strong>" }, { html: speciesOnly }, { text: "18/11/25" }, { html: statusExpired }],
+            [{ html: '<a href="#">GB25EXP0995W</a>' }, { html: "<strong>Export</strong>" }, { html: speciesOnly }, { text: "01/10/25" }, { html: statusExpired }],
+            [{ html: '<a href="#">GB25REX0994V</a>' }, { html: "<strong>Re-export</strong>" }, { html: speciesOnly }, { text: "15/09/25" }, { html: statusExpired }]
+          ]
+        }) }}
+      {% endset %}
+
+      {# 3. CONSIGNMENTS TAB #}
+      {% set consignHtml %}
+        <h2 class="govuk-heading-m">Consignments</h2>
+        {{ govukTable({
+          attributes: { "data-module": "govuk-table" },
+          classes: "app-table--responsive app-table--left-aligned",
+          head: [
+            { text: "MRN", attributes: { "aria-sort": "none" } },
+            { text: "Type", attributes: { "aria-sort": "none" } },
+            { text: "Species", attributes: { "aria-sort": "none" } },
+            { text: "ISO", attributes: { "aria-sort": "none" } },
+            { text: "Date", attributes: { "aria-sort": "descending" } },
+            { text: "Status", attributes: { "aria-sort": "none" } }
+          ],
+          rows: [
+            [{ html: '<a href="#">26GB02E1234-389</a>' }, { html: "<strong>Export</strong>" }, { html: species5 }, { text: "AE" }, { text: "15/02/26" }, { html: statusReady }],
+            [{ html: '<a href="#">26GB02I1235-390</a>' }, { html: "<strong>Import</strong>" }, { html: species5 }, { text: "AT" }, { text: "15/02/26" }, { html: statusProg }],
+            [{ html: '<a href="#">26GB02E1236-391</a>' }, { html: "<strong>Export</strong>" }, { html: species2 }, { text: "US" }, { text: "18/02/26" }, { html: statusReady }],
+            [{ html: '<a href="#">26GB02I1237-392</a>' }, { html: "<strong>Import</strong>" }, { html: species1 }, { text: "DE" }, { text: "20/02/26" }, { html: statusProg }],
+            [{ html: '<a href="#">26GB02E1238-393</a>' }, { html: "<strong>Export</strong>" }, { html: species3 }, { text: "QA" }, { text: "22/02/26" }, { html: statusReady }],
+            [{ html: '<a href="#">25GB02E1239-400</a>' }, { html: "<strong>Export</strong>" }, { html: species4 }, { text: "CH" }, { text: "10/12/25" }, { html: statusDone }],
+            [{ html: '<a href="#">24GB12R1240-596</a>' }, { html: "<strong>Re-export</strong>" }, { html: species5 }, { text: "SG" }, { text: "15/10/24" }, { html: statusDone }],
+            [{ html: '<a href="#">24GB12E1241-595</a>' }, { html: "<strong>Export</strong>" }, { html: species3 }, { text: "AE" }, { text: "12/10/24" }, { html: statusDone }],
+            [{ html: '<a href="#">24GB11I1242-594</a>' }, { html: "<strong>Import</strong>" }, { html: species1 }, { text: "CH" }, { text: "10/10/24" }, { html: statusDone }],
+            [{ html: '<a href="#">24GB11E1243-593</a>' }, { html: "<strong>Export</strong>" }, { html: species2 }, { text: "US" }, { text: "05/10/24" }, { html: statusDone }]
+          ]
+        }) }}
+      {% endset %}
+
+      {{ govukTabs({
+        items: [
+          { label: "Applications", id: "apps", panel: { html: appHtml } },
+          { label: "Permits", id: "permits", panel: { html: permitHtml } },
+          { label: "Consignments", id: "cons", panel: { html: consignHtml } }
+        ]
+      }) }}
+    </div>
+
+    {# Sidebar Filters #}
+    <div class="govuk-grid-column-one-quarter" id="filter-column" style="margin-top: 55px;">
+      {% set typeFilterHtml %}{{ govukCheckboxes({ idPrefix: "t", name: "t", classes: "govuk-checkboxes--small", items: [{ value: "im", text: "Import" }, { value: "ex", text: "Export", checked: true }, { value: "re", text: "Re-export" }, { value: "a10", text: "Article 10" }] }) }}{% endset %}
+      {% set statusFilterHtml %}{{ govukCheckboxes({ idPrefix: "s", name: "s", classes: "govuk-checkboxes--small", items: [{ value: "ip", text: "In progress", checked: true },{ value: "is", text: "Issued" }, { value: "En", text: "Endorsed" }, { value: "ex", text: "Expired" }] }) }}{% endset %}
+
+      {% set filterOptionsHtml %}
+        {{ govukAccordion({
+          id: "filter-accordion",
+          classes: "govuk-accordion--small",
+          items: [
+            { heading: { text: "Permit type" }, content: { html: typeFilterHtml } },
+            { heading: { text: "Status" }, content: { html: statusFilterHtml } }
+          ]
+        }) }}
+      {% endset %}
+
+      <div class="app-filter-wrapper app-filter--white-checkboxes">
+        {{ mojFilter({
+          heading: { text: "Filters" },
+          selectedFilters: {
+            heading: { text: "Selected filters" },
+            clearLink: { text: "Clear all", href: "#" },
+            categories: [
+              { heading: { text: "Permit type" }, items: [{ text: "Export", href: "#" }] },
+              { heading: { text: "Status" }, items: [{ text: "In progress", href: "#" }] }
+            ]
+          },
+          optionsHtml: filterOptionsHtml
+        }) }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const toggleBtn = document.getElementById('toggle-filter');
+    const filterCol = document.getElementById('filter-column');
+    const mainCol = document.getElementById('main-content-col');
+
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', function() {
+        const isHidden = filterCol.classList.contains('govuk-!-display-none');
+        if (isHidden) {
+          filterCol.classList.remove('govuk-!-display-none');
+          mainCol.classList.replace('govuk-grid-column-full', 'govuk-grid-column-three-quarters');
+          toggleBtn.innerText = "Hide filters";
+        } else {
+          filterCol.classList.add('govuk-!-display-none');
+          mainCol.classList.replace('govuk-grid-column-three-quarters', 'govuk-grid-column-full');
+          toggleBtn.innerText = "Show filters";
+        }
+      });
+    }
+  });
+</script>
 {% endblock %}

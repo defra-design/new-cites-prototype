@@ -10,3 +10,132 @@ $govuk-suppressed-warnings: ("legacy-organisation-colours");
   @include govuk-typography-common;
 }
 
+
+
+// Standard GOV.UK Filter Sidebar
+.app-filter {
+  background-color: #f3f2f1; // light-grey
+  border: 1px solid #b1b4b6; // mid-grey
+  padding: 20px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #b1b4b6;
+    padding-bottom: 10px;
+  }
+
+  &__content {
+    .govuk-form-group {
+      margin-bottom: 25px;
+      padding-bottom: 25px;
+      border-bottom: 1px solid #d8d8d8;
+      
+      &:last-of-type {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+/* Main content should expand when filter is hidden */
+#filter-column {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Ensure the filter button is grey (Secondary) */
+.govuk-button--secondary {
+  background-color: #f3f2f1;
+  color: #0b0c0c;
+  box-shadow: 0 2px 0 #929191;
+  &:hover {
+    background-color: #dbdad9;
+  }
+}
+
+/* Mobile Record View (Left Aligned & Compact) */
+@media (max-width: 48.0525em) {
+  #filter-column {
+    display: none !important; /* Hide filter by default on mobile */
+  }
+  .app-table--responsive td {
+    text-align: left;
+    padding: 10px 0;
+    &::before {
+      font-size: 12px;
+      text-transform: uppercase;
+      color: #505a5f;
+    }
+  }
+}
+@media (max-width: 48.0525em) {
+  .app-table--responsive {
+    display: block;
+    width: 100%;
+    border: none; // Remove outer table border
+
+    thead { 
+      display: none; // Hide headers on mobile
+    } 
+
+    tbody {
+      display: block;
+      width: 100%;
+    }
+
+    tr {
+      display: block;
+      margin-bottom: govuk-spacing(4); 
+      padding: govuk-spacing(2) 0;
+      border-bottom: 2px solid #b1b4b6; // Clearer separation between records
+      width: 100%;
+    }
+
+    td {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: govuk-spacing(1) 0 !important; // Force remove GDS padding
+      border: none;
+      font-size: 16px; 
+      line-height: 1.5;
+      width: 100%;
+      text-align: left;
+
+      &::before {
+        content: attr(data-label) ": "; // Adds colon for clarity
+        font-weight: bold;
+        color: #0b0c0c; // Standard black for keys
+        flex-shrink: 0; 
+        width: 40%; // Consistent column width for the "key"
+        padding-right: govuk-spacing(2);
+      }
+      
+      // Values now sit perfectly in the second column
+      span, a, strong, i {
+        flex: 1;
+        text-align: left; 
+        word-break: break-word;
+        overflow-wrap: break-word;
+        display: inline-block;
+      }
+
+      // Ensure tags stay left-aligned within their value area
+      .govuk-tag {
+        margin-top: 2px;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+// Ensure checkboxes remain white as per design
+.app-filter--white-checkboxes {
+  .govuk-checkboxes__label:before {
+    background: #ffffff !important;
+    border: 2px solid #0b0c0c !important;
+  }
+}
+

@@ -1,0 +1,94 @@
+{% extends "layout-with-navigation.html" %}
+
+{% set pageTitle = "your-applications" %}
+
+{% block beforeContent %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag">
+      alpha
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service - your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-three-quarters">
+    <h1 class="govuk-heading-l">APP-2026-F00482</h1>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Reference number</th>
+          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Application date</th>
+          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Species</th>
+          <th scope="col" class="govuk-table__header govuk-!-width-one-quarter">Status</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="/v12/application-falcon-permit" class="govuk-link">APP-2026-F00482/001</a></td>
+          <td class="govuk-table__cell">13 February 2026</td>
+          <td class="govuk-table__cell">Peregrine Falcon</td>
+          <td class="govuk-table__cell">In progress</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="#" class="govuk-link">APP-2026-F00482/002</a></td>
+          <td class="govuk-table__cell">02 February 2026</td>
+          <td class="govuk-table__cell">Peregrine Falcon</td>
+          <td class="govuk-table__cell">Received</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="#" class="govuk-link">APP-2026-F00482/003</a></td>
+          <td class="govuk-table__cell">21 December 2025</td>
+          <td class="govuk-table__cell">Peregrine Falcon</td>
+          <td class="govuk-table__cell">Closed</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="#" class="govuk-link">APP-2026-F00482/004</a></td>
+          <td class="govuk-table__cell">15 October 2025</td>
+          <td class="govuk-table__cell">Peregrine Falcon</td>
+          <td class="govuk-table__cell">Awaiting payment</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="#" class="govuk-link">APP-2026-F00482/005</a></td>
+          <td class="govuk-table__cell">03 September 2025</td>
+          <td class="govuk-table__cell">Peregrine Falcon</td>
+          <td class="govuk-table__cell">Awaiting additional payment</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="#" class="govuk-link">APP-2026-F00482/006</a></td>
+          <td class="govuk-table__cell">19 July 2024</td>
+          <td class="govuk-table__cell">Peregrine Falcon</td>
+          <td class="govuk-table__cell">Issued</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href="#" class="govuk-link">APP-2026-F00482/007</a></td>
+          <td class="govuk-table__cell">05 May 2023</td>
+          <td class="govuk-table__cell">Peregrine Falcon</td>
+          <td class="govuk-table__cell">Refused</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="govuk-!-margin-top-0" style="display: flex; justify-content: flex-end; align-items: center; gap: 20px;">
+  
+
+        {# Results Count #}
+        <p class="govuk-body govuk-!-margin-bottom-0">1 to 7 of 7</p>
+
+        
+      </div>
+
+{% endblock %}

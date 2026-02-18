@@ -1,0 +1,170 @@
+{% extends "layout-with-navigation.html" %}
+
+{% set pageTitle = "your-submissions" %}
+
+{% block beforeContent %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag govuk-tag--green">
+      prototype
+    </strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service - your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+{% endblock %}
+
+Understood—keeping it strictly to the "before" state to match pre-prod is a smart move for your gap analysis or user testing baseline. I've removed the Tag components and reverted to the plain text formatting seen in your screenshot.
+
+I've also adjusted the Search and Pagination to more closely mirror the specific layout in the image (the search button being a blue square icon and the pagination being the simplified "Previous / Next" style).
+
+Updated your-applications.html (Baseline Version)
+HTML
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Your applications for Falconers Ltd" %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      {# Notification Banner #}
+      {{ govukNotificationBanner({
+        titleText: "Reminder",
+        html: '<p class="govuk-notification-banner__heading">
+                You will not be able to start another application while this application is still being worked on
+              </p>
+              <p class="govuk-body">
+                <a class="govuk-notification-banner__link" href="#">Continue the application</a>
+              </p>
+              <p class="govuk-body">
+                <a class="govuk-notification-banner__link" href="#">Delete this application</a>
+              </p>'
+      }) }}
+
+      <h1 class="govuk-heading-xl">{{ pageName }}</h1>
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Start new application",
+          classes: "govuk-button--executable"
+        }) }}
+        <p class="govuk-body">You can also start a new application by copying any of your past applications</p>
+      </div>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="search">Search</label>
+        <div class="govuk-input__wrapper">
+          <input class="govuk-input govuk-!-width-one-third" id="search" name="search" type="text">
+          <button class="govuk-button" style="background-color: #1d70b8;">
+            <span class="govuk-visually-hidden">Search</span>
+            {# Simple SVG for the magnifying glass #}
+            <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false" fill="white">
+              <path d="M25.7 20.045l7.3 7.3-5.5 5.5-7.3-7.3c-2.3 1.5-5.1 2.4-8.2 2.4C5.4 28 0 22.6 0 15.9S5.4 3.8 12.1 3.8s12.1 5.4 12.1 12.1c0 1.5-.3 3-.8 4.145zM12.1 7.4c-4.7 0-8.5 3.8-8.5 8.5s3.8 8.5 8.5 8.5 8.5-3.8 8.5-8.5-3.8-8.5-8.5-8.5z"></path>
+            </svg>
+          </button>
+          <p class="govuk-body govuk-!-margin-left-4" style="display:inline-block; vertical-align: middle;">
+            <a href="#" class="govuk-link">Clear search</a>
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+  <div class="govuk-grid-row">
+    {# Filters Sidebar #}
+    <div class="govuk-grid-column-one-quarter">
+      <h2 class="govuk-heading-l">Filters</h2>
+
+      {{ govukCheckboxes({
+        idPrefix: "permit-type",
+        name: "permit-type",
+        classes: "govuk-checkboxes--small",
+        fieldset: {
+          legend: { text: "Permit type", classes: "govuk-fieldset__legend--s" }
+        },
+        items: [
+          { value: "import", text: "Import" },
+          { value: "export", text: "Export" },
+          { value: "re-export", text: "Re-export" },
+          { value: "article-10", text: "Article 10" }
+        ]
+      }) }}
+
+      {{ govukCheckboxes({
+        idPrefix: "status",
+        name: "status",
+        classes: "govuk-checkboxes--small",
+        fieldset: {
+          legend: { text: "Status", classes: "govuk-fieldset__legend--s" }
+        },
+        items: [
+          { value: "in-progress", text: "In progress" },
+          { value: "awaiting-payment", text: "Awaiting payment" },
+          { value: "awaiting-additional", text: "Awaiting additional payment" },
+          { value: "closed", text: "Closed" }
+        ]
+      }) }}
+    </div>
+
+    {# Results Table matching image exactly #}
+    <div class="govuk-grid-column-three-quarters">
+      
+      {{ govukTable({
+        firstCellIsHeader: false,
+        head: [
+          { text: "Reference number" },
+          { text: "Application date" },
+          { text: "Status", format: "numeric" }
+        ],
+        rows: [
+          [{ html: '<a href="your-applications" class="govuk-link">Y6801256</a>' }, { text: "21 March 2025" }, { text: "In Progress", format: "numeric" }],
+          [{ html: '<a href="#" class="govuk-link">G6801468</a>' }, { text: "21 March 2025" }, { text: "In Progress", format: "numeric" }],
+          [{ html: '<a href="#" class="govuk-link">U6801467</a>' }, { text: "21 March 2025" }, { text: "Closed", format: "numeric" }],
+          [{ html: '<a href="#" class="govuk-link">K6801350</a>' }, { text: "20 March 2025" }, { text: "Awaiting payment", format: "numeric" }],
+          [{ html: '<a href="#" class="govuk-link">P6801279</a>' }, { text: "24 February 2025" }, { text: "Awaiting additional payment", format: "numeric" }],
+          [{ html: '<a href="#" class="govuk-link">Y6801256</a>' }, { text: "23 February 2025" }, { text: "In Progress", format: "numeric" }],
+          [{ html: '<a href="#" class="govuk-link">G6801468</a>' }, { text: "23 February 2025" }, { text: "In Progress", format: "numeric" }],
+          [{ html: '<a href="#" class="govuk-link">U6801467</a>' }, { text: "23 February 2025" }, { text: "Closed", format: "numeric" }],
+          [{ html: '<a href="#" class="govuk-link">K6801350</a>' }, { text: "22 February 2025" }, { text: "Awaiting payment", format: "numeric" }],
+          [{ html: '<a href="#" class="govuk-link">P6801279</a>' }, { text: "22 February 2025" }, { text: "Awaiting additional payment", format: "numeric" }],
+          [{ html: '<a href="#" class="govuk-link">Y6801256</a>' }, { text: "22 February 2025" }, { text: "In Progress", format: "numeric" }],
+          [{ html: '<a href="#" class="govuk-link">G6801468</a>' }, { text: "22 February 2025" }, { text: "In Progress", format: "numeric" }],
+          [{ html: '<a href="#" class="govuk-link">U6801467</a>' }, { text: "22 February 2025" }, { text: "Closed", format: "numeric" }],
+          [{ html: '<a href="#" class="govuk-link">K6801350</a>' }, { text: "21 November 2024" }, { text: "Awaiting payment", format: "numeric" }],
+          [{ html: '<a href="#" class="govuk-link">P6801279</a>' }, { text: "10 October 2024" }, { text: "Awaiting additional payment", format: "numeric" }]
+        ]
+      }) }}
+
+      <div class="govuk-!-margin-top-6" style="display: flex; justify-content: flex-end; align-items: center; gap: 20px;">
+  
+        {# Previous Link #}
+        <div style="display: flex; align-items: center;">
+          <svg class="govuk-pagination__icon govuk-pagination__icon--prev" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+            <path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.0059-3.8027h11.017v-2h-11.035l3.9707-3.9707-1.4414-1.4102z"></path>
+          </svg>
+          <a class="govuk-link govuk-link--no-visited-state govuk-!-margin-left-2" href="#">Previous</a>
+        </div>
+
+        {# Results Count #}
+        <p class="govuk-body govuk-!-margin-bottom-0">1 to 15 of 91</p>
+
+        {# Next Link #}
+        <div style="display: flex; align-items: center;">
+          <a class="govuk-link govuk-link--no-visited-state govuk-!-margin-right-2" href="#">Next</a>
+          <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+            <path d="m8.107-0.0078125-1.4136 1.414 4.1852 4.1853h-11.451v2h11.468l-4.2019 4.1692 1.4125 1.4224 6.5886-6.5938-6.5886-6.5971z"></path>
+          </svg>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}

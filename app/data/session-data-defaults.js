@@ -1,74 +1,69 @@
+/*
+  Default values for user session data to populate the application 
+  (Check Your Answers) page for a Peregrine Falcon export.
+*/
+
 module.exports = {
 
-  // Box 1: Exporter details
-  'exporter-details': 'Dean Falconer\nFalconer\'s Nest Breeding Centre\n12 Falconry Way\nNorwich, Norfolk\nNR1 4FN\nUnited Kingdom',
+  // Application Reference
+  "submissionRef": "AB7N10/001",
 
-  // Box 2: Permit Metadata
-  'permit-metadata': {
-    'permit-type': 'EXPORT',
-    'permit-number': 'GB26EXP1234A',
-    'validity-date': '2026-08-06'
-  },
+  // Permit details
+  "permitType": "Export",
+  "isAgent": "no",
 
-  // Box 3: Importer details
-  'importer-details': 'The Royal Falconry Centre\nAl-Safa Street, Jumeirah\nPO Box 112233\nDubai\nUnited Arab Emirates',
+  // Your contact details (Applicant)
+  "your-full-name": "Dean Falconer",
+  "your-business-name": "Falconer's Nest Breeding Centre",
+  "your-email": "dean@falconers-nest.co.uk",
+  "your-address": "12 Falconry Way, Norwich, Norfolk, NR1 4FN, United Kingdom",
 
-  // Boxes 4 & 5: Countries
-  'country-export': 'United Kingdom',
-  'country-import': 'United Arab Emirates',
+  // Agent specific fields (empty as isAgent is 'no')
+  "agent-address": "",
+  "applicant-full-name": "Dean Falconer",
+  "applicant-business-name": "Falconer's Nest Breeding Centre",
+  "applicant-email": "dean@falconers-nest.co.uk",
 
-  // Box 6 & 7: Authorities
-  'authorized-location': 'Falconer\'s Nest Breeding Site A, Norfolk, UK',
-  'issuing-authority': 'UK CITES Management Authority Centre for International Trade. Bristol Horizon House Deanery Road Bristol, BS1 5AH\nTel: +44 (0) 3000 200 301',
+  // Delivery address
+  "delivery-address": "The Royal Falconry Centre, Al-Safa Street, Jumeirah, PO Box 112233, Dubai, UAE",
 
-  // Box 8: Specimen Description
-  'specimen-details': {
-    'description': 'Live Peregrine Falcon (Falco peregrinus)\nSex: Male\nDate of Birth: 15/05/2025\nIdentification: Closed Ring No. DF-2025-UK-09',
-    'net-mass': 0.65,
-    'quantity': '1',
-    'appendix': 'I',
-    'annex': 'A',
-    'source-code': 'C',
-    'purpose-code': 'P'
-  },
+  // Specimen details
+  "speciesName": "Falco peregrinus",
+  "specimenType": "animal",
+  "specimenDescription": "livingAnimal",
+  "quantity": "1",
+  "unitOfMeasure": "Number",
+  "sourceCode": "C",
+  "purposeCode": "P",
+  "tradeTerm": "yes",
+  "tradeTermCode": "LIV",
+  "gender": "Male",
+  
+  // Identification
+  "identificationMark": "Closed ring number",
+  "identificationMark-2": "DF-2025-UK-09", // Specific field for Closed Ring in template
 
-  // Boxes 15-20: Origin History
-  'origin-history': {
-    'origin-country': 'United Kingdom',
-    'origin-permit-number': 'UK-CB-2025-8821',
-    'origin-issue-date': '2025-06-01',
-    'last-re-export-country': 'N/A',
-    'last-re-export-cert-number': 'N/A',
-    'last-re-export-issue-date': ''
-  },
+  // Date of birth / Hatch date
+  "hatch-date-day": "15",
+  "hatch-date-month": "05",
+  "hatch-date-year": "2025",
 
-  // Boxes 21 & 22: Species Names
-  'species-names': {
-    'scientific-name': 'Falco peregrinus',
-    'common-name': 'Peregrine Falcon'
-  },
+  // Description and Remarks
+  "description": "Live bird, captive-bred. Specialist falconry carrier required per IATA LAR. Single shipment.",
+  "comment": "Peregrine Falcon exported for falconry purposes to UAE importer under specialized wildlife trade agreement.",
 
-  // Box 23: Conditions
-  'special-conditions': 'Must be transported in a specialized falconry carrier in accordance with IATA Live Animals Regulations (LAR). Valid for a single shipment only.',
+  // Country of import/destination details
+  "importCountry": "United Arab Emirates",
+  "importPermitNumber": "AE-IMP-2026-4421",
+  "importPermitIssueDay": "05",
+  "importPermitIssueMonth": "02",
+  "importPermitIssueYear": "2026",
 
-  // Boxes 24, 25 & 26: Authorization
-  'authorization': {
-    'documentation-status': 'to_be_surrendered',
-    'permitted-action': ['exportation'],
-    'issuing-official': 'E.Biggs (APHA Wildlife Officer)',
-    'waybill-number': 'EK-DXB-900213'
-  },
-
-  // Box 27: Customs
-  'customs-use': {
-    'actual-quantity': '1',
-    'dead-on-arrival': 0,
-    'verification': {
-      'type': 'Export Declaration',
-      'number': 'GB26EXP1234A',
-      'date': '2026-02-06'
-    },
-    'verification-token': 'CITES-SECURE-DEAN-FALCONER-001'
-  }
+  // Country of origin details
+  "originCountry": "United Kingdom",
+  "originPermitNumber": "UK-CB-2025-8821",
+  "originPermitIssueDay": "01",
+  "originPermitIssueMonth": "06",
+  "originPermitIssueYear": "2025"
 
 }
