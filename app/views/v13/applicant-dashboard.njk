@@ -44,14 +44,17 @@
 <div class="govuk-grid-row">
   {# --- LEFT COLUMN: FILTERS --- #}
   <div class="govuk-grid-column-one-quarter">
+    
     {% set typeFilterHtml %}
       {{ govukCheckboxes({
         idPrefix: "type",
         name: "type",
         classes: "govuk-checkboxes--small",
         items: [
+          { value: "import", text: "Import" },
           { value: "export", text: "Export", checked: true },
-          { value: "import", text: "Import", checked: true }
+          { value: "re-export", text: "Re-export" },
+          { value: "article-10", text: "Article 10" }
         ]
       }) }}
     {% endset %}
@@ -62,52 +65,96 @@
         name: "status",
         classes: "govuk-checkboxes--small",
         items: [
-          { value: "issued", text: "Issued", checked: true },
-          { value: "progress", text: "In progress", checked: true }
+          { value: "progress", text: "In progress" },
+          { value: "payment", text: "Awaiting payment" },
+          { value: "issued", text: "Issued" },
+          { value: "expired", text: "Expired" }
         ]
       }) }}
     {% endset %}
 
-    {{ mojFilter({
-      heading: { text: "Filters" },
-      optionsHtml: govukAccordion({
-        id: "filter-accordion",
-        classes: "govuk-accordion--small",
-        items: [
-          { heading: { text: "Permit type" }, content: { html: typeFilterHtml } },
-          { heading: { text: "Status" }, content: { html: statusFilterHtml } }
-        ]
-      })
-    }) }}
+    <div class="moj-filter">
+      <div class="moj-filter__header">
+        <div class="moj-filter__header-title">
+          <h2 class="govuk-heading-m">Filters</h2>
+        </div>
+      </div>
+
+      <div class="moj-filter__content">
+        {# Selected filters summary #}
+        <div class="moj-filter__selected">
+          <div class="moj-filter__selected-heading">
+            <div class="moj-filter__heading-title">
+              <h2 class="govuk-heading-s">Selected filters</h2>
+            </div>
+          </div>
+
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Permit type</h3>
+          <ul class="moj-filter-tags">
+            <li>
+              <a class="moj-filter__tag" href="#">
+                <span class="govuk-visually-hidden">Remove this filter</span> Export
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="moj-filter__options">
+          <form action="#" method="get">
+            {{ govukButton({
+              text: "Apply filters"
+            }) }}
+
+            {{ govukAccordion({
+              id: "filter-accordion",
+              classes: "govuk-accordion--small",
+              items: [
+                { 
+                  heading: { text: "Permit type" }, 
+                  content: { html: typeFilterHtml },
+                  expanded: true
+                },
+                { 
+                  heading: { text: "Status" }, 
+                  content: { html: statusFilterHtml },
+                  expanded: true
+                }
+              ]
+            }) }}
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 
   {# --- RIGHT COLUMN: SUBMISSION CARDS --- #}
   <div class="govuk-grid-column-three-quarters">
     
     {% set tableHead = [
-      { text: "App ref", classes: "govuk-!-width-one-eighth" },
-      { text: "Permit No.", classes: "govuk-!-width-one-quarter" },
-      { text: "Expires", classes: "govuk-!-width-one-eighth" },
+      { text: "Application reference" },
+      { text: "Permit reference", classes: "govuk-!-width-one-eighth" },
+      { text: "Expiry date", classes: "govuk-!-width-one-eighth" },
       { text: "Species" },
-      { text: "Status", style: "width: 160px;" }
+      { text: "Permit status", style: "width: 150px;" }
     ] %}
 
     {# --- CARD 1: SINGLE EXPORT (FROM SESSION) --- #}
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
-        <h2 class="govuk-summary-card__title"><strong>AB7N10</strong>: {{ data['permitType'] or "Export" }}</h2>
+        <h2 class="govuk-summary-card__title"><strong>Submission reference: {{ data['submissionRef'] or "AB7N10" }}</strong> | {{ data['permitType'] or "Export" }}</h2>
         <div class="govuk-summary-card__actions">{{ statusIssued }}</div>
       </div>
       <div class="govuk-summary-card__content">
         <details class="govuk-details" data-module="govuk-details" style="margin-bottom: 0;">
           <summary class="govuk-details__summary">
-            <span class="govuk-details__summary-text">1 Export permit submitted on 18/02/26</span>
+            <span class="govuk-details__summary-text">1 application in this submission</span>
           </summary>
           <div class="govuk-details__text">
             <div class="govuk-button-group govuk-!-margin-bottom-6">
               {{ govukButton({
                 text: "Download permit",
-                classes: "govuk-button--secondary"
+                classes: "govuk-button--secondary",
+                href: "/public/downloads/cites-export-falcon-permit.pdf"
               }) }}
             </div>
 
@@ -116,7 +163,7 @@
               rows: [[ 
                 { html: '<a href="view-application?permitStatus=Issued&submissionRef=GB26EXP1234A"" class="govuk-link">AB7N10/001</a>' }, 
                 { html: '<a href="view-permit" class="govuk-link">GB26EXP1234A</a>' },
-                { text: "18/08/26" },
+                { text: "18 Feb 2026" },
                 { html: '<em>' + (data['speciesName'] or "Falco peregrinus") + '</em>' },
                 { html: statusIssued }
               ]]
@@ -129,13 +176,13 @@
     {# --- CARD 2: BULK EXPORT --- #}
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
-        <h2 class="govuk-summary-card__title"><strong>TN5203</strong>: Export</h2>
-        <div class="govuk-summary-card__actions">{{ govukTag({ text: "In Progress (2/5)", classes: "govuk-tag--blue" }) }}</div>
+        <h2 class="govuk-summary-card__title"><strong>Submission reference: TN5203</strong> | Export</h2>
+        <div class="govuk-summary-card__actions">{{ statusProg }}</div>
       </div>
       <div class="govuk-summary-card__content">
         <details class="govuk-details" data-module="govuk-details" style="margin-bottom: 0;">
           <summary class="govuk-details__summary">
-            <span class="govuk-details__summary-text">5 Export permits submitted on 15/02/26</span>
+            <span class="govuk-details__summary-text">5 applications on this submission</span>
           </summary>
           <div class="govuk-details__text">
             <div class="govuk-button-group govuk-!-margin-bottom-6">
@@ -148,8 +195,29 @@
             {{ govukTable({
               head: tableHead,
               rows: [
+                [ 
+                  { html: '<a href="#" class="govuk-link">TN5203/005</a>' }, 
+                  { text: "—" }, 
+                  { text: "—" }, 
+                  { html: species3 }, 
+                  { html: statusPay } 
+                ],
+                [ 
+                  { html: '<a href="#" class="govuk-link">TN5203/003</a>' }, 
+                  { text: "—" }, 
+                  { text: "—" }, 
+                  { html: species2 }, 
+                  { html: statusProg } 
+                ],
+                [ 
+                  { html: '<a href="#" class="govuk-link">TN5203/004</a>' }, 
+                  { text: "—" }, 
+                  { text: "—" }, 
+                  { html: species1 }, 
+                  { html: statusProg } 
+                ],
                 [
-                  { html: '<a href="#" class="govuk-link">TN5203/001</a>' }, 
+                  { html: '<a href="view-application" class="govuk-link">TN5203/001</a>' }, 
                   { html: '<a href="#" class="govuk-link">26GB10928/12</a>' },
                   { text: "15/08/26" },
                   { html: species1 }, 
@@ -161,10 +229,7 @@
                   { text: "15/08/26" },
                   { html: species2 }, 
                   { html: statusIssued }
-                ],
-                [ { html: '<a href="#" class="govuk-link">TN5203/003</a>' }, { text: "—" }, { text: "—" }, { html: species2 }, { html: statusProg } ],
-                [ { html: '<a href="#" class="govuk-link">TN5203/004</a>' }, { text: "—" }, { text: "—" }, { html: species1 }, { html: statusProg } ],
-                [ { html: '<a href="#" class="govuk-link">TN5203/005</a>' }, { text: "—" }, { text: "—" }, { html: species3 }, { html: statusPay } ]
+                ]
               ]
             }) }}
           </div>

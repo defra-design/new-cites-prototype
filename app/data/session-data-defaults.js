@@ -6,11 +6,13 @@
 module.exports = {
 
   // Application Reference
-  "submissionRef": "AB7N10/001",
+  "submissionRef": "AB7N10",
+  "applicationRef": "AB7N10/001",
 
   // Permit details
   "permitType": "Export",
   "isAgent": "no",
+  "permitNumber": "GB26EXP1234A",
 
   // Your contact details (Applicant)
   "your-full-name": "Dean Falconer",

@@ -2,7 +2,6 @@
 
 {% set thisPageTitle = "Application summary" %}
 {% set isIssued = data['permitStatus'] == 'Issued' %}
-{% set isDraft = not data['permitStatus'] or data['permitStatus'] == 'Draft' %}
 
 {% block beforeContent %}
 <div class="govuk-phase-banner">
@@ -20,7 +19,7 @@
       <a class="govuk-breadcrumbs__link" href="applicant-dashboard">Your applications</a>
     </li>
     <li class="govuk-breadcrumbs__list-item" aria-current="page">
-      {{data['submissionRef'] or "APP-1234"}}/001
+      {{data['submissionRef'] or "APP-6721"}}/001
     </li>
   </ol>
 </div>
@@ -31,154 +30,109 @@
   <div class="govuk-grid-column-full">
     
     <span class="govuk-caption-xl">{{ data['applicant-business-name'] or "Falconers ltd" }}</span>
-    <h1 class="govuk-heading-l">
-      {% if isDraft %}Check your answers{% else %}Application: AB7N10/001{% endif %}
-    </h1>
+    <h1 class="govuk-heading-l">Your application: {{data['applicationRef'] or "APP-6721"}}</h1>
 
-    <h2 class="govuk-heading-m">Permit status</h2>
+    <div class="govuk-inset-text">
+      Your application was submitted on 18 February 2026
+    </div>
+
+    <h2 class="govuk-heading-m govuk-!-margin-top-9">About the permit</h2>
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
     <dl class="govuk-summary-list govuk-!-margin-bottom-9">
       <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">Status</dt>
-        <dd class="govuk-summary-list__value">
-          <strong class="govuk-tag {{ 'govuk-tag--green' if isIssued else 'govuk-tag--blue' }}">
-            {{ data['permitStatus'] or "Submitted" }}
-          </strong>
-        </dd>
-        <dd class="govuk-summary-list__actions"></dd>
-      </div>
-
-      {% if isIssued %}
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">Permit number</dt>
-        <dd class="govuk-summary-list__value">
-          <a href="view-permit" class="govuk-link govuk-!-font-weight-bold">GB26EXP1234A</a>
-        </dd>
-        <dd class="govuk-summary-list__actions">
-          <a href="/public/downloads/cites-export-falcon-permit.pdf" class="govuk-link">Download PDF</a>
-        </dd>
-      </div>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">Expiry date</dt>
-        <dd class="govuk-summary-list__value">15 March 2026</dd>
-        <dd class="govuk-summary-list__actions"></dd>
-      </div>
-      {% endif %}
-
-      <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">Permit type</dt>
-        <dd class="govuk-summary-list__value">{{ data['permitType'] | capitalize }}</dd>
-        <dd class="govuk-summary-list__actions">
-          {% if isDraft %}<a class="govuk-link" href="permit-type">Change</a>{% endif %}
+        <dd class="govuk-summary-list__value">
+          {{ data['permitType'] | capitalize or "Export" }}
         </dd>
       </div>
     </dl>
 
     <h2 class="govuk-heading-m">Contact details</h2>
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
     <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-      {% if data['isAgent'] == 'yes' %}
       <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">Agent</dt>
+        <dt class="govuk-summary-list__key">Agent details</dt>
         <dd class="govuk-summary-list__value">
-          {{data['your-full-name']}}<br>{{data['your-business-name']}}<br>{{data['your-email']}}
-        </dd>
-        <dd class="govuk-summary-list__actions">
-          {% if isDraft %}<a class="govuk-link" href="agent-details">Change</a>{% endif %}
+          {{data['your-full-name'] or "Alex Agent"}}<br>
+          {{data['your-business-name'] or "Global Shipping Ltd"}}<br>
+          {{data['your-email'] or "alex@globalship.com"}}<br>
+          {{data['agent-address'] or "22 Prospect Wharf, Folkestone, FO23 6MY"}}
         </dd>
       </div>
-      {% endif %}
       <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">Applicant</dt>
+        <dt class="govuk-summary-list__key">Applicant details</dt>
         <dd class="govuk-summary-list__value">
-          {{data['applicant-full-name']}}<br>{{data['applicant-business-name']}}<br>{{data['your-address']}}
-        </dd>
-        <dd class="govuk-summary-list__actions">
-          {% if isDraft %}<a class="govuk-link" href="applicant-details">Change</a>{% endif %}
+          {{data['applicant-full-name'] or "Janine Falconer"}}<br>
+          {{data['applicant-business-name'] or "Falconers Ltd"}}<br>
+          {{data['applicant-email'] or "j.falconer@business.com"}}<br>
+          {{data['your-address'] or "Kew Gardens, 4 Chalk Walk, London, SW23 2FH"}}
         </dd>
       </div>
     </dl>
 
     <h2 class="govuk-heading-m">Specimen details</h2>
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
     <dl class="govuk-summary-list govuk-!-margin-bottom-9">
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">Scientific name</dt>
-        <dd class="govuk-summary-list__value"><em>{{data['speciesName']}}</em></dd>
-        <dd class="govuk-summary-list__actions">
-          {% if isDraft %}<a class="govuk-link" href="species-name">Change</a>{% endif %}
-        </dd>
+        <dd class="govuk-summary-list__value"><em>{{data['speciesName'] or "Falco peregrinus"}}</em></dd>
       </div>
-
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">Description</dt>
         <dd class="govuk-summary-list__value">
-          {{data['specimenDescription']}}<br>
-          {% if data['specimenDescription'] == 'livingAnimal' %}
-            Sex: {{data['gender'] or "Unknown"}}<br>
-            DOB: {{data['hatch-date-day']}} {{data['hatch-date-month']}} {{data['hatch-date-year']}}
-          {% endif %}
-        </dd>
-        <dd class="govuk-summary-list__actions">
-          {% if isDraft %}<a class="govuk-link" href="specimen-details">Change</a>{% endif %}
+          {{data['specimenDescription'] or "Living animal"}}<br>
+          Sex: {{data['gender'] or "Male"}}<br>
+          DOB: {{data['hatch-date-day'] or "12"}} {{data['hatch-date-month'] or "June"}} {{data['hatch-date-year'] or "2023"}}
         </dd>
       </div>
-
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">Identification</dt>
         <dd class="govuk-summary-list__value">
-          {{data['identificationMark']}}: {{data['identificationMark-1'] or data['identificationMark-2'] or "Not provided"}}
+          {{data['identificationMark'] or "Closed ring"}}: {{data['identificationMark-1'] or "XYZ-123-2023"}}
         </dd>
-        <dd class="govuk-summary-list__actions">
-          {% if isDraft %}<a class="govuk-link" href="marks">Change</a>{% endif %}
-        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Quantity</dt>
+        <dd class="govuk-summary-list__value">{{data['quantity'] or "1"}}</dd>
       </div>
     </dl>
 
     <h2 class="govuk-heading-m">Transaction details</h2>
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
     <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Permit type</dt>
+        <dd class="govuk-summary-list__value">{{ data['permitType'] | capitalize or "Export" }}</dd>
+      </div>
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">Country of origin</dt>
         <dd class="govuk-summary-list__value">{{data['originCountry'] or "United Kingdom"}}</dd>
-        <dd class="govuk-summary-list__actions">
-          {% if isDraft %}<a class="govuk-link" href="origin">Change</a>{% endif %}
-        </dd>
       </div>
       <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">Purpose & Source</dt>
-        <dd class="govuk-summary-list__value">
-          Source: {{data['sourceCode']}}<br>
-          Purpose: {{data['purposeCode']}}
-        </dd>
-        <dd class="govuk-summary-list__actions">
-          {% if isDraft %}<a class="govuk-link" href="purpose">Change</a>{% endif %}
-        </dd>
+        <dt class="govuk-summary-list__key">Source code</dt>
+        <dd class="govuk-summary-list__value">{{data['sourceCode'] or "C"}}</dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Purpose code</dt>
+        <dd class="govuk-summary-list__value">{{data['purposeCode'] or "T"}}</dd>
       </div>
     </dl>
 
     <h2 class="govuk-heading-m">Remarks</h2>
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
     <dl class="govuk-summary-list govuk-!-margin-bottom-9">
       <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">Comments</dt>
-        <dd class="govuk-summary-list__value">{{data['comment'] or "None provided"}}</dd>
-        <dd class="govuk-summary-list__actions">
-          {% if isDraft %}<a class="govuk-link" href="comments">Change</a>{% endif %}
-        </dd>
+        <dt class="govuk-summary-list__key">Applicant remarks</dt>
+        <dd class="govuk-summary-list__value">{{data['comment'] or "No additional remarks."}}</dd>
       </div>
     </dl>
 
     <div class="govuk-button-group">
-      {% if isDraft %}
-        <form method="post" action="confirmation">
-          <button class="govuk-button" data-module="govuk-button">Confirm and submit</button>
-        </form>
-      {% else %}
-        <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
-          Copy as new application
-        </button>
-      {% endif %}
-    </div>
-
-    <p class="govuk-body">
+      <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+        Copy as new application
+      </button>
       <a class="govuk-link" href="applicant-dashboard">Return to your applications</a>
-    </p>
+    </div>
 
   </div>
 </div>
