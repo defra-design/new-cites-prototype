@@ -1,0 +1,135 @@
+{% extends "layout-with-navigation.html" %}
+
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageTitle = "Your applications - eCITES" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    {# Use session data for the company name, defaulting to Falconers ltd #}
+    <h1 class="govuk-heading-l">Your applications for {{ data['companyName'] or 'Falconers ltd' }}</h1>
+    
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        {{ govukButton({
+          text: "Start new application",
+          href: "what-type-of-permit-or-certificate-are-you-applying-for"
+        }) }}
+        <span class="govuk-body govuk-!-margin-left-4">
+          You can also start a new application by viewing and copying any of your past applications
+        </span>
+      </div>
+    </div>
+
+    <div class="govuk-grid-row govuk-!-margin-top-4">
+      <div class="govuk-grid-column-one-half">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="search">Search</label>
+          <div class="govuk-input__wrapper">
+            <input class="govuk-input" id="search" name="search" type="text">
+            <button class="govuk-input__suffix app-search-button" aria-label="Search">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M19 19L14.65 14.65M17 9C17 13.4183 13.4183 17 9 17C4.58172 17 1 13.4183 1 9C1 4.58172 4.58172 1 9 1C13.4183 1 17 4.58172 17 9Z" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="govuk-grid-column-one-half">
+        <p class="govuk-body govuk-!-margin-top-6">
+          <a href="#" class="govuk-link">Clear search</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-quarter">
+    <h2 class="govuk-heading-m">Filters</h2>
+
+    {{ govukCheckboxes({
+      idPrefix: "permit-type",
+      name: "permit-type",
+      classes: "govuk-checkboxes--small",
+      fieldset: { legend: { text: "Permit type", classes: "govuk-fieldset__legend--s" } },
+      items: [
+        { value: "import", text: "Import" },
+        { value: "export", text: "Export" },
+        { value: "re-export", text: "Re-export" },
+        { value: "article-10", text: "Article 10" }
+      ]
+    }) }}
+
+    {{ govukCheckboxes({
+      idPrefix: "status",
+      name: "status",
+      classes: "govuk-checkboxes--small",
+      fieldset: { legend: { text: "Status", classes: "govuk-fieldset__legend--s" } },
+      items: [
+        { value: "in-progress", text: "In progress" },
+        { value: "awaiting-payment", text: "Awaiting payment" },
+        { value: "awaiting-additional-payment", text: "Awaiting additional payment" },
+        { value: "closed", text: "Closed" }
+      ]
+    }) }}
+
+    {{ govukButton({ text: "Apply filters", classes: "govuk-button--secondary" }) }}
+  </div>
+
+  <div class="govuk-grid-column-three-quarters">
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Reference number</th>
+          <th scope="col" class="govuk-table__header">Application date</th>
+          <th scope="col" class="govuk-table__header">Status</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        {# First row from session data #}
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <a href="view-submission?ref={{ data['submissionRef'] or 'Y5S3X606' }}" class="govuk-link">
+              {{ data['submissionRef'] or 'Y5S3X606' }}
+            </a>
+          </td>
+          <td class="govuk-table__cell">{{ data['applicationDate'] or '18 February 2026' }}</td>
+          <td class="govuk-table__cell">In progress</td>
+        </tr>
+        {# 11 additional varied rows #}
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><a href="#" class="govuk-link">H3V0C605</a></td><td class="govuk-table__cell">21 March 2025</td><td class="govuk-table__cell">Closed</td></tr>
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><a href="#" class="govuk-link">LOR0Q600</a></td><td class="govuk-table__cell">21 March 2025</td><td class="govuk-table__cell">In progress</td></tr>
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><a href="#" class="govuk-link">N6Y8N590</a></td><td class="govuk-table__cell">23 February 2025</td><td class="govuk-table__cell">Awaiting additional payment</td></tr>
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><a href="#" class="govuk-link">R8S9X589</a></td><td class="govuk-table__cell">22 February 2025</td><td class="govuk-table__cell">In progress</td></tr>
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><a href="#" class="govuk-link">X2Z1S588</a></td><td class="govuk-table__cell">22 February 2025</td><td class="govuk-table__cell">Closed</td></tr>
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><a href="#" class="govuk-link">N1N2S587</a></td><td class="govuk-table__cell">22 February 2025</td><td class="govuk-table__cell">Awaiting additional payment</td></tr>
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><a href="#" class="govuk-link">N5V2J586</a></td><td class="govuk-table__cell">22 February 2025</td><td class="govuk-table__cell">Closed</td></tr>
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><a href="#" class="govuk-link">L6W1L585</a></td><td class="govuk-table__cell">22 February 2025</td><td class="govuk-table__cell">Awaiting additional payment</td></tr>
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><a href="#" class="govuk-link">D7F2P584</a></td><td class="govuk-table__cell">22 February 2025</td><td class="govuk-table__cell">Closed</td></tr>
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><a href="#" class="govuk-link">P6J2M583</a></td><td class="govuk-table__cell">22 February 2025</td><td class="govuk-table__cell">Awaiting payment</td></tr>
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><a href="#" class="govuk-link">X6C1V582</a></td><td class="govuk-table__cell">22 February 2025</td><td class="govuk-table__cell">In progress</td></tr>
+      </tbody>
+    </table>
+
+    <nav class="govuk-pagination" role="navigation" aria-label="results" style="float: right;">
+      <p class="govuk-pagination__results">
+        <b>1</b> to <b>10</b> of <b>34</b>
+      </p>
+      <div class="govuk-pagination__next">
+        <a class="govuk-link govuk-pagination__link" href="#" rel="next">
+          <span class="govuk-pagination__link-title">Next</span>
+          <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13"><path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path></svg></a>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<style>
+  .app-search-button { background-color: #1d70b8; border: none; padding: 0 15px; cursor: pointer; }
+  .app-search-button:hover { background-color: #003078; }
+  .govuk-pagination__results { display: inline-block; padding: 10px 20px; margin: 0; vertical-align: middle; }
+</style>
+{% endblock %}

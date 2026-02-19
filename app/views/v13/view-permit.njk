@@ -21,14 +21,6 @@
     <p class="govuk-body govuk-!-margin-bottom-6">
       Part of submission: <a href="#" class="govuk-link">{{ data['applicationRef'] or "AB7N10/001" }}</a>
     </p>
-
-    <div class="govuk-button-group govuk-!-margin-bottom-8">
-      {{ govukButton({
-        text: "View permit (PDF)",
-        href: "/public/downloads/cites-export-falcon-permit.pdf"
-      }) }}
-    </div>
-
     <h2 class="govuk-heading-m">Status</h2>
     <div class="govuk-inset-text govuk-!-margin-top-0" style="border-left-color: #00703c; border-left-width: 10px; padding-top: 5px; padding-bottom: 5px;">
       <h3 class="govuk-heading-l govuk-!-margin-bottom-2">
@@ -37,6 +29,12 @@
       <p class="govuk-body">
         This permit can be used for the movement described, subject to conditions on the permit.
       </p>
+    </div>
+     <div class="govuk-button-group govuk-!-margin-bottom-8">
+      {{ govukButton({
+        text: "View permit (PDF)",
+        href: "/public/downloads/cites-export-falcon-permit.pdf"
+      }) }}
     </div>
 
     <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
