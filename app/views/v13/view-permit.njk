@@ -12,7 +12,7 @@
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
-    
+    <span class="govuk-caption-xl">{{ data['applicant-business-name'] or "Falconers ltd" }}</span>
     <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">{{ thisPageTitle }}</h1>
     
     <p class="govuk-body govuk-!-margin-bottom-1">
@@ -137,13 +137,9 @@
     }) }}
 
     <div class="govuk-button-group print-hidden">
-      <a href="applicant-dashboard" class="govuk-button">
+      <a href="your-applications" class="govuk-button">
         Return to your applications
       </a>
-      {{ govukButton({
-        text: "Copy as new application",
-        classes: "govuk-button--secondary"
-      }) }}
     </div>
 
   </div>

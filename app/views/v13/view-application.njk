@@ -16,10 +16,10 @@
 <div class="govuk-breadcrumbs">
   <ol class="govuk-breadcrumbs__list">
     <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="applicant-dashboard">Your applications</a>
+      <a class="govuk-breadcrumbs__link" href="your-applications">Your applications</a>
     </li>
     <li class="govuk-breadcrumbs__list-item" aria-current="page">
-      {{data['submissionRef'] or "APP-6721"}}/001
+      {{data['submissionRef'] or "AB7N10"}}/001
     </li>
   </ol>
 </div>
@@ -30,7 +30,7 @@
   <div class="govuk-grid-column-full">
     
     <span class="govuk-caption-xl">{{ data['applicant-business-name'] or "Falconers ltd" }}</span>
-    <h1 class="govuk-heading-l">Your application: {{data['applicationRef'] or "APP-6721"}}</h1>
+    <h1 class="govuk-heading-l">Your application: {{data['applicationRef'] or "AB7N10"}}</h1>
 
     <div class="govuk-inset-text">
       Your application was submitted on 18 February 2026
@@ -131,7 +131,7 @@
       <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
         Copy as new application
       </button>
-      <a class="govuk-link" href="applicant-dashboard">Return to your applications</a>
+      <a class="govuk-link" href="your-applications">Return to your applications</a>
     </div>
 
   </div>

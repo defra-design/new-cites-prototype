@@ -8,11 +8,11 @@
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
-    {# Use session data for the company name, defaulting to Falconers ltd #}
-    <h1 class="govuk-heading-l">Your applications for {{ data['companyName'] or 'Falconers ltd' }}</h1>
+    {# Use session data for the company name, defaulting to Falconers Ltd #}
+    <h1 class="govuk-heading-l">Your applications for {{ data['companyName'] or 'Falconers Ltd' }}</h1>
     
     <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
+      <div class="govuk-grid-column-full">
         {{ govukButton({
           text: "Start new application",
           href: "what-type-of-permit-or-certificate-are-you-applying-for"
@@ -72,7 +72,7 @@
         { value: "in-progress", text: "In progress" },
         { value: "awaiting-payment", text: "Awaiting payment" },
         { value: "awaiting-additional-payment", text: "Awaiting additional payment" },
-        { value: "closed", text: "Closed" }
+        { value: "Issued", text: "Issued" }
       ]
     }) }}
 
@@ -92,31 +92,30 @@
         {# First row from session data #}
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">
-            <a href="view-submission?ref={{ data['submissionRef'] or 'Y5S3X606' }}" class="govuk-link">
-              {{ data['submissionRef'] or 'Y5S3X606' }}
+            <a href="view-submission?ref={{ data['submissionRef'] or 'AB7N10' }}" class="govuk-link">
+              AB7N10
             </a>
           </td>
           <td class="govuk-table__cell">{{ data['applicationDate'] or '18 February 2026' }}</td>
           <td class="govuk-table__cell">In progress</td>
         </tr>
         {# 11 additional varied rows #}
-        <tr class="govuk-table__row"><td class="govuk-table__cell"><a href="#" class="govuk-link">H3V0C605</a></td><td class="govuk-table__cell">21 March 2025</td><td class="govuk-table__cell">Closed</td></tr>
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><a href="#" class="govuk-link">H3V0C605</a></td><td class="govuk-table__cell">21 March 2025</td><td class="govuk-table__cell">Issued</td></tr>
         <tr class="govuk-table__row"><td class="govuk-table__cell"><a href="#" class="govuk-link">LOR0Q600</a></td><td class="govuk-table__cell">21 March 2025</td><td class="govuk-table__cell">In progress</td></tr>
-        <tr class="govuk-table__row"><td class="govuk-table__cell"><a href="#" class="govuk-link">N6Y8N590</a></td><td class="govuk-table__cell">23 February 2025</td><td class="govuk-table__cell">Awaiting additional payment</td></tr>
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><a href="#" class="govuk-link">N6Y8N590</a></td><td class="govuk-table__cell">23 February 2025</td><td class="govuk-table__cell">Awaiting payment</td></tr>
         <tr class="govuk-table__row"><td class="govuk-table__cell"><a href="#" class="govuk-link">R8S9X589</a></td><td class="govuk-table__cell">22 February 2025</td><td class="govuk-table__cell">In progress</td></tr>
-        <tr class="govuk-table__row"><td class="govuk-table__cell"><a href="#" class="govuk-link">X2Z1S588</a></td><td class="govuk-table__cell">22 February 2025</td><td class="govuk-table__cell">Closed</td></tr>
-        <tr class="govuk-table__row"><td class="govuk-table__cell"><a href="#" class="govuk-link">N1N2S587</a></td><td class="govuk-table__cell">22 February 2025</td><td class="govuk-table__cell">Awaiting additional payment</td></tr>
-        <tr class="govuk-table__row"><td class="govuk-table__cell"><a href="#" class="govuk-link">N5V2J586</a></td><td class="govuk-table__cell">22 February 2025</td><td class="govuk-table__cell">Closed</td></tr>
-        <tr class="govuk-table__row"><td class="govuk-table__cell"><a href="#" class="govuk-link">L6W1L585</a></td><td class="govuk-table__cell">22 February 2025</td><td class="govuk-table__cell">Awaiting additional payment</td></tr>
-        <tr class="govuk-table__row"><td class="govuk-table__cell"><a href="#" class="govuk-link">D7F2P584</a></td><td class="govuk-table__cell">22 February 2025</td><td class="govuk-table__cell">Closed</td></tr>
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><a href="#" class="govuk-link">X2Z1S588</a></td><td class="govuk-table__cell">22 February 2025</td><td class="govuk-table__cell">Issued</td></tr>
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><a href="#" class="govuk-link">N1N2S587</a></td><td class="govuk-table__cell">22 February 2025</td><td class="govuk-table__cell">Awaiting payment</td></tr>
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><a href="#" class="govuk-link">N5V2J586</a></td><td class="govuk-table__cell">22 February 2025</td><td class="govuk-table__cell">Issued</td></tr>
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><a href="#" class="govuk-link">L6W1L585</a></td><td class="govuk-table__cell">22 February 2025</td><td class="govuk-table__cell">Awaiting payment</td></tr>
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><a href="#" class="govuk-link">D7F2P584</a></td><td class="govuk-table__cell">22 February 2025</td><td class="govuk-table__cell">Issued</td></tr>
         <tr class="govuk-table__row"><td class="govuk-table__cell"><a href="#" class="govuk-link">P6J2M583</a></td><td class="govuk-table__cell">22 February 2025</td><td class="govuk-table__cell">Awaiting payment</td></tr>
         <tr class="govuk-table__row"><td class="govuk-table__cell"><a href="#" class="govuk-link">X6C1V582</a></td><td class="govuk-table__cell">22 February 2025</td><td class="govuk-table__cell">In progress</td></tr>
       </tbody>
     </table>
-
     <nav class="govuk-pagination" role="navigation" aria-label="results" style="float: right;">
       <p class="govuk-pagination__results">
-        <b>1</b> to <b>10</b> of <b>34</b>
+        <b>1</b> to <b>12</b> of <b>34</b>
       </p>
       <div class="govuk-pagination__next">
         <a class="govuk-link govuk-pagination__link" href="#" rel="next">

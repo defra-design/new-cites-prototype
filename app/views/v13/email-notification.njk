@@ -22,14 +22,16 @@
 
     {# Email Body #}
     <div class="govuk-panel__body">
+      <p class="govuk-body">Your CITES permit has been issued.</p>
       <p class="govuk-body">
         Application reference: <strong>{{ data['applicationRef'] | default("AB7N10") }}</strong>
       </p>
-      <p class="govuk-body">Your CITES permit has been issued.</p>
+      
       
       <p class="govuk-body">
+        To view your permit
         <a href="/v13/view-permit" class="govuk-link">
-          Sign in to your CITES account to download your permit
+          sign into your CITES account
         </a>
       </p>
 

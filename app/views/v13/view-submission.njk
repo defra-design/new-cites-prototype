@@ -1,9 +1,11 @@
 {% extends "layout-with-navigation.html" %}
 
-{% set pageTitle = "your-applications" %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageTitle = "Your applications - " + (data['submissionRef'] or "DF-2026-X") %}
 
 {% block beforeContent %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 <div class="govuk-phase-banner">
   <p class="govuk-phase-banner__content">
     <strong class="govuk-tag govuk-phase-banner__content__tag govuk-tag--green">prototype</strong>
@@ -15,10 +17,10 @@
 <div class="govuk-breadcrumbs">
   <ol class="govuk-breadcrumbs__list">
     <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="your-submissions">Your applications</a>
+      <a class="govuk-breadcrumbs__link" href="your-applications">Your applications</a>
     </li>
     <li class="govuk-breadcrumbs__list-item">
-      {{data['submissionRef'] or "DF-2026-X"}}
+      {{ data['submissionRef'] or "DF-2026-X" }}
     </li>
   </ol>
 </div>
@@ -27,87 +29,73 @@
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
-    <h1 class="govuk-heading-l">{{data['submissionRef'] or "DF-2026-X"}}</h1>
-    <a class="govuk-button govuk-button--secondary" href="/public/downloads/cites-export-falcon-permit.pdf" role="button">
-        Download permits
-      </a>
-
-    {# Define the species list for the loop #}
-    {% set birds = [
-      { sci: "Falco peregrinus", int: "PF-2026-001" },
-      { sci: "Aquila chrysaetos", int: "GE-2026-002" },
-      { sci: "Haliaeetus leucocephalus", int: "BE-2026-003" },
-      { sci: "Accipiter nisus", int: "SP-2026-004" },
-      { sci: "Buteo buteo", int: "BZ-2026-005" },
-      { sci: "Pandion haliaetus", int: "OS-2026-006" },
-      { sci: "Milvus milvus", int: "RK-2026-007" },
-      { sci: "Falco tinnunculus", int: "KS-2026-008" },
-      { sci: "Strix aluco", int: "TO-2026-009" },
-      { sci: "Circus cyaneus", int: "HH-2026-010" },
-      { sci: "Tyto alba", int: "BO-2026-011" },
-      { sci: "Gypaetus barbatus", int: "VL-2026-012" }
-    ] %}
+    <h1 class="govuk-heading-l">Your submission: {{ data['submissionRef'] or "DF-2026-X" }}</h1>
     
-    <table class="govuk-table">
-      <thead class="govuk-table__head">
-        <tr class="govuk-table__row">
-          <th scope="col" class="govuk-table__header">Reference number</th>
-          <th scope="col" class="govuk-table__header">Scientific name</th>
-          <th scope="col" class="govuk-table__header">Internal reference</th>
-          <th scope="col" class="govuk-table__header">Permit number</th>
-        </tr>
-      </thead>
-      <tbody class="govuk-table__body">
-        {% for bird in birds %}
-          <tr class="govuk-table__row">
-            {# Reference Number Logic #}
-            <td class="govuk-table__cell">
-              {% if loop.first %}
-                <a href="view-application">{{data['submissionRef'] or "DF-2026-X"}}/001</a>
-              {% else %}
-                <a href="#">{{data['submissionRef'] or "DF-2026-X"}}/0{{ loop.index if loop.index > 9 else "0" + loop.index }}</a>
-              {% endif %}
-            </td>
+    {{ govukButton({
+      text: "Download permits",
+      classes: "govuk-button--secondary",
+      href: "/public/downloads/cites-export-falcon-permit.pdf"
+    }) }}
 
-            {# Scientific Name (Italics) #}
-            <td class="govuk-table__cell"><i>{{ bird.sci }}</i></td>
+    {# Data source for the table #}
+    {% set birds = [
+      { sci: "Falco peregrinus", int: "PF-2026-001", suffix: "4921A" },
+      { sci: "Aquila chrysaetos", int: "GE-2026-002", suffix: "8210B" },
+      { sci: "Haliaeetus leucocephalus", int: "BE-2026-003", suffix: "3391C" },
+      { sci: "Accipiter nisus", int: "SP-2026-004", suffix: "1029D" },
+      { sci: "Buteo buteo", int: "BZ-2026-005", suffix: "5582E" },
+      { sci: "Pandion haliaetus", int: "OS-2026-006", suffix: "9001F" },
+      { sci: "Milvus milvus", int: "RK-2026-007", suffix: "2112G" },
+      { sci: "Falco tinnunculus", int: "KS-2026-008", suffix: "7734H" },
+      { sci: "Strix aluco", int: "TO-2026-009", suffix: "4040J" },
+      { sci: "Circus cyaneus", int: "HH-2026-010", suffix: "6123K" },
+      { sci: "Tyto alba", int: "BO-2026-011", suffix: "1992L" },
+      { sci: "Gypaetus barbatus", int: "VL-2026-012", suffix: "8821M" }
+    ] %}
 
-            {# Trader Internal Reference #}
-            <td class="govuk-table__cell">{{ bird.int }}</td>
+    {# Prepare rows for govukTable macro #}
+    {% set tableRows = [] %}
+    {% for bird in birds %}
+      {# Safe padding logic for Application Reference #}
+      {% if loop.index < 10 %}
+        {% set indexPadded = "00" + loop.index %}
+      {% else %}
+        {% set indexPadded = "0" + loop.index %}
+      {% endif %}
 
-            {# Permit Number Logic (Only first row) #}
-            <td class="govuk-table__cell">
-              {% if loop.first %}
-                <a href="view-permit">{{data['permitNumber'] or "P-GB-2026-001"}}</a>
-              {% endif %}
-            </td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
-</div>
+      {% set appRefHtml %}<a href="view-application" class="govuk-link">{{ data['submissionRef'] or "DF-2026-X" }}/{{ indexPadded }}</a>{% endset %}
+      {% set permitHtml %}<a href="view-permit" class="govuk-link">GB26EXP{{ bird.suffix }}</a>{% endset %}
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
-    <div class="govuk-grid-column-two-thirds"><br></div>
-    <div class="govuk-grid-column-one-third">
-      <nav class="govuk-pagination" role="navigation" aria-label="results">
-        <div class="govuk-pagination__prev govuk-grid-column-one-quarter">
-          <a class="govuk-link govuk-pagination__link" href="#" rel="prev">
-            <span class="govuk-pagination__link-title">Previous</span>
-          </a>
-        </div>
-        <div class="govuk-pagination__prev govuk-grid-column-one-half">
-          <p class="govuk-!-text-align-right">1 to 12 of 19</p>
-        </div>
-        <div class="govuk-pagination__next govuk-grid-column-one-quarter">
-          <a class="govuk-link govuk-pagination__link" href="#" rel="next">
-            <span class="govuk-pagination__link-title">Next</span>
-          </a>
-        </div>
-      </nav>
-    </div>
+      {% set tableRows = (tableRows.push([
+        { text: appRefHtml | safe },
+        { text: bird.sci, format: "numeric" if false else "text", attributes: { "style": "font-style: italic;" } },
+        { text: bird.int },
+        { text: permitHtml | safe }
+      ]), tableRows) %}
+    {% endfor %}
+
+    {{ govukTable({
+      caption: "Species included in this application",
+      captionClasses: "govuk-visually-hidden",
+      head: [
+        { text: "Application reference" },
+        { text: "Scientific name" },
+        { text: "Internal reference" },
+        { text: "Permit number" }
+      ],
+      rows: tableRows
+    }) }}
+
+    <nav class="govuk-pagination" role="navigation" aria-label="results" style="float: right;">
+      <p class="govuk-pagination__results">
+        <b>1</b> to <b>10</b> of <b>34</b>
+      </p>
+      <div class="govuk-pagination__next" style="padding: 0 15px;">
+        <a class="govuk-link govuk-pagination__link" style="padding:0" href="#" rel="next">
+          <span class="govuk-pagination__link-title">Next</span>
+          <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13"><path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path></svg></a>
+      </div>
+    </nav>
   </div>
 </div>
 {% endblock %}
