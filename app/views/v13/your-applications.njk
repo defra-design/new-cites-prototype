@@ -8,7 +8,7 @@
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
-    {# Use session data for the company name, defaulting to Falconers Ltd #}
+    <span class="govuk-caption-xl">{{ data['applicant-business-name'] or "Falconers ltd" }}</span>
     <h1 class="govuk-heading-l">Your applications for {{ data['companyName'] or 'Falconers Ltd' }}</h1>
     
     <div class="govuk-grid-row">
@@ -92,8 +92,8 @@
         {# First row from session data #}
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">
-            <a href="view-submission?ref={{ data['submissionRef'] or 'AB7N10' }}" class="govuk-link">
-              AB7N10
+            <a href="view-submission?ref={{ data['submissionRef'] or 'AB7N10639G' }}" class="govuk-link">
+              AB7N10639G
             </a>
           </td>
           <td class="govuk-table__cell">{{ data['applicationDate'] or '18 February 2026' }}</td>

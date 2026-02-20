@@ -20,7 +20,8 @@ Example usage:
 module.exports = {
 
   // Application submission reference
-  "submissionRef": "APP-2026-F00482",
+  "submissionRef": "AB7N10639G639G",
+  "applicationRef": "AB7N10639G/001",
 
   // Permit type - Peregrine Falcon export
   "permitType": "Export",
@@ -72,8 +73,8 @@ module.exports = {
   "importPermitIssueYear": "2026",
 
   // Permit reference and dates
-  "permitNumber": "EU/GB/2026/F00482",
-  "permitValidityDate": "2026-08-06",
+  "permitNumber": "26GBEXP12345A",
+  "permitValidityDate": "2026-05-25",
   "transportMethod": "Air",
   "waybillNumber": "EK-DXB-900213",
 

@@ -59,6 +59,7 @@
 {% set statusPay = govukTag({ text: "Awaiting payment", classes: "govuk-tag--red" }) %}
 {% set statusEndorsed = govukTag({ text: "Endorsed", classes: "govuk-tag--grey" }) %}
 {% set statusExpired = govukTag({ text: "Expired", classes: "govuk-tag--red" }) %}
+{% set statusMixed = govukTag({ text: "Mixed", classes: "govuk-tag--blue" }) %}
 
 {% block content %}
 <div class="govuk-grid-row">
@@ -185,13 +186,13 @@
     {# --- CARD 1: IMPORT --- #}
     <div class="govuk-summary-card govuk-!-padding-bottom-7">
       <div class="govuk-summary-card__title-wrapper">
-        <h2 class="govuk-summary-card__title"><strong>RG26889</strong> | Import</h2>
+        <h2 class="govuk-summary-card__title">Submission reference: RG26889 | Import</h2>
         <div class="govuk-summary-card__actions">{{ statusPay }}</div>
       </div>
       <div class="govuk-summary-card__content">
         <details class="govuk-details" data-module="govuk-details" style="margin-bottom: 0;">
           <summary class="govuk-details__summary">
-            <span class="govuk-details__summary-text">1 application on this submission</span>
+            <span class="govuk-details__summary-text">1 application in this submission</span>
           </summary>
           <div class="govuk-details__text">
             <div class="govuk-button-group govuk-!-margin-bottom-6">
@@ -202,7 +203,7 @@
               head: tableHead,
               rows: [
                 [ 
-                  { html: '<a href="#" class="govuk-link">RG26889</a>', attributes: { "data-label": "App ref" } }, 
+                  { html: '<a href="#" class="govuk-link">RG26889/001</a>', attributes: { "data-label": "App ref" } }, 
                   { text: '-', attributes: { "data-label": "Permit ref" } },
                   { text: "-", attributes: { "data-label": "Expiry" } },
                   { html: species3, attributes: { "data-label": "Species" } }, 
@@ -218,13 +219,13 @@
     {# --- CARD 2: EXPORT --- #}
     <div class="govuk-summary-card govuk-!-padding-bottom-7">
       <div class="govuk-summary-card__title-wrapper">
-        <h2 class="govuk-summary-card__title"><strong>Submission reference: {{ data['submissionRef'] or 'AB7N10' }}</strong> | Export</h2>
+        <h2 class="govuk-summary-card__title"><strong>Submission reference: {{ data['submissionRef'] or 'AB7N10639G' }}</strong> | Export</h2>
         <div class="govuk-summary-card__actions">{{ statusIssued }}</div>
       </div>
       <div class="govuk-summary-card__content">
         <details class="govuk-details" data-module="govuk-details" style="margin-bottom: 0;">
           <summary class="govuk-details__summary">
-            <span class="govuk-details__summary-text">1 application on this submission</span>
+            <span class="govuk-details__summary-text">1 application in this submission</span>
           </summary>
           <div class="govuk-details__text">
             <div class="govuk-button-group govuk-!-margin-bottom-6">
@@ -240,7 +241,7 @@
               head: tableHead,
               rows: [
                 [ 
-                  { html: '<a href="view-application" class="govuk-link">' + (data['applicationRef'] or 'AB7N10/001') + '</a>', attributes: { "data-label": "App ref" } }, 
+                  { html: '<a href="view-application" class="govuk-link">' + (data['applicationRef'] or 'AB7N10639G/001') + '</a>', attributes: { "data-label": "App ref" } }, 
                   { html: '<a href="view-permit" class="govuk-link">' + (data['permitNumber'] or 'GB26EXP1234A') + '</a>', attributes: { "data-label": "Permit ref" } },
                   { text: "15/08/26", attributes: { "data-label": "Expiry" } },
                   { html: species3, attributes: { "data-label": "Species" } }, 
@@ -257,12 +258,12 @@
     <div class="govuk-summary-card govuk-!-padding-bottom-7">
       <div class="govuk-summary-card__title-wrapper">
         <h2 class="govuk-summary-card__title"><strong>Submission reference: TN5203</strong> | Export</h2>
-        <div class="govuk-summary-card__actions">{{ statusIssued}}</div>
+        <div class="govuk-summary-card__actions">{{ statusMixed}}</div>
       </div>
       <div class="govuk-summary-card__content">
         <details class="govuk-details" data-module="govuk-details" style="margin-bottom: 0;">
           <summary class="govuk-details__summary">
-            <span class="govuk-details__summary-text">5 applications on this submission</span>
+            <span class="govuk-details__summary-text">5 applications in this submission</span>
           </summary>
           <div class="govuk-details__text">
             <div class="govuk-button-group govuk-!-margin-bottom-6">
@@ -282,14 +283,14 @@
                   { html: '<a href="#" class="govuk-link">GB26EXP7403V</a>', attributes: { "data-label": "Permit ref" } },
                   { text: "15/08/25", attributes: { "data-label": "Expiry" } },
                   { html: species3, attributes: { "data-label": "Species" } }, 
-                  { html: statusEndorsed, attributes: { "data-label": "Status" } }
+                  { html: statusIssued, attributes: { "data-label": "Status" } }
                 ],
                 [ 
                   { html: '<a href="#" class="govuk-link">TN5203/002</a>', attributes: { "data-label": "App ref" } }, 
                   { html: '<a href="#" class="govuk-link">GB26EXP9378B</a>', attributes: { "data-label": "Permit ref" } },
                   { text: "15/08/25", attributes: { "data-label": "Expiry" } },
                   { html: species2, attributes: { "data-label": "Species" } }, 
-                  { html: statusEndorsed, attributes: { "data-label": "Status" } }
+                  { html: statusIssued, attributes: { "data-label": "Status" } }
                 ],
                 [ 
                   { html: '<a href="#" class="govuk-link">TN5203/003</a>', attributes: { "data-label": "App ref" } }, 

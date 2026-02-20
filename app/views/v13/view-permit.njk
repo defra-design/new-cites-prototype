@@ -19,7 +19,7 @@
       {{ data['permitType'] or "Export" }} permit number: <strong>{{ data['permitNumber'] or "GB26EXP1234A" }}</strong>
     </p>
     <p class="govuk-body govuk-!-margin-bottom-6">
-      Part of submission: <a href="#" class="govuk-link">{{ data['applicationRef'] or "AB7N10/001" }}</a>
+      Part of submission: <a href="view-application" class="govuk-link">{{ data['applicationRef'] or "AB7N10639G/001" }}</a>
     </p>
     <h2 class="govuk-heading-m">Status</h2>
     <div class="govuk-inset-text govuk-!-margin-top-0" style="border-left-color: #00703c; border-left-width: 10px; padding-top: 5px; padding-bottom: 5px;">
@@ -39,17 +39,24 @@
 
     <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
 
-    <h2 class="govuk-heading-m">Parties</h2>
+    <h2 class="govuk-heading-m">Exporter/Re-exporter</h2>
     {{ govukSummaryList({
       classes: "govuk-!-margin-bottom-9",
       rows: [
         {
-          key: { text: "Exporter / re-exporter" },
+          key: { text: "Name and address" },
           value: { html: data['your-full-name'] + "<br>" + data['your-business-name'] + "<br>" + data['your-address'] }
-        },
+        }
+      ]
+    }) }}
+
+    <h2 class="govuk-heading-m">Importer</h2>
+    {{ govukSummaryList({
+      classes: "govuk-!-margin-bottom-9",
+      rows: [
         {
           key: { text: "Importer" },
-          value: { html: data['delivery-address'] | nl2br | safe }
+          value: { html: data['importer-business-name'] + "<br>" + data['importer-address'] }
         },
         {
           key: { text: "Country of import" },
@@ -73,9 +80,9 @@
         {
           key: { text: "Description of specimens" },
           value: { 
-            html: (data['specimenDescription'] or "Living animal") + "<br>" +
+            html: (data['specimenDescription'] or "Live animal") + "<br>" +
                   "Sex: " + (data['gender'] or "Male") + "<br>" +
-                  "Date of birth: " + (data['hatch-date-day'] + "/" + data['hatch-date-month'] + "/" + data['hatch-date-year']) + "<br>" +
+                  "Date of birth: " + (data['hatch-date-day'] + " " + data['hatch-date-month'] + " " + data['hatch-date-year']) + "<br>" +
                   "Identification mark: " + (data['identificationMark-2'] or "DF-2025-UK-09")
           }
         },
@@ -84,8 +91,16 @@
           value: { text: "0.9" }
         },
         {
+          key: { text: "Cites Appendix" },
+          value: { text: (data['appendix'] or "I")}
+        },
+        {
+          key: { text: "EU Annex" },
+          value: { text: (data['euAnnex'] or "A")}
+        },
+        {
           key: { text: "Quantity" },
-          value: { text: (data['quantity'] or "1") + " (" + (data['unitOfMeasure'] or "Number") + ")" }
+          value: { text: (data['quantity'] or "1")}
         },
         {
           key: { text: "Source" },
@@ -112,7 +127,7 @@
         },
         {
           key: { text: "Date of issue" },
-          value: { text: (data['originPermitIssueDay'] + "/" + data['originPermitIssueMonth'] + "/" + data['originPermitIssueYear']) }
+          value: { text: (data['originPermitIssueDay'] + " " + data['originPermitIssueMonth'] + " " + data['originPermitIssueYear']) }
         }
       ]
     }) }}

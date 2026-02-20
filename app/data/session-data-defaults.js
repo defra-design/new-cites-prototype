@@ -6,13 +6,13 @@
 module.exports = {
 
   // Application Reference
-  "submissionRef": "AB7N10",
-  "applicationRef": "AB7N10/001",
+  "submissionRef": "AB7N10639G",
+  "applicationRef": "AB7N10639G/001",
 
   // Permit details
   "permitType": "Export",
   "isAgent": "no",
-  "permitNumber": "GB26EXP1234A",
+  "permitNumber": "26GBEXP12345A",
 
   // Your contact details (Applicant)
   "your-full-name": "Dean Falconer",
@@ -29,17 +29,24 @@ module.exports = {
   // Delivery address
   "delivery-address": "The Royal Falconry Centre, Al-Safa Street, Jumeirah, PO Box 112233, Dubai, UAE",
 
+  // Importer details
+  "importer-business-name": "The Royal Falconry Centre",
+  "importer-address": "Al-Safa Street, Jumeirah, PO Box 112233, Dubai, UAE",
+
   // Specimen details
   "speciesName": "Falco peregrinus",
   "specimenType": "animal",
-  "specimenDescription": "livingAnimal",
+  "specimenDescription": "Live animal",
   "quantity": "1",
   "unitOfMeasure": "Number",
+  "appendix": "I",
+  "euAnnex": "A",
   "sourceCode": "C",
   "purposeCode": "P",
   "tradeTerm": "yes",
   "tradeTermCode": "LIV",
   "gender": "Male",
+  "internalRef": "PF-2026-001",
   
   // Identification
   "identificationMark": "Closed ring number",
@@ -47,7 +54,7 @@ module.exports = {
 
   // Date of birth / Hatch date
   "hatch-date-day": "15",
-  "hatch-date-month": "05",
+  "hatch-date-month": "May",
   "hatch-date-year": "2025",
 
   // Description and Remarks
@@ -58,14 +65,14 @@ module.exports = {
   "importCountry": "United Arab Emirates",
   "importPermitNumber": "AE-IMP-2026-4421",
   "importPermitIssueDay": "05",
-  "importPermitIssueMonth": "02",
+  "importPermitIssueMonth": "February",
   "importPermitIssueYear": "2026",
 
   // Country of origin details
   "originCountry": "United Kingdom",
   "originPermitNumber": "UK-CB-2025-8821",
   "originPermitIssueDay": "01",
-  "originPermitIssueMonth": "06",
+  "originPermitIssueMonth": "June",
   "originPermitIssueYear": "2025"
 
 }
