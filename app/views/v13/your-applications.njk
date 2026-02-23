@@ -3,13 +3,13 @@
 {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
-{% set pageTitle = "Your applications - eCITES" %}
+{% set pageTitle = "Your applications for " + (data['applicant-business-name'] or "Falconers Ltd") %}
 
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
     <span class="govuk-caption-xl">{{ data['applicant-business-name'] or "Falconers ltd" }}</span>
-    <h1 class="govuk-heading-l">Your applications for {{ data['companyName'] or 'Falconers Ltd' }}</h1>
+    <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
     
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-full">

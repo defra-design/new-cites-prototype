@@ -36,9 +36,9 @@
   {% include "includes/head.html" %}
 {% endblock %}
 
-{% block pageTitle %}
-  GOV.UK Prototype Kit
-{% endblock %}
+  {% block pageTitle %}
+    {{ pageTitle | default("CITES prototype") }} - {{ serviceName | default("eCITES") }} - GOV.UK
+  {% endblock %}
 
 {% block header %}
   {# Set serviceName in config.js. #}

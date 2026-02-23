@@ -30,7 +30,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
     <span class="govuk-caption-xl">{{ data['applicant-business-name'] or "Falconers ltd" }}</span>
-    <h1 class="govuk-heading-l">Your submission: {{ data['submissionRef'] or "DF-2026-X" }}</h1>
+    <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
     
     {{ govukButton({
       text: "Download permits",

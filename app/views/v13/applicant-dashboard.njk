@@ -7,6 +7,8 @@
 {% from "govuk/components/tag/macro.njk" import govukTag %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
+{% set pageTitle = "Your applications" %}
+
 {# --- CUSTOM RESPONSIVE STYLES --- #}
 {# Note: In a production prototype, move this to src/client/stylesheets/ #}
 {% block pageStyles %}
@@ -48,6 +50,8 @@
 </style>
 {% endblock %}
 
+
+
 {# --- SET SPECIES AND STATUS CONSTANTS --- #}
 {% set species1 = "<em>Falco peregrinus</em>" %}
 {% set species2 = "<em>Accipiter gentilis</em>" %}
@@ -65,7 +69,9 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
     <span class="govuk-caption-xl">{{ data['applicant-business-name'] or "Falconers ltd" }}</span>
-    <h1 class="govuk-heading-xl govuk-!-margin-bottom-7">Your applications</h1>
+    <h1 class="govuk-heading-xl">
+      {{ pageTitle }}
+    </h1>
     <div class="govuk-grid-row govuk-!-margin-bottom-6">
       <div class="govuk-grid-column-one-third govuk-!-margin-bottom-4">
         {{ govukButton({ text: "Start new application", classes: "govuk-!-margin-bottom-0" }) }}

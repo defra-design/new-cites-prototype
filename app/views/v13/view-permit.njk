@@ -1,19 +1,15 @@
 {% extends "layout-with-navigation" %}
 
-{% set thisPageTitle = "Permit summary" %}
+{% set pageTitle = "Permit summary: " + (data['permitNumber'] or "GB26EXP1234A") %}
 
 {# Logic to determine if permit details should be displayed #}
 {% set isIssued = data['permitStatus'] == 'Issued' or data['permitNumber'] %}
-
-{% block pageTitle %}
-  {{ thisPageTitle }} - {{ data['permitNumber'] or "GB26EXP1234A" }} - GOV.UK
-{% endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
     <span class="govuk-caption-xl">{{ data['applicant-business-name'] or "Falconers ltd" }}</span>
-    <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">{{ thisPageTitle }}</h1>
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">Permit summary</h1>
     
     <p class="govuk-body govuk-!-margin-bottom-1">
       {{ data['permitType'] or "Export" }} permit number: <strong>{{ data['permitNumber'] or "GB26EXP1234A" }}</strong>

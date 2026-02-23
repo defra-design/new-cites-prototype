@@ -1,13 +1,13 @@
 {% extends "layout-with-navigation.html" %}
 
-{% set thisPageTitle = "Application summary" %}
+{% set pageTitle = "Your application: " + (data['applicationRef'] or "AB7N10639G/001") %}
 
 {% block beforeContent %}
 <div class="govuk-phase-banner">
   <p class="govuk-phase-banner__content">
     <strong class="govuk-tag govuk-phase-banner__content__tag govuk-tag--green">prototype</strong>
     <span class="govuk-phase-banner__text">
-      This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+      This is a new service  your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
     </span>
   </p>
 </div>
@@ -29,7 +29,7 @@
   <div class="govuk-grid-column-full">
     
     <span class="govuk-caption-xl">{{ data['your-business-name'] or "Falconers Ltd" }}</span>
-    <h1 class="govuk-heading-l">Your application: {{ data['applicationRef'] or "AB7N10639G/001" }}</h1>
+    <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
 
     <div class="govuk-inset-text">
       Your application was submitted on 18 February 2026
