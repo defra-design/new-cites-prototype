@@ -47,7 +47,7 @@ router.post('/login', function (req, res) {
     if (userRole === 'cites') {
       res.redirect('/')
     } else {
-      res.redirect('/v13/applicant-dashboard-preprod')
+      res.redirect('v13/represent')
     }
   } else {
     // Invalid credentials - show login again with error
