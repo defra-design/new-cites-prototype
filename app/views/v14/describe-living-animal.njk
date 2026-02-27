@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{% set thisPageTitle = "Describe living animal" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <form method="post" autocomplete="off">
+      <h1 class="govuk-heading-l">Describe the specimen</h1>
+
+      {# Show AI Preview Image if it exists #}
+      {% if data['specimen-image-preview'] %}
+        <div class="govuk-inset-text">
+          <p class="govuk-body">Specimen image provided:</p>
+          <img src="{{ data['specimen-image-preview'] }}" style="max-width: 250px; border: 2px solid #b1b4b6;" alt="Specimen preview">
+        </div>
+      {% endif %}
+
+      <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+      
+      <table class="govuk-table">
+        <tbody class="govuk-table__body">
+          {# Sex Row #}
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-width-one-half">What sex is the specimen?</th>
+            <td class="govuk-table__cell">
+              <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+                {% for option in ["Female", "Male", "Not known"] %}
+                <div class="govuk-radios__item">
+                  <input class="govuk-radios__input" id="gender-{{ loop.index }}" name="gender" type="radio" value="{{ option }}" {{ 'checked' if data['gender'] == option }}>
+                  <label class="govuk-label govuk-radios__label" for="gender-{{ loop.index }}">{{ option }}</label>
+                </div>
+                {% endfor %}
+              </div>
+            </td>
+          </tr>
+
+          {# DOB Row #}
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-width-one-half">What is the specimen's date of birth?</th>
+            <td class="govuk-table__cell">
+              <div class="govuk-hint">If you do not know the exact date, do not enter a date.</div>
+              <div class="govuk-date-input">
+                <div class="govuk-date-input__item">
+                  <label class="govuk-label govuk-date-input__label" for="dob-day">Day</label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dob-day" name="dob-day" type="text" value="{{ data['dob-day'] }}">
+                </div>
+                <div class="govuk-date-input__item">
+                  <label class="govuk-label govuk-date-input__label" for="dob-month">Month</label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dob-month" name="dob-month" type="text" value="{{ data['dob-month'] }}">
+                </div>
+                <div class="govuk-date-input__item">
+                  <label class="govuk-label govuk-date-input__label" for="dob-year">Year</label>
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="dob-year" name="dob-year" type="text" value="{{ data['dob-year'] }}">
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          {# Description Row (Populated by AI) #}
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header govuk-!-width-one-half">Other description</th>
+            <td class="govuk-table__cell">
+              <div class="govuk-character-count" data-module="govuk-character-count" data-maxlength="500">
+                <div class="govuk-hint">Include anything else that helps to describe the specimen.</div>
+                <div class="govuk-form-group">
+                  <textarea class="govuk-textarea govuk-js-character-count" id="description" name="description" rows="8">{{ data['description'] }}</textarea>
+                </div>
+                <div id="description-info" class="govuk-hint govuk-character-count__message">You can enter up to 500 characters</div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <button class="govuk-button">Continue</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

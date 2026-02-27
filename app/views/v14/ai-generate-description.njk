@@ -1,0 +1,106 @@
+{% extends "layout.html" %}
+
+{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/character-count/macro.njk" import govukCharacterCount %}
+
+{% block pageStyles %}
+<style>
+  .app-ai-panel { background-color: #f3f2f1; padding: 20px; border-left: 10px solid #1d70b8; margin-bottom: 30px; border: 1px solid #b1b4b6; }
+  .app-image-preview { max-width: 100%; max-height: 300px; display: none; margin: 20px 0; border: 1px solid #b1b4b6; }
+  .app-loading-spinner { display: none; margin: 20px 0; font-weight: bold; color: #1d70b8; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Describe the specimen</h1>
+
+    <div class="app-ai-panel">
+      {{ govukFileUpload({
+        id: "specimen-image",
+        name: "specimen-image",
+        label: { text: "Upload a photo", classes: "govuk-label--s" }
+      }) }}
+
+      <img id="image-preview" class="app-image-preview" alt="Preview">
+      
+      <div id="loading-spinner" class="app-loading-spinner">Analyzing image...</div>
+
+      {{ govukButton({
+        text: "Extract description",
+        classes: "govuk-button--secondary",
+        id: "extract-button",
+        attributes: { "disabled": "disabled" }
+      }) }}
+    </div>
+
+    <form method="post">
+      {{ govukCharacterCount({
+        name: "description",
+        id: "description",
+        maxlength: 500,
+        label: { text: "Review description", classes: "govuk-label--m" },
+        value: data['description']
+      }) }}
+
+      {{ govukButton({ text: "Save and continue" }) }}
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block pageScripts %}
+<script>
+  // Standard JavaScript (not a module) to ensure compatibility with Prototype Kit
+  const imageInput = document.getElementById('specimen-image');
+  const imagePreview = document.getElementById('image-preview');
+  const extractButton = document.getElementById('extract-button');
+  const loadingSpinner = document.getElementById('loading-spinner');
+  const descriptionTextarea = document.getElementById('description');
+
+  let base64Image = null;
+
+  imageInput.addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        base64Image = event.target.result.split(',')[1];
+        imagePreview.src = event.target.result;
+        imagePreview.style.display = 'block';
+        extractButton.removeAttribute('disabled');
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  extractButton.addEventListener('click', async function(e) {
+    e.preventDefault();
+    extractButton.setAttribute('disabled', 'disabled');
+    loadingSpinner.style.display = 'block';
+
+    try {
+      const response = await fetch('/v14/extract-description', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ image: base64Image })
+      });
+      
+      const resData = await response.json();
+      
+      if (resData.description) {
+        descriptionTextarea.value = resData.description;
+        // This triggers the character count update
+        descriptionTextarea.dispatchEvent(new Event('input', { bubbles: true }));
+      }
+    } catch (err) {
+      alert("Error calling server. Check terminal for details.");
+    } finally {
+      extractButton.removeAttribute('disabled');
+      loadingSpinner.style.display = 'none';
+    }
+  });
+</script>
+{% endblock %}

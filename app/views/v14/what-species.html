@@ -1,0 +1,97 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  
+  <div class="govuk-grid-column-two-thirds">
+    <form method="get" action="/v14/what-species">
+      <div class="govuk-form-group {% if error %}govuk-form-group--error{% endif %}">
+        <h1 class="govuk-label-wrapper">
+          <label class="govuk-label govuk-label--l" for="speciesName">
+            What is the scientific name of the species?
+          </label>
+        </h1>
+        <p class="govuk-hint">
+          Enter the exact scientific name. You can search for the scientific name on 
+          <a href="https://speciesplus.net/" target="_blank">Species+ (opens in new tab)</a>
+          or use the Wikipedia search feature below using common name or scientific name. 
+        </p>
+        
+        {% if error %}
+          <p class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> {{ error }}
+          </p>
+        {% endif %}
+
+        <input class="govuk-input" id="speciesName" name="speciesName" type="text" value="{{ query }}">
+      </div>
+      <button class="govuk-button" data-module="govuk-button">Search and verify</button>
+    </form>
+
+    {% if result %}
+      <div class="govuk-!-margin-top-9">
+        <h2 class="govuk-heading-m">Species information</h2>
+        <p class="govuk-body">{{ result.summary }}</p>
+
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Common name</dt>
+            <dd class="govuk-summary-list__value">{{ result.title }}</dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Scientific name</dt>
+            <dd class="govuk-summary-list__value">
+              <em>{{ result.scientificName }}</em>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">CITES Appendix</dt>
+            <dd class="govuk-summary-list__value">
+              {% if result.appendix == "Appendix I" %}
+                <strong class="govuk-tag govuk-tag--red">{{ result.appendix }}</strong>
+              {% elif result.appendix == "Appendix II" %}
+                <strong class="govuk-tag govuk-tag--orange">{{ result.appendix }}</strong>
+              {% elif result.appendix == "Appendix III" %}
+                <strong class="govuk-tag govuk-tag--yellow">{{ result.appendix }}</strong>
+              {% else %}
+                {{ result.appendix }}
+              {% endif %}
+            </dd>
+          </div>
+        </dl>
+
+        <div class="govuk-button-group govuk-!-margin-top-8">
+          <form action="/v14/upload-specimen" method="post">
+            <input type="hidden" name="confirmedSpecies" value="{{ result.scientificName }}">
+            <button class="govuk-button">Save and continue</button>
+          </form>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+    {% if result %}
+      <aside class="app-related-items" role="complementary" style="border-top: 10px solid #1d70b8; background: #f3f2f1; padding: 15px;">
+        <h3 class="govuk-heading-s" id="reference-heading">Reference Image</h3>
+        <p class="govuk-body-s">Use this Wikipedia image to confirm the species identification.</p>
+        
+        {% if result.image %}
+          <img src="{{ result.image }}" alt="Reference of {{ result.title }}" style="width: 100%; border: 1px solid #b1b4b6; margin-bottom: 10px;">
+        {% else %}
+          <div style="background: #dee0e2; height: 150px; display: flex; align-items: center; text-align: center; padding: 10px;">
+            No reference image available for this species.
+          </div>
+        {% endif %}
+
+        <p class="govuk-body-s">
+          <a href="{{ result.link }}" class="govuk-link" target="_blank">
+            Full Wikipedia record (opens in new tab)
+          </a>
+        </p>
+      </aside>
+    {% endif %}
+  </div>
+
+</div>
+{% endblock %}

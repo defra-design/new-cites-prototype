@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+
+{% set pageTitle = "Who do you want to represent?" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="applicant-dashboard" method="post" novalidate>
+
+      {{ govukRadios({
+        name: "representEntity",
+        fieldset: {
+          legend: {
+            text: "Who do you want to represent?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "falconers-ltd",
+            text: "Falconers Ltd"
+          },
+          {
+            value: "pet-shop",
+            text: "The Pet Shop"
+          }
+        ]
+      }) }}
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Continue",
+          type: "submit"
+        }) }}
+
+        <a class="govuk-link" href="#">An organisation not listed</a>
+      </div>
+
+    </form>
+
+    {% set helpHtml %}
+      <p class="govuk-body">Contact Apply for a CITES Permit by phone or email.</p>
+      
+      <p class="govuk-body">
+        Email:<br>
+        <a class="govuk-link" href="mailto:wildlife.licensing@apha.gov.uk">wildlife.licensing@apha.gov.uk</a>
+      </p>
+
+      <p class="govuk-body">
+        Telephone:<br>
+        <strong>0117 372 3700</strong>
+      </p>
+
+      <p class="govuk-body">
+        Service opening times:<br>
+        09:00-17:30 excluding bank holidays
+      </p>
+
+      <p class="govuk-body">
+        <a class="govuk-link" href="#" target="_blank">Find out about call charges (opens in new tab)</a>
+      </p>
+    {% endset %}
+
+    {{ govukDetails({
+      summaryText: "Need more help?",
+      html: helpHtml
+    }) }}
+
+  </div>
+</div>
+{% endblock %}

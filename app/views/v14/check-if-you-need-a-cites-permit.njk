@@ -1,0 +1,462 @@
+{% extends "layout.njk" %}
+
+{% block pageTitle %}
+  Check if you need a CITES permit to import or export endangered species - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    items: [
+      { text: "Home", href: "#" },
+      { text: "Environment", href: "#" },
+      { text: "Wildlife and habitat conservation", href: "#" }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-xl">Guidance</span>
+  </div>
+</div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+  <h1 class="govuk-heading-l">
+    Check if you need a CITES permit to import or export endangered species
+  </h1>
+  <p class="govuk-body-l">
+    Check if your import, export or re-export needs a permit or certificate under the Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES).
+  </p>
+  </div>
+</div>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {# Contents List #}
+    <aside class="govuk-prototype-kit-common-templates-mainstream-guide-contents-list" role="complementary">
+      <nav class="govuk-prototype-kit-common-templates-contents-list" aria-label="Pages in this guide" role="navigation">
+        <h2 class="govuk-prototype-kit-common-templates-contents-list__title">Contents</h2>
+        <ol class="govuk-prototype-kit-common-templates-contents-list__list">
+          <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+            <a href="#how-to-apply">How to apply</a>
+          </li>
+          <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+            <a href="#other-permits-and-certificates">Other permits and certificates</a>
+          </li>
+          <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+            <a href="#before-you-receive-your-permit">Before you receive your permit</a>
+          </li>
+          <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+            <a href="#how-long-it-takes">How long it takes</a>
+          </li>
+          <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+            <a href="#after-you-receive-your-permit">After you receive your permit</a>
+          </li>
+          <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+            <a href="#importing-or-exporting-your-species">Importing or exporting your species</a>
+          </li>
+          <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+            <a href="#returned-goods">Returned goods</a>
+          </li>
+          <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+            <a href="#marking-specimens">Marking specimens</a>
+          </li>
+          <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+            <a href="#get-help">Get help</a>
+          </li>
+        </ol>
+      </nav>
+    </aside>
+
+    <div class="govuk-govspeak govuk-!-margin-top-9">
+      <p class="govuk-body">You must apply for a permit if you're moving a specimen of any CITES listed species 
+        either into or out of Great Britain (England, Scotland and Wales). 
+        This includes moving a specimen to or from:
+      </p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>the EU</li>
+        <li>non-EU countries</li>
+        <li>Northern Ireland</li>
+        <li>Jersey, Guernsey or the Isle of Man</li>
+      </ul>
+
+      <p class="govuk-body">The Animal and Plant Health Agency (APHA) is responsible for issuing CITES permits to move species 
+        to and from Great Britain and Northern Ireland. You must also contact the management authority of the country you 
+        are moving the species to or from, to get the corresponding import or export permit. 
+        Having a permit from APHA does not guarantee that the other country or countries will also issue a permit.
+      </p>
+      <p class="govuk-body">A specimen is a living or dead animal or plant or any of its parts, or an item made from these. 
+        An import, export or re-export permit is an official document that confirms you can move a specimen that is listed by CITES.
+      </p>
+
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-visually-hidden">Warning</span>
+          If you do not have a valid permit or certificate for moving or trading 
+          CITES listed species you could be liable to a prison sentence of up to 7 years, an unlimited fine, or both.
+        </strong>
+      </div>
+
+      <h2 id="how-to-apply" class="govuk-heading-m">How to apply</h2>
+      <p class="govuk-body">You should:</p>
+      <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+        <li><a href="https://www.speciesplus.net/" class="govuk-link">use Species+</a> to check if your specimen comes from a species on the CITES list</li>
+        <li><a href="apply-for-a-cites-permit" class="govuk-link">apply for an import, export or re-export permit using the apply for a CITES permit service</a> - this new digital service replaces CITES forms</li>
+      </ul>
+      <p class="govuk-body">As part of your application, 
+        <a href="https://www.gov.uk/government/publications/find-your-cites-trade-term-code" class="govuk-link">
+        find the trade term code.</a>
+      </p>
+      <p class="govuk-body">You must get a permit for any species listed on annex A, B or C in Species+.</p>
+
+      <div class="govuk-inset-text">
+        You can only import specimens of annex A species in exceptional circumstances. 
+        This is to avoid endangering the species further. 
+        Contact the <a href="#" class="govuk-link">APHA team for endangered plant and animal species</a> for more detailed advice 
+        if you want to import a specimen of an annex A species.
+        for advice.
+      </div>
+
+      <h2 id="other-permits-and-certificates" class="govuk-heading-m">Other permits and certificates</h2>
+      <p class="govuk-body">You can apply to import annex C specimens. 
+        To do this you'll need to get an import notification form by emailing APHA at 
+        <a href="#" class="govuk-link">wildlife.licensing@apha.gov.uk</a> 
+        or phoning 03000 200 301.
+      </p>
+
+      <h3 id="commercial-use" class="govuk-heading-s">Commercial use</h3>
+      <p class="govuk-body">If you plan to use any specimen listed by CITES in annex A for commercial purposes, 
+        you must <a href="#" class="govuk-link">get a commercial use certificate</a> 
+        (known as an Article 10 certificate).
+      </p>
+      <p class="govuk-body">If you're importing an annex A specimen to sell it, 
+        you may be able to get a permit that can be used instead of an Article 10 certificate. 
+        Please contact APHA for more information by emailing 
+        <a href="#" class="govuk-link">wildlife.licensing@apha.gov.uk</a>.
+      </p>
+      <h3 id="musical-instruments-museums-art-exhibitions-and-touring-displays" class="govuk-heading-s">Musical instruments, museums, art exhibitions and touring displays</h3>
+      <p class="govuk-body">In some cases, you may need to move CITES specimens across international borders several times. 
+        For example, endangered species or specimens that are part of a:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>touring orchestra</li>
+          <li>museum exhibit</li>
+          <li>art exhibition</li>
+          <li>touring display or circus</li>
+        </ul>
+        <p class="govuk-body">If you're travelling with your instrument as part of a touring orchestra, 
+          you must use the apply for a CITES permit service for each instrument containing CITES listed specimens. 
+          You do not have to pay for a musical instrument certificate.
+        </p>
+
+      <h3 id="ivory" class="govuk-heading-s">Ivory</h3>
+      <p class="govuk-body">Read the guide on dealing in items containing ivory or 
+        made of ivory if you intend to trade or move ivory (teeth or tusks, 
+        and items made from them) from any of the following species:
+      </p>
+      <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+        <li>elephant</li>
+        <li>common hippopotamus</li>
+        <li>killer whale</li>
+        <li>narwhal</li>
+        <li>sperm whale</li>
+      </ul>
+
+      <h3 id="personal-and-household-effects" class="govuk-heading-s">Personal and household effects</h3>
+      <p class="govuk-body">
+        In some specific circumstances, you do not need CITES documentation to move personal 
+        and household items that contain a CITES specimen. 
+      </p>
+      <p class="govuk-body">
+        You do not need a CITES permit for the following items if they are carried in your personal 
+        luggage and intended for personal use (allowance is per person): 
+      </p>
+      <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+        <li>125 grams of caviar (Acipenseriformes spp), in containers that are individually marked in accordance with Article 66(6)&nbsp;</li>
+        <li>3 rainsticks of Cactaceae spp&nbsp;</li>
+        <li>4 worked items containing Crocodyllia spp (excluding meat and hunting trophies)&nbsp;&nbsp;</li>
+        <li>3 shells of Queen conch (Strombus gigas)&nbsp;</li>
+        <li>4 dead specimens of seahorse (Hippocampus spp)&nbsp;</li>
+        <li>3 specimens of giant clam (Tridacnidae spp) not more than 3kg in total, where a specimen can be one intact shell or 2 matching halves&nbsp;</li>
+        <li>up to 1kg woodchips, 24ml oil, and 2 sets of beads or prayer beads (or 2 necklaces or bracelets) of agarwood (Aquilaria and Gyrinops species)&nbsp;</li>
+      </ul>
+      <p class="govuk-body">
+       Contact APHA if you plan to import, 
+       export or re-export a personal or household item that you 
+       think includes a CITES specimen by emailing <a href="#" class="govuk-link">wildlife.licensing@apha.gov.uk</a>.
+      </p>
+
+      <h3 id="retrospective-permits" class="govuk-heading-s">Retrospective permits</h3>
+      <p class="govuk-body">If your CITES specimens have entered or left Great Britain or Northern Ireland without the relevant permits, 
+        contact APHA by emailing <a href="#" class="govuk-link">wildlife.licensing@apha.gov.uk</a>, 
+        as you may need to apply for a retrospective permit.
+      </p>
+
+      <h3 id="replacement-permits" class="govuk-heading-s">Replacement permits</h3>
+      <p class="govuk-body">You can only apply for a replacement if your official validated permit is:</p>
+      <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+        <li>cancelled</li>
+        <li>lost</li>
+        <li>stolen</li>
+        <li>accidentally destroyed</li>
+      </ul>
+
+      <h2 id="before-you-receive-your-permit" class="govuk-heading-m">Before you receive your permit</h2>
+      <p class="govuk-body">Until you have the correct CITES permit, you should not:</p>
+      <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+        <li>ship or travel with specimens</li>
+        <li>make any payments for specimens</li>
+        <li>enter into contracts over specimens</li>
+      </ul>
+      <p class="govuk-body">You must check:</p>
+      <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+        <li>the requirements of the import or export country by contacting the <a rel="external" href="#"><abbr title="Convention on International Trade in Endangered Species of Wild Fauna and Flora">CITES</abbr> authority in that country</a>
+        </li>
+          <li>if your specimen is subject to an <a href="#">import suspension (negative opinion)</a>
+        </li>
+      </ul>
+      <p>Check with the <a rel="external" href="#"><abbr title="Convention on International Trade in Endangered Species of Wild Fauna and Flora">
+        CITES</abbr> management authority</a> 
+        of the country of import or export before you move any items you cannot identify.
+      </p>
+      <h2 id="how-long-it-takes" class="govuk-heading-m">How long it takes</h2>
+      <p class="govuk-body">
+        APHA reviews each application individually and aims to 
+        process your application within 30 days. 
+        Your application may need to be reviewed by scientific advisers at either:
+      </p>
+      <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+        <li>the Royal Botanical Garden, Kew - for plants</li>
+        <li>the Joint Nature Conservation Committee (<abbr title="Joint Nature Conservation Committee">JNCC</abbr>) - for animals</li>
+      </ul>
+      <p class="govuk-body">
+        If your application is accepted, you'll get a printed, signed and stamped permit or certificate in the post. 
+        If your application is refused, APHA will send you a letter explaining why.
+      
+
+      <h2 id="after-you-receive-your-permit" class="govuk-heading-m">After you receive your permit</h2>
+      <p class="govuk-body">After you receive your permit, you'll need to:</p>
+      <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+        <li><a href="#">use a designated point of entry or exit</a></li>
+        <li>show your <abbr title="Convention on International Trade in Endangered Species of Wild Fauna and Flora">CITES</abbr> documents at the border to UK Border Force&nbsp;</li>
+        <li>check other custom controls required by HMRC</li>
+        <li>find out what you need to do when <a href="#">trading or moving <abbr title="Convention on International Trade in Endangered Species of Wild Fauna and Flora">CITES</abbr>-listed specimens through UK ports and airports</a> (including&nbsp; importing or exporting by post)</li>
+      </ul>
+
+      <h2 id="importing-or-exporting-your-species" class="govuk-heading-m">Importing or exporting your species</h2>
+      <p class="govuk-body">
+        There are different processes depending on if you plan to move the 
+        CITES-listed species yourself, or if you plan to send them by post.
+      </p>
+      <p>Before you apply, check the guidance on how to:</p>
+       <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+        <li><a href="#">import and export plants and plant products</a></li>
+        <li><a href="#">import live animals or animal products</a></li>
+        <li><a href="#">export live animals or animal products</a></li>
+        <li>
+      <a href="#">trade or move <abbr title="Convention on International Trade in Endangered Species of Wild Fauna and Flora">CITES</abbr>-listed specimens through UK ports and airports</a> (including importing or exporting by post)</li>
+      </ul>
+
+      <h2 id="returned-goods" class="govuk-heading-m">Returned goods</h2>
+      <p class="govuk-body">If your CITES specimen has been exported from Great Britain but is rejected by the importing country, contact APHA at wildlife.licensing@apha.gov.uk to let them know it’s been rejected. 
+        You'll need to get CITES documents to re-import the items into Great Britain. 
+        When contacting APHA, you need to supply:
+      </p>
+      <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+        <li>evidence that the specimen was legally exported from Great Britain</li>
+        <li>the reason the importing country has rejected it</li>
+      </ul>
+
+      <h2 id="marking-specimens" class="govuk-heading-m">Marking specimens</h2>
+      <p>You must mark specimens according to European regulation <a rel="external" href="#">
+        Article 66 of EC Reg 865/2006</a>. 
+        The marking needed depends on what the specimen is.
+      </p>
+      <p class="govuk-body">Most live specimens must have one of the following:</p>
+      <ul class="govuk-list govuk-list--bullet govuk-list--spaced">
+        <li>an International Organization for Standardization (<abbr title="International Organization for Standardization">ISO</abbr>) compliant, uniquely numbered microchip</li>
+        <li>a uniquely numbered, seamless closed ring for birds (<a href="#">check how to register and mark birds of prey</a>)</li>
+      </ul>
+      <h2 id="get-help" class="govuk-heading-m">Get help</h2>
+      <p class="govuk-body">If you need further advice or support with your application, contact APHA at <a href="#" class="govuk-link">wildlife.licensing@apha.gov.uk</a>.</p>
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Updates
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <ol class="govuk-list">
+            <li>
+              <p class="govuk-body-s"><strong>14 March 2025</strong></p>
+              <p class="gem-c-published-dates__change-note">Edited section on ivory to include ivory from common hippopotamuses, killer whales, narwhals and sperm whales.</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>12 February 2025</strong></p>
+              <p class="gem-c-published-dates__change-note">When notifying APHA that your CITES specimen has been rejected by the importing country, you need to supply evidence that the specimen was legally exported from Great Britain and the reason the importing country has rejected it.</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>3 December 2024</strong></p>
+              <p class="gem-c-published-dates__change-note">Added Jersey, Guernsey and the Isle of Man to the list of places that a CITES permit is needed for. Added that APHA issues CITES permits for Great Britain and Northern Ireland and that users should contact the management authority of the corresponding country that they are moving the species to or from to also get a permit from them.</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>8 October 2024</strong></p>
+              <p class="gem-c-published-dates__change-note">Page has been updated with new guidance to reflect that a new online service is now available to apply for a CITES permit. A definition has been added for the term specimen.</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>5 April 2024</strong></p>
+              <p class="gem-c-published-dates__change-note">Information has been added about the items in your personal luggage that do not need a CITES permit.</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>15 January 2024</strong></p>
+              <p class="gem-c-published-dates__change-note">Information has been added about the items in your personal luggage that do not need a CITES permit, and information about eels has been removed.</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>20 May 2022</strong></p>
+              <p class="gem-c-published-dates__change-note">We have added a link to the list of the UK’s formal import suspensions. These are held alongside banned or restricted specimens listed in Species+. Anyone who wants to import CITES specimens should check the UK’s import suspensions in addition to Species+ or contact APHA if you are unsure.</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>28 May 2021</strong></p>
+              <p class="gem-c-published-dates__change-note">Updated the 'Customs requirements for CITES items' section to make it clear that you need to present documents to UK Border Force at the first point of entry into, and the last point of exit from, Great Britain.</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>5 March 2021</strong></p>
+              <p class="gem-c-published-dates__change-note">Updated the export by post and import by post sections. When moving CITES specimens from Great Britain (GB) to Northern Ireland (NI), your handling agent must move parcels through Belfast International airport. When moving CITES specimens from NI to GB your handling agent must move parcels through Belfast seaport.</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>2 March 2021</strong></p>
+              <p class="gem-c-published-dates__change-note">Updated eels section. Contact APHA for advice if you plan to export or import European eels.</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>20 January 2021</strong></p>
+              <p class="gem-c-published-dates__change-note">We updated the guidance to make it clearer that you need a CITES permit when you move CITES specimens between Great Britain and the EU, and between GB and Northern Ireland.</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>10 June 2020</strong></p>
+              <p class="gem-c-published-dates__change-note">Added guidance about customs requirements and travelling displays. Updated information about penalties if you do not have the correct documents.</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>22 July 2019</strong></p>
+              <p class="gem-c-published-dates__change-note">When you need a certificate instead of a permit section updated</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>17 July 2019</strong></p>
+              <p class="gem-c-published-dates__change-note">CITES content has been restructured.</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>25 April 2019</strong></p>
+              <p class="gem-c-published-dates__change-note">Updated the information in the "UK ivory sales ban" section.</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>16 January 2019</strong></p>
+              <p class="gem-c-published-dates__change-note">Guidance on CITES-designated points of entry or exit published in the event of the UK leaving the EU without a deal.</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>18 September 2018</strong></p>
+              <p class="gem-c-published-dates__change-note">CITES news updated.</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>23 July 2018</strong></p>
+              <p class="gem-c-published-dates__change-note">News section - High levels of CITES applications</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>25 June 2018</strong></p>
+              <p class="gem-c-published-dates__change-note">Method of payment section updated</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>3 April 2018</strong></p>
+              <p class="gem-c-published-dates__change-note">Added news - UK ivory sales ban</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>16 March 2018</strong></p>
+              <p class="gem-c-published-dates__change-note">News added - reminder to bird breeders</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>5 March 2018</strong></p>
+              <p class="gem-c-published-dates__change-note">CITES news update - CITES Open Day</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>24 January 2018</strong></p>
+              <p class="gem-c-published-dates__change-note">Amended section on legislation due to updated regulations in relation to the imports and introduction of specimens of certain species of wild fauna and flora into the EU</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>4 January 2018</strong></p>
+              <p class="gem-c-published-dates__change-note">Added news - new EU guidance on intra-EU trade/re-export of rhino horn</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>19 June 2017</strong></p>
+              <p class="gem-c-published-dates__change-note">Added news - new EU guidance and high levels of CITES applications</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>8 March 2017</strong></p>
+              <p class="gem-c-published-dates__change-note">Added news: New CITES controls - Rosewood and Palisander guidance</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>3 March 2017</strong></p>
+              <p class="gem-c-published-dates__change-note">Added news - African Grey Parrots</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>6 February 2017</strong></p>
+              <p class="gem-c-published-dates__change-note">Amended legislation for the complete list of species controlled by CITES under the EU regulations.</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>3 February 2017</strong></p>
+              <p class="gem-c-published-dates__change-note">New CITES controls on animal and plant species news added</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>22 December 2016</strong></p>
+              <p class="gem-c-published-dates__change-note">Added news - The Listing of Dalbergia species on CITES</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>31 October 2016</strong></p>
+              <p class="gem-c-published-dates__change-note">Added news - CITES team change of address</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>20 October 2016</strong></p>
+              <p class="gem-c-published-dates__change-note">Added news - species listing decisions at CITES Conference of Parties (CoP17)</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>22 September 2016</strong></p>
+              <p class="gem-c-published-dates__change-note">News added - Defra announcement about UK ban on modern day ivory sales</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>12 August 2016</strong></p>
+              <p class="gem-c-published-dates__change-note">Published new species requiring licences (CITES certificates and permits) news</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>9 March 2016</strong></p>
+              <p class="gem-c-published-dates__change-note">Amended current restrictions on importing live birds listed on CITES news item.</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>22 February 2016</strong></p>
+              <p class="gem-c-published-dates__change-note">News added - CITES documents for hybrid specimens</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>1 October 2014</strong></p>
+              <p class="gem-c-published-dates__change-note">AHVLA documents have been re-assigned to the new Animal and Plant Health Agency (APHA).</p>
+            </li>
+            <li>
+              <p class="govuk-body-s"><strong>1 January 2013</strong></p>
+              <p class="gem-c-published-dates__change-note">First published.</p>
+            </li>
+        </ol>
+    </details>
+  </div>
+</div>
+  <div class="govuk-grid-column-one-third">
+    <aside class="app-related-items" role="complementary">
+      <h2 class="govuk-heading-s">Related content</h2>
+      <nav role="navigation">
+        <ul class="govuk-list govuk-list--spaced">
+          <li><a class="govuk-link govuk-body-s" href="#" style="font-weight: bold;">Commercial use of endangered species: check if you need an Article 10 CITES certificate</a></li>
+          <li><a class="govuk-link govuk-body-s" href="#" style="font-weight: bold;">Trading or moving CITES-listed specimens through designated UK ports and airports</a></li>
+          <li><a class="govuk-link govuk-body-s" href="#" style="font-weight: bold;">CITES application fees</a></li>
+          <li><a class="govuk-link govuk-body-s" href="#" style="font-weight: bold;">Importing non-native animals</a></li>
+          <li><a class="govuk-link govuk-body-s" href="#" style="font-weight: bold;">Check if your item from an endangered species is a worked specimen</a></li>
+          <li><a class="govuk-link govuk-body-s" href="apply-for-a-cites-permit" style="font-weight: bold;">Apply for a CITES permit</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+</div>
+{% endblock %}

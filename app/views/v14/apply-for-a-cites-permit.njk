@@ -1,0 +1,108 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Apply for a CITES permit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for this page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "#"
+      },
+      {
+        text: "Section",
+        href: "#"
+      },
+      {
+        text: "Subsection"
+      }
+    ]
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-xl">Guidance</span>
+      <h1 class="govuk-heading-xl">
+        Apply for a CITES permit
+      </h1>
+      <p class="govuk-body-l">
+        How to apply for a Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES) permit to move or trade endangered species.
+      </p>
+      <aside class="govuk-prototype-kit-common-templates-mainstream-guide-contents-list" role="complementary">
+        <nav class="govuk-prototype-kit-common-templates-contents-list" aria-label="Pages in this guide" role="navigation">
+          <h2 class="govuk-prototype-kit-common-templates-contents-list__title">
+            Contents
+          </h2>
+          <ol class="govuk-prototype-kit-common-templates-contents-list__list">
+            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed govuk-prototype-kit-common-templates-contents-list__list-item--active">
+              <a href="#">
+                Before you apply
+              </a>
+            </li>
+            <li aria-current="true" class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+              <a href="#">
+                Get help
+              </a>
+            </li>
+          </ol>
+        </nav>
+      </aside>
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds govuk-prototype-kit-common-templates-mainstream-guide-body">
+      <div class="govspeak"><p>Use this service to apply for:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>import, export or re-export permits</li>
+          <li>Article 10 certificates</li>
+        </ul>
+        <p class="govuk-body">You'll need to sign in to use this service. If you do not already have sign in details, you’ll be able to create them.</p>
+        <p class="govuk-body"><a class="gem-c-button govuk-button govuk-button--start" role="button" data-module="govuk-button" data-ga4-attributes="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;start button&quot;}" draggable="false" href="https://apply-for-a-cites-permit.service.gov.uk/" data-govuk-button-init="" data-govuk-button-module-started="true"><span> Start now </span><svg class="govuk-button__start-icon govuk-!-display-none-print" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" focusable="false" aria-hidden="true"><path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"></path></svg></a></p>
+        <h2 class="govuk-heading-m" id="before-you-apply">Before you apply</h2>
+        <p class="govuk-body"><a href="https://www.gov.uk/guidance/cites-imports-and-exports">Check if you need a <abbr title="Convention on International Trade in Endangered Species of Wild Fauna and Flora">CITES</abbr> permit to import or export endangered species</a>.</p>
+        <p class="govuk-body"><a href="https://www.gov.uk/guidance/cites-application-fees">Check the fees for <abbr title="Convention on International Trade in Endangered Species of Wild Fauna and Flora">CITES</abbr> permits</a>.</p>
+        <h2 class="govuk-heading-m" id="get-help">Get help</h2>
+        <p class="govuk-body">If you need further advice or support with your application, contact APHA at <a href="mailto:wildlife.licensing@apha.gov.uk">wildlife.licensing@apha.gov.uk</a>.</p>
+        </div>
+        <p class="govuk-body-s">Published 8 October 2024</p>
+        <h2 class="govuk-heading-s" id="subsection-title">
+          Explore the topic
+        </h2>
+        <ul class="govuk-list">
+          <li><a class="govuk-link govuk-link gem-c-related-navigation__section-link govuk-link gem-c-related-navigation__section-link--footer" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;contextual footer&quot;,&quot;index_section&quot;:&quot;1&quot;,&quot;index_link&quot;:&quot;1&quot;,&quot;index_section_count&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;3&quot;,&quot;section&quot;:&quot;Explore the topic&quot;}" href="/environment/biodiversity-and-ecosystems">Biodiversity and ecosystems</a></li>
+          <li><a class="govuk-link govuk-link gem-c-related-navigation__section-link govuk-link gem-c-related-navigation__section-link--footer" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;contextual footer&quot;,&quot;index_section&quot;:&quot;1&quot;,&quot;index_link&quot;:&quot;2&quot;,&quot;index_section_count&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;3&quot;,&quot;section&quot;:&quot;Explore the topic&quot;}" href="/environment/protected-sites-species">Protected sites and species</a></li>
+          <li><a class="govuk-link govuk-link gem-c-related-navigation__section-link govuk-link gem-c-related-navigation__section-link--footer" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;contextual footer&quot;,&quot;index_section&quot;:&quot;1&quot;,&quot;index_link&quot;:&quot;3&quot;,&quot;index_section_count&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;3&quot;,&quot;section&quot;:&quot;Explore the topic&quot;}" href="/environment/wildlife-habitat-conservation">Wildlife and habitat conservation</a></li>
+        </ul>
+      </div>
+      <div class="govuk-grid-column-one-third">
+        <aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+          <h2 class="govuk-heading-m" id="subsection-title">
+            Related content
+          </h2>
+          <nav role="navigation" aria-labelledby="subsection-title">
+            <ul class="govuk-list govuk-list--spaced">
+              <li><a class="govuk-link govuk-body-s" style="font-weight: bold;" href="#">Commercial use of endangered species: check if you need an Article 10 CITES certificate</a></li>
+              <li><a class="govuk-link govuk-body-s" style="font-weight: bold;" href="#">Check if you need a CITES permit to import or export endangered species</a></li>
+              <li><a class="govuk-link govuk-body-s" style="font-weight: bold;" href="#">Designated land, sea and air ports for trading or moving CITES-listed endangered species</a></li>
+              <li><a class="govuk-link govuk-body-s" style="font-weight: bold;" href="#">Trading or moving CITES-listed specimens through designated UK ports and airports</a></li>
+            </ul>
+          </nav>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
