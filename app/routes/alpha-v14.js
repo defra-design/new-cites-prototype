@@ -67,86 +67,6 @@ router.get('/v14/clear-scan', (req, res) => {
   res.redirect('/v14/cites-capture')
 })
 
-// *********** AI extraction routes *************
-
-router.post('/v14/extract-description', async function (req, res) {
-  const imageData = req.body.image
-  const apiKey = process.env.GEMINI_API_KEY
-
-  if (!apiKey) {
-    return res.status(500).json({ error: 'GEMINI_API_KEY not found in .env' })
-  }
-
-  try {
-    // Switched to the more standard model name for v1beta
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`
-    
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{
-          parts: [
-            { text: "Analyze this specimen for a CITES permit. Provide a concise physical description (species, markings, condition) under 100 words." },
-            { inlineData: { mimeType: "image/jpeg", data: imageData } }
-          ]
-        }]
-      })
-    })
-
-    const result = await response.json()
-
-    if (result.candidates && result.candidates[0] && result.candidates[0].content) {
-      const extractedText = result.candidates[0].content.parts[0].text
-      res.json({ description: extractedText })
-    } else {
-      // Log the full error to help us if it fails again
-      console.error('Gemini API Error details:', JSON.stringify(result))
-      res.status(500).json({ error: 'AI could not generate a description.' })
-    }
-  } catch (error) {
-    console.error('AI Extraction Error:', error)
-    res.status(500).json({ error: 'Failed to connect to AI service' })
-  }
-})
-
-router.get('/animal-profile', async function (req, res) {
-  const query = req.query.animalName
-
-  // If the user hasn't searched for anything yet, just show the page
-  if (!query) {
-    return res.render('/v14/animal-profile')
-  }
-
-  // Wikipedia Search API URL
-  const url = `https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch=${encodeURIComponent(query)}&gsrlimit=1&prop=pageimages|info&inprop=url&pithumbsize=600&format=json&redirects=1`
-
-  try {
-    const response = await fetch(url)
-    const data = await response.json()
-    
-    if (!data.query) {
-      // If no results found
-      res.render('/v14/animal-profile', { 
-        'error': 'No species found for "' + query + '"',
-        'query': query 
-      })
-    } else {
-      const page = Object.values(data.query.pages)[0]
-      const result = {
-        title: page.title,
-        image: page.thumbnail ? page.thumbnail.source : null,
-        link: page.fullurl
-      }
-      res.render('/v14/animal-profile', { 
-        'result': result,
-        'query': query 
-      })
-    }
-  } catch (error) {
-    res.render('/v14/animal-profile', { 'error': 'Could not connect to Wikipedia.', 'query': query })
-  }
-})
 
 router.get('/v14/what-species', async function (req, res) {
   const query = req.query.speciesName
@@ -177,7 +97,7 @@ router.get('/v14/what-species', async function (req, res) {
     }
 
     // --- 2. Extract CITES Appendix from Categories ---
-    let appendix = "Not listed"
+    let appendix = "Not determined"
     if (page.categories) {
       // Look for a category title that contains "CITES Appendix"
       const citesCat = page.categories.find(cat => cat.title.includes("CITES Appendix"))
@@ -205,5 +125,7 @@ router.get('/v14/what-species', async function (req, res) {
     res.render('v14/what-species.html', { 'error': 'API connection failed' })
   }
 })
+
+
 
 module.exports = router

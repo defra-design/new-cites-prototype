@@ -17,21 +17,43 @@
     <p class="govuk-body govuk-!-margin-bottom-6">
       Part of submission: <a href="view-application" class="govuk-link">{{ data['applicationRef'] or "AB7N10639G/001" }}</a>
     </p>
+    {# The Prototype Kit puts ?permitStatus= into data['status'] automatically #}
+    {% set permitStatus = (data['status'] or 'issued') | lower %}
+
     <h2 class="govuk-heading-m">Status</h2>
-    <div class="govuk-inset-text govuk-!-margin-top-0" style="border-left-color: #00703c; border-left-width: 10px; padding-top: 5px; padding-bottom: 5px;">
-      <h3 class="govuk-heading-l govuk-!-margin-bottom-2">
-        Valid until 9 August 2026
-      </h3>
-      <p class="govuk-body">
-        This permit can be used for the movement described, subject to conditions on the permit.
-      </p>
-    </div>
-     <div class="govuk-button-group govuk-!-margin-bottom-8">
+
+      {# Get permitStatus from URL (?permitStatus=) or default to 'issued' #}
+      {% set permitStatus = (data['permitStatus'] or 'issued') | lower %}
+
+      {% if permitStatus == 'expired' %}
+        {# Red styling for Expired #}
+        <div class="govuk-inset-text" style="border-left-color: #d4351c; border-left-width: 10px;">
+          <h3 class="govuk-heading-l govuk-!-margin-bottom-2">Expired</h3>
+          <p class="govuk-body">This permit has expired and can no longer be used.</p>
+        </div>
+      {% elif permitStatus == 'endorsed' %}
+        {# Blue styling for Endorsed #}
+        <div class="govuk-inset-text" style="border-left-color: #666666x; border-left-width: 10px;">
+          <h3 class="govuk-heading-l govuk-!-margin-bottom-2">Endorsed</h3>
+          <p class="govuk-body">This permit was used and endorsed on 9 February 2026. It can not be used for another shipment.</p>
+        </div>
+      {% else %}
+        {# Green styling for Issued #}
+        <div class="govuk-inset-text" style="border-left-color: #00703c; border-left-width: 10px;">
+          <h3 class="govuk-heading-l govuk-!-margin-bottom-2">Valid until 9 August 2026</h3>
+          <p class="govuk-body">This permit can be used for the movement described, subject to conditions on the permit.</p>
+        </div>
+      {% endif %}
+    
+
+    {% from "govuk/components/button/macro.njk" import govukButton %}
+      <div class="govuk-button-group govuk-!-margin-bottom-8 ">
       {{ govukButton({
         text: "View permit (PDF)",
-        href: "/public/downloads/cites-export-falcon-permit.pdf"
+        href: "/public/downloads/cites-export-falcon-permit.pdf",
+        classes: "govuk-button--secondary"
       }) }}
-    </div>
+      </div>
 
     <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
 
