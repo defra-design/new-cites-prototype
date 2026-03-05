@@ -3,24 +3,24 @@
 {% from "govuk/components/table/macro.njk" import govukTable %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
-{% set pageTitle = "Your applications - " + (data['submissionRef'] or "DF-2026-X") %}
+{% set pageTitle = "Your submission - TN5203" %}
 
 {% block beforeContent %}
 <div class="govuk-phase-banner">
   <p class="govuk-phase-banner__content">
     <strong class="govuk-tag govuk-phase-banner__content__tag govuk-tag--green">prototype</strong>
     <span class="govuk-phase-banner__text">
-      This is a new service - your <a class="govuk-link" href="your-applications">feedback</a> will help us to improve it.
+      This is a new service - your <a class="govuk-link" href="applicant-dashboard">feedback</a> will help us to improve it.
     </span>
   </p>
 </div>
 <div class="govuk-breadcrumbs">
   <ol class="govuk-breadcrumbs__list">
     <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="your-applications">Your applications</a>
+      <a class="govuk-breadcrumbs__link" href="applicant-dashboard">Your applications</a>
     </li>
     <li class="govuk-breadcrumbs__list-item">
-      {{ data['submissionRef'] or "DF-2026-X" }}
+      TN5203
     </li>
   </ol>
 </div>
@@ -31,12 +31,24 @@
   <div class="govuk-grid-column-full">
     <span class="govuk-caption-xl">{{ data['applicant-business-name'] or "Falconers ltd" }}</span>
     <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
-    
-    {{ govukButton({
-      text: "Download permits",
-      classes: "govuk-button--secondary",
-      href: "/public/downloads/cites-export-falcon-permit.pdf"
-    }) }}
+    <div class="govuk-inset-text">
+      <strong>49 export applications included in this submission</strong><br>
+      Submitted on 18 February 2026
+    </div>
+    <h2 class="govuk-heading-s govuk-!-margin-bottom-2">Download permits:</h2>
+            <div class="govuk-button-group govuk-!-margin-bottom-6">
+              {{ govukButton({
+                text: "Multipage PDF",
+                classes: "govuk-button--secondary govuk-button--small",
+                href: "/public/downloads/cites-export-falcon-permit.pdf"
+              }) }}
+
+              {{ govukButton({
+                text: "Zipped files",
+                classes: "govuk-button--secondary govuk-button--small",
+                href: "/public/downloads/cites-export-falcon-permit.zip"
+              }) }}
+            </div>
 
     {# Data source for the table #}
     {% set birds = [
@@ -64,7 +76,7 @@
         {% set indexPadded = "0" + loop.index %}
       {% endif %}
 
-      {% set appRefHtml %}<a href="view-application" class="govuk-link">{{ data['submissionRef'] or "DF-2026-X" }}/{{ indexPadded }}</a>{% endset %}
+      {% set appRefHtml %}<a href="view-application" class="govuk-link">TN5203/{{ indexPadded }}</a>{% endset %}
       {% set permitHtml %}<a href="view-permit" class="govuk-link">26GBEXP{{ bird.suffix }}</a>{% endset %}
 
       {% set tableRows = (tableRows.push([
@@ -87,16 +99,25 @@
       rows: tableRows
     }) }}
 
-    <nav class="govuk-pagination" role="navigation" aria-label="results" style="float: right;">
-      <p class="govuk-pagination__results">
-        <b>1</b> to <b>10</b> of <b>34</b>
-      </p>
-      <div class="govuk-pagination__next" style="padding: 0 15px;">
-        <a class="govuk-link govuk-pagination__link" style="padding:0" href="#" rel="next">
-          <span class="govuk-pagination__link-title">Next</span>
-          <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13"><path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path></svg></a>
-      </div>
-    </nav>
+    {# Official GDS Pagination component #}
+    {% set previousLink = false %}
+    {% if currentPage > 1 %}
+      {% set previousLink = { href: "#" } %}
+    {% endif %}
+
+    {{ govukPagination({
+      previous: previousLink,
+      next: {
+        href: "#"
+      },
+      items: [
+        { number: 1, current: true, href: "#" },
+        { number: 2, href: "#" },
+        { number: 3, href: "#" },
+        { ellipsis: true },
+        { number: 5, href: "#" }
+      ]
+    }) }}
   </div>
 </div>
 {% endblock %}
