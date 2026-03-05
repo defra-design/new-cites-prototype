@@ -1,0 +1,102 @@
+{% extends "layout-with-navigation.html" %}
+
+{% from "govuk/components/table/macro.njk" import govukTable %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageTitle = "Your applications - " + (data['submissionRef'] or "DF-2026-X") %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag govuk-tag--green">prototype</strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service - your <a class="govuk-link" href="your-applications">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+<div class="govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+    <li class="govuk-breadcrumbs__list-item">
+      <a class="govuk-breadcrumbs__link" href="your-applications">Your applications</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+      {{ data['submissionRef'] or "DF-2026-X" }}
+    </li>
+  </ol>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <span class="govuk-caption-xl">{{ data['applicant-business-name'] or "Falconers ltd" }}</span>
+    <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
+    
+    {{ govukButton({
+      text: "Download permits",
+      classes: "govuk-button--secondary",
+      href: "/public/downloads/cites-export-falcon-permit.pdf"
+    }) }}
+
+    {# Data source for the table #}
+    {% set birds = [
+      { sci: "Falco peregrinus", int: "PF-2026-001", suffix: "49271A" },
+      { sci: "Aquila chrysaetos", int: "GE-2026-002", suffix: "82410B" },
+      { sci: "Haliaeetus leucocephalus", int: "BE-2026-003", suffix: "36391C" },
+      { sci: "Accipiter nisus", int: "SP-2026-004", suffix: "10239D" },
+      { sci: "Buteo buteo", int: "BZ-2026-005", suffix: "55862E" },
+      { sci: "Pandion haliaetus", int: "OS-2026-006", suffix: "90301F" },
+      { sci: "Milvus milvus", int: "RK-2026-007", suffix: "21172G" },
+      { sci: "Falco tinnunculus", int: "KS-2026-008", suffix: "77334H" },
+      { sci: "Strix aluco", int: "TO-2026-009", suffix: "40470J" },
+      { sci: "Circus cyaneus", int: "HH-2026-010", suffix: "61323K" },
+      { sci: "Tyto alba", int: "BO-2026-011", suffix: "19972L" },
+      { sci: "Gypaetus barbatus", int: "VL-2026-012", suffix: "88321M" }
+    ] %}
+
+    {# Prepare rows for govukTable macro #}
+    {% set tableRows = [] %}
+    {% for bird in birds %}
+      {# Safe padding logic for Application Reference #}
+      {% if loop.index < 10 %}
+        {% set indexPadded = "00" + loop.index %}
+      {% else %}
+        {% set indexPadded = "0" + loop.index %}
+      {% endif %}
+
+      {% set appRefHtml %}<a href="view-application" class="govuk-link">{{ data['submissionRef'] or "DF-2026-X" }}/{{ indexPadded }}</a>{% endset %}
+      {% set permitHtml %}<a href="view-permit" class="govuk-link">26GBEXP{{ bird.suffix }}</a>{% endset %}
+
+      {% set tableRows = (tableRows.push([
+        { text: appRefHtml | safe },
+        { text: bird.sci, format: "numeric" if false else "text", attributes: { "style": "font-style: italic;" } },
+        { text: bird.int },
+        { text: permitHtml | safe }
+      ]), tableRows) %}
+    {% endfor %}
+
+    {{ govukTable({
+      caption: "Species included in this application",
+      captionClasses: "govuk-visually-hidden",
+      head: [
+        { text: "Application reference" },
+        { text: "Scientific name" },
+        { text: "Internal reference" },
+        { text: "Permit number" }
+      ],
+      rows: tableRows
+    }) }}
+
+    <nav class="govuk-pagination" role="navigation" aria-label="results" style="float: right;">
+      <p class="govuk-pagination__results">
+        <b>1</b> to <b>10</b> of <b>34</b>
+      </p>
+      <div class="govuk-pagination__next" style="padding: 0 15px;">
+        <a class="govuk-link govuk-pagination__link" style="padding:0" href="#" rel="next">
+          <span class="govuk-pagination__link-title">Next</span>
+          <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13"><path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path></svg></a>
+      </div>
+    </nav>
+  </div>
+</div>
+{% endblock %}

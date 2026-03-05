@@ -139,3 +139,7 @@ $govuk-suppressed-warnings: ("legacy-organisation-colours");
   }
 }
 
+.govuk-frontend-supported .govuk-accordion__section--expanded .govuk-accordion__section-button{
+  padding-bottom:0;
+}
+

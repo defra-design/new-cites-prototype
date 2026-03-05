@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for a CITES permit - Specimen Description</title>
+    <style>
+        /* GOV.UK Design System Styles */
+        :root {
+            --govuk-blue: #1d70b8;
+            --govuk-black: #0b0c0c;
+            --govuk-grey-1: #505a5f;
+            --govuk-grey-2: #b1b4b6;
+            --govuk-grey-3: #f3f2f1;
+            --govuk-green: #00703c;
+            --govuk-green-hover: #005a30;
+            --govuk-focus: #ffdd00;
+            --govuk-error: #d4351c;
+        }
+
+        body {
+            font-family: "GDS Transport", arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            background-color: #ffffff;
+            color: var(--govuk-black);
+            margin: 0;
+            padding: 0;
+            line-height: 1.25;
+        }
+
+        /* Header */
+        .govuk-header {
+            background-color: var(--govuk-blue);
+            color: #ffffff;
+            padding: 10px 30px;
+            display: flex;
+            align-items: center;
+            border-bottom: 10px solid #ffffff;
+        }
+
+        .govuk-header__container {
+            max-width: 960px;
+            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .govuk-header__logo {
+            margin-right: 15px;
+        }
+
+        .govuk-header__link {
+            font-size: 24px;
+            font-weight: 700;
+            text-decoration: none;
+            color: white;
+        }
+
+        /* Phase Banner */
+        .govuk-phase-banner {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 10px 30px;
+            border-bottom: 1px solid var(--govuk-grey-2);
+            font-size: 16px;
+        }
+
+        .govuk-tag {
+            background-color: #bbe2bb;
+            color: #005a30;
+            padding: 2px 8px;
+            font-weight: 700;
+            text-transform: lowercase;
+            margin-right: 10px;
+            display: inline-block;
+        }
+
+        .govuk-link {
+            color: var(--govuk-blue);
+            text-decoration: underline;
+        }
+
+        /* Main Layout */
+        .govuk-width-container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px 30px;
+        }
+
+        .govuk-back-link {
+            display: inline-block;
+            margin-top: 15px;
+            margin-bottom: 30px;
+            font-size: 16px;
+            color: var(--govuk-black);
+            text-decoration: underline;
+        }
+
+        .govuk-back-link::before {
+            content: "‹";
+            margin-right: 5px;
+            font-weight: bold;
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin: 0 0 30px 0;
+        }
+
+        .govuk-section-break {
+            margin: 30px 0;
+            border: 0;
+            border-bottom: 1px solid var(--govuk-grey-2);
+        }
+
+        /* Form Controls */
+        .form-group {
+            display: flex;
+            margin-bottom: 30px;
+            gap: 40px;
+        }
+
+        .form-label-col {
+            flex: 1;
+        }
+
+        .form-input-col {
+            flex: 1.5;
+        }
+
+        .govuk-hint {
+            color: var(--govuk-grey-1);
+            font-size: 19px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .govuk-body-s {
+            font-size: 16px;
+            color: var(--govuk-grey-1);
+            margin: 0 0 15px 0;
+            display: block;
+            font-weight: normal;
+            line-height: 1.4;
+        }
+
+        /* Textarea */
+        .govuk-textarea {
+            width: 100%;
+            height: 380px;
+            border: 2px solid var(--govuk-black);
+            padding: 15px;
+            font-family: inherit;
+            font-size: 19px;
+            box-sizing: border-box;
+            resize: vertical;
+            line-height: 1.5;
+        }
+
+        /* Image Display */
+        .specimen-preview-container {
+            display: none;
+            margin: 10px 0 15px 0;
+            text-align: left;
+        }
+
+        .specimen-preview {
+            max-width: 100%;
+            max-height: 250px;
+            display: block;
+            border-radius: 4px;
+        }
+
+        /* Button styles */
+        .govuk-button {
+            background-color: var(--govuk-green);
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 19px;
+            font-weight: 400;
+            cursor: pointer;
+            border-bottom: 3px solid var(--govuk-green-hover);
+            box-shadow: 0 2px 0 #002d18;
+            margin-top: 5px;
+            display: inline-block;
+            text-decoration: none;
+            vertical-align: top;
+        }
+
+        .govuk-button:hover {
+            background-color: var(--govuk-green-hover);
+        }
+
+        .govuk-button--secondary {
+            background-color: var(--govuk-grey-3);
+            color: var(--govuk-black);
+            border-bottom: 3px solid var(--govuk-grey-2);
+            box-shadow: 0 2px 0 #858688;
+            font-size: 19px;
+            padding: 10px 20px;
+            margin-left: 10px;
+        }
+
+        .govuk-button--secondary:hover {
+            background-color: #dbdad9;
+        }
+
+        .button-group {
+            display: none;
+            margin-top: 5px;
+        }
+
+        .accept-container {
+            display: none;
+            margin-top: 20px;
+        }
+
+        /* Loading/Error */
+        .loading-container {
+            display: none;
+            align-items: center;
+            margin-top: 10px;
+            color: var(--govuk-blue);
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .spinner {
+            width: 18px;
+            height: 18px;
+            border: 3px solid var(--govuk-grey-3);
+            border-top: 3px solid var(--govuk-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            color: var(--govuk-error);
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* Focus States */
+        input:focus, textarea:focus, .govuk-button:focus {
+            outline: 3px solid var(--govuk-focus);
+            outline-offset: 0;
+            background-color: #ffffff;
+        }
+
+        @media (max-width: 640px) {
+            .form-group {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .govuk-button--secondary {
+                margin-left: 0;
+                margin-top: 10px;
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="govuk-header" role="banner">
+        <div class="govuk-header__container">
+            <span class="govuk-header__logo">
+                <svg width="30" height="30" viewBox="0 0 100 100" fill="white">
+                    <path d="M50 10L60 35H85L65 55L75 80L50 65L25 80L35 55L15 35H40L50 10Z" />
+                </svg>
+            </span>
+            <a href="#" class="govuk-header__link">Apply for a CITES permit</a>
+        </div>
+    </header>
+
+    <div class="govuk-phase-banner">
+        <span class="govuk-tag">prototype</span>
+        <span>This is a service prototype <a href="#" class="govuk-link">feedback</a> will help us to improve it</span>
+    </div>
+
+    <main class="govuk-width-container">
+        <a href="#" class="govuk-back-link">Back</a>
+
+        <h1>Specimen description</h1>
+        
+        <div class="form-group">
+            <div class="form-label-col">
+                <p class="govuk-body-s">
+                    Upload a clear photo of your specimen to generate a formatted CITES description automatically.
+                </p>
+
+                <input type="file" id="file-input" accept="image/*" style="display: none;">
+                
+                <button type="button" id="upload-btn" class="govuk-button" onclick="document.getElementById('file-input').click()">
+                    Upload specimen image
+                </button>
+
+                <div id="preview-container" class="specimen-preview-container">
+                    <img id="image-preview" src="#" alt="Specimen Preview" class="specimen-preview">
+                </div>
+
+                <div id="button-group" class="button-group">
+                    <button type="button" id="extract-btn" class="govuk-button">
+                        Extract description
+                    </button>
+                    <button type="button" id="change-btn" class="govuk-button govuk-button--secondary" onclick="document.getElementById('file-input').click()">
+                        Change
+                    </button>
+                </div>
+
+                <div id="loading" class="loading-container">
+                    <div class="spinner"></div>
+                    Extracting details...
+                </div>
+                <div id="error-msg" class="error-message">Failed to analyze image. Please try again with a clearer photo.</div>
+            </div>
+
+            <div class="form-input-col">
+                <label class="govuk-black" for="other-desc" style="display: block; margin-bottom: 10px; font-weight: 700; font-size: 19px;">
+                    Full description
+                </label>
+                <textarea class="govuk-textarea" id="other-desc" maxlength="2000" placeholder="Scientific name and description..."></textarea>
+                
+                <div id="accept-container" class="accept-container">
+                    <button type="button" class="govuk-button">
+                        Accept and continue
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const textarea = document.getElementById('other-desc');
+        const fileInput = document.getElementById('file-input');
+        const uploadBtn = document.getElementById('upload-btn');
+        const previewContainer = document.getElementById('preview-container');
+        const imagePreview = document.getElementById('image-preview');
+        const extractBtn = document.getElementById('extract-btn');
+        const buttonGroup = document.getElementById('button-group');
+        const acceptContainer = document.getElementById('accept-container');
+        const loading = document.getElementById('loading');
+        const errorMsg = document.getElementById('error-msg');
+        
+        const apiKey = "";
+        let currentImageBase64 = null;
+
+        fileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                currentImageBase64 = e.target.result.split(',')[1];
+                imagePreview.src = e.target.result;
+                
+                // Toggle UI state
+                uploadBtn.style.display = 'none';
+                previewContainer.style.display = 'block';
+                buttonGroup.style.display = 'block';
+                extractBtn.style.display = 'inline-block'; // Ensure extract is visible if re-uploading
+                acceptContainer.style.display = 'none';
+                errorMsg.style.display = 'none';
+            };
+            reader.readAsDataURL(file);
+        });
+
+        extractBtn.addEventListener('click', async () => {
+            if (!currentImageBase64) return;
+            await generateDescription(currentImageBase64);
+        });
+
+        async function generateDescription(base64Image) {
+            loading.style.display = 'flex';
+            errorMsg.style.display = 'none';
+            extractBtn.disabled = true;
+
+            const systemPrompt = `You are an expert in CITES-listed species and documentation. 
+            Analyze the provided image of a specimen to create a clinical, suitable CITES description.
+
+            STRICT FORMAT RULES:
+            1. Output MUST follow this exact two-line format:
+               **[Scientific name]([common name])**
+               [Clear, factual description including physical features, markings/tags, equipment (if any), condition, and sex/age if identifiable from the image.]
+
+            2. CHARACTER LIMIT: The second line (description) must be no longer than 400 characters.
+
+            3. CRITICAL CONTENT EXCLUSIONS: 
+               - NEVER mention humans, hands, fingers, or any human elements visible in the photo.
+               - NEVER describe the composition of the photo or mention the direction the bird/specimen is facing (e.g., "facing left," "side profile").
+               - IF LIVING ANIMAL: Do not describe the perch, cage, substrate, or background environment. Focus entirely on the physical characteristics of the animal itself.
+               - IF DEAD ANIMAL OR PART (e.g., taxidermy, skull, skin, horn, part): You MUST include a description of the mount, perch, base, or backing as it is part of the specimen's physical state or display.
+
+            4. OBJECTIVITY: Focus purely on the specimen. Keep the text factual and clinical.`;
+
+            const payload = {
+                contents: [{
+                    role: "user",
+                    parts: [
+                        { text: "Describe this specimen according to the specific template and exclusion rules. Focus on the specimen and exclude composition or human elements." },
+                        { inlineData: { mimeType: "image/png", data: base64Image } }
+                    ]
+                }],
+                systemInstruction: { parts: [{ text: systemPrompt }] }
+            };
+
+            let delay = 1000;
+            for (let i = 0; i < 5; i++) {
+                try {
+                    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) throw new Error('API Error');
+
+                    const result = await response.json();
+                    const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
+
+                    if (text) {
+                        textarea.value = text.trim();
+                        loading.style.display = 'none';
+                        
+                        // New behavior: Remove extract button and show accept button
+                        extractBtn.style.display = 'none';
+                        acceptContainer.style.display = 'block';
+                        
+                        extractBtn.disabled = false;
+                        return;
+                    }
+                } catch (err) {
+                    if (i === 4) {
+                        loading.style.display = 'none';
+                        errorMsg.style.display = 'block';
+                        extractBtn.disabled = false;
+                    }
+                    await new Promise(r => setTimeout(r, delay));
+                    delay *= 2;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

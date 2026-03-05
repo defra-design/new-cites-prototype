@@ -1,0 +1,173 @@
+{% extends "layout-with-navigation.html" %}
+
+{% set pageTitle = "Your application: " + (data['applicationRef'] or "AB7N10639G/001") %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag govuk-tag--green">prototype</strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service  your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
+
+{{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Your applications",
+      href: "applicant-dashboard"
+    },
+    {
+      text: data['submissionRef'] or "AB7N10639G",
+      href: "view-submission?ref=" + (data['submissionRef'] or "AB7N10639G")
+    },
+    {
+      text: data['applicationRef'] or "AB7N10639G/001"
+    }
+  ]
+}) }}
+{% endblock %}
+
+
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    
+    <span class="govuk-caption-xl">{{ data['your-business-name'] or "Falconers Ltd" }}</span>
+    <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
+
+    <div class="govuk-inset-text">
+      Your application was submitted on 18 February 2026
+    </div>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+
+
+    <h2 class="govuk-heading-m">About the permit</h2>
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Permit type</dt>
+        <dd class="govuk-summary-list__value">{{ data['permitType'] or "Export" }}</dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Permit number</dt>
+        <dd class="govuk-summary-list__value">
+          <a href="view-permit" class="govuk-link">{{ data['permitNumber'] or "26GBEXP12345A" }}</a>
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Permit Expiry</dt>
+        <dd class="govuk-summary-list__value">{{ data['permitExpiryDate'] or "20 August 2026" }}</dd>
+      </div>
+    </dl>
+
+    <h2 class="govuk-heading-m">Your contact details</h2>
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Full name</dt>
+        <dd class="govuk-summary-list__value">{{ data['your-full-name'] or "Dean Falconer" }}</dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Business name</dt>
+        <dd class="govuk-summary-list__value">{{ data['your-business-name'] or "Falconers Ltd" }}</dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Email address</dt>
+        <dd class="govuk-summary-list__value">{{ data['your-email'] or "dean@falconers-nest.co.uk" }}</dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Address</dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['your-address'] or "12 Falconry Way, Norwich, Norfolk, NR1 4FN, United Kingdom" | nl2br | safe }}
+        </dd>
+      </div>
+    </dl>
+
+    <h2 class="govuk-heading-m">Specimen details</h2>
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Scientific name</dt>
+        <dd class="govuk-summary-list__value"><em>{{ data['speciesName'] or "Falco peregrinus" }}</em></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Specimen type</dt>
+        <dd class="govuk-summary-list__value">{{ data['specimenDescription'] or "Live animal" }}</dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Quantity</dt>
+        <dd class="govuk-summary-list__value">{{ data['quantity'] }} {{ data['unitOfMeasure'] or "Number" }}</dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Source code</dt>
+        <dd class="govuk-summary-list__value">{{ data['sourceCode'] or "C" }}</dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Purpose code</dt>
+        <dd class="govuk-summary-list__value">{{ data['purposeCode'] or "P" }}</dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Sex</dt>
+        <dd class="govuk-summary-list__value">{{ data['gender'] or "Male" }}</dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Birth or hatch date</dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['hatch-date-day'] }} {{ data['hatch-date-month'] }} {{ data['hatch-date-year'] }}
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Identification mark</dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['identificationMark'] or "Closed ring number" }}: {{ data['identificationMark-2'] or "DF-2025-UK-09" }}
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Description</dt>
+        <dd class="govuk-summary-list__value">{{ data['description'] or "Live bird, captive-bred." }}</dd>
+      </div>
+    </dl>
+
+    <h2 class="govuk-heading-m">Importer's contact details</h2>
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Country</dt>
+        <dd class="govuk-summary-list__value">{{ data['importCountry'] or "United Arab Emirates" }}</dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Full name / Business</dt>
+        <dd class="govuk-summary-list__value">{{ data['importer-business-name'] or "The Royal Falconry Centre" }}</dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Address</dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['importer-address'] or "Al-Safa Street, Jumeirah, PO Box 112233, Dubai, UAE" | nl2br | safe }}
+        </dd>
+      </div>
+    </dl>
+
+    <h2 class="govuk-heading-m">Additional information</h2>
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Additional comments</dt>
+        <dd class="govuk-summary-list__value">{{ data['comment'] or "No additional comments." }}</dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Internal reference</dt>
+        <dd class="govuk-summary-list__value">{{ data['internalRef'] or "PF-2026-001" }}</dd>
+      </div>
+    </dl>
+
+    <div class="govuk-button-group">
+      <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+        Copy as new application
+      </button>
+      <a class="govuk-link" href="your-applications">Return to your applications</a>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
