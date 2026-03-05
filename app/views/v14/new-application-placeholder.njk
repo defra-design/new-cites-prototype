@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/details/macro.njk" import govukDetails %}
+
+{% set pageTitle = "Start new application" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
+    <p class="govuk-body">This page represents all the pages from the application process. 
+      Imagine that you have completed the process and have just submitted it. 
+    </p>
+    <p class="govuk-body">From here, you would be taken to the application summary page, where you can see the details of your application and the permit once it's issued.</p>
+
+    {{ govukButton({
+      text: "Continue",
+      href: "application-complete"
+    }) }}
+    
+
+  </div>
+</div>
+{% endblock %}
