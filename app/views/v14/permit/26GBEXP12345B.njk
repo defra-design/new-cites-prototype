@@ -1,0 +1,183 @@
+{% extends "layout" %}
+
+{% set pageTitle = "Permit summary: " + (data['permitNumber'] or "26GBEXP12345A") %}
+
+{% block beforeContent %}
+
+{% endblock %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{# Logic to determine if permit details should be displayed #}
+{% set isIssued = data['permitStatus'] == 'Issued' or data['permitNumber'] %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <span class="govuk-caption-xl">{{ data['applicant-business-name'] or "Falconers ltd" }}</span>
+    <h1 class="govuk-heading-l govuk-!-margin-bottom-4">Export Permit: {{ data['permitNumber'] or "26GBEXP12345A" }}</h1>
+    
+    {# The Prototype Kit puts ?permitStatus= into data['status'] automatically #}
+    {% set permitStatus = (data['status'] or 'issued') | lower %}
+
+
+      {# Get permitStatus from URL (?permitStatus=) or default to 'issued' #}
+      {% set permitStatus = (data['permitStatus'] or 'issued') | lower %}
+
+      {% if permitStatus == 'expired' %}
+        {# Red styling for Expired #}
+        <div class="govuk-inset-text" style="border-left-color: #d4351c; border-left-width: 10px;">
+          <p class="govuk-body govuk-!-margin-bottom-2"><span class="govuk-tag govuk-tag--red">Expired</span></p>
+          <h2 class="govuk-heading-m govuk-!-margin-bottom-2">Expired on 5 March 2026</h2>
+          <p class="govuk-body">This permit can no longer be used.</p>
+        </div>
+      {% elif permitStatus == 'endorsed' %}
+        {# Blue styling for Endorsed #}
+        <div class="govuk-inset-text" style="border-left-color: #f5da0b; border-left-width: 10px;">
+          <p class="govuk-body govuk-!-margin-bottom-2"><span class="govuk-tag govuk-tag--yellow">Endorsed</span></p>
+          <h2 class="govuk-heading-s govuk-!-margin-bottom-2">Cleared at LHR | 9 February 2026 | 12:00</h2>
+          <p class="govuk-body">This permit can not be used for another shipment.</p>
+        </div>
+      {% else %}
+        {# Green styling for Issued #}
+        <div class="govuk-inset-text" style="border-left-color: #00703c; border-left-width: 10px;">
+          <p class="govuk-body govuk-!-margin-bottom-2"><span class="govuk-tag govuk-tag--green">Issued</span></p>
+          <h2 class="govuk-heading-m govuk-!-margin-bottom-2">Valid until 9 August 2026</h2>
+          <p class="govuk-body">This permit can be used once only for the movement described, subject to conditions on the permit.</p>
+        </div>
+      {% endif %}
+
+      <div class="govuk-button-group govuk-!-margin-bottom-8">
+        {{ govukButton({
+          text: "View permit pdf",
+          href: "/public/downloads/26GBEXP12345A-valid.pdf",
+          classes: "govuk-button--secondary",
+          attributes: {
+            target: "_blank",
+            rel: "noreferrer noopener"
+          }
+        }) }}
+      </div>
+    <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
+    <h2 class="govuk-heading-m">Exporter/Re-exporter</h2>
+    {{ govukSummaryList({
+      classes: "govuk-!-margin-bottom-9",
+      rows: [
+        {
+          key: { text: "Name and address" },
+          value: { html: data['your-full-name'] + "<br>" + data['your-business-name'] + "<br>" + data['your-address'] }
+        }
+      ]
+    }) }}
+
+    <h2 class="govuk-heading-m">Importer</h2>
+    {{ govukSummaryList({
+      classes: "govuk-!-margin-bottom-9",
+      rows: [
+        {
+          key: { text: "Importer" },
+          value: { html: data['importer-business-name'] + "<br>" + data['importer-address'] }
+        },
+        {
+          key: { text: "Country of import" },
+          value: { text: data['importCountry'] or "United Arab Emirates" }
+        }
+      ]
+    }) }}
+
+    <h2 class="govuk-heading-m">Specimen details</h2>
+    {{ govukSummaryList({
+      classes: "govuk-!-margin-bottom-9",
+      rows: [
+        {
+          key: { text: "Scientific name of species" },
+          value: { html: "<i>" + (data['speciesName'] or "Falco peregrinus") + "</i>" }
+        },
+        {
+          key: { text: "Common name of species" },
+          value: { text: "Peregrine Falcon" }
+        },
+        {
+          key: { text: "Description of specimens" },
+          value: { 
+            html: (data['specimenDescription'] or "Live animal") + "<br>" +
+                  "Sex: " + (data['gender'] or "Male") + "<br>" +
+                  "Date of birth: " + (data['hatch-date-day'] + " " + data['hatch-date-month'] + " " + data['hatch-date-year']) + "<br>" +
+                  "Identification mark: " + (data['identificationMark-2'] or "DF-2025-UK-09")
+          }
+        },
+        {
+          key: { text: "Net mass (kg)" },
+          value: { text: "0.9" }
+        },
+        {
+          key: { text: "Cites Appendix" },
+          value: { text: (data['appendix'] or "I")}
+        },
+        {
+          key: { text: "EU Annex" },
+          value: { text: (data['euAnnex'] or "A")}
+        },
+        {
+          key: { text: "Quantity" },
+          value: { text: (data['quantity'] or "1")}
+        },
+        {
+          key: { text: "Source" },
+          value: { text: data['sourceCode'] or "C" }
+        },
+        {
+          key: { text: "Purpose" },
+          value: { text: data['purposeCode'] or "P" }
+        }
+      ]
+    }) }}
+
+    <h2 class="govuk-heading-m">Origin history</h2>
+    {{ govukSummaryList({
+      classes: "govuk-!-margin-bottom-9",
+      rows: [
+        {
+          key: { text: "Country of origin" },
+          value: { text: data['originCountry'] or "United Kingdom" }
+        },
+        {
+          key: { text: "Permit no." },
+          value: { text: data['originPermitNumber'] or "UK-CB-2025-8821" }
+        },
+        {
+          key: { text: "Date of issue" },
+          value: { text: (data['originPermitIssueDay'] + " " + data['originPermitIssueMonth'] + " " + data['originPermitIssueYear']) }
+        }
+      ]
+    }) }}
+
+    <h2 class="govuk-heading-m">Remarks and conditions</h2>
+    {{ govukSummaryList({
+      classes: "govuk-!-margin-bottom-9",
+      rows: [
+        {
+          key: { text: "Special conditions" },
+          value: { text: data['description'] or "Live bird, captive-bred. Specialist falconry carrier required per IATA LAR." }
+        },
+        {
+          key: { text: "Management Authority" },
+          value: { text: "Animal and Plant Health Agency (APHA)" }
+        },
+        {
+          key: { text: "Issuing official" },
+          value: { text: "J. Smith" }
+        }
+      ]
+    }) }}
+
+    <div class="govuk-button-group print-hidden">
+      <a href="applicant-dashboard" class="govuk-button">
+        Return to your applications
+      </a>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

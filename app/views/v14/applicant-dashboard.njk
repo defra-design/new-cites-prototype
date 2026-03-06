@@ -163,7 +163,29 @@
   </div>
 
   <div class="govuk-grid-column-three-quarters">
-    
+    {% if data['newUser'] === 'yes'%}
+    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+      <p class="govuk-body">You have not yet made an application using this service.</p>
+    {% elif data['newUser'] === 'submitted' %}
+     {# 2. Priority: In progress #}
+    <div class="govuk-summary-card govuk-!-padding-bottom-0">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Submission reference -  WR44321</h2>
+      </div>
+      <div class="govuk-summary-card__content">
+        <details class="govuk-details" data-module="govuk-details" open="true">
+          <summary class="govuk-details__summary"><span class="govuk-details__summary-text">1 export application</span></summary>
+          <div class="govuk-details__text">
+           {{ govukTable({ head: tableHead, rows: 
+            [[ {html:"<a href='view-application?ref={data.submissionRef}/001'>" + data.submissionRef + "/001</a>"}, {text:'PF-26-01'}, {html:species5}, {html:statusProg} ]
+            ] }) }}
+          </div>
+        </details>
+      </div>
+    </div>
+    {% else %}
+      
+      {# --- APPLICATION ENTRIES --- #}
     {# 1. Priority: Awaiting Payment #}
     <div class="govuk-summary-card govuk-!-padding-bottom-0">
       <div class="govuk-summary-card__title-wrapper">
@@ -333,6 +355,7 @@
       ]
     }) }}
 
+    {% endif %}
   </div>
 </div>
 {% endblock %}

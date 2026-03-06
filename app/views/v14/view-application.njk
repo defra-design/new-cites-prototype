@@ -53,6 +53,7 @@
         <dt class="govuk-summary-list__key">Permit type</dt>
         <dd class="govuk-summary-list__value">{{ data['permitType'] or "Export" }}</dd>
       </div>
+      {% if data['newUser'] !== 'submitted'%}
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">Permit number</dt>
         <dd class="govuk-summary-list__value">
@@ -70,7 +71,9 @@
         <dt class="govuk-summary-list__key">Permit Expiry</dt>
         <dd class="govuk-summary-list__value">{{ data['permitExpiryDate'] or "20 August 2026" }}</dd>
       </div>
+      {% endif %}
     </dl>
+    
 
     <h2 class="govuk-heading-m">Your contact details</h2>
     <dl class="govuk-summary-list govuk-!-margin-bottom-9">
