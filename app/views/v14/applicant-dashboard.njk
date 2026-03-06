@@ -26,7 +26,7 @@
 {% set statusPay = govukTag({ text: "Awaiting payment", classes: "govuk-tag--red" }) %}
 {% set statusEndorsed = govukTag({ text: "Endorsed", classes: "govuk-tag--yellow" }) %}
 {% set statusExpired = govukTag({ text: "Expired", classes: "govuk-tag--grey" }) %}
-{% set statusDetained = govukTag({ text: "Detained", classes: "govuk-tag--red" }) %}
+{% set statusNotEndorsed = govukTag({ text: "Not endorsed", classes: "govuk-tag--red" }) %}
 
 {% set tableHead = [
   { text: "Application reference" },
@@ -41,9 +41,9 @@
     <span class="govuk-caption-xl">{{ data['applicant-business-name'] or "Falconers ltd" }}</span>
     <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
     
-    <div class="govuk-grid-row govuk-!-margin-bottom-6">
+    <div class="govuk-grid-row govuk-!-margin-bottom-2">
       <div class="govuk-grid-column-one-third govuk-!-margin-bottom-4">
-        {{ govukButton({ text: "Start new application", href: "#" }) }}
+        {{ govukButton({ text: "Start new application", href: "new-application-placeholder" }) }}
       </div>
       <div class="govuk-grid-column-two-thirds">
         <div style="display: flex; justify-content: flex-end;">
@@ -167,14 +167,13 @@
     {# 1. Priority: Awaiting Payment #}
     <div class="govuk-summary-card govuk-!-padding-bottom-0">
       <div class="govuk-summary-card__title-wrapper">
-        <h2 class="govuk-summary-card__title">Submission: RG26889</h2>
-        <div class="govuk-summary-card__actions"><a href="#" class="govuk-link">View application</a></div>
+        <h2 class="govuk-summary-card__title">Submission reference -  RG26889</h2>
       </div>
       <div class="govuk-summary-card__content">
         <details class="govuk-details" data-module="govuk-details" open="true">
           <summary class="govuk-details__summary"><span class="govuk-details__summary-text">1 import application</span></summary>
           <div class="govuk-details__text">
-            {{ govukTable({ head: tableHead, rows: [[ {text:"RG26889/001"}, {text:'GE-26-01'}, {html:species3}, {html:statusPay} ]] }) }}
+            {{ govukTable({ head: tableHead, rows: [[ {html:"<a href='#'>RG26889/001</a>"}, {text:'GE-26-01'}, {html:species3}, {html:statusPay} ]] }) }}
             {{ govukButton({ text: "Pay for permit", classes: "govuk-!-margin-top-2" }) }}
           </div>
         </details>
@@ -184,41 +183,50 @@
     {# 2. Priority: In progress #}
     <div class="govuk-summary-card govuk-!-padding-bottom-0">
       <div class="govuk-summary-card__title-wrapper">
-        <h2 class="govuk-summary-card__title">Submission: WR44321</h2>
-        <div class="govuk-summary-card__actions"><a href="#" class="govuk-link">View application</a></div>
+        <h2 class="govuk-summary-card__title">Submission reference -  WR44321</h2>
       </div>
       <div class="govuk-summary-card__content">
         <details class="govuk-details" data-module="govuk-details" open="true">
           <summary class="govuk-details__summary"><span class="govuk-details__summary-text">2 export applications</span></summary>
           <div class="govuk-details__text">
             {{ govukTable({ head: tableHead, rows: [
-              [{text:'WR44321/001'}, {text:'WR-A'}, {html:species2}, {html:statusProg}],
-              [{text:'WR44321/002'}, {text:'WR-B'}, {html:species2}, {html:statusProg}]
+              [{html:"<a href='#'>WR44321/001</a>"}, {text:'WR-A'}, {html:species2}, {html:statusProg}],
+              [{html:"<a href='#'>WR44321/002</a>"}, {text:'WR-B'}, {html:species2}, {html:statusProg}]
             ] }) }}
           </div>
         </details>
       </div>
     </div>
 
-    {# 3. Issued #}
+    {# 3. Issued x 3#}
     <div class="govuk-summary-card govuk-!-padding-bottom-0">
       <div class="govuk-summary-card__title-wrapper">
-        <h2 class="govuk-summary-card__title">Submission: {{data.submissionRef}}</h2>
-        <div class="govuk-summary-card__actions"><a href="view-application?ref={{data.applicationRef}}" class="govuk-link">View application</a></div>
+        <h2 class="govuk-summary-card__title">Submission reference -  {{data.submissionRef}}</h2>
       </div>
       <div class="govuk-summary-card__content">
         <details class="govuk-details" data-module="govuk-details" open="true">
-          <summary class="govuk-details__summary"><span class="govuk-details__summary-text">1 export application</span></summary>
+          <summary class="govuk-details__summary"><span class="govuk-details__summary-text">3 export applications</span></summary>
           
           <div class="govuk-details__text">
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Download permits:</h3>
             <div class="govuk-button-group govuk-!-margin-bottom-6">
               {{ govukButton({
-                text: "Download permit (PDF)",
-                classes: "govuk-button--secondary",
-                href: "/public/downloads/cites-export-falcon-permit.pdf"
+                text: "Multipage PDF",
+                classes: "govuk-button--secondary govuk-button--small",
+                href: "/public/downloads/26GBEXP12345A-valid.pdf"
+              }) }}
+
+              {{ govukButton({
+                text: "Zipped files",
+                classes: "govuk-button--secondary govuk-button--small",
+                href: "/public/downloads/cites-export-falcon-permit.zip"
               }) }}
             </div>
-            {{ govukTable({ head: tableHead, rows: [[ {text:data.applicationRef}, {text:'PF-26-01'}, {html:species5}, {html:statusIssued} ]] }) }}
+            {{ govukTable({ head: tableHead, rows: 
+            [[ {html:"<a href='view-application?ref={data.submissionRef}/001'>" + data.submissionRef + "/001</a>"}, {text:'PF-26-01'}, {html:species5}, {html:statusIssued} ],
+              [{html:"<a href='#'>" + data.submissionRef + "/002</a>"}, {text:'PF-26-02'}, {html:species5}, {html:statusIssued} ],
+              [{html:"<a href='#'>" + data.submissionRef + "/003</a>"}, {text:'PF-26-03'}, {html:species5}, {html:statusIssued} ]
+            ] }) }}
           </div>
         </details>
       </div>
@@ -227,8 +235,7 @@
     {# 4. BULK WITH INTERNAL PAGINATION & 10 APPS SHOWN #}
     <div class="govuk-summary-card govuk-!-padding-bottom-0">
       <div class="govuk-summary-card__title-wrapper">
-        <h2 class="govuk-summary-card__title">Submission: TN5203</h2>
-        <div class="govuk-summary-card__actions"><a href="view-submission?ref=TN5203" class="govuk-link">View submission</a></div>
+        <h2 class="govuk-summary-card__title">Submission reference -  TN5203</h2>
       </div>
       <div class="govuk-summary-card__content">
         <details class="govuk-details" data-module="govuk-details">
@@ -239,7 +246,7 @@
               {{ govukButton({
                 text: "Multipage PDF",
                 classes: "govuk-button--secondary govuk-button--small",
-                href: "/public/downloads/cites-export-falcon-permit.pdf"
+                href: "/public/downloads/26GBEXP12345A-valid.pdf"
               }) }}
 
               {{ govukButton({
@@ -253,10 +260,10 @@
               rows: [
                 [{text:'TN5203/001'}, {text:'GE-25-01'}, {html:species3}, {html:statusEndorsed}],
                 [{text:'TN5203/002'}, {text:'EGH-25-01'}, {html:species2}, {html:statusEndorsed}],
-                [{text:'TN5203/003'}, {text:'PF-25-8'}, {html:species1}, {html:statusDetained}],
+                [{text:'TN5203/003'}, {text:'PF-25-8'}, {html:species1}, {html:statusNotEndorsed}],
                 [{text:'TN5203/004'}, {text:'PF-25-9'}, {html:species1}, {html:statusEndorsed}],
                 [{text:'TN5203/005'}, {text:'GE-25-02'}, {html:species3}, {html:statusEndorsed}],
-                [{text:'TN5203/006'}, {text:'EGH-25-03'}, {html:species2}, {html:statusDetained}],
+                [{text:'TN5203/006'}, {text:'EGH-25-03'}, {html:species2}, {html:statusNotEndorsed}],
                 [{text:'TN5203/007'}, {text:'PF-25-10'}, {html:species1}, {html:statusEndorsed}],
                 [{text:'TN5203/008'}, {text:'GE-25-04'}, {html:species3}, {html:statusExpired}],
                 [{text:'TN5203/009'}, {text:'EGH-25-05'}, {html:species2}, {html:statusExpired}],
@@ -283,7 +290,7 @@
     {# 5-10: Rest of the entries to reach 10 total submissions #}
     {% set otherItems = [
       { ref: "MK55210", text: "1 import application", spec: species5, stat: statusEndorsed, open: false },
-      { ref: "AB7N10639G", text: "1 export application", spec: species3, stat: statusIssued, open: false },
+      { ref: "NU7N106", text: "1 export application", spec: species3, stat: statusIssued, open: false },
       { ref: "XY99201", text: "1 Article 10 application", spec: species1, stat: statusIssued, open: false },
       { ref: "LL00923", text: "1 import application", spec: species4, stat: statusEndorsed, open: false },
       { ref: "DS88722", text: "1 Article 10 application", spec: species1, stat: statusIssued, open: false },
@@ -293,19 +300,18 @@
     {% for item in otherItems %}
       <div class="govuk-summary-card govuk-!-padding-bottom-0">
         <div class="govuk-summary-card__title-wrapper">
-          <h2 class="govuk-summary-card__title">Submission: {{ item.ref }}</h2>
-          <div class="govuk-summary-card__actions"><a href="#" class="govuk-link">View application</a></div>
+          <h2 class="govuk-summary-card__title">Submission reference -  {{ item.ref }}</h2>
         </div>
         <div class="govuk-summary-card__content">
           <details class="govuk-details" data-module="govuk-details" {{ 'open' if item.open }}>
             <summary class="govuk-details__summary"><span class="govuk-details__summary-text">{{ item.text }}</span></summary>
             <div class="govuk-details__text">
               {{ govukButton({
-                text: "Download permit (PDF)",
+                text: "Download permit PDF",
                 classes: "govuk-button--secondary govuk-button--small",
-                href: "/public/downloads/cites-export-falcon-permit.zip"
+                href: "/public/downloads/26GBEXP12345A-valid.pdf"
               }) }}
-              {{ govukTable({ head: tableHead, rows: [[ {html:item.ref}, {text:'25-BB250-01'}, {html:item.spec}, {html:item.stat} ]] }) }}
+              {{ govukTable({ head: tableHead, rows: [[ {html:"<a href=\"#\">" + item.ref + "</a>"}, {text:'25-BB250-01'}, {html:item.spec}, {html:item.stat} ]] }) }}
             </div>
           </details>
         </div>

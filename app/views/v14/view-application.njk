@@ -56,7 +56,14 @@
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">Permit number</dt>
         <dd class="govuk-summary-list__value">
-          <a href="view-permit" class="govuk-link">{{ data['permitNumber'] or "26GBEXP12345A" }}</a>
+          <a href="permit/26GBEXP12345A" class="govuk-link">{{ data['permitNumber'] or "26GBEXP12345A" }}</a>
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          {{ govukButton({
+            text: "Download PDF",
+            classes: "govuk-button--secondary govuk-!-margin-bottom-1",
+            href: "/public/downloads/26GBEXP12345A-valid.pdf"
+          }) }}
         </dd>
       </div>
       <div class="govuk-summary-list__row">

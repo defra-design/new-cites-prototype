@@ -13,6 +13,7 @@ module.exports = {
   "permitType": "Export",
   "isAgent": "no",
   "permitNumber": "26GBEXP12345A",
+  "permitRef": "26GBEXP12345A",
 
   // Your contact details (Applicant)
   "your-full-name": "Dean Falconer",

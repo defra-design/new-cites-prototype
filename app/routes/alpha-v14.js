@@ -11,60 +11,9 @@ function loadSessionData (req) {
   req.session.data = Object.assign({}, sessionDataDefaults, req.session.data)
 }
 
-// *********** login routes *************
-
-router.get('/login', function (req, res) {
-  res.render('login')
-})
-
-router.post('/login', function (req, res) {
-  const username = req.body['username']
-  const password = req.body['password']
-
-  let authenticatedUser = null
-  for (const key in userProfiles) {
-    if (userProfiles[key].username === username && userProfiles[key].password === password) {
-      authenticatedUser = userProfiles[key]
-      break
-    }
-  }
-
-  if (authenticatedUser) {
-    req.session.data = {}
-    Object.keys(authenticatedUser).forEach(key => {
-      if (key !== 'password') {
-        req.session.data[key] = authenticatedUser[key]
-      }
-    })
-
-    const userRole = authenticatedUser['user-role']
-    if (userRole === 'cites') {
-      res.redirect('/')
-    } else {
-      res.redirect('v14/represent')
-    }
-  } else {
-    res.render('login', { loginError: true })
-  }
-})
-
-router.get('/logout', function (req, res) {
-  req.session.data = {}
-  res.redirect('/v14/login')
-})
-
 router.get('/clear-data', function (req, res) {
   req.session.data = {}
   res.redirect('/')
-})
-
-router.get('/', function (req, res) {
-  res.render('index')
-})
-
-router.get('/v14/clear-scan', (req, res) => {
-  delete req.session.data['last-scan']
-  res.redirect('/v14/cites-capture')
 })
 
 

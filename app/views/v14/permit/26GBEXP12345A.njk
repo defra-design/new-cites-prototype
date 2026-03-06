@@ -1,38 +1,9 @@
-{% extends "layout-with-navigation" %}
+{% extends "layout" %}
 
 {% set pageTitle = "Permit summary: " + (data['permitNumber'] or "26GBEXP12345A") %}
 
 {% block beforeContent %}
-<div class="govuk-phase-banner">
-  <p class="govuk-phase-banner__content">
-    <strong class="govuk-tag govuk-phase-banner__content__tag govuk-tag--green">prototype</strong>
-    <span class="govuk-phase-banner__text">
-      This is a new service  your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
-    </span>
-  </p>
-</div>
 
-{% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
-
-{{ govukBreadcrumbs({
-  items: [
-    {
-      text: "Your applications",
-      href: "applicant-dashboard"
-    },
-    {
-      text: data['submissionRef'] or "AB7N10639G",
-      href: "view-submission?ref=" + (data['submissionRef'] or "AB7N10639G")
-    },
-    {
-      text: data['applicationRef'] or "AB7N10639G/001",
-      href: "view-application?ref=" + (data['applicationRef'] or "AB7N10639G/001")
-    },
-    {
-      text: "Permit: " + (data['permitRef'] or "26GBEXP12345A")
-    }
-  ]
-}) }}
 {% endblock %}
 
 {% from "govuk/components/button/macro.njk" import govukButton %}
@@ -44,7 +15,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
     <span class="govuk-caption-xl">{{ data['applicant-business-name'] or "Falconers ltd" }}</span>
-    <h1 class="govuk-heading-l govuk-!-margin-bottom-4">Export Permit: {{ data['permitNumber'] or "GB26EXP1234A" }}</h1>
+    <h1 class="govuk-heading-l govuk-!-margin-bottom-4">Export Permit: {{ data['permitNumber'] or "26GBEXP12345A" }}</h1>
     
     {# The Prototype Kit puts ?permitStatus= into data['status'] automatically #}
     {% set permitStatus = (data['status'] or 'issued') | lower %}
@@ -78,19 +49,14 @@
 
       <div class="govuk-button-group govuk-!-margin-bottom-8">
         {{ govukButton({
-          text: "View permit (PDF, opens in new tab)",
-          href: "/public/downloads/cites-export-falcon-permit.pdf",
+          text: "View permit pdf",
+          href: "/public/downloads/26GBEXP12345A-valid.pdf",
           classes: "govuk-button--secondary",
           attributes: {
             target: "_blank",
             rel: "noreferrer noopener"
           }
         }) }}
-        <p class="govuk-body govuk-!-margin-left-4">
-          <a href="#" class="govuk-link">
-            Share permit URL with a trusted third party
-          </a>  
-        </p>
       </div>
     <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
 
