@@ -27,21 +27,21 @@
       {% if permitStatus == 'expired' %}
         {# Red styling for Expired #}
         <div class="govuk-inset-text" style="border-left-color: #d4351c; border-left-width: 10px;">
-          <p class="govuk-body govuk-!-margin-bottom-0"><span class="govuk-tag govuk-tag--red">Expired</span></p>
+          <p class="govuk-body govuk-!-margin-bottom-2"><span class="govuk-tag govuk-tag--red">Expired</span></p>
           <h2 class="govuk-heading-m govuk-!-margin-bottom-2">Expired on 5 March 2026</h2>
           <p class="govuk-body">This permit can no longer be used.</p>
         </div>
       {% elif permitStatus == 'endorsed' %}
         {# Blue styling for Endorsed #}
         <div class="govuk-inset-text" style="border-left-color: #f5da0b; border-left-width: 10px;">
-          <p class="govuk-body govuk-!-margin-bottom-0"><span class="govuk-tag govuk-tag--yellow">Endorsed</span></p>
+          <p class="govuk-body govuk-!-margin-bottom-2"><span class="govuk-tag govuk-tag--yellow">Endorsed</span></p>
           <h2 class="govuk-heading-s govuk-!-margin-bottom-2">Cleared at LHR | 9 February 2026 | 12:00</h2>
           <p class="govuk-body">This permit can not be used for another shipment.</p>
         </div>
       {% else %}
         {# Green styling for Issued #}
         <div class="govuk-inset-text" style="border-left-color: #00703c; border-left-width: 10px;">
-          <p class="govuk-body govuk-!-margin-bottom-0"><span class="govuk-tag govuk-tag--green">Issued</span></p>
+          <p class="govuk-body govuk-!-margin-bottom-2"><span class="govuk-tag govuk-tag--green">Issued</span></p>
           <h2 class="govuk-heading-m govuk-!-margin-bottom-2">Valid until 9 August 2026</h2>
           <p class="govuk-body">This permit can be used once only for the movement described, subject to conditions on the permit.</p>
         </div>
@@ -171,13 +171,6 @@
         }
       ]
     }) }}
-
-    <div class="govuk-button-group print-hidden">
-      <a href="applicant-dashboard" class="govuk-button">
-        Return to your applications
-      </a>
-    </div>
-
   </div>
 </div>
 {% endblock %}
