@@ -15,15 +15,26 @@
       <strong>To:</strong> {{ data['your-full-name'] | default("Dean Falconer") }} ({{ data['your-email'] | default("dean@falconers-nest.co.uk") }})
     </p>
     <p class="govuk-body">
-      <strong>Subject:</strong> Change of service for your CITES permit application
+      <strong>Subject:</strong> CITES permits are now digital
     </p>
     
     <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
     {# Email Body #}
     <div class="govuk-panel__body">
-      <p class="govuk-body">There have been changes which we would like to inform you about. </p>
-      
+      <p class="govuk-body">We are changing how you receive and use your CITES permits.</p>
+      <p>From [go-live date], you will no longer receive a paper permit by post. Instead, your permit will be issued digitally and made available in your online CITES account.</p>
+      <h2 class="govuk-heading-s">What is changing</h2>
+      <p class="govuk-body">Permits will be issued digitally.
+        We'll email you when your permit is ready.
+        You can sign in to your account to download it.
+        There will no longer be different coloured copies of permits.
+        Permits will be digitally endorsed by Border Force.</p>
+      <h2 class="govuk-heading-s">What this means for you</h2>
+      <p class="govuk-body">You must download your permit from your <a href="login">online account</a>.
+      <p class="govuk-body">If you have previously been issued a paper permit, it remains valid until expiry.
+      <p class="govuk-body">If you need help, contact...
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
       <p class="govuk-body">
         From CITES team<br>
         Animal and Plant Health Agency (APHA)
@@ -32,3 +43,6 @@
   </div>
 </div>
 {% endblock %}
+
+
+
