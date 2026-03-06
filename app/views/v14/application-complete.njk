@@ -1,33 +1,36 @@
 
-{% extends "layout-no-back-link.html" %}
+{% extends "layout-with-navigation.html" %}
 
 {% set thisPageTitle = "application-complete" %}
+
+{% block beforeContent %}
+  {% include "/includes/stage-banner.html" %}
+{% endblock %}
 
 {% block content %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       <div class="govuk-panel govuk-panel--confirmation govuk-!-margin-bottom-6">
-        <h1 class="govuk-panel__title">Application complete</h1>
+        <h1 class="govuk-panel__title">Application submitted</h1>
         <div class="govuk-panel__body">
-          Reference number
+          Submission reference number
           <br><strong>AB7N10639G</strong>
         </div>
       </div>
 
       <h2 class="govuk-heading-m">What happens next</h2>
 
-      {% if data['payNow'] === 'yes'%}
-      <p class="govuk-body">We have received your application fee and have sent you a confirmation email.</p>
-      <p class="govuk-body">We have passed your application to the APHA team for endangered plant and animal species (CITES). APHA aims to process your application within 30 days. They may contact you if they require more information.</p>
-      <p class="govuk-body">To view the status of your application, go to <a href="your-submissions?fromPage='reset'" data-module="govuk-button">your CITES account</a>.  There may be a short delay before the application appears in your list of applications.</p>
-      {% else %}
-      <p class="govuk-body">We have passed your application to the APHA team for endangered plant and animal species (CITES).</p>
-      <p class="govuk-body">They will contact you to confirm the amount you need to pay.</p>
-      <p class="govuk-body">To view the status of your application go to <a href="your-submissions?fromPage='reset'" data-module="govuk-button">your CITES account</a>. There may be a short delay before the application appears in your list of applications.</p>
-      {% endif %}
+      <p class="govuk-body">We aim to process your application within 30 days. We may contact you if we need more information.</p>
+      <p class="govuk-body">If your application is approved, You'll be able to view and download your CITES permit from your account. We no longer post out paper permits. To move your specimen, a valid permit must be presented at a designated UK port or airport.</p>
+      <h3 class="govuk-heading-s">View your applications</h3>
+      <p class="govuk-body">To view the status of your applications or create a new one, <a href="applicant-dashboard" data-module="govuk-button">go to your dashboard</a>. There may be a short delay before this application appears in your account.</p>
+      <h3 class="govuk-heading-s">Get help</h3>
+      <p class="govuk-body">If you need help with your application, contact us at <a href="contact-us" data-module="govuk-button">wildlife.licencing@apha.gov.uk</a>.
+      <br> You'll need to provide your submission reference number.</p>
+      <a href="applicant-dashboard" role="button" draggable="false" class="govuk-button" data-module="govuk-button">Your applications</a>
 
-      <a href="applicant-dashboard" role="button" draggable="false" class="govuk-button" data-module="govuk-button">Finish</a>
+
 
     </div>
   </div>
