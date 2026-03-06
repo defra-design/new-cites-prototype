@@ -22,11 +22,11 @@
     },
     {
       text: data['submissionRef'] or "AB7N10639G",
-      href: "view-submission?ref=" + (data['submissionRef'] or "AB7N10639G")
+      href: "view-submission"
     },
     {
       text: data['applicationRef'] or "AB7N10639G/001",
-      href: "view-application?ref=" + (data['applicationRef'] or "AB7N10639G/001")
+      href: "view-application"
     },
     {
       text: "Permit: " + (data['permitRef'] or "26GBEXP12345A")
@@ -79,7 +79,7 @@
       <div class="govuk-button-group govuk-!-margin-bottom-8">
         {{ govukButton({
           text: "View permit (PDF, opens in new tab)",
-          href: "/public/downloads/cites-export-falcon-permit.pdf",
+          href: "/public/downloads/26GBEXP12345A-valid.pdf",
           classes: "govuk-button--secondary",
           attributes: {
             target: "_blank",
