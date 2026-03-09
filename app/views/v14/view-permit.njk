@@ -44,7 +44,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
     <span class="govuk-caption-xl">{{ data['applicant-business-name'] or "Falconers ltd" }}</span>
-    <h1 class="govuk-heading-l govuk-!-margin-bottom-4">Export Permit: {{ data['permitNumber'] or "GB26EXP1234A" }}</h1>
+    <h1 class="govuk-heading-l govuk-!-margin-bottom-4">Export Permit - {{ data['permitNumber'] or "GB26EXP1234A" }}</h1>
     
     {# The Prototype Kit puts ?permitStatus= into data['status'] automatically #}
     {% set permitStatus = (data['status'] or 'issued') | lower %}
@@ -64,7 +64,7 @@
         {# Blue styling for Endorsed #}
         <div class="govuk-inset-text" style="border-left-color: #f5da0b; border-left-width: 10px;">
           <p class="govuk-body govuk-!-margin-bottom-0"><span class="govuk-tag govuk-tag--yellow">Endorsed</span></p>
-          <h2 class="govuk-heading-s govuk-!-margin-bottom-2">Cleared at LHR | 9 February 2026 | 12:00</h2>
+          <h2 class="govuk-heading-s govuk-!-margin-bottom-2">Endorsed at London Heathrow at 12.36am on 9 February 2026</h2>
           <p class="govuk-body">This permit can not be used for another shipment.</p>
         </div>
       {% else %}
@@ -72,13 +72,13 @@
         <div class="govuk-inset-text" style="border-left-color: #00703c; border-left-width: 10px;">
           <p class="govuk-body govuk-!-margin-bottom-0"><span class="govuk-tag govuk-tag--green">Issued</span></p>
           <h2 class="govuk-heading-m govuk-!-margin-bottom-2">Valid until 9 August 2026</h2>
-          <p class="govuk-body">This permit can be used once only for the movement described, subject to conditions on the permit.</p>
+          <p class="govuk-body">This permit can be used only for the movement described, subject to conditions on the permit.</p>
         </div>
       {% endif %}
 
       <div class="govuk-button-group govuk-!-margin-bottom-8">
         {{ govukButton({
-          text: "View permit (PDF, opens in new tab)",
+          text: "View permit PDF (opens in new tab)",
           href: "/public/downloads/26GBEXP12345A-valid.pdf",
           classes: "govuk-button--secondary",
           attributes: {
@@ -88,7 +88,7 @@
         }) }}
         <p class="govuk-body govuk-!-margin-left-4">
           <a href="#" class="govuk-link">
-            Share permit URL with a trusted third party
+            Share link to permit
           </a>  
         </p>
       </div>

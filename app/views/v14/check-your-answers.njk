@@ -1,0 +1,205 @@
+{% extends "layout-with-navigation.html" %}
+
+{# Imports required for GDS components #}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
+
+{% set pageTitle = "Check and confirm application details" %}
+
+{% block beforeContent %}
+<div class="govuk-phase-banner">
+  <p class="govuk-phase-banner__content">
+    <strong class="govuk-tag govuk-phase-banner__content__tag govuk-tag--green">prototype</strong>
+    <span class="govuk-phase-banner__text">
+      This is a new service - your <a class="govuk-link" href="#">feedback</a> will help us to improve it.
+    </span>
+  </p>
+</div>
+
+{{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Your applications",
+      href: "applicant-dashboard"
+    },
+    {
+      text: data['submissionRef'] or "AB7N10639G",
+      href: "view-submission?ref=" + (data['submissionRef'] or "AB7N10639G")
+    },
+    {
+      text: "Check your answers"
+    }
+  ]
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full-from-desktop">
+    
+    <span class="govuk-caption-xl">{{ data['your-business-name'] or "Falconers Ltd" }}</span>
+    <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
+
+    <h2 class="govuk-heading-m">About the permit</h2>
+    {{ govukSummaryList({
+      classes: "govuk-!-margin-bottom-9",
+      rows: [
+        {
+          key: { text: "Permit type" },
+          value: { text: data['permitType'] or "Export" },
+          actions: {
+            items: [{ href: "permit-type", text: "Change", visuallyHiddenText: "permit type" }]
+          }
+        }
+      ]
+    }) }}
+
+    <h2 class="govuk-heading-m">Your contact details</h2>
+    {{ govukSummaryList({
+      classes: "govuk-!-margin-bottom-9",
+      rows: [
+        {
+          key: { text: "Full name" },
+          value: { text: data['your-full-name'] or "Dean Falconer" },
+          actions: {
+            items: [{ href: "contact-details", text: "Change", visuallyHiddenText: "full name" }]
+          }
+        },
+        {
+          key: { text: "Business name" },
+          value: { text: data['your-business-name'] or "Falconers Ltd" },
+          actions: {
+            items: [{ href: "contact-details", text: "Change", visuallyHiddenText: "business name" }]
+          }
+        },
+        {
+          key: { text: "Email address" },
+          value: { text: data['your-email'] or "dean@falconers-nest.co.uk" },
+          actions: {
+            items: [{ href: "contact-details", text: "Change", visuallyHiddenText: "email address" }]
+          }
+        },
+        {
+          key: { text: "Address" },
+          value: { html: (data['your-address'] or "12 Falconry Way<br>Norwich<br>Norfolk<br>NR1 4FN") | nl2br | safe },
+          actions: {
+            items: [{ href: "contact-details", text: "Change", visuallyHiddenText: "address" }]
+          }
+        }
+      ]
+    }) }}
+
+    <h2 class="govuk-heading-m">Specimen details</h2>
+    {{ govukSummaryList({
+      classes: "govuk-!-margin-bottom-9",
+      rows: [
+        {
+          key: { text: "Scientific name" },
+          value: { html: "<em>" + (data['speciesName'] or "Falco peregrinus") + "</em>" },
+          actions: {
+            items: [{ href: "specimen-details", text: "Change", visuallyHiddenText: "scientific name" }]
+          }
+        },
+        {
+          key: { text: "Specimen type" },
+          value: { text: data['specimenDescription'] or "Live animal" },
+          actions: {
+            items: [{ href: "specimen-details", text: "Change", visuallyHiddenText: "specimen type" }]
+          }
+        },
+        {
+          key: { text: "Quantity" },
+          value: { text: (data['quantity'] or "1") + " " + (data['unitOfMeasure'] or "Number") },
+          actions: {
+            items: [{ href: "specimen-details", text: "Change", visuallyHiddenText: "quantity" }]
+          }
+        },
+        {
+          key: { text: "Source and Purpose" },
+          value: { text: "Source: " + (data['sourceCode'] or "C") + ", Purpose: " + (data['purposeCode'] or "P") },
+          actions: {
+            items: [{ href: "specimen-details", text: "Change", visuallyHiddenText: "source and purpose codes" }]
+          }
+        },
+        {
+          key: { text: "Birth or hatch date" },
+          value: { text: (data['hatch-date-day'] or "12") + " " + (data['hatch-date-month'] or "June") + " " + (data['hatch-date-year'] or "2024") },
+          actions: {
+            items: [{ href: "specimen-details", text: "Change", visuallyHiddenText: "birth or hatch date" }]
+          }
+        },
+        {
+          key: { text: "Identification mark" },
+          value: { text: (data['identificationMark'] or "Closed ring number") + ": " + (data['identificationMark-2'] or "DF-2025-UK-09") },
+          actions: {
+            items: [{ href: "specimen-details", text: "Change", visuallyHiddenText: "identification mark" }]
+          }
+        }
+      ]
+    }) }}
+
+    <h2 class="govuk-heading-m">Importer's contact details</h2>
+    {{ govukSummaryList({
+      classes: "govuk-!-margin-bottom-9",
+      rows: [
+        {
+          key: { text: "Country" },
+          value: { text: data['importCountry'] or "United Arab Emirates" },
+          actions: {
+            items: [{ href: "importer-details", text: "Change", visuallyHiddenText: "importer country" }]
+          }
+        },
+        {
+          key: { text: "Full name / Business" },
+          value: { text: data['importer-business-name'] or "The Royal Falconry Centre" },
+          actions: {
+            items: [{ href: "importer-details", text: "Change", visuallyHiddenText: "importer name" }]
+          }
+        },
+        {
+          key: { text: "Address" },
+          value: { html: (data['importer-address'] or "Al-Safa Street<br>Jumeirah<br>Dubai<br>UAE") | nl2br | safe },
+          actions: {
+            items: [{ href: "importer-details", text: "Change", visuallyHiddenText: "importer address" }]
+          }
+        }
+      ]
+    }) }}
+
+    <h2 class="govuk-heading-m">Additional information</h2>
+    {{ govukSummaryList({
+      classes: "govuk-!-margin-bottom-9",
+      rows: [
+        {
+          key: { text: "Additional comments" },
+          value: { text: data['comment'] or "No additional comments." },
+          actions: {
+            items: [{ href: "additional-information", text: "Change", visuallyHiddenText: "additional comments" }]
+          }
+        },
+        {
+          key: { text: "Internal reference" },
+          value: { text: data['internalRef'] or "PF-2026-001" },
+          actions: {
+            items: [{ href: "additional-information", text: "Change", visuallyHiddenText: "internal reference" }]
+          }
+        }
+      ]
+    }) }}
+
+    <h2 class="govuk-heading-m">Now send your application</h2>
+    <p class="govuk-body">By submitting this application you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
+
+    <form action="confirmation" method="post" novalidate>
+      <input type="hidden" name="answers-checked" value="true">
+
+      <div class="govuk-button-group">
+        {{ govukButton({
+          text: "Confirm and continue"
+        }) }}
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
