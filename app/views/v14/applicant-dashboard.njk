@@ -28,10 +28,12 @@
     <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
     
     <div class="govuk-grid-row govuk-!-margin-bottom-6">
-      <div class="govuk-grid-column-one-third">
-        {{ govukButton({ text: "Start new application", href: "check-your-answers" }) }}
+      <div class="govuk-grid-column-one-quarter">
+        <a href="check-your-answers" role="button" draggable="false" class="govuk-button" data-module="govuk-button" data-govuk-button-init="" style="width: 100%;">
+          Start new application
+        </a>
       </div>
-      <div class="govuk-grid-column-two-thirds">
+      <div class="govuk-grid-column-three-quarters">
         <div style="display: flex; justify-content: flex-end;">
           <div class="govuk-input__wrapper" style="width: 100%; max-width: 400px;">
             <input class="govuk-input" id="search-input" name="searchValue" type="text" placeholder="Search reference">
