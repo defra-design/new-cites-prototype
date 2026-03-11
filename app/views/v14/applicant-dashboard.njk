@@ -2,7 +2,6 @@
 
 {% from "moj/components/filter/macro.njk" import mojFilter %}
 {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
-{% from "govuk/components/accordion/macro.njk" import govukAccordion %}
 {% from "govuk/components/table/macro.njk" import govukTable %}
 {% from "govuk/components/tag/macro.njk" import govukTag %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
@@ -14,25 +13,12 @@
 
 {% set pageTitle = "Your applications" %}
 
-{# --- SPECIES AND STATUS CONSTANTS --- #}
-{% set species1 = "<em>Falco peregrinus</em>" %}
-{% set species2 = "<em>Accipiter gentilis</em>" %}
-{% set species3 = "<em>Aquila chrysaetos</em>" %}
-{% set species4 = "<em>Falco cherrug</em>" %}
-{% set species5 = "<em>Falco peregrinus</em>" %}
-
-{% set statusIssued = govukTag({ text: "Issued", classes: "govuk-tag--green" }) %}
-{% set statusProg = govukTag({ text: "In progress", classes: "govuk-tag--blue" }) %}
-{% set statusPay = govukTag({ text: "Awaiting payment", classes: "govuk-tag--red" }) %}
-{% set statusEndorsed = govukTag({ text: "Endorsed", classes: "govuk-tag--yellow" }) %}
-{% set statusExpired = govukTag({ text: "Expired", classes: "govuk-tag--grey" }) %}
-{% set statusNotEndorsed = govukTag({ text: "Not endorsed", classes: "govuk-tag--red" }) %}
-
-{% set tableHead = [
+{# --- V14 COLUMN STRUCTURE --- #}
+{% set tableHeadV14 = [
   { text: "Application reference" },
   { text: "Internal reference" },
-  { text: "Scientific name", attributes: { "style": "min-width: 200px;" } },
-  { text: "Permit status", attributes: { "style": "width: 125px;" } }
+  { text: "Scientific name", attributes: { "style": "min-width: 125px;" } },
+  { text: "Permit status", attributes: { "style": "width: 100px;" } }
 ] %}
 
 {% block content %}
@@ -41,13 +27,13 @@
     <span class="govuk-caption-xl">{{ data['applicant-business-name'] or "Falconers ltd" }}</span>
     <h1 class="govuk-heading-xl">{{ pageTitle }}</h1>
     
-    <div class="govuk-grid-row govuk-!-margin-bottom-2">
-      <div class="govuk-grid-column-one-third govuk-!-margin-bottom-4">
+    <div class="govuk-grid-row govuk-!-margin-bottom-6">
+      <div class="govuk-grid-column-one-third">
         {{ govukButton({ text: "Start new application", href: "check-your-answers" }) }}
       </div>
       <div class="govuk-grid-column-two-thirds">
         <div style="display: flex; justify-content: flex-end;">
-          <div class="govuk-input__wrapper" style="width: 100%;">
+          <div class="govuk-input__wrapper" style="width: 100%; max-width: 400px;">
             <input class="govuk-input" id="search-input" name="searchValue" type="text" placeholder="Search reference">
             <div class="govuk-input__suffix" aria-hidden="true" style="padding: 0; border: none; background: none;">
               <button class="govuk-button govuk-!-margin-bottom-0" style="height: 38px; border: none; padding: 0 20px; background-color: #1d70b8; margin-top: -2px;">Search</button>
@@ -62,246 +48,240 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-one-quarter">
-    
-    {% set typeFilterHtml %}
-      {{ govukCheckboxes({
-        idPrefix: "type",
-        name: "type",
-        classes: "govuk-checkboxes--small",
-        items: [
-          { value: "import", text: "Import" },
-          { value: "export", text: "Export", checked: true },
-          { value: "re-export", text: "Re-export" },
-          { value: "article-10", text: "Article 10" }
-        ]
-      }) }}
-    {% endset %}
-
-    {% set statusFilterHtml %}
-      {{ govukCheckboxes({
-        idPrefix: "status",
-        name: "status",
-        classes: "govuk-checkboxes--small",
-        items: [
-          { value: "progress", text: "In progress" },
-          { value: "payment", text: "Awaiting payment" },
-          { value: "issued", text: "Issued" },
-          { value: "expired", text: "Expired" }
-        ]
-      }) }}
-    {% endset %}
-
-    {% set submittedFilterHtml %}
-      {{ govukCheckboxes({
-        idPrefix: "submitted",
-        name: "submitted",
-        classes: "govuk-checkboxes--small",
-        items: [
-          { value: "user", text: "Me" }
-        ]
-      }) }}
-    {% endset %}
-
-    <div class="moj-filter">
-      <div class="moj-filter__header">
-        <div class="moj-filter__header-title">
-          <h2 class="govuk-heading-m">Filters</h2>
-        </div>
-      </div>
-
-      <div class="moj-filter__content">
-        <div class="moj-filter__selected">
-          <div class="moj-filter__selected-heading">
-            <div class="moj-filter__heading-title">
-              <h2 class="govuk-heading-s">Selected filters</h2>
-            </div>
-          </div>
-
-          <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Permit type</h3>
-          <ul class="moj-filter-tags">
-            <li>
-              <a class="moj-filter__tag" href="#">
-                <span class="govuk-visually-hidden">Remove this filter</span> Export
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div class="moj-filter__options">
-          <form action="#" method="get">
-            {{ govukButton({
-              text: "Apply filters",
-              classes: "govuk-button--secondary govuk-button--small moj-filter__apply-button"
-            }) }}
-
-            {{ govukAccordion({
-              id: "filter-accordion",
-              expanded: false,
-              classes: "govuk-accordion--small",
-              items: [
-                { 
-                  heading: { text: "Permit type" }, 
-                  content: { html: typeFilterHtml },
-                  expanded: true
-                },
-                { 
-                  heading: { text: "Status" }, 
-                  content: { html: statusFilterHtml },
-                  expanded: true
-                },
-                { 
-                  heading: { text: "Submitted by" }, 
-                  content: { html: submittedFilterHtml },
-                  expanded: true
-                }
-              ]
-            }) }}
-          </form>
-        </div>
-      </div>
-    </div>
+    {% include "includes/dashboard-filters" %}
   </div>
 
   <div class="govuk-grid-column-three-quarters">
-    {% if data['newUser'] === 'yes'%}
-    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-      <p class="govuk-body">You have not yet made an application using this service.</p>
-    {% elif data['newUser'] === 'submitted' %}
-     {# 2. Priority: In progress #}
-    <div class="govuk-summary-card govuk-!-padding-bottom-0">
+    
+    {# 1. Submission: RG26889 #}
+    <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
-        <h2 class="govuk-summary-card__title">Submission reference -  WR44321</h2>
+        <h2 class="govuk-summary-card__title">Submission reference - RG26889</h2>
       </div>
       <div class="govuk-summary-card__content">
-        <details class="govuk-details" data-module="govuk-details" open="true">
-          <summary class="govuk-details__summary"><span class="govuk-details__summary-text">1 export application</span></summary>
-          <div class="govuk-details__text">
-           {{ govukTable({ head: tableHead, rows: 
-            [[ {html:"<a href='view-application?ref={data.submissionRef}/001'>" + data.submissionRef + "/001</a>"}, {text:'PF-26-01'}, {html:species5}, {html:statusProg} ]
-            ] }) }}
-          </div>
-        </details>
-      </div>
-    </div>
-    {% else %}
-      
-      {# --- APPLICATION ENTRIES --- #}
-    {# 1. Priority: Awaiting Payment #}
-    <div class="govuk-summary-card govuk-!-padding-bottom-0">
-      <div class="govuk-summary-card__title-wrapper">
-        <h2 class="govuk-summary-card__title">Submission reference -  RG26889</h2>
-      </div>
-      <div class="govuk-summary-card__content">
-        <details class="govuk-details" data-module="govuk-details" open="true">
+        <details class="govuk-details" data-module="govuk-details" open>
           <summary class="govuk-details__summary"><span class="govuk-details__summary-text">1 import application</span></summary>
           <div class="govuk-details__text">
-            {{ govukTable({ head: tableHead, rows: [[ {html:"<a href='#'>RG26889/001</a>"}, {text:'GE-26-01'}, {html:species3}, {html:statusPay} ]] }) }}
+            {{ govukTable({
+              classes: "app-table--responsive",
+              head: tableHeadV14,
+              rows: [[
+                { html: '<a href="#">RG26889/001</a>', attributes: { "data-label": "App ref" } },
+                { text: "GE-26-01", attributes: { "data-label": "Internal ref" } },
+                { html: "<em>Aquila chrysaetos</em>", attributes: { "data-label": "Scientific name" } },
+                { html: govukTag({ text: "Awaiting payment", classes: "govuk-tag--red" }), attributes: { "data-label": "Status" } }
+              ]]
+            }) }}
             {{ govukButton({ text: "Pay for permit", classes: "govuk-!-margin-top-2" }) }}
           </div>
         </details>
       </div>
     </div>
 
-    {# 2. Priority: In progress #}
-    <div class="govuk-summary-card govuk-!-padding-bottom-0">
+     {# 2. In Progress Submission: WR44321 #}
+    <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
-        <h2 class="govuk-summary-card__title">Submission reference -  WR44321</h2>
+        <h2 class="govuk-summary-card__title">Submission reference - WR44321</h2>
       </div>
       <div class="govuk-summary-card__content">
-        <details class="govuk-details" data-module="govuk-details" open="true">
+        <details class="govuk-details" data-module="govuk-details" open>
           <summary class="govuk-details__summary"><span class="govuk-details__summary-text">2 export applications</span></summary>
           <div class="govuk-details__text">
-            {{ govukTable({ head: tableHead, rows: [
-              [{html:"<a href='#'>WR44321/001</a>"}, {text:'WR-A'}, {html:species2}, {html:statusProg}],
-              [{html:"<a href='#'>WR44321/002</a>"}, {text:'WR-B'}, {html:species2}, {html:statusProg}]
-            ] }) }}
+            {{ govukTable({
+              classes: "app-table--responsive",
+              head: tableHeadV14,
+              rows: [
+                [{ html: '<a href="#">WR44321/001</a>', attributes: { "data-label": "App ref" } }, { text: "AG-26-01", attributes: { "data-label": "Internal ref" } }, { html: "<em>Accipiter gentilis</em>", attributes: { "data-label": "Scientific name" } }, { html: govukTag({ text: "inProgress", classes: "govuk-tag--blue" }), attributes: { "data-label": "Status" } }],
+                [{ html: '<a href="#">WR44321/002</a>', attributes: { "data-label": "App ref" } }, { text: "PF-26-02", attributes: { "data-label": "Internal ref" } }, { html: "<em>Falco peregrinus</em>", attributes: { "data-label": "Scientific name" } }, { html: govukTag({ text: "inProgress", classes: "govuk-tag--blue" }), attributes: { "data-label": "Status" } }]
+                
+              ]
+            }) }}
           </div>
         </details>
       </div>
     </div>
 
-    {# 3. Issued x 3#}
-    <div class="govuk-summary-card govuk-!-padding-bottom-0">
+    {# 3. Issued Submission: AB7N10639G #}
+    <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
-        <h2 class="govuk-summary-card__title">Submission reference -  {{data.submissionRef}}</h2>
+        <h2 class="govuk-summary-card__title">Submission reference - AB7N10639G</h2>
       </div>
       <div class="govuk-summary-card__content">
-        <details class="govuk-details" data-module="govuk-details" open="true">
+        <details class="govuk-details" data-module="govuk-details" open>
           <summary class="govuk-details__summary"><span class="govuk-details__summary-text">3 export applications</span></summary>
-          
           <div class="govuk-details__text">
             <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Download permits:</h3>
             <div class="govuk-button-group govuk-!-margin-bottom-6">
-              {{ govukButton({
-                text: "Multipage PDF",
-                classes: "govuk-button--secondary govuk-button--small",
-                href: "/public/downloads/AB7N10639G-3EXP-CITES.pdf"
-              }) }}
-
-              {{ govukButton({
-                text: "Zipped files",
-                classes: "govuk-button--secondary govuk-button--small",
-                href: "/public/downloads/AB7N10639G-3EXP-CITES.zip"
-              }) }}
+              {{ govukButton({ text: "Multipage PDF", classes: "govuk-button--secondary govuk-button--small", href: "/public/downloads/AB7N10639G-3EXP-CITES.pdf" }) }}
+              {{ govukButton({ text: "Zipped files", classes: "govuk-button--secondary govuk-button--small", href: "/public/downloads/AB7N10639G-3EXP-CITES.zip" }) }}
             </div>
-            {{ govukTable({ head: tableHead, rows: 
-            [[ {html:"<a href='view-application?ref={data.submissionRef}/001'>" + data.submissionRef + "/001</a>"}, {text:'PF-26-01'}, {html:species5}, {html:statusIssued} ],
-              [{html:"<a href='#'>" + data.submissionRef + "/002</a>"}, {text:'PF-26-02'}, {html:species5}, {html:statusIssued} ],
-              [{html:"<a href='#'>" + data.submissionRef + "/003</a>"}, {text:'PF-26-03'}, {html:species5}, {html:statusIssued} ]
-            ] }) }}
+            {{ govukTable({
+              classes: "app-table--responsive",
+              head: tableHeadV14,
+              rows: [
+                [{ html: '<a href="#">AB7N10639G/001</a>', attributes: { "data-label": "App ref" } }, { text: "PF-26-01", attributes: { "data-label": "Internal ref" } }, { html: "<em>Falco peregrinus</em>", attributes: { "data-label": "Scientific name" } }, { html: govukTag({ text: "Issued", classes: "govuk-tag--green" }), attributes: { "data-label": "Status" } }],
+                [{ html: '<a href="#">AB7N10639G/002</a>', attributes: { "data-label": "App ref" } }, { text: "PF-26-02", attributes: { "data-label": "Internal ref" } }, { html: "<em>Falco peregrinus</em>", attributes: { "data-label": "Scientific name" } }, { html: govukTag({ text: "Issued", classes: "govuk-tag--green" }), attributes: { "data-label": "Status" } }],
+                [{ html: '<a href="#">AB7N10639G/003</a>', attributes: { "data-label": "App ref" } }, { text: "PF-26-03", attributes: { "data-label": "Internal ref" } }, { html: "<em>Falco peregrinus</em>", attributes: { "data-label": "Scientific name" } }, { html: govukTag({ text: "Issued", classes: "govuk-tag--green" }), attributes: { "data-label": "Status" } }]
+              ]
+            }) }}
           </div>
         </details>
       </div>
     </div>
 
-    {# 4. BULK WITH INTERNAL PAGINATION & 10 APPS SHOWN #}
-    <div class="govuk-summary-card govuk-!-padding-bottom-0">
+    {# --- BULK Submission: TN5203 (10 entries + Corrected Inline Pagination) --- #}
+    <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
-        <h2 class="govuk-summary-card__title">Submission reference -  TN5203</h2>
+        <h2 class="govuk-summary-card__title">Submission reference - TN5203</h2>
       </div>
       <div class="govuk-summary-card__content">
         <details class="govuk-details" data-module="govuk-details">
-          <summary class="govuk-details__summary"><span class="govuk-details__summary-text">49 export applications</span></summary>
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">49 export applications</span>
+          </summary>
           <div class="govuk-details__text">
             <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Download permits:</h3>
             <div class="govuk-button-group govuk-!-margin-bottom-6">
-              {{ govukButton({
-                text: "Multipage PDF",
-                classes: "govuk-button--secondary govuk-button--small",
-                href: "/public/downloads/AB7N10639G-3EXP-CITES.pdf"
-              }) }}
-
-              {{ govukButton({
-                text: "Zipped files",
-                classes: "govuk-button--secondary govuk-button--small",
-                href: "/public/downloads/AB7N10639G-3EXP-CITES.zip"
-              }) }}
+              {{ govukButton({ text: "Multipage PDF", classes: "govuk-button--secondary govuk-button--small", href: "/public/downloads/AB7N10639G-3EXP-CITES.pdf", attributes: { "rel": "noopener noreferrer", "target": "_blank" } }) }}
+              {{ govukButton({ text: "Zipped files", classes: "govuk-button--secondary govuk-button--small", href: "/public/downloads/AB7N10639G-3EXP-CITES.zip", attributes: { "rel": "noopener noreferrer", "target": "_blank" } }) }}
             </div>
+            
             {{ govukTable({
-              head: tableHead,
+              classes: "app-table--responsive",
+              head: tableHeadV14,
               rows: [
-                [{html:'<a href="#">TN5203/001</a>'}, {text:'GE-25-01'}, {html:species3}, {html:statusEndorsed}],
-                [{html:'<a href="#">TN5203/002</a>'}, {text:'EGH-25-01'}, {html:species2}, {html:statusEndorsed}],
-                [{html:'<a href="#">TN5203/003</a>'}, {text:'PF-25-8'}, {html:species1}, {html:statusNotEndorsed}],
-                [{html:'<a href="#">TN5203/004</a>'}, {text:'PF-25-9'}, {html:species1}, {html:statusEndorsed}],
-                [{html:'<a href="#">TN5203/005</a>'}, {text:'GE-25-02'}, {html:species3}, {html:statusEndorsed}],
-                [{html:'<a href="#">TN5203/006</a>'}, {text:'EGH-25-03'}, {html:species2}, {html:statusNotEndorsed}],
-                [{html:'<a href="#">TN5203/007</a>'}, {text:'PF-25-10'}, {html:species1}, {html:statusEndorsed}],
-                [{html:'<a href="#">TN5203/008</a>'}, {text:'GE-25-04'}, {html:species3}, {html:statusExpired}],
-                [{html:'<a href="#">TN5203/009</a>'}, {text:'EGH-25-05'}, {html:species2}, {html:statusExpired}],
-                [{html:'<a href="#">TN5203/010</a>'}, {text:'PF-25-11'}, {html:species1}, {html:statusEndorsed}]
+                [{ html: '<a href="#">TN5203/001</a>', attributes: { "data-label": "Application reference" } }, { text: "GE-25-01", attributes: { "data-label": "Internal reference" } }, { html: "<em>Aquila chrysaetos</em>", attributes: { "data-label": "Scientific name" } }, { html: govukTag({ text: "Endorsed", classes: "govuk-tag--yellow" }), attributes: { "data-label": "Permit status" } }],
+                [{ html: '<a href="#">TN5203/002</a>', attributes: { "data-label": "Application reference" } }, { text: "EGH-25-01", attributes: { "data-label": "Internal reference" } }, { html: "<em>Accipiter gentilis</em>", attributes: { "data-label": "Scientific name" } }, { html: govukTag({ text: "Endorsed", classes: "govuk-tag--yellow" }), attributes: { "data-label": "Status" } }],
+                [{ html: '<a href="#">TN5203/003</a>', attributes: { "data-label": "Application reference" } }, { text: "PF-25-8", attributes: { "data-label": "Internal reference" } }, { html: "<em>Falco peregrinus</em>", attributes: { "data-label": "Scientific name" } }, { html: govukTag({ text: "Not endorsed", classes: "govuk-tag--red" }), attributes: { "data-label": "Status" } }],
+                [{ html: '<a href="#">TN5203/004</a>', attributes: { "data-label": "Application reference" } }, { text: "PF-25-9", attributes: { "data-label": "Internal reference" } }, { html: "<em>Falco peregrinus</em>", attributes: { "data-label": "Scientific name" } }, { html: govukTag({ text: "Endorsed", classes: "govuk-tag--yellow" }), attributes: { "data-label": "Status" } }],
+                [{ html: '<a href="#">TN5203/005</a>', attributes: { "data-label": "Application reference" } }, { text: "GE-25-02", attributes: { "data-label": "Internal reference" } }, { html: "<em>Aquila chrysaetos</em>", attributes: { "data-label": "Scientific name" } }, { html: govukTag({ text: "Endorsed", classes: "govuk-tag--yellow" }), attributes: { "data-label": "Status" } }],
+                [{ html: '<a href="#">TN5203/006</a>', attributes: { "data-label": "Application reference" } }, { text: "EGH-25-03", attributes: { "data-label": "Internal reference" } }, { html: "<em>Accipiter gentilis</em>", attributes: { "data-label": "Scientific name" } }, { html: govukTag({ text: "Not endorsed", classes: "govuk-tag--red" }), attributes: { "data-label": "Status" } }],
+                [{ html: '<a href="#">TN5203/007</a>', attributes: { "data-label": "Application reference" } }, { text: "PF-25-10", attributes: { "data-label": "Internal reference" } }, { html: "<em>Falco peregrinus</em>", attributes: { "data-label": "Scientific name" } }, { html: govukTag({ text: "Endorsed", classes: "govuk-tag--yellow" }), attributes: { "data-label": "Status" } }],
+                [{ html: '<a href="#">TN5203/008</a>', attributes: { "data-label": "Application reference" } }, { text: "GE-25-04", attributes: { "data-label": "Internal reference" } }, { html: "<em>Aquila chrysaetos</em>", attributes: { "data-label": "Scientific name" } }, { html: govukTag({ text: "Expired", classes: "govuk-tag--grey" }), attributes: { "data-label": "Status" } }],
+                [{ html: '<a href="#">TN5203/009</a>', attributes: { "data-label": "Application reference" } }, { text: "EGH-25-05", attributes: { "data-label": "Internal reference" } }, { html: "<em>Accipiter gentilis</em>", attributes: { "data-label": "Scientific name" } }, { html: govukTag({ text: "Expired", classes: "govuk-tag--grey" }), attributes: { "data-label": "Status" } }],
+                [{ html: '<a href="#">TN5203/010</a>', attributes: { "data-label": "Application reference" } }, { text: "PF-25-11", attributes: { "data-label": "Internal reference" } }, { html: "<em>Falco peregrinus</em>", attributes: { "data-label": "Scientific name" } }, { html: govukTag({ text: "Endorsed", classes: "govuk-tag--yellow" }), attributes: { "data-label": "Permit status" } }]
               ]
             }) }}
-            {# INTERNAL NESTED PAGINATION #}
-            {{ govukPagination({
-              classes: "govuk-pagination--small govuk-!-margin-top-4",
-              items: [
-                { number: 1, current: true, href: "#" },
-                { number: 2, href: "#" },
-                { ellipsis: true },
-                { number: 5, href: "#" }
-              ]
+
+            {# Manual Pagination to match your Inspector Tweaks #}
+            <nav class="govuk-pagination govuk-pagination--small govuk-!-margin-top-4" aria-label="Pagination">
+              <ul class="govuk-pagination__list">
+                <li class="govuk-pagination__item govuk-pagination__item--current">
+                  <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 1" aria-current="page">1</a>
+                </li>
+                <li class="govuk-pagination__item govuk-pagination__item--ellipsis">⋯</li>
+                <li class="govuk-pagination__item">
+                  <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 5">5</a>
+                </li>
+              </ul>
+              <div class="govuk-pagination__next">
+                <a class="govuk-link govuk-pagination__link" href="#" rel="next">
+                  <span class="govuk-pagination__link-title">Next</span>
+                  <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                    <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+                  </svg>
+                </a>
+              </div>
+            </nav>
+          </div>
+        </details>
+      </div>
+    </div>
+{# --- Other rows) --- #}
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Submission reference - TN5203</h2>
+      </div>
+      <div class="govuk-summary-card__content">
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">2 import applications</span>
+          </summary>
+          <div class="govuk-details__text">
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Download permits:</h3>
+            <div class="govuk-button-group govuk-!-margin-bottom-6">
+              {{ govukButton({ text: "Multipage PDF", classes: "govuk-button--secondary govuk-button--small", href: "/public/downloads/AB7N10639G-3EXP-CITES.pdf", attributes: { "rel": "noopener noreferrer", "target": "_blank" } }) }}
+              {{ govukButton({ text: "Zipped files", classes: "govuk-button--secondary govuk-button--small", href: "/public/downloads/AB7N10639G-3EXP-CITES.zip" }) }}
+            </div>
+            
+            {{ govukTable({
+              classes: "app-table--responsive",
+              head: tableHeadV14,
+              rows: [
+                [{ html: '<a href="#">TN5203/001</a>', attributes: { "data-label": "Application reference" } }, { text: "GE-25-01", attributes: { "data-label": "Internal reference" } }, { html: "<em>Aquila chrysaetos</em>", attributes: { "data-label": "Scientific name" } }, { html: govukTag({ text: "Endorsed", classes: "govuk-tag--yellow" }), attributes: { "data-label": "Permit status" } }],
+                [{ html: '<a href="#">TN5203/002</a>', attributes: { "data-label": "Application reference" } }, { text: "EGH-25-01", attributes: { "data-label": "Internal reference" } }, { html: "<em>Accipiter gentilis</em>", attributes: { "data-label": "Scientific name" } }, { html: govukTag({ text: "Endorsed", classes: "govuk-tag--yellow" }), attributes: { "data-label": "Status" } }]
+                ]
             }) }}
+
+            {# Manual Pagination to match your Inspector Tweaks #}
+            <nav class="govuk-pagination govuk-pagination--small govuk-!-margin-top-4" aria-label="Pagination">
+              <ul class="govuk-pagination__list">
+                <li class="govuk-pagination__item govuk-pagination__item--current">
+                  <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 1" aria-current="page">1</a>
+                </li>
+                <li class="govuk-pagination__item govuk-pagination__item--ellipsis">⋯</li>
+                <li class="govuk-pagination__item">
+                  <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 5">5</a>
+                </li>
+              </ul>
+              <div class="govuk-pagination__next">
+                <a class="govuk-link govuk-pagination__link" href="#" rel="next">
+                  <span class="govuk-pagination__link-title">Next</span>
+                  <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                    <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+                  </svg>
+                </a>
+              </div>
+            </nav>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">Submission reference - TN5203</h2>
+      </div>
+      <div class="govuk-summary-card__content">
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">1 export application</span>
+          </summary>
+          <div class="govuk-details__text">
+            <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Download permit:</h3>
+            <div class="govuk-button-group govuk-!-margin-bottom-6">
+              {{ govukButton({ text: "Download PDF (opens in a new window)", classes: "govuk-button--secondary govuk-button--small", href: "/public/downloads/26GBEXP12345A-valid.pdf", attributes: { "rel": "noopener noreferrer", "target": "_blank" } }) }}  
+            </div>
+            
+            {{ govukTable({
+              classes: "app-table--responsive",
+              head: tableHeadV14,
+              rows: [
+                [{ html: '<a href="#">TN5203/001</a>', attributes: { "data-label": "Application reference" } }, { text: "GE-25-01", attributes: { "data-label": "Internal reference" } }, { html: "<em>Aquila chrysaetos</em>", attributes: { "data-label": "Scientific name" } }, { html: govukTag({ text: "Endorsed", classes: "govuk-tag--yellow" }), attributes: { "data-label": "Permit status" } }],
+                [{ html: '<a href="#">TN5203/002</a>', attributes: { "data-label": "Application reference" } }, { text: "EGH-25-01", attributes: { "data-label": "Internal reference" } }, { html: "<em>Accipiter gentilis</em>", attributes: { "data-label": "Scientific name" } }, { html: govukTag({ text: "Endorsed", classes: "govuk-tag--yellow" }), attributes: { "data-label": "Status" } }]
+                ]
+            }) }}
+
+            {# Manual Pagination to match your Inspector Tweaks #}
+            <nav class="govuk-pagination govuk-pagination--small govuk-!-margin-top-4" aria-label="Pagination">
+              <ul class="govuk-pagination__list">
+                <li class="govuk-pagination__item govuk-pagination__item--current">
+                  <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 1" aria-current="page">1</a>
+                </li>
+                <li class="govuk-pagination__item govuk-pagination__item--ellipsis">⋯</li>
+                <li class="govuk-pagination__item">
+                  <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 5">5</a>
+                </li>
+              </ul>
+              <div class="govuk-pagination__next">
+                <a class="govuk-link govuk-pagination__link" href="#" rel="next">
+                  <span class="govuk-pagination__link-title">Next</span>
+                  <svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" aria-hidden="true" focusable="false" viewBox="0 0 15 13">
+                    <path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+                  </svg>
+                </a>
+              </div>
+            </nav>
           </div>
         </details>
       </div>
@@ -309,53 +289,17 @@
 
     
 
-    {# 5-10: Rest of the entries to reach 10 total submissions #}
-    {% set otherItems = [
-      { ref: "MK55210", text: "1 import application", spec: species5, stat: statusEndorsed, open: false },
-      { ref: "NU7N106", text: "1 export application", spec: species3, stat: statusIssued, open: false },
-      { ref: "XY99201", text: "1 Article 10 application", spec: species1, stat: statusIssued, open: false },
-      { ref: "LL00923", text: "1 import application", spec: species4, stat: statusEndorsed, open: false },
-      { ref: "DS88722", text: "1 Article 10 application", spec: species1, stat: statusIssued, open: false },
-      { ref: "GT11288", text: "1 export application", spec: species2, stat: statusExpired, open: false }
-    ] %}
-
-    {% for item in otherItems %}
-      <div class="govuk-summary-card govuk-!-padding-bottom-0">
-        <div class="govuk-summary-card__title-wrapper">
-          <h2 class="govuk-summary-card__title">Submission reference -  {{ item.ref }}</h2>
-        </div>
-        <div class="govuk-summary-card__content">
-          <details class="govuk-details" data-module="govuk-details" {{ 'open' if item.open }}>
-            <summary class="govuk-details__summary"><span class="govuk-details__summary-text">{{ item.text }}</span></summary>
-            <div class="govuk-details__text">
-              {{ govukButton({
-                text: "Download permit PDF",
-                classes: "govuk-button--secondary govuk-button--small",
-                href: "/public/downloads/26GBEXP12345A-valid.pdf"
-              }) }}
-              {{ govukTable({ head: tableHead, rows: [[ {html:"<a href=\"#\">" + item.ref + "</a>"}, {text:'25-BB250-01'}, {html:item.spec}, {html:item.stat} ]] }) }}
-            </div>
-          </details>
-        </div>
-      </div>
-    {% endfor %}
-
     {# MAIN PAGE PAGINATION #}
     {{ govukPagination({
       previous: { href: "#" },
       next: { href: "#" },
       items: [
-        { number: 1, href: "#" },
+        { number: 1, current: true, href: "#" },
         { ellipsis: true },
-        { number: 6, href: "#" },
-        { number: 7, current: true, href: "#" },
-        { number: 8, href: "#" },
-        { ellipsis: true },
-        { number: 42, href: "#" }
+        { number: 7, href: "#" }
       ]
     }) }}
 
-    {% endif %}
   </div>
 </div>
 {% endblock %}

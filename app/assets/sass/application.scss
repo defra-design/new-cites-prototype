@@ -55,29 +55,45 @@ $govuk-suppressed-warnings: ("legacy-organisation-colours");
   }
 }
 
-/* Mobile Record View (Left Aligned & Compact) */
-@media (max-width: 48.0525em) {
-  #filter-column {
-    display: none !important; /* Hide filter by default on mobile */
+/* Default: Filters are visible on desktop */
+.app-filter-panel {
+  display: block;
+}
+
+.app-filter-toggle {
+  display: none; /* Hide toggle on desktop */
+}
+
+@media (max-width: 50em) {
+  .app-filter-toggle {
+    display: block; /* Show toggle on mobile */
+    width: 100%;
+    
+    .govuk-button {
+      width: 100%; /* Full width for easier tapping */
+    }
   }
-  .app-table--responsive td {
-    text-align: left;
-    padding: 10px 0;
-    &::before {
-      font-size: 12px;
-      text-transform: uppercase;
-      color: #505a5f;
+
+  .app-filter-panel {
+    display: none; /* Hidden by default on mobile */
+    
+    &.app-filter-panel--visible {
+      display: block;
+      margin-top: govuk-spacing(4);
     }
   }
 }
-@media (max-width: 48.0525em) {
+
+
+
+@media (max-width: 50em) {
   .app-table--responsive {
     display: block;
     width: 100%;
-    border: none; // Remove outer table border
+    border: none; 
 
     thead { 
-      display: none; // Hide headers on mobile
+      display: none; 
     } 
 
     tbody {
@@ -89,7 +105,7 @@ $govuk-suppressed-warnings: ("legacy-organisation-colours");
       display: block;
       margin-bottom: govuk-spacing(4); 
       padding: govuk-spacing(2) 0;
-      border-bottom: 2px solid #b1b4b6; // Clearer separation between records
+      border-bottom: 2px solid #b1b4b6; 
       width: 100%;
     }
 
@@ -97,7 +113,7 @@ $govuk-suppressed-warnings: ("legacy-organisation-colours");
       display: flex;
       justify-content: flex-start;
       align-items: flex-start;
-      padding: govuk-spacing(1) 0 !important; // Force remove GDS padding
+      padding: govuk-spacing(1) 0 !important; 
       border: none;
       font-size: 16px; 
       line-height: 1.5;
@@ -105,16 +121,18 @@ $govuk-suppressed-warnings: ("legacy-organisation-colours");
       text-align: left;
 
       &::before {
-        content: attr(data-label) ": "; // Adds colon for clarity
+        content: attr(data-label) ": "; 
         font-weight: bold;
-        color: #0b0c0c; // Standard black for keys
+        color: #0b0c0c; 
         flex-shrink: 0; 
-        width: 40%; // Consistent column width for the "key"
+        width: 40%; 
         padding-right: govuk-spacing(2);
+        
+        /* GDS Compliance: Ensure no all-caps transformations */
+        text-transform: none; 
       }
       
-      // Values now sit perfectly in the second column
-      span, a, strong, i {
+      span, a, strong, i, em {
         flex: 1;
         text-align: left; 
         word-break: break-word;
@@ -122,7 +140,6 @@ $govuk-suppressed-warnings: ("legacy-organisation-colours");
         display: inline-block;
       }
 
-      // Ensure tags stay left-aligned within their value area
       .govuk-tag {
         margin-top: 2px;
         display: inline-block;
@@ -143,3 +160,10 @@ $govuk-suppressed-warnings: ("legacy-organisation-colours");
   padding-bottom:0;
 }
 
+.govuk-pagination {
+    margin-bottom: 20px;
+    display: inline-flex;
+    flex-direction: inherit;
+    align-items: center;
+    flex-wrap: wrap;
+}

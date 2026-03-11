@@ -1,0 +1,132 @@
+{# Partial for eCITES application dashboard filters with Mobile Toggle Logic #}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "govuk/components/accordion/macro.njk" import govukAccordion %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{# 1. Mobile toggle button - only visible on small screens via CSS #}
+<div class="app-filter-toggle govuk-!-margin-bottom-4">
+  {{ govukButton({
+    text: "Show filters",
+    classes: "govuk-button--secondary govuk-!-margin-bottom-0",
+    attributes: {
+      "id": "app-filter-toggle-button",
+      "aria-expanded": "false",
+      "aria-controls": "filter-panel"
+    }
+  }) }}
+</div>
+
+{# 2. Filter panel wrapper #}
+<div id="filter-panel" class="app-filter-panel moj-filter">
+  <div class="moj-filter__header">
+    <div class="moj-filter__header-title">
+      <h2 class="govuk-heading-m">Filters</h2>
+    </div>
+  </div>
+
+  <div class="moj-filter__content">
+    <div class="moj-filter__selected">
+      <div class="moj-filter__selected-heading">
+        <div class="moj-filter__heading-title">
+          <h2 class="govuk-heading-s">Selected filters</h2>
+        </div>
+        <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="#">Clear all</a></p>
+      </div>
+
+      <h3 class="govuk-heading-s govuk-!-margin-bottom-0">Permit type</h3>
+      <ul class="moj-filter-tags">
+        <li>
+          <a class="moj-filter__tag" href="#">
+            <span class="govuk-visually-hidden">Remove this filter</span> Export
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="moj-filter__options">
+      <form action="#" method="get">
+        {{ govukButton({
+          text: "Apply filters",
+          classes: "govuk-button--secondary govuk-button--small moj-filter__apply-button"
+        }) }}
+
+        {% set typeFilterHtml %}
+          {{ govukCheckboxes({
+            idPrefix: "type",
+            name: "type",
+            classes: "govuk-checkboxes--small",
+            items: [
+              { value: "import", text: "Import" },
+              { value: "export", text: "Export", checked: true },
+              { value: "re-export", text: "Re-export" },
+              { value: "article-10", text: "Article 10" }
+            ]
+          }) }}
+        {% endset %}
+
+        {% set statusFilterHtml %}
+          {{ govukCheckboxes({
+            idPrefix: "status",
+            name: "status",
+            classes: "govuk-checkboxes--small",
+            items: [
+              { value: "progress", text: "In progress" },
+              { value: "payment", text: "Awaiting payment" },
+              { value: "issued", text: "Issued" },
+              { value: "expired", text: "Expired" }
+            ]
+          }) }}
+        {% endset %}
+
+        {% set submittedFilterHtml %}
+          {{ govukCheckboxes({
+            idPrefix: "submitted",
+            name: "submitted",
+            classes: "govuk-checkboxes--small",
+            items: [
+              { value: "user", text: "Me" }
+            ]
+          }) }}
+        {% endset %}
+
+        {{ govukAccordion({
+          id: "filter-accordion",
+          classes: "govuk-accordion--small",
+          items: [
+            { 
+              heading: { text: "Permit type" }, 
+              content: { html: typeFilterHtml },
+              expanded: true
+            },
+            { 
+              heading: { text: "Status" }, 
+              content: { html: statusFilterHtml },
+              expanded: true
+            },
+            { 
+              heading: { text: "Submitted by" }, 
+              content: { html: submittedFilterHtml },
+              expanded: true
+            }
+          ]
+        }) }}
+      </form>
+    </div>
+  </div>
+</div>
+
+{# 3. Inline JS for mobile toggle interaction #}
+<script>
+  (function() {
+    const filterButton = document.getElementById('app-filter-toggle-button')
+    const filterPanel = document.getElementById('filter-panel')
+
+    if (filterButton && filterPanel) {
+      filterButton.addEventListener('click', function() {
+        const isVisible = filterPanel.classList.toggle('app-filter-panel--visible')
+        this.innerText = isVisible ? 'Hide filters' : 'Show filters'
+        this.setAttribute('aria-expanded', isVisible)
+      })
+    }
+  })()
+</script>
