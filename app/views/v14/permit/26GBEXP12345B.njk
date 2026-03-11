@@ -1,5 +1,14 @@
 {% extends "layout" %}
 
+{% block header %}
+  {# Set serviceName in config.js. #}
+  {{ govukHeader({
+    serviceName: "Check a CITES permit",
+    serviceUrl: "/",
+    containerClasses: "govuk-width-container"
+  }) }}
+{% endblock %}
+
 {% set pageTitle = "Permit summary: " + (data['permitNumber'] or "26GBEXP12345A") %}
 
 {% block beforeContent %}
@@ -14,7 +23,6 @@
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-full">
-    <span class="govuk-caption-xl">{{ data['applicant-business-name'] or "Falconers ltd" }}</span>
     <h1 class="govuk-heading-l govuk-!-margin-bottom-4">Export Permit: {{ data['permitNumber'] or "26GBEXP12345A" }}</h1>
     
     {# The Prototype Kit puts ?permitStatus= into data['status'] automatically #}
