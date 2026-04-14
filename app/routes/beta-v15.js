@@ -1,83 +1,57 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
+const { paths, redirectFromPage } = require('./v15/lib/from-page')
 
-// *********** v10 routes *************
+// v15 POST routes — prefer redirectFromPage() and early returns to avoid duplicate res.redirect calls.
+// *********** v15 routes *************
 
 // Account no applications
-router.post('/v11/account-no-applications', function (req, res) {
+router.post('/v15/account-no-applications', function (req, res) {
   res.redirect('what-type-of-permit-or-certificate-are-you-applying-for')
 })
 
 // Add comments
-router.post('/v11/add-comments', function (req, res) {
-
-  if (req.session.data['fromPage'] == 'cya') {
-  res.redirect('check-your-answers')
-  }
-
-  if (req.session.data['fromPage'] == 'manageApplication') {
-  res.redirect('application')
-  }
-
-  if (req.session.data['fromPage'] == 'manageApplicationNew') {
-  res.redirect('new-application')
-  }
-
-else {
-res.redirect('file-upload')
-}
+router.post('/v15/add-comments', function (req, res) {
+  redirectFromPage(res, req.session.data, {
+    cya: paths.cya,
+    manageApplication: paths.manageApplication,
+    manageApplicationNew: paths.manageApplicationNew
+  }, 'file-upload')
 })
 
 // Acquired date
-router.post('/v11/acquired-date', function (req, res) {
-  if (req.session.data['fromPage'] == 'cya') {
-  res.redirect('check-your-answers')
-  }
-
-  if (req.session.data['fromPage'] == 'manageApplication') {
-  res.redirect('application')
-  }
-
-  if (req.session.data['fromPage'] == 'manageApplicationNew') {
-  res.redirect('new-application')
-  }
-
-  res.redirect('already-have-a10')
+router.post('/v15/acquired-date', function (req, res) {
+  redirectFromPage(res, req.session.data, {
+    cya: paths.cya,
+    manageApplication: paths.manageApplication,
+    manageApplicationNew: paths.manageApplicationNew
+  }, 'already-have-a10')
 })
 
 // Already have A10
-router.post('/v11/already-have-a10', function (req, res) {
-  if (req.session.data['fromPage'] == 'cya') {
-  res.redirect('check-your-answers')
-  }
-
-  if (req.session.data['fromPage'] == 'manageApplication') {
-  res.redirect('application')
-  }
-
-  if (req.session.data['fromPage'] == 'manageApplicationNew') {
-  res.redirect('new-application')
-  }
-  else {
-  res.redirect('ever-been-imported-exported')
-}
+router.post('/v15/already-have-a10', function (req, res) {
+  redirectFromPage(res, req.session.data, {
+    cya: paths.cya,
+    manageApplication: paths.manageApplication,
+    manageApplicationNew: paths.manageApplicationNew
+  }, 'ever-been-imported-exported')
 })
 
 // Application
-router.post('/v11/application', function (req, res) {
+router.post('/v15/application', function (req, res) {
   res.redirect('new-application')
 })
 
 
 // Application complete
-router.post('/v11/application-complete', function (req, res) {
+router.post('/v15/application-complete', function (req, res) {
   req.session.data['fromPage'] = ''
   res.redirect('start')
   // res.redirect('your-applications')
 })
 
 // Are you applying on behalf of someone else
-router.post('/v11/are-you-applying-on-behalf-of-someone-else', function (req, res) {
+router.post('/v15/are-you-applying-on-behalf-of-someone-else', function (req, res) {
 if (req.session.data['isAgent'] == 'yes') {
   res.redirect('enter-your-contact-details-agent')
 } else {
@@ -86,7 +60,7 @@ if (req.session.data['isAgent'] == 'yes') {
 })
 
 // Are you sure
-router.post('/v11/are-you-sure', function (req, res) {
+router.post('/v15/are-you-sure', function (req, res) {
 if (req.session.data['remove'] == 'yes') {
   res.redirect('your-applications-removed')
 } else {
@@ -95,7 +69,7 @@ if (req.session.data['remove'] == 'yes') {
 })
 
 // Are you sure change permit type
-router.post('/v11/are-you-sure-change-permit-type', function (req, res) {
+router.post('/v15/are-you-sure-change-permit-type', function (req, res) {
   if (req.session.data['changePermitType'] == 'yes') {
       res.redirect('what-type-of-permit-or-certificate-are-you-applying-for?fromPage=noreturn')
   }
@@ -120,7 +94,7 @@ router.post('/v11/are-you-sure-change-permit-type', function (req, res) {
 })
 
 // Are you sure change the scientific name
-router.post('/v11/are-you-sure-change-scientific-name', function (req, res) {
+router.post('/v15/are-you-sure-change-scientific-name', function (req, res) {
   if (req.session.data['changeScientificName'] == 'yes') {
       res.redirect('what-is-the-name-of-the-species?fromPage=noreturn')
   }
@@ -145,7 +119,7 @@ router.post('/v11/are-you-sure-change-scientific-name', function (req, res) {
 })
 
 // Are you sure change applicant contact details
-router.post('/v11/are-you-sure-change-applicant-contact-details', function (req, res) {
+router.post('/v15/are-you-sure-change-applicant-contact-details', function (req, res) {
 
   if (req.session.data['changeApplicantContactDetails'] == 'yes') {
     res.redirect('enter-your-contact-details-applicant?pageFrom=cya')
@@ -165,7 +139,7 @@ router.post('/v11/are-you-sure-change-applicant-contact-details', function (req,
 })
 
 // Are you sure change applicant address
-router.post('/v11/are-you-sure-change-applicant-address', function (req, res) {
+router.post('/v15/are-you-sure-change-applicant-address', function (req, res) {
 
 if (req.session.data['changeApplicantAddress'] == 'yes') {
   if (req.session.data['isAgent'] == 'yes') {
@@ -191,7 +165,7 @@ if (req.session.data['changeApplicantAddress'] == 'no') {
 
 
 // Are you sure change agent contact details
-router.post('/v11/are-you-sure-change-agent-contact-details', function (req, res) {
+router.post('/v15/are-you-sure-change-agent-contact-details', function (req, res) {
 if (req.session.data['changeAgentContactDetails'] == 'yes') {
   res.redirect('enter-your-contact-details-agent?pageFrom=cya')
 }
@@ -211,7 +185,7 @@ if (req.session.data['changeAgentContactDetails'] == 'no') {
 
 
 // Are you sure change agent address
-router.post('/v11/are-you-sure-change-agent-address', function (req, res) {
+router.post('/v15/are-you-sure-change-agent-address', function (req, res) {
 if (req.session.data['changeAgentAddress'] == 'yes') {
   res.redirect('what-is-your-address-agent?pageFrom=cya')
 }
@@ -230,7 +204,7 @@ if (req.session.data['changeAgentAddress'] == 'no') {
 })
 
 // Are you sure change delivery address
-router.post('/v11/are-you-sure-change-delivery-address', function (req, res) {
+router.post('/v15/are-you-sure-change-delivery-address', function (req, res) {
 if (req.session.data['changeDeliveryAddress'] == 'yes') {
   res.redirect('what-is-the-delivery-address?pageFrom=cya')
 }
@@ -249,7 +223,7 @@ if (req.session.data['changeDeliveryAddress'] == 'no') {
 })
 
 // Check your answers pre-multiplicity
-// router.post('/v11/check-your-answers', function (req, res) {
+// router.post('/v15/check-your-answers', function (req, res) {
 //   req.session.data['fromPage'] = 'cya'
 //
 //   if (req.session.data['specimenCount'] == req.session.data['quantity']) {
@@ -261,22 +235,22 @@ if (req.session.data['changeDeliveryAddress'] == 'no') {
 // })
 
 // Check your answers
-router.post('/v11/check-your-answers', function (req, res) {
+router.post('/v15/check-your-answers', function (req, res) {
   res.redirect('your-applications-pre-submission')
 })
 
 // Check your answers reuse
-// router.post('/v11/check-your-answers-reuse', function (req, res) {
+// router.post('/v15/check-your-answers-reuse', function (req, res) {
 //   res.redirect('declaration')
 // })
 
 // Confirm applicants international address
-// router.post('/v11/confirm-applicants-international-address', function (req, res) {
+// router.post('/v15/confirm-applicants-international-address', function (req, res) {
 //   res.redirect('what-is-the-name-of-the-species')
 // })
 
 // Choose delivery address
-router.post('/v11/choose-delivery-address', function (req, res) {
+router.post('/v15/choose-delivery-address', function (req, res) {
   if (req.session.data['delivery-address'] == 'delivery-address-1') {
     if (req.session.data['fromPage'] == 'cya') {
       res.redirect('check-your-answers') }
@@ -299,7 +273,7 @@ router.post('/v11/choose-delivery-address', function (req, res) {
 })
 
 // Comments
-router.post('/v11/comments', function (req, res) {
+router.post('/v15/comments', function (req, res) {
   if (req.session.data['fromPage'] == 'cya') {
   res.redirect('check-your-answers')
   }
@@ -318,7 +292,7 @@ else {
 })
 
 // Confirm delivery address
-router.post('/v11/confirm-delivery-address', function (req, res) {
+router.post('/v15/confirm-delivery-address', function (req, res) {
   if (req.session.data['fromPage'] == 'cya') {
   res.redirect('check-your-answers')
   }
@@ -331,7 +305,7 @@ router.post('/v11/confirm-delivery-address', function (req, res) {
 })
 
 // Confirm the address
-router.post('/v11/confirm-the-address', function (req, res) {
+router.post('/v15/confirm-the-address', function (req, res) {
   if (req.session.data['fromPage'] == 'cya') {
   res.redirect('check-your-answers')
   }
@@ -353,7 +327,7 @@ router.post('/v11/confirm-the-address', function (req, res) {
 })
 
 // Confirm your address agent
-router.post('/v11/confirm-your-address-agent', function (req, res) {
+router.post('/v15/confirm-your-address-agent', function (req, res) {
   if (req.session.data['fromPage'] == 'cya') {
   res.redirect('check-your-answers')
   }
@@ -376,7 +350,7 @@ else {
 })
 
 // Confirm your address agent led
-router.post('/v11/confirm-your-address-agent-led', function (req, res) {
+router.post('/v15/confirm-your-address-agent-led', function (req, res) {
   if (req.session.data['fromPage'] == 'cya') {
   res.redirect('check-your-answers')
   }
@@ -389,7 +363,7 @@ router.post('/v11/confirm-your-address-agent-led', function (req, res) {
 })
 
 // Confirm your address applicant
-router.post('/v11/confirm-your-address-applicant', function (req, res) {
+router.post('/v15/confirm-your-address-applicant', function (req, res) {
     if (req.session.data['fromPage'] == 'cya') {
     res.redirect('check-your-answers')
     }
@@ -399,12 +373,12 @@ router.post('/v11/confirm-your-address-applicant', function (req, res) {
 })
 
 // Copy application
-router.post('/v11/copy-application', function (req, res) {
+router.post('/v15/copy-application', function (req, res) {
   res.redirect('your-applications-pre-submission')
 })
 
 // Created date
-router.post('/v11/created-date', function (req, res) {
+router.post('/v15/created-date', function (req, res) {
   if (req.session.data['fromPage'] == 'cya') {
   res.redirect('check-your-answers')
   }
@@ -426,7 +400,7 @@ router.post('/v11/created-date', function (req, res) {
 })
 
 // Declaration
-router.post('/v11/declaration', function (req, res) {
+router.post('/v15/declaration', function (req, res) {
   if (req.session.data['simplePayment'] == 'yes') {
   res.redirect('pay-application')
   }
@@ -436,7 +410,7 @@ router.post('/v11/declaration', function (req, res) {
 })
 
 // Describe living animal
-router.post('/v11/describe-living-animal', function (req, res) {
+router.post('/v15/describe-living-animal', function (req, res) {
   if (req.session.data['fromPage'] == 'cya') {
   res.redirect('check-your-answers')
   }
@@ -470,7 +444,7 @@ res.redirect('importer-exporter-details')
 })
 
 // Description generic
-router.post('/v11/describe-generic', function (req, res) {
+router.post('/v15/describe-generic', function (req, res) {
   if (req.session.data['fromPage'] == 'cya') {
   res.redirect('check-your-answers')
   }
@@ -497,33 +471,33 @@ else {
 
 
 // Enter delivery address manually
-router.post('/v11/enter-delivery-address-manually', function (req, res) {
+router.post('/v15/enter-delivery-address-manually', function (req, res) {
   res.redirect('confirm-delivery-address')
 })
 
 // Enter address manually
-router.post('/v11/enter-address-manually', function (req, res) {
+router.post('/v15/enter-address-manually', function (req, res) {
   res.redirect('confirm-the-address')
 })
 
 // Enter your address manually - agent
-router.post('/v11/enter-your-address-manually-agent', function (req, res) {
+router.post('/v15/enter-your-address-manually-agent', function (req, res) {
   res.redirect('confirm-your-address-agent')
 })
 
 // Enter your address manually - agent led
-router.post('/v11/enter-your-address-manually-agent-led', function (req, res) {
+router.post('/v15/enter-your-address-manually-agent-led', function (req, res) {
   res.redirect('confirm-your-address-agent-led')
 })
 
 // Enter your address manually - applicant
-router.post('/v11/enter-your-address-manually-applicant', function (req, res) {
+router.post('/v15/enter-your-address-manually-applicant', function (req, res) {
   res.redirect('confirm-your-address-applicant')
 })
 
 
 // Enter your contact details agent
-router.post('/v11/enter-your-contact-details-agent', function (req, res) {
+router.post('/v15/enter-your-contact-details-agent', function (req, res) {
   if (req.session.data['fromPage'] == 'cya') {
   res.redirect('check-your-answers')
   }
@@ -545,7 +519,7 @@ else {
 })
 
 // Enter your contact details agent led
-router.post('/v11/enter-your-contact-details-agent-led', function (req, res) {
+router.post('/v15/enter-your-contact-details-agent-led', function (req, res) {
   if (req.session.data['fromPage'] == 'cya') {
     res.redirect('check-your-answers') }
 else
@@ -553,7 +527,7 @@ else
 })
 
 // Enter your contact details applicant
-router.post('/v11/enter-your-contact-details-applicant', function (req, res) {
+router.post('/v15/enter-your-contact-details-applicant', function (req, res) {
   if (req.session.data['fromPage'] == 'cya') {
   res.redirect('check-your-answers')
   }
@@ -575,7 +549,7 @@ else {
 })
 
 // Ever been imported or exported
-router.post('/v11/ever-been-imported-exported', function (req, res) {
+router.post('/v15/ever-been-imported-exported', function (req, res) {
 
   if (req.session.data['fromPage'] == 'cya') {
   res.redirect('check-your-answers')
@@ -596,12 +570,12 @@ else
 })
 
 // File upload
-router.post('/v11/file-upload', function (req, res) {
+router.post('/v15/file-upload', function (req, res) {
   res.redirect('declaration')
 })
 
 // Importer / exporter details
-router.post('/v11/importer-exporter-details', function (req, res) {
+router.post('/v15/importer-exporter-details', function (req, res) {
   if (req.session.data['fromPage'] == 'cya') {
   res.redirect('check-your-answers')
   }
@@ -627,7 +601,7 @@ router.post('/v11/importer-exporter-details', function (req, res) {
 })
 
 // How many unmarked
-router.post('/v11/how-many-unmarked', function (req, res) {
+router.post('/v15/how-many-unmarked', function (req, res) {
   if (req.session.data['fromPage'] == 'cya') {
   res.redirect('check-your-answers')
   }
@@ -646,22 +620,22 @@ router.post('/v11/how-many-unmarked', function (req, res) {
 
 // Manage application
 
-router.post('/v11/application', function (req, res) {
+router.post('/v15/application', function (req, res) {
     res.redirect('new-application')
 })
 
 // New application
-router.post('/v11/new-application', function (req, res) {
+router.post('/v15/new-application', function (req, res) {
   res.redirect('your-applications-pre-submission')
 })
 
 // Pay application
-router.post('/v11/pay-application', function (req, res) {
+router.post('/v15/pay-application', function (req, res) {
   res.redirect('application-complete')
 })
 
 // Permit details
-router.post('/v11/permit-details', function (req, res) {
+router.post('/v15/permit-details', function (req, res) {
   if (req.session.data['fromPage'] == 'cya') {
   res.redirect('check-your-answers')
   }
@@ -684,7 +658,7 @@ else {
 })
 
 // Quantity or net mass
-router.post('/v11/quantity-or-net-mass', function (req, res) {
+router.post('/v15/quantity-or-net-mass', function (req, res) {
   if (req.session.data['fromPage'] == 'cya') {
   res.redirect('check-your-answers')
   }
@@ -710,32 +684,32 @@ router.post('/v11/quantity-or-net-mass', function (req, res) {
 })
 
 // Select address
-router.post('/v11/select-address', function (req, res) {
+router.post('/v15/select-address', function (req, res) {
   res.redirect('confirm-the-address')
 })
 
 // Select delivery address
-router.post('/v11/select-delivery-address', function (req, res) {
+router.post('/v15/select-delivery-address', function (req, res) {
   res.redirect('confirm-delivery-address')
 })
 
 // Select your address agent
-router.post('/v11/select-your-address-agent', function (req, res) {
+router.post('/v15/select-your-address-agent', function (req, res) {
   res.redirect('confirm-your-address-agent')
 })
 
 // Select your address agent led
-router.post('/v11/select-your-address-agent-led', function (req, res) {
+router.post('/v15/select-your-address-agent-led', function (req, res) {
   res.redirect('confirm-your-address-agent-led')
 })
 
 // Select your address applicant
-router.post('/v11/select-your-address-applicant', function (req, res) {
+router.post('/v15/select-your-address-applicant', function (req, res) {
   res.redirect('confirm-your-address-applicant')
 })
 
 // Specimen details
-router.post('/v11/specimen-details', function (req, res) {
+router.post('/v15/specimen-details', function (req, res) {
   if (req.session.data['fromPage'] == 'cya') {
   res.redirect('check-your-answers')
   }
@@ -762,7 +736,7 @@ res.redirect('permit-details')
 })
 
 // Trade term code
-router.post('/v11/trade-term-code', function (req, res) {
+router.post('/v15/trade-term-code', function (req, res) {
   if (req.session.data['fromPage'] == 'cya') {
   res.redirect('check-your-answers')
   }
@@ -787,7 +761,7 @@ router.post('/v11/trade-term-code', function (req, res) {
 })
 
 // Unique identification mark
-router.post('/v11/unique-identification-mark', function (req, res) {
+router.post('/v15/unique-identification-mark', function (req, res) {
   if (req.session.data['fromPage'] == 'cya') {
   res.redirect('check-your-answers')
   }
@@ -818,17 +792,17 @@ res.redirect('describe-generic')
 })
 
 // View application
-router.post('/v11/view-application', function (req, res) {
+router.post('/v15/view-application', function (req, res) {
   res.redirect('your-applications-pre-submission')
 })
 
 // We could not confirm the scientific name
-router.post('/v11/we-could-not-confirm-the-scientific-name', function (req, res) {
+router.post('/v15/we-could-not-confirm-the-scientific-name', function (req, res) {
   res.redirect('what-is-the-name-of-the-species')
 })
 
 // What best describes the specimen
-router.post('/v11/what-best-describes-the-specimen', function (req, res) {
+router.post('/v15/what-best-describes-the-specimen', function (req, res) {
 
   if (req.session.data['specimenType'] == 'animal') {
     if (req.session.data['specimenDescription'] == 'A living animal') {
@@ -845,7 +819,7 @@ res.redirect('quantity-or-net-mass')
 })
 
 // What is the name of the species
-router.post('/v11/what-is-the-name-of-the-species', function (req, res) {
+router.post('/v15/what-is-the-name-of-the-species', function (req, res) {
   if (req.session.data['fromPage'] == 'manageApplication') {
   res.redirect('application')
   }
@@ -866,7 +840,7 @@ router.post('/v11/what-is-the-name-of-the-species', function (req, res) {
 })
 
 // What is the purpose code
-router.post('/v11/what-is-the-purpose-code', function (req, res) {
+router.post('/v15/what-is-the-purpose-code', function (req, res) {
   if (req.session.data['fromPage'] == 'cya') {
   res.redirect('check-your-answers')
   }
@@ -902,138 +876,100 @@ router.post('/v11/what-is-the-purpose-code', function (req, res) {
 })
 
 // What is the delivery address
-router.post('/v11/what-is-the-delivery-address', function (req, res) {
+router.post('/v15/what-is-the-delivery-address', function (req, res) {
   res.redirect('select-delivery-address')
 })
 
 // What is your address agent
-router.post('/v11/what-is-your-address-agent', function (req, res) {
+router.post('/v15/what-is-your-address-agent', function (req, res) {
   res.redirect('select-your-address-agent')
 })
 
 // What is your address agent led
-router.post('/v11/what-is-your-address-agent-led', function (req, res) {
+router.post('/v15/what-is-your-address-agent-led', function (req, res) {
   res.redirect('select-your-address-agent-led')
 })
 
 // What is your address applicant
-router.post('/v11/what-is-your-address-applicant', function (req, res) {
+router.post('/v15/what-is-your-address-applicant', function (req, res) {
   res.redirect('select-your-address-applicant')
 })
 
 // What type of permit or certificate are you applying for
-router.post('/v11/what-type-of-permit-or-certificate-are-you-applying-for', function (req, res) {
-  let permitType = req.session.data['permitType']
+router.post('/v15/what-type-of-permit-or-certificate-are-you-applying-for', function (req, res) {
+  const d = req.session.data
+  const permitType = d.permitType
 
-  if (req.session.data['fromPage'] == 'manageApplication') {
-    res.redirect('application')
+  if (d.fromPage === 'manageApplication') {
+    return res.redirect(paths.manageApplication)
   }
-
-  if (req.session.data['fromPage'] == 'manageApplicationNew') {
-    res.redirect('new-application')
+  if (d.fromPage === 'manageApplicationNew') {
+    return res.redirect(paths.manageApplicationNew)
   }
-
   if (permitType === 'other') {
-    res.redirect('you-cannot-use-this-service-yet')
+    return res.redirect('you-cannot-use-this-service-yet')
   }
-
-  if (req.session.data['changePermitType'] == 'yes') {
-    res.redirect('what-is-the-name-of-the-species')
+  if (d.changePermitType === 'yes') {
+    return res.redirect('what-is-the-name-of-the-species')
   }
-
-  if (permitType === 'import') {
-    res.redirect('are-you-applying-on-behalf-of-someone-else')
+  const onward = 'are-you-applying-on-behalf-of-someone-else'
+  if (['import', 'export', 're-export', 'A10'].includes(permitType)) {
+    return res.redirect(onward)
   }
-  if (permitType === 'export') {
-    res.redirect('are-you-applying-on-behalf-of-someone-else')
-  }
-  if (permitType === 're-export') {
-    res.redirect('are-you-applying-on-behalf-of-someone-else')
-  }
-  if (permitType === 'A10') {
-    res.redirect('are-you-applying-on-behalf-of-someone-else')
-  }
+  return res.redirect(onward)
 })
 
 // What will you use the certificate for
-router.post('/v11/what-will-you-use-the-certificate-for', function (req, res) {
-  if (req.session.data['fromPage'] == 'cya') {
-    res.redirect('check-your-answers') }
-else
-  res.redirect('what-best-describes-the-specimen')
+router.post('/v15/what-will-you-use-the-certificate-for', function (req, res) {
+  if (req.session.data.fromPage === 'cya') {
+    return res.redirect(paths.cya)
+  }
+  return res.redirect('what-best-describes-the-specimen')
 })
 
 // What will you use the permit for
-router.post('/v11/what-will-you-use-your-permit-for', function (req, res) {
-  if (req.session.data['fromPage'] == 'cya') {
-  res.redirect('check-your-answers')
-  }
-
-  if (req.session.data['fromPage'] == 'manageApplication') {
-  res.redirect('application')
-  }
-
-  if (req.session.data['fromPage'] == 'manageApplicationNew') {
-  res.redirect('new-application')
-  }
-
-  if (req.session.data['permitType'] == 'A10') {
-  res.redirect('what-best-describes-the-specimen')
-  }
-
-else {
-  res.redirect('specimen-details')
-}
+router.post('/v15/what-will-you-use-your-permit-for', function (req, res) {
+  const d = req.session.data
+  if (d.fromPage === 'cya') return res.redirect(paths.cya)
+  if (d.fromPage === 'manageApplication') return res.redirect(paths.manageApplication)
+  if (d.fromPage === 'manageApplicationNew') return res.redirect(paths.manageApplicationNew)
+  if (d.permitType === 'A10') return res.redirect('what-best-describes-the-specimen')
+  return res.redirect('specimen-details')
 })
 
 // Where did you source the specimen from
-router.post('/v11/where-did-you-source-your-specimen-from', function (req, res) {
-  if (req.session.data['fromPage'] == 'cya') {
-  res.redirect('check-your-answers')
-  }
-
-  if (req.session.data['fromPage'] == 'copy') {
-  res.redirect('copy-application')
-  }
-
-  if (req.session.data['fromPage'] == 'manageApplication') {
-  res.redirect('application')
-  }
-
-  if (req.session.data['fromPage'] == 'manageApplicationNew') {
-  res.redirect('new-application')
-  }
-
-  if (req.session.data['permitType'] == 'A10') {
-  res.redirect('what-will-you-use-the-certificate-for')
-  }
-  else {
-  res.redirect('what-is-the-purpose-code')
-}
+router.post('/v15/where-did-you-source-your-specimen-from', function (req, res) {
+  const d = req.session.data
+  if (d.fromPage === 'cya') return res.redirect(paths.cya)
+  if (d.fromPage === 'copy') return res.redirect(paths.copy)
+  if (d.fromPage === 'manageApplication') return res.redirect(paths.manageApplication)
+  if (d.fromPage === 'manageApplicationNew') return res.redirect(paths.manageApplicationNew)
+  if (d.permitType === 'A10') return res.redirect('what-will-you-use-the-certificate-for')
+  return res.redirect('what-is-the-purpose-code')
 })
 
 // You cannot use this service yet
-router.post('/v11/you-cannot-use-this-service-yet', function (req, res) {
+router.post('/v15/you-cannot-use-this-service-yet', function (req, res) {
   res.redirect('your-submissions')
 })
 
 // Your applications
-router.post('/v11/your-applications', function (req, res) {
+router.post('/v15/your-applications', function (req, res) {
   res.redirect('what-type-of-permit-or-certificate-are-you-applying-for')
 })
 
 // Your applications removed
-router.post('/v11/your-applications-removed', function (req, res) {
+router.post('/v15/your-applications-removed', function (req, res) {
   res.redirect('file-upload')
 })
 
 // Your applications pre-submission
-router.post('/v11/your-applications-pre-submission', function (req, res) {
+router.post('/v15/your-applications-pre-submission', function (req, res) {
   res.redirect('file-upload')
 })
 
 // Your submissions
-router.post('/v11/your-submissions', function (req, res) {
+router.post('/v15/your-submissions', function (req, res) {
   res.redirect('your-applications')
 })
 

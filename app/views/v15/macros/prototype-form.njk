@@ -1,0 +1,14 @@
+{#
+  Wraps the usual two-thirds grid + POST form used across v15 HTML pages.
+  Migrate pages gradually: replace raw HTML with {% call formShell() %} ... {% endcall %}
+  and move field markup to govukInput / govukRadios etc. from the Design System.
+#}
+{% macro formShell (autocomplete = "off") %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form method="post" autocomplete="{{ autocomplete }}">
+      {{ caller() }}
+    </form>
+  </div>
+</div>
+{% endmacro %}
